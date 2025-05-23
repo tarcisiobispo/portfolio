@@ -85,8 +85,39 @@ const Index = () => {
   };
 
   return (
-    <div>
-
+    <div
+      className="min-h-screen w-full"
+      style={{
+        background: "linear-gradient(135deg, #f5f8ff 0%, #e3eafe 100%)"
+      }}
+    >
+      {/* Hero Section with Animated Background */}
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(26,63,212,0.1),transparent_70%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(26,63,212,0.05),transparent_70%)]"></div>
+        
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          {/* Profile Section */}
+          <Profile {...profileData} />
+          
+          {/* Scroll indicator */}
+          <motion.div 
+            className="hidden md:flex justify-center w-full absolute bottom-8"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.5, duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
+          >
+            <button 
+              onClick={scrollToProjects} 
+              className="flex flex-col items-center text-portfolio-blue-dark opacity-80 hover:opacity-100 transition-opacity"
+            >
+              <span className="mb-2 text-sm font-medium">Explore projetos</span>
+              <ArrowDown className="animate-bounce" />
+            </button>
+          </motion.div>
+        </div>
+      </div>
+      
       {/* Projects Section */}
       <div ref={projectsRef} className="py-20 relative">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
