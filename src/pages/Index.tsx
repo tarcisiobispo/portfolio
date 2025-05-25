@@ -64,11 +64,9 @@ const Index = () => {
       structuredData={mainPageSchema}
     />
     <SkipLink />
-    <main id="main-content" className="flex-1 w-full bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
-      {/* Hero Section with Animated Background */}
+    <main id="main-content" className="flex-1 w-full bg-white dark:bg-gray-900 transition-colors duration-300">
+      {/* Hero Section */}
       <div id="perfil" className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(26,63,212,0.1),transparent_70%)] dark:bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.1),transparent_70%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(26,63,212,0.05),transparent_70%)] dark:bg-[radial-gradient(circle_at_bottom_left,rgba(56,189,248,0.05),transparent_70%)]"></div>
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Profile Section */}
@@ -94,9 +92,8 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Backlog Cycle Section with Pattern Background */}
-      <div id="backlog" className="py-12 relative bg-gradient-to-b from-slate-100 to-white dark:from-gray-800 dark:to-gray-900 transition-colors duration-300">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(26,63,212,0.03),transparent_70%)] dark:bg-[radial-gradient(circle_at_center,rgba(56,189,248,0.03),transparent_70%)]"></div>
+      {/* Backlog Cycle Section */}
+      <div id="backlog" className="py-12 relative bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
