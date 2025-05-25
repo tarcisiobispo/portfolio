@@ -4,17 +4,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tarcisio Bispo | UX/Product Designer</title>
-    <meta name="description" content="Portfólio de Tarcisio Bispo de Araujo - UX/Product Designer com foco em estratégia, impacto e experiência." />
+    <title data-i18n="page-title">Tarcisio Bispo | UX/Product Designer</title>
+    <meta name="description" content="Portfólio de Tarcisio Bispo de Araujo - UX/Product Designer com foco em estratégia, impacto e experiência." data-i18n-attr="page-description" data-i18n-target="content" />
     <meta name="author" content="Tarcisio Bispo de Araujo" />
 
-    <meta property="og:title" content="Tarcisio Bispo | UX/Product Designer" />
-    <meta property="og:description" content="Portfólio de Tarcisio Bispo de Araujo - UX/Product Designer com foco em estratégia, impacto e experiência." />
+    <meta property="og:title" content="Tarcisio Bispo | UX/Product Designer" data-i18n-attr="page-title" data-i18n-target="content" />
+    <meta property="og:description" content="Portfólio de Tarcisio Bispo de Araujo - UX/Product Designer com foco em estratégia, impacto e experiência." data-i18n-attr="page-description" data-i18n-target="content" />
     <meta property="og:type" content="website" />
 
+    <!-- Preconnect para recursos externos -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://images.unsplash.com">
+
+    <!-- Fontes otimizadas -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&subset=latin&display=swap" rel="stylesheet">
+
+    <!-- Preload de recursos críticos -->
+    <link rel="preload" href="/src/main.tsx" as="script">
+    <link rel="preload" href="/src/styles/design-system.css" as="style">
   </head>
 
   <body style="font-family: 'Inter', sans-serif;">

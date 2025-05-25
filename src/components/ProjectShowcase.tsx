@@ -1,132 +1,224 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Eye } from 'lucide-react';
+import { Eye, EyeOff } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import CTAButton from '@/components/ui/CTAButton';
 
 interface ProjectDetails {
-  title: string;
-  category: string;
+  projectKey: string; // Chave para buscar as traduções
   imageUrl: string;
-  overview: string;
-  discovery: string;
-  solution: string;
-  iteration: string;
-  outcomes: string[];
-  insights: string;
 }
 
 interface ProjectShowcaseProps {
   projects: ProjectDetails[];
 }
 
-const sectionTitles: Record<string, string> = {
-  overview: "Visão Geral",
-  discovery: "Descoberta",
-  solution: "Solução",
-  iteration: "Iteração",
-  outcomes: "Resultados",
-  insights: "Insights",
-};
-
 const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
   const [activeProject, setActiveProject] = useState<number | null>(null);
+  const { t } = useTranslation();
+
+  const toggleProject = (index: number) => {
+    setActiveProject(activeProject === index ? null : index);
+  };
 
   return (
-    <section>
+    <section className="w-full">
+      {/* Header Section - Centralizado e Alinhado */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="mb-16 text-center"
       >
-        <h2 className="text-4xl font-bold text-portfolio-blue-dark mb-2">Projetos</h2>
-        <div className="h-1 w-20 bg-portfolio-blue mb-12"></div>
+        <h1 className="text-center">
+          {t('projects.title')}
+        </h1>
+        <div className="h-1 w-20 mb-6 rounded mx-auto" style={{ background: "var(--color-primary)" }}></div>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+      {/* Projects Grid - Centralizado */}
+      <div className="projects-grid max-w-6xl mx-auto">
         {projects.map((project, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
+          <motion.article
+            key={project.projectKey}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="project-card rounded-xl overflow-hidden self-start"
+            transition={{
+              duration: 0.6,
+              delay: index * 0.15,
+              ease: "easeOut"
+            }}
+            className="project-card"
+            tabIndex={0}
+            role="article"
+            aria-labelledby={`project-title-${index}`}
+            aria-describedby={`project-overview-${index}`}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleProject(index);
+              }
+            }}
           >
-            {/* Project Image */}
-            <div className="relative h-56 overflow-hidden">
+            {/* Project Image - Nielsen Norman Optimized */}
+            <div className="project-card-image-container">
               <img
                 src={project.imageUrl}
-                alt={project.title}
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                alt={`${t(`projects.${project.projectKey}.title`)} - ${t('projects.projectImage')}`}
+                className="project-card-image"
+                loading="lazy"
+                decoding="async"
+                sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, (max-width: 1279px) 33vw, 25vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-              <div className="absolute bottom-0 left-0 p-6">
-                <span className="text-white/80 text-sm font-medium">
-                  {project.category}
-                </span>
-                <h3 className="text-white text-xl font-semibold mt-1">
-                  {project.title}
-                </h3>
-              </div>
+
+              {/* Overlay sutil para efeito visual */}
+              <div className="project-card-overlay"></div>
             </div>
 
             {/* Project Content */}
-            <div className="p-6 bg-white">
-              <button
-                onClick={() => setActiveProject(activeProject === index ? null : index)}
-                className="group inline-flex items-center font-medium text-portfolio-blue hover:text-portfolio-blue-dark transition-colors"
-              >
-                <Eye size={18} className="mr-2 transition-transform group-hover:scale-110 duration-300" />
-                <span>Ver mais</span>
-                <ArrowRight
-                  size={16}
-                  className={`ml-1.5 transition-transform duration-300 ${activeProject === index ? 'rotate-90' : 'group-hover:translate-x-1'}`}
-                />
-              </button>
+            <div className="project-card-content">
+              {/* Título e Skills */}
+              <div className="mb-6">
+                <h3 id={`project-title-${index}`} className="project-card-title">
+                  {t(`projects.${project.projectKey}.title`)}
+                </h3>
+
+                {/* Badges de Skills/Metodologias - Top 3 */}
+                <div className="project-card-tags">
+                  {(() => {
+                    // Definir apenas os 3 badges mais importantes para cada projeto
+                    const projectBadges: { [key: string]: string[] } = {
+                      'fgvLaw': ['Usabilidade', 'Arquitetura da Informação', 'Testes de Usuário'],
+                      'direitoGV': ['UX Research', 'Mapa de Jornada', 'Stakeholder Management'],
+                      'taliparts': ['Product Strategy', 'SEO', 'Validação de Produto'],
+                      'tvInstitucional': ['Design Visual', 'Comunicação', 'Engajamento']
+                    };
+
+                    const badges = projectBadges[project.projectKey] || [];
+
+                    return badges.map((badge, badgeIndex) => (
+                      <span
+                        key={badgeIndex}
+                        className="project-card-tag"
+                      >
+                        {badge}
+                      </span>
+                    ));
+                  })()}
+                </div>
+              </div>
+
+              {/* Actions Row */}
+              <div className="project-card-actions">
+                {/* Ver mais Button */}
+                <CTAButton
+                  onClick={() => toggleProject(index)}
+                  variant="ghost"
+                  size="sm"
+                  icon={activeProject === index ? EyeOff : Eye}
+                  iconPosition="left"
+                  ariaLabel={activeProject === index ? 'Ocultar detalhes do projeto' : 'Ver mais detalhes do projeto'}
+                  className="text-sm"
+                >
+                  {activeProject === index ? 'Ver menos' : 'Ver mais'}
+                </CTAButton>
+              </div>
 
               {/* Expanded Content */}
               <AnimatePresence>
                 {activeProject === index && (
                   <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
+                    id={`project-details-${index}`}
+                    initial={{ opacity: 0, height: 0, y: -20 }}
+                    animate={{ opacity: 1, height: 'auto', y: 0 }}
+                    exit={{ opacity: 0, height: 0, y: -20 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
                     className="overflow-hidden"
                   >
-                    <div className="mt-6 pt-6 border-t border-slate-100 space-y-6">
-                      <div>
-                        <h4 className="font-medium text-portfolio-blue-dark mb-2">{sectionTitles.overview}</h4>
-                        <p className="text-portfolio-gray-dark">{project.overview}</p>
+                    <div className="mt-6 pt-6 border-t border-[var(--color-border)]/30 space-y-6">
+
+                      {/* Overview Section */}
+                      <div className="space-y-3">
+                        <h6 className="border-l-3 border-[var(--color-primary)] pl-3">
+                          {t('projects.overview')}
+                        </h6>
+                        <p className="text-[var(--color-muted)] leading-relaxed text-sm pl-6">
+                          {t(`projects.${project.projectKey}.overview`)}
+                        </p>
                       </div>
-                      <div>
-                        <h4 className="font-medium text-portfolio-blue-dark mb-2">{sectionTitles.discovery}</h4>
-                        <p className="text-portfolio-gray-dark">{project.discovery}</p>
+
+                      {/* Discovery Section */}
+                      <div className="space-y-3">
+                        <h6 className="border-l-3 border-[var(--color-primary)] pl-3">
+                          {t('projects.discovery')}
+                        </h6>
+                        <p className="text-[var(--color-muted)] leading-relaxed text-sm pl-6">
+                          {t(`projects.${project.projectKey}.discovery`)}
+                        </p>
                       </div>
-                      <div>
-                        <h4 className="font-medium text-portfolio-blue-dark mb-2">{sectionTitles.solution}</h4>
-                        <p className="text-portfolio-gray-dark">{project.solution}</p>
+
+                      {/* Solution Section */}
+                      <div className="space-y-3">
+                        <h6 className="border-l-3 border-[var(--color-primary)] pl-3">
+                          {t('projects.solution')}
+                        </h6>
+                        <p className="text-[var(--color-muted)] leading-relaxed text-sm pl-6">
+                          {t(`projects.${project.projectKey}.solution`)}
+                        </p>
                       </div>
-                      <div>
-                        <h4 className="font-medium text-portfolio-blue-dark mb-2">{sectionTitles.iteration}</h4>
-                        <p className="text-portfolio-gray-dark">{project.iteration}</p>
+
+                      {/* Iteration Section */}
+                      <div className="space-y-3">
+                        <h6 className="border-l-3 border-[var(--color-primary)] pl-3">
+                          {t('projects.iteration')}
+                        </h6>
+                        <p className="text-[var(--color-muted)] leading-relaxed text-sm pl-6">
+                          {t(`projects.${project.projectKey}.iteration`)}
+                        </p>
                       </div>
-                      <div>
-                        <h4 className="font-medium text-portfolio-blue-dark mb-2">{sectionTitles.outcomes}</h4>
-                        <ul className="list-disc pl-5 text-portfolio-gray-dark">
-                          {project.outcomes.map((item, idx) => (
-                            <li key={idx}>{item}</li>
-                          ))}
+
+                      {/* Outcomes Section */}
+                      <div className="space-y-3">
+                        <h6 className="border-l-3 border-[var(--color-primary)] pl-3">
+                          {t('projects.outcomes')}
+                        </h6>
+                        <ul className="space-y-2 pl-6">
+                          {(() => {
+                            const outcomes = t(`projects.${project.projectKey}.outcomes`, { returnObjects: true });
+                            if (Array.isArray(outcomes)) {
+                              return outcomes.map((item: string, idx: number) => (
+                                <li key={idx} className="flex items-start gap-3 text-[var(--color-muted)] text-sm">
+                                  <div className="w-1 h-1 bg-[var(--color-primary)] rounded-full mt-2 flex-shrink-0"></div>
+                                  <span className="leading-relaxed">{item}</span>
+                                </li>
+                              ));
+                            }
+                            return (
+                              <li className="flex items-start gap-3 text-[var(--color-muted)] text-sm">
+                                <div className="w-1 h-1 bg-[var(--color-primary)] rounded-full mt-2 flex-shrink-0"></div>
+                                <span className="leading-relaxed">{outcomes}</span>
+                              </li>
+                            );
+                          })()}
                         </ul>
                       </div>
-                      <div>
-                        <h4 className="font-medium text-portfolio-blue-dark mb-2">{sectionTitles.insights}</h4>
-                        <p className="text-portfolio-gray-dark">{project.insights}</p>
+
+                      {/* Insights Section */}
+                      <div className="space-y-3">
+                        <h6 className="border-l-3 border-[var(--color-primary)] pl-3">
+                          {t('projects.insights')}
+                        </h6>
+                        <p className="text-[var(--color-muted)] leading-relaxed text-sm pl-6 italic">
+                          {t(`projects.${project.projectKey}.insights`)}
+                        </p>
                       </div>
+
                     </div>
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
-          </motion.div>
+          </motion.article>
         ))}
       </div>
     </section>

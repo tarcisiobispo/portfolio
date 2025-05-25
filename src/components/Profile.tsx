@@ -1,7 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Download, Linkedin, ArrowRight } from 'lucide-react';
+import CTAButton from '@/components/ui/CTAButton';
+import IxDFLogo from '@/components/ui/IxDFLogo';
+import TypewriterText from '@/components/ui/TypewriterText';
+import { Download, Linkedin, ArrowRight, MapPin, Mail, Phone, MessageCircle } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 // Ícone do WhatsApp
 const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -17,94 +20,183 @@ const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+
+
 interface ProfileProps {
   name: string;
-  title: string;
-  bio: string;
 }
 
-const Profile: React.FC<ProfileProps> = ({ name, title, bio }) => {
+const Profile: React.FC<ProfileProps> = ({ name }) => {
+  const { t } = useTranslation();
   return (
-    <section className="min-h-screen flex flex-col justify-center py-16 relative overflow-hidden">
+    <section className="min-h-screen flex flex-col justify-center py-16 relative overflow-hidden" aria-labelledby="profile-title">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center justify-center">
         {/* Card da foto */}
         <motion.div
-          className="lg:col-span-4 flex flex-col items-center lg:items-start"
+          className="lg:col-span-4 flex flex-col items-center"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
           <div className="flex justify-center items-center mb-6 lg:mb-0 w-full">
-            <div className="w-64 h-64 rounded-full border-4 border-white shadow-2xl bg-white overflow-hidden hover:scale-105 transition-transform duration-300 mx-auto">
+            <div className="w-64 h-64 rounded-full border-4 border-white shadow-2xl bg-white overflow-hidden hover:scale-105 transition-transform duration-300">
               <img
                 src="/portfolio/images/tarcisio_bispo.png"
-                alt="Foto de Tarcisio Bispo de Araujo"
+                alt="Foto profissional de Tarcisio Bispo de Araujo, UX Designer especializado em Design de Interação e membro da Interaction Design Foundation"
                 className="w-full h-full object-cover"
+                loading="lazy"
+                role="img"
+                aria-describedby="profile-description"
               />
+            </div>
+          </div>
+
+          {/* Informações abaixo da foto */}
+          <div className="flex flex-col items-center text-center space-y-4 mt-8 lg:mt-6 w-full">
+
+            {/* Nome + Logo IxDF */}
+            <div className="flex flex-col items-center gap-4">
+              <p className="profile-name">
+                Tarcisio Bispo de Araujo
+              </p>
+
+              {/* Logo IxDF com texto explicativo */}
+              <div className="flex items-center gap-1">
+                <IxDFLogo
+                  size="sm"
+                  showText={false}
+                  className="opacity-90 hover:opacity-100 transition-opacity duration-300"
+                />
+                <span
+                  className="text-sm font-medium"
+                  style={{ color: 'var(--color-muted)' }}
+                >
+                  IxDF | Interaction Design Foundation
+                </span>
+              </div>
+            </div>
+
+            {/* Informações de Contato Centralizadas */}
+            <div className="flex flex-col items-center space-y-4 text-sm">
+
+              {/* Localização */}
+              <div className="flex items-center gap-3 min-w-0">
+                <MapPin className="w-4 h-4 flex-shrink-0" style={{ color: "var(--color-primary)" }} aria-hidden="true" />
+                <span style={{ color: "var(--color-muted)" }}>
+                  Campinas, SP, Brasil
+                </span>
+              </div>
+
+              {/* E-mail */}
+              <div className="flex items-center gap-3 min-w-0">
+                <Mail className="w-4 h-4 flex-shrink-0" style={{ color: "var(--color-primary)" }} aria-hidden="true" />
+                <a
+                  href="mailto:tbisp0@hotmail.com"
+                  className="hover:underline transition-all duration-300"
+                  style={{ color: "var(--color-muted)" }}
+                  aria-label="Enviar e-mail para tbisp0@hotmail.com"
+                >
+                  tbisp0@hotmail.com
+                </a>
+              </div>
+
+              {/* Telefone */}
+              <div className="flex items-center gap-3 min-w-0">
+                <Phone className="w-4 h-4 flex-shrink-0" style={{ color: "var(--color-primary)" }} aria-hidden="true" />
+                <a
+                  href="tel:+5519990137380"
+                  className="hover:underline transition-all duration-300"
+                  style={{ color: "var(--color-muted)" }}
+                  aria-label="Ligar para +55 19 99013-7380"
+                >
+                  +55 (19) 99013-7380
+                </a>
+              </div>
+
             </div>
           </div>
         </motion.div>
 
         {/* Bio Section */}
         <motion.div
-          className="lg:col-span-8 flex flex-col"
+          className="lg:col-span-8 flex flex-col text-left"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h1 className="text-5xl md:text-6xl font-bold mb-3 leading-tight break-words" style={{ color: "var(--color-primary)" }}>
-            {name}
+          <h1 id="profile-title" className="break-words text-left mb-6">
+            <TypewriterText
+              sequence={[
+                'UX Designer',
+                2000,
+                'Product Designer',
+                2000,
+                'Design Strategist',
+                2000,
+                'Interaction Designer',
+                2000
+              ]}
+              className="text-[var(--color-primary)]"
+              speed={50}
+              repeat={0}
+            />
           </h1>
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: "120px" }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="h-1.5 mb-6 rounded"
+            className="h-1.5 mb-8 rounded"
             style={{ background: "var(--color-secondary)" }}
           ></motion.div>
-          <h2 className="text-2xl md:text-3xl mb-8 font-semibold" style={{ color: "var(--color-secondary)" }}>
-            {title}
-          </h2>
-          <p className="leading-relaxed mb-10 max-w-3xl text-lg md:text-xl" style={{ color: "var(--color-muted)" }}>
-            {bio}
+          <p id="profile-description" className="text-lead max-w-3xl text-left mb-8">
+            Sou UX/Product Designer com forte atuação no design de produtos digitais focados em experiência do usuário, conversão e impacto de negócio. Com background em Marketing Digital, SEO e IA, integro estratégia, design e usabilidade em processos contínuos de melhoria e inovação. Já atuei em contextos acadêmicos, e-commerce B2B e comunicação institucional, sempre guiado por dados, empatia e visão de produto.
           </p>
-          {/* Botões */}
-          <div className="flex flex-wrap gap-6">
-            <Button
-              style={{ backgroundColor: "#25D366" }}
-              className="group text-white hover:bg-[#1ebe5d] transition-all duration-300 rounded-full pl-7 pr-6 py-4 text-lg"
-              asChild
+          {/* Botões CTA Modernos */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-start">
+
+            {/* CTA Principal - Vamos Conversar */}
+            <CTAButton
+              href="https://wa.me/19990137380"
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="primary"
+              size="lg"
+              icon={MessageCircle}
+              iconPosition="left"
+              ariaLabel="Iniciar conversa no WhatsApp com Tarcisio Bispo para discutir projetos de UX Design"
+              className="bg-gradient-to-r from-[#25D366] to-[#1ebe5d] hover:from-[#1ebe5d] hover:to-[#25D366] focus:ring-green-400"
             >
-              <a href="https://wa.me/19990137380" target="_blank" rel="noopener noreferrer" className="flex items-center">
-                <WhatsAppIcon className="mr-3" width={24} height={24} /> {/* Corrigido: sem w-8 h-8 */}
-                <span>Vamos Conversar</span>
-                <ArrowRight size={28} className="ml-2 transition-transform group-hover:translate-x-1 duration-300" />
-              </a>
-            </Button>
-            <Button
-              variant="default"
-              className="group bg-portfolio-blue hover:bg-portfolio-blue-dark text-white transition-all duration-300 rounded-full pl-7 pr-6 py-4 text-lg"
-              asChild
-            >
-              <a
-                href="https://drive.google.com/file/d/1NgQorqxUXbGKUaDruLfflxB4_6GhJyo8/view?usp=drive_link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Download size={28} className="mr-3 w-8 h-8" />
-                <span>Download CV</span>
-              </a>
-            </Button>
-            <Button
+              {t('profile.letsChat')}
+            </CTAButton>
+
+            {/* CTA Ghost - Download CV */}
+            <CTAButton
+              href="https://drive.google.com/file/d/1NgQorqxUXbGKUaDruLfflxB4_6GhJyo8/view?usp=drive_link"
+              target="_blank"
+              rel="noopener noreferrer"
               variant="ghost"
-              className="group bg-transparent hover:bg-portfolio-blue/10 text-portfolio-blue transition-all duration-300 rounded-full pl-7 pr-6 py-4 text-lg"
-              asChild
+              size="lg"
+              icon={Download}
+              iconPosition="left"
+              ariaLabel="Baixar currículo em PDF de Tarcisio Bispo, UX Designer com experiência em Design de Interação"
             >
-              <a href="https://www.linkedin.com/in/tarcisiobispouxdesigner/" target="_blank" rel="noopener noreferrer">
-                <Linkedin size={28} className="mr-3 w-8 h-8" />
-                <span>LinkedIn</span>
-              </a>
-            </Button>
+              {t('profile.downloadCV')}
+            </CTAButton>
+
+            {/* CTA Ghost - LinkedIn */}
+            <CTAButton
+              href="https://www.linkedin.com/in/tarcisiobispouxdesigner/"
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="ghost"
+              size="lg"
+              icon={Linkedin}
+              iconPosition="left"
+              ariaLabel="Visitar perfil profissional de Tarcisio Bispo no LinkedIn para ver experiência e conexões"
+            >
+              {t('profile.linkedin')}
+            </CTAButton>
+
           </div>
         </motion.div>
       </div>

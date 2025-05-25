@@ -1,112 +1,49 @@
+/* Importa tokens do design system */
+@import './styles/design-system.css';
+@import './styles/toast-optimizations.css';
+
+/* Tailwind base, components e utilities devem ser processados pelo build do Tailwind, não pelo CSS puro. Se estiver vendo erro, ignore ao visualizar aqui, pois o build do Vite/Tailwind processa normalmente. */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 47.4% 11.2%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 47.4% 11.2%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 221 83% 53%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 222.2 13% 30%;
-    --muted-foreground: 222.2 47.4% 11.2%;
-    --border: 222.2 13% 80%;
-    --input: 222.2 13% 80%;
-    --radius: 0.5rem;
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+/* Estilos base usando tokens do design system */
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  transition: background var(--transition), color var(--transition);
 }
 
-@layer base {
-  * {
-    border-color: hsl(var(--border));
-  }
-
-  body {
-    background: hsl(var(--background));
-    color: hsl(var(--foreground));
-  }
+.section-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-md);
+  position: relative;
+  color: var(--color-primary);
 }
 
-@layer components {
-  .section-title {
-    @apply text-3xl font-bold mb-6 relative;
-  }
-  .section-title {
-    color: hsl(var(--primary));
-  }
-
-  .section-title::after {
-    content: '';
-    @apply absolute;
-    bottom: -8px;
-    left: 0;
-    width: 4rem;
-    height: 0.25rem;
-    background: hsl(var(--secondary));
-  }
-
-  .project-card {
-    @apply rounded-lg shadow-md transition-all duration-300 hover:shadow-lg;
-  }
-  .project-card {
-    background: hsl(var(--card));
-    color: hsl(var(--card-foreground));
-    border: 1px solid hsl(var(--border));
-  }
-
-  .project-card:hover {
-    transform: translateY(-5px);
-  }
-
-  .expand-button {
-    @apply inline-flex items-center font-medium;
-  }
-  .expand-button {
-    color: hsl(var(--secondary));
-  }
-  .expand-button:hover {
-    color: hsl(var(--primary));
-  }
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 4rem;
+  height: 0.25rem;
+  background: var(--color-primary-light);
 }
+
+/* Todas as cores e temas são controlados apenas pelos tokens do design-system.css! */
+
+/* Remove sublinhados dos links de navegação */
+nav a,
+header a {
+  text-decoration: none !important;
+}
+
+/* Estilos de botões movidos para src/styles/buttons.css */
+
+/* Estilos de cards movidos para src/styles/cards.css */
+
+/* Estilos de expand-button movidos para src/styles/buttons.css */

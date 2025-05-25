@@ -1,15 +1,7 @@
-:root {
-  --color-bg: #fff;
-  --color-primary: #1a202c;      /* Cinza escuro para texto principal */
-  --color-secondary: #2563eb;    /* Azul forte para destaques */
-  --color-muted: #2d3748;        /* Cinza escuro para textos secundários */
-  --color-border: #cbd5e1;       /* Cinza claro para bordas */
-  --color-card-bg: #f8fafc;      /* Fundo de cards */
-}
+/* ATENÇÃO: Use apenas tokens do design-system.css para cores, tipografia e espaçamento. */
 
 body {
-  background: var(--color-bg);
-  color: var(--color-primary);
+  /* O background e color já são definidos em design-system.css */
 }
 
 #root {
@@ -19,35 +11,14 @@ body {
   text-align: center;
 }
 
-/* Exemplo de uso das variáveis para contraste */
-h1, h2, h3, h4, h5, h6 {
-  color: var(--color-primary);
-}
-
-p, span, li, label {
-  color: var(--color-muted);
-}
-
-.card, .project-card {
-  background: var(--color-card-bg);
-  color: var(--color-primary);
-  border: 1px solid var(--color-border);
-}
-
-button, .btn-primary {
-  background: var(--color-secondary);
-  color: #fff;
-}
-
-button:focus, button:hover, .btn-primary:focus, .btn-primary:hover {
-  background: #1746b3; /* tom mais escuro para acessibilidade */
-}
+/* Estilos de cards movidos para src/styles/cards.css */
+/* Estilos de botões movidos para src/styles/buttons.css */
 
 a {
-  color: var(--color-secondary);
+  color: var(--color-primary);
 }
 a:hover {
-  color: #1746b3;
+  color: var(--color-primary-dark);
 }
 
 .logo {

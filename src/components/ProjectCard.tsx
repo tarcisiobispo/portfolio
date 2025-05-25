@@ -27,23 +27,23 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       <h3 className="text-xl font-semibold mt-1">{title}</h3>
       <div className="mt-4 space-y-4">
         <div>
-          <h4 className="font-medium mb-1">Overview</h4>
+          <h4 className="font-medium mb-1" data-i18n="projeto-overview">Overview</h4>
           <p>{overview}</p>
         </div>
         <div>
-          <h4 className="font-medium mb-1">Discovery</h4>
+          <h4 className="font-medium mb-1" data-i18n="projeto-discovery">Discovery</h4>
           <p>{discovery}</p>
         </div>
         <div>
-          <h4 className="font-medium mb-1">Solution</h4>
+          <h4 className="font-medium mb-1" data-i18n="projeto-solution">Solution</h4>
           <p>{solution}</p>
         </div>
         <div>
-          <h4 className="font-medium mb-1">Iteration</h4>
+          <h4 className="font-medium mb-1" data-i18n="projeto-iteration">Iteration</h4>
           <p>{iteration}</p>
         </div>
         <div>
-          <h4 className="font-medium mb-1">Outcomes</h4>
+          <h4 className="font-medium mb-1" data-i18n="projeto-outcomes">Outcomes</h4>
           <ul className="list-disc pl-5">
             {outcomes.map((item, idx) => (
               <li key={idx}>{item}</li>
@@ -51,7 +51,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           </ul>
         </div>
         <div>
-          <h4 className="font-medium mb-1">Insights</h4>
+          <h4 className="font-medium mb-1" data-i18n="projeto-insights">Insights</h4>
           <p>{insights}</p>
         </div>
       </div>

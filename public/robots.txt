@@ -1,7 +1,23 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://tarcisiobispo.github.io/portfolio/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Allow all major search engines
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
 Allow: /
 
 User-agent: Twitterbot
@@ -10,5 +26,14 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
+# Allow access to assets for proper rendering
 User-agent: *
-Allow: /
+Allow: /assets/
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.gif
+Allow: /*.svg
+Allow: /*.webp
