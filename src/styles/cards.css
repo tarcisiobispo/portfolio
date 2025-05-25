@@ -50,43 +50,33 @@
   border-color: var(--color-primary);
 }
 
-/* ===== PROJECT CARDS - TODOS OS PROBLEMAS CORRIGIDOS ===== */
-.project-card {
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px; /* rounded-lg */
-  padding: 8;
-  overflow: hidden; /* Para imagem rounded-t-lg */
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /* shadow-sm */
-  transition: all 0.3s ease;
-  width: 100%;
-  max-width: 384px;
+/* ===== PROJECT CARDS  ===== */
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent) 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .project-card:hover {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
-  transform: translateY(-2px);
+  transform: translateY(-4px);
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.15),
+    0 0 12px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-primary);
 }
 
-/* 🔹 6. IMAGEM - SEPARAÇÃO VISUAL */
-.project-card-image {
-  border-radius: 8px 8px 0 0; /* rounded-t-lg */
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
+.project-card:hover::before,
+.project-card:focus-visible::before {
+  transform: scaleX(1);
 }
-
-/* Dark mode */
-.dark .project-card {
-  background: #1f2937;
-  border-color: #374151;
-}
-
-.dark .project-card:hover {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-}
-
-/* REMOVENDO REGRAS DUPLICADAS E CONFLITANTES */
 
 /* Foco visível para navegação por teclado - WCAG 2.1 AA */
 .project-card:focus-visible {
@@ -98,6 +88,119 @@
     0 0 12px rgba(0, 0, 0, 0.1),
     0 0 0 3px rgba(var(--color-primary-rgb, 59, 130, 246), 0.3);
   border-color: var(--color-primary);
+}
+
+/* Project Card Image - Nielsen Norman Optimized */
+.project-card-image-container {
+  position: relative;
+  height: clamp(180px, 20vw, 220px);
+  overflow: hidden;
+  background: var(--color-surface);
+
+  /* Placeholder para loading */
+  background-image: linear-gradient(90deg,
+      var(--color-surface) 0%,
+      rgba(var(--color-primary-rgb, 59, 130, 246), 0.1) 50%,
+      var(--color-surface) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.project-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Otimização para performance */
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.project-card-image:loaded {
+  animation: none;
+}
+
+.project-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top,
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(0, 0, 0, 0.1) 50%,
+      transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover .project-card-image {
+  transform: scale(1.05);
+}
+
+.project-card:hover .project-card-overlay {
+  opacity: 1;
+}
+
+/* Shimmer loading animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Project Card Content */
+.project-card-content {
+  padding: 20px;
+}
+
+.project-card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-title-primary);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.project-card-description {
+  font-size: 14px;
+  color: var(--color-text);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.project-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.project-card-tag {
+  padding: 4px 8px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-muted);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card-tag:hover {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+.project-card-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-start;
 }
 
 /* REMOVENDO REGRAS DUPLICADAS DE IMAGEM */
