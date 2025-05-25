@@ -23,7 +23,9 @@ const resources = {
         exploreProjects: "Explore projetos",
         letsChat: "Vamos Conversar",
         downloadCV: "Download CV",
-        linkedin: "LinkedIn"
+        linkedin: "LinkedIn",
+        name: "Tarcísio Bispo de Araújo",
+        ixdf: "IxDF | Interaction Design Foundation"
       },
       projects: {
         title: "Projetos",
@@ -36,6 +38,20 @@ const resources = {
         seeMore: "Ver detalhes",
         seeLess: "Ocultar detalhes",
         projectImage: "Imagem do projeto",
+        badges: {
+          usability: "Usabilidade",
+          informationArchitecture: "Arquitetura da Informação",
+          userTesting: "Testes de Usuário",
+          uxResearch: "UX Research",
+          journeyMapping: "Mapa de Jornada",
+          stakeholderManagement: "Stakeholder Management",
+          productStrategy: "Product Strategy",
+          seo: "SEO",
+          productValidation: "Validação de Produto",
+          visualDesign: "Design Visual",
+          communication: "Comunicação",
+          engagement: "Engajamento"
+        },
         fgvLaw: {
           title: "FGV LAW",
           category: "Navegação e Usabilidade",
@@ -431,6 +447,10 @@ const resources = {
         light: "Modo claro ativado",
         dark: "Modo escuro ativado",
         system: "Usando preferência do sistema"
+      },
+      footer: {
+        copyright: "© 2024 Tarcísio Bispo. Todos os direitos reservados.",
+        title: "UX/Product Designer"
       }
     }
   },
@@ -453,7 +473,9 @@ const resources = {
         exploreProjects: "Explore projects",
         letsChat: "Let's Chat",
         downloadCV: "Download CV",
-        linkedin: "LinkedIn"
+        linkedin: "LinkedIn",
+        name: "Tarcísio Bispo de Araújo",
+        ixdf: "IxDF | Interaction Design Foundation"
       },
       projects: {
         title: "Projects",
@@ -466,6 +488,20 @@ const resources = {
         seeMore: "See details",
         seeLess: "Hide details",
         projectImage: "Project image",
+        badges: {
+          usability: "Usability",
+          informationArchitecture: "Information Architecture",
+          userTesting: "User Testing",
+          uxResearch: "UX Research",
+          journeyMapping: "Journey Mapping",
+          stakeholderManagement: "Stakeholder Management",
+          productStrategy: "Product Strategy",
+          seo: "SEO",
+          productValidation: "Product Validation",
+          visualDesign: "Visual Design",
+          communication: "Communication",
+          engagement: "Engagement"
+        },
         fgvLaw: {
           title: "FGV LAW",
           category: "Navigation and Usability",

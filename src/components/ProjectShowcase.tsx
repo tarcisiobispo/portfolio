@@ -87,12 +87,28 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
                 {/* Badges de Skills/Metodologias - Top 3 */}
                 <div className="project-card-tags">
                   {(() => {
-                    // Definir apenas os 3 badges mais importantes para cada projeto
+                    // Buscar badges traduzidos para cada projeto
                     const projectBadges: { [key: string]: string[] } = {
-                      'fgvLaw': ['Usabilidade', 'Arquitetura da Informação', 'Testes de Usuário'],
-                      'direitoGV': ['UX Research', 'Mapa de Jornada', 'Stakeholder Management'],
-                      'taliparts': ['Product Strategy', 'SEO', 'Validação de Produto'],
-                      'tvInstitucional': ['Design Visual', 'Comunicação', 'Engajamento']
+                      'fgvLaw': [
+                        t('projects.badges.usability'),
+                        t('projects.badges.informationArchitecture'),
+                        t('projects.badges.userTesting')
+                      ],
+                      'direitoGV': [
+                        t('projects.badges.uxResearch'),
+                        t('projects.badges.journeyMapping'),
+                        t('projects.badges.stakeholderManagement')
+                      ],
+                      'taliparts': [
+                        t('projects.badges.productStrategy'),
+                        t('projects.badges.seo'),
+                        t('projects.badges.productValidation')
+                      ],
+                      'tvInstitucional': [
+                        t('projects.badges.visualDesign'),
+                        t('projects.badges.communication'),
+                        t('projects.badges.engagement')
+                      ]
                     };
 
                     const badges = projectBadges[project.projectKey] || [];

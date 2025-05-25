@@ -1,7 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 const Footer: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className="w-full flex items-center justify-center min-h-[200px]">
       <motion.div
@@ -12,8 +15,8 @@ const Footer: React.FC = () => {
         className="text-center"
       >
         <div className="space-y-2 text-sm text-[var(--color-muted)]">
-          <p>© 2024 Tarcísio Bispo. Todos os direitos reservados.</p>
-          <p className="font-medium">UX/Product Designer</p>
+          <p>{t('footer.copyright')}</p>
+          <p className="font-medium">{t('footer.title')}</p>
         </div>
       </motion.div>
     </footer>

@@ -57,7 +57,7 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
             {/* Nome + Logo IxDF */}
             <div className="flex flex-col items-center gap-4">
               <p className="profile-name">
-                Tarcisio Bispo de Araujo
+                {t('profile.name')}
               </p>
 
               {/* Logo IxDF com texto explicativo */}
@@ -71,7 +71,7 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
                   className="text-sm font-medium"
                   style={{ color: 'var(--color-muted)' }}
                 >
-                  IxDF | Interaction Design Foundation
+                  {t('profile.ixdf')}
                 </span>
               </div>
             </div>
