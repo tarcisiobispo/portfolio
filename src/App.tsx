@@ -11,9 +11,8 @@ import { useTranslation } from 'react-i18next';
 import BackToTop from "@/components/ui/BackToTop";
 import Header from "@/components/Header";
 import LoadingSpinner from "@/components/LoadingSpinner";
-import LazyAnalytics from "@/components/LazyAnalytics";
+import AnalyticsProvider from "@/components/analytics/AnalyticsProvider";
 import DebugTranslations from "@/components/DebugTranslations";
-import { useLazyLoad } from "@/hooks/useLazyLoad";
 
 
 // Lazy loading dos componentes de página para code splitting
@@ -25,14 +24,12 @@ const queryClient = new QueryClient();
 
 const App = () => {
   const { t } = useTranslation();
-  const shouldLoadAnalytics = useLazyLoad(3000); // Load analytics after 3 seconds
 
   return (
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
-          {/* Lazy load analytics to reduce main thread work */}
-          {shouldLoadAnalytics && <LazyAnalytics />}
+          <AnalyticsProvider>
 
           {/* Skip Links para Navegação por Teclado */}
           <a href="#main-content" className="skip-link">
@@ -66,6 +63,7 @@ const App = () => {
               </Routes>
             </Suspense>
           </BrowserRouter>
+          </AnalyticsProvider>
         </TooltipProvider>
       </QueryClientProvider>
     </HelmetProvider>
