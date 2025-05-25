@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import LogRocket from 'logrocket';
+import MicrosoftClarityInit from './MicrosoftClarity';
 
 interface AnalyticsProviderProps {
   children: React.ReactNode;
@@ -35,7 +36,12 @@ const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({ children }) => {
     }
   }, []);
 
-  return <>{children}</>;
+  return (
+    <>
+      <MicrosoftClarityInit />
+      {children}
+    </>
+  );
 };
 
 export default AnalyticsProvider;
