@@ -55,7 +55,7 @@ const resources = {
         fgvLaw: {
           title: "FGV LAW",
           category: "Navegação e Usabilidade",
-          overview: "Reestruturação da área de cursos jurídicos da FGV LAW com foco em usabilidade e organização da informação.",
+          overview: "Reestruturação da área de cursos jurídicos com foco em usabilidade e organização da informação para aumentar visibilidade.",
           discovery: "Identifiquei que os usuários enfrentavam dificuldade para localizar e comparar cursos.",
           solution: "Projetei um novo painel com sistema de abas e filtros temáticos.",
           iteration: "Após testes com usuários, simplificamos a terminologia dos filtros.",
@@ -69,7 +69,7 @@ const resources = {
         direitoGV: {
           title: "Pesquisa Direito FGV",
           category: "Mapas, Fluxos e Pesquisa",
-          overview: "Reorganização da área de pesquisa da Direito GV para melhorar a visibilidade dos projetos acadêmicos e facilitar o acesso a informações sobre pesquisadores e suas linhas de trabalho.",
+          overview: "Reorganização da área de pesquisa para melhorar visibilidade dos projetos acadêmicos e facilitar acesso a pesquisadores.",
           discovery: "A área de pesquisa estava fragmentada e pouco acessível. Pesquisadores tinham dificuldade para divulgar seus trabalhos e usuários externos não conseguiam encontrar informações relevantes sobre projetos em andamento.",
           solution: "Desenvolvi uma nova arquitetura de informação com categorização por áreas temáticas, perfis de pesquisadores e linha do tempo de projetos. Criei também um sistema de busca avançada.",
           iteration: "Realizamos testes com alunos, professores e pesquisadores. A navegação foi ajustada com base em feedback sobre nomenclatura e ordem de prioridades. Validei cada alteração com os stakeholders envolvidos.",
@@ -83,7 +83,7 @@ const resources = {
         taliparts: {
           title: "Taliparts",
           category: "UX Estratégico + B2B",
-          overview: "Projeto de estruturação e validação digital da Taliparts, focado na publicação de peças automotivas no Mercado Livre, com integração às operações físicas. O objetivo era aprender rápido, com baixo custo, sobre demanda real, comportamento do comprador e diferencial competitivo.",
+          overview: "Estruturação e validação digital da Taliparts para publicação de peças automotivas no Mercado Livre com foco em aprendizado rápido.",
           discovery: "Conduzi benchmark detalhado com concorrentes do setor automotivo. Entrevistei mecânicos e lojistas, modelei personas e apliquei a Matriz CSD para identificar certezas, suposições e dúvidas no catálogo físico.",
           solution: "Criei uma estratégia de validação com SEO para Mercado Livre, padronização visual de anúncios, categorização centrada no vocabulário do comprador e histórico de buscas. Também organizei KPIs e defini plano de priorização de produtos.",
           iteration: "Testei produtos por blocos temáticos, monitorando cliques, perguntas e taxa de conversão. Refinei descrições, títulos e até a seleção de itens com base em performance real.",
@@ -97,7 +97,7 @@ const resources = {
         tvInstitucional: {
           title: "FGV TV Institucional",
           category: "Engajamento e Comunicação Visual",
-          overview: "Criação de um sistema visual para TVs no hall da FGV, com o objetivo de comunicar eventos e atualizações institucionais de forma atrativa, dinâmica e acessível a alunos e visitantes.",
+          overview: "Sistema visual para TVs no hall da FGV para comunicar eventos e atualizações institucionais de forma atrativa e dinâmica.",
           discovery: "Alunos ignoravam murais físicos e e-mails institucionais. Identifiquei que a linguagem dos canais era desatualizada e pouco integrada com a rotina visual dos espaços.",
           solution: "Implementei um painel digital com curadoria de conteúdo semanal, foco em ritmo visual e clareza imediata das mensagens. A plataforma foi pensada para ser automatizada, com flexibilidade de atualização remota.",
           iteration: "Testamos tipos de animações, tempo de exibição e contraste. Ajustamos o calendário visual e otimizamos o layout com base em feedback de alunos e coordenação.",
@@ -537,7 +537,7 @@ const resources = {
         fgvLaw: {
           title: "FGV LAW",
           category: "Navigation and Usability",
-          overview: "Restructuring of FGV LAW's legal courses area with focus on usability and information organization.",
+          overview: "Restructuring of legal courses area with focus on usability and information organization to increase visibility.",
           discovery: "I identified that users faced difficulty locating and comparing courses.",
           solution: "I designed a new panel with tab system and thematic filters.",
           iteration: "After user testing, we simplified the filter terminology.",
@@ -551,7 +551,7 @@ const resources = {
         direitoGV: {
           title: "FGV Law Research",
           category: "Maps, Flows and Research",
-          overview: "Reorganization of Direito GV's research area to improve visibility of academic projects and facilitate access to information about researchers and their work lines.",
+          overview: "Reorganization of research area to improve visibility of academic projects and facilitate access to researchers.",
           discovery: "The research area was fragmented and poorly accessible. Researchers had difficulty promoting their work and external users couldn't find relevant information about ongoing projects.",
           solution: "I developed a new information architecture with categorization by thematic areas, researcher profiles and project timeline. I also created an advanced search system.",
           iteration: "We conducted tests with students, professors and researchers. Navigation was adjusted based on feedback about nomenclature and priority order. I validated each change with involved stakeholders.",
@@ -565,7 +565,7 @@ const resources = {
         taliparts: {
           title: "Taliparts",
           category: "Strategic UX + B2B",
-          overview: "Taliparts structuring and digital validation project, focused on publishing automotive parts on Mercado Livre, with integration to physical operations. The goal was to learn quickly, at low cost, about real demand, buyer behavior and competitive advantage.",
+          overview: "Taliparts digital structuring and validation for publishing automotive parts on Mercado Livre with focus on rapid learning.",
           discovery: "I conducted detailed benchmark with automotive sector competitors. I interviewed mechanics and shop owners, modeled personas and applied CSD Matrix to identify certainties, assumptions and doubts in the physical catalog.",
           solution: "I created a validation strategy with SEO for Mercado Livre, visual standardization of ads, categorization centered on buyer vocabulary and search history. I also organized KPIs and defined product prioritization plan.",
           iteration: "I tested products by thematic blocks, monitoring clicks, questions and conversion rate. I refined descriptions, titles and even item selection based on real performance.",
@@ -579,7 +579,7 @@ const resources = {
         tvInstitucional: {
           title: "FGV Institutional TV",
           category: "Engagement and Visual Communication",
-          overview: "Creation of a visual system for TVs in FGV's hall, aiming to communicate events and institutional updates in an attractive, dynamic and accessible way to students and visitors.",
+          overview: "Visual system for TVs in FGV's hall to communicate events and institutional updates in an attractive and dynamic way.",
           discovery: "Students ignored physical bulletin boards and institutional emails. I identified that the language of channels was outdated and poorly integrated with the visual routine of spaces.",
           solution: "I implemented a digital panel with weekly content curation, focus on visual rhythm and immediate message clarity. The platform was designed to be automated, with remote update flexibility.",
           iteration: "We tested animation types, display time and contrast. We adjusted the visual calendar and optimized layout based on student and coordination feedback.",
@@ -996,7 +996,7 @@ const resources = {
         fgvLaw: {
           title: "FGV LAW",
           category: "Navegación y Usabilidad",
-          overview: "Reestructuración del área de cursos jurídicos de FGV LAW con enfoque en usabilidad y organización de la información.",
+          overview: "Reestructuración del área de cursos jurídicos con enfoque en usabilidad y organización de la información para aumentar visibilidad.",
           discovery: "Identifiqué que los usuarios tenían dificultades para localizar y comparar cursos.",
           solution: "Diseñé un nuevo panel con sistema de pestañas y filtros temáticos.",
           iteration: "Después de pruebas con usuarios, simplificamos la terminología de los filtros.",
@@ -1010,7 +1010,7 @@ const resources = {
         direitoGV: {
           title: "Investigación Derecho FGV",
           category: "Mapas, Flujos e Investigación",
-          overview: "Reorganización del área de investigación de Direito GV para mejorar la visibilidad de proyectos académicos y facilitar el acceso a información sobre investigadores y sus líneas de trabajo.",
+          overview: "Reorganización del área de investigación para mejorar visibilidad de proyectos académicos y facilitar acceso a investigadores.",
           discovery: "El área de investigación estaba fragmentada y era poco accesible. Los investigadores tenían dificultades para promocionar su trabajo y usuarios externos no encontraban información relevante sobre proyectos en curso.",
           solution: "Desarrollé una nueva arquitectura de información con categorización por áreas temáticas, perfiles de investigadores y cronología de proyectos. También creé un sistema de búsqueda avanzada.",
           iteration: "Realizamos pruebas con estudiantes, profesores e investigadores. La navegación se ajustó basándose en feedback sobre nomenclatura y orden de prioridad. Validé cada cambio con stakeholders involucrados.",
@@ -1024,7 +1024,7 @@ const resources = {
         taliparts: {
           title: "Taliparts",
           category: "UX Estratégico + B2B",
-          overview: "Proyecto de estructuración y validación digital de Taliparts, enfocado en publicación de autopartes en Mercado Libre, con integración a operaciones físicas. El objetivo era aprender rápidamente, a bajo costo, sobre demanda real, comportamiento del comprador y ventaja competitiva.",
+          overview: "Estructuración y validación digital de Taliparts para publicación de autopartes en Mercado Libre con enfoque en aprendizaje rápido.",
           discovery: "Realicé benchmark detallado con competidores del sector automotriz. Entrevisté mecánicos y propietarios de talleres, modelé personas y apliqué Matriz CSD para identificar certezas, suposiciones y dudas en el catálogo físico.",
           solution: "Creé una estrategia de validación con SEO para Mercado Libre, estandarización visual de anuncios, categorización centrada en vocabulario del comprador e historial de búsqueda. También organicé KPIs y definí plan de priorización de productos.",
           iteration: "Probé productos por bloques temáticos, monitoreando clics, preguntas y tasa de conversión. Refiné descripciones, títulos e incluso selección de ítems basándome en rendimiento real.",
@@ -1038,7 +1038,7 @@ const resources = {
         tvInstitucional: {
           title: "FGV TV Institucional",
           category: "Engagement y Comunicación Visual",
-          overview: "Creación de un sistema visual para TVs en el hall de FGV, con el objetivo de comunicar eventos y actualizaciones institucionales de manera atractiva, dinámica y accesible para estudiantes y visitantes.",
+          overview: "Sistema visual para TVs en el hall de FGV para comunicar eventos y actualizaciones institucionales de manera atractiva y dinámica.",
           discovery: "Los estudiantes ignoraban carteleras físicas y emails institucionales. Identifiqué que el lenguaje de los canales estaba desactualizado y mal integrado con la rutina visual de los espacios.",
           solution: "Implementé un panel digital con curación semanal de contenido, enfoque en ritmo visual y claridad inmediata del mensaje. La plataforma fue diseñada para ser automatizada, con flexibilidad de actualización remota.",
           iteration: "Probamos tipos de animación, tiempo de exhibición y contraste. Ajustamos el calendario visual y optimizamos layout basándose en feedback de estudiantes y coordinación.",
