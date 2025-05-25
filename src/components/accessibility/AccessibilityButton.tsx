@@ -419,7 +419,7 @@ const AccessibilityButton: React.FC = () => {
         aria-label={isOpen ? t('accessibility.closeMenu') : t('accessibility.openMenu')}
         aria-expanded={isOpen}
         aria-haspopup="true"
-        title={t('accessibility.menuTooltip')}
+        title={t('accessibility.openMenu')}
         className="transition-all duration-300 flex items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] w-10 h-10 text-[var(--color-primary)] hover:scale-105"
         style={{ color: 'var(--color-primary)' }}
       >

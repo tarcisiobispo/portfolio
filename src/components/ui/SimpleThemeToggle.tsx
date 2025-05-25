@@ -40,14 +40,14 @@ export const SimpleThemeToggle: React.FC = () => {
 
   // Determina qual ícone mostrar
   const Icon = resolvedTheme === 'dark' ? Sun : Moon;
-  const label = resolvedTheme === 'dark' ? t('theme.light') : t('theme.dark');
+  const tooltipKey = resolvedTheme === 'dark' ? 'tooltips.theme.light' : 'tooltips.theme.dark';
 
   return (
     <button
       ref={buttonRef}
       onClick={toggleTheme}
-      aria-label={`${t('theme.toggle')} - ${label}`}
-      title={`${t('theme.toggle')} - ${label}`}
+      aria-label={t(tooltipKey)}
+      title={t(tooltipKey)}
       className="transition-all duration-300 flex items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] w-10 h-10 text-[var(--color-primary)] hover:scale-105"
       style={{ color: 'var(--color-primary)' }}
     >

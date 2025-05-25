@@ -95,8 +95,8 @@ export const LanguageSwitcher: React.FC = () => {
         ref={buttonRef}
         aria-haspopup="listbox"
         aria-expanded={open}
-        aria-label={t('language.select')}
-        title={t('language.select')}
+        aria-label={t('tooltips.language.switch')}
+        title={t('tooltips.language.switch')}
         onClick={() => {
           setOpen(v => !v);
           setFocusedIndex(-1);
