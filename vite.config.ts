@@ -34,25 +34,57 @@ export default defineConfig({
 
     rollupOptions: {
       output: {
-        // Manual chunks simplificado para evitar problemas de bundling
-        manualChunks: {
-          // React core - manter junto para evitar problemas de contexto
-          'react-core': ['react', 'react-dom'],
+        // Manual chunks otimizado para reduzir trabalho da thread principal
+        manualChunks: (id) => {
+          // React core - crítico, carregado primeiro
+          if (id.includes('node_modules/react') && !id.includes('react-router') && !id.includes('react-hook') && !id.includes('react-i18next')) {
+            return 'react-core';
+          }
 
-          // Bibliotecas de UI
-          'ui-libs': ['framer-motion', 'lucide-react'],
+          // Framer Motion - grande biblioteca de animação
+          if (id.includes('framer-motion') || id.includes('motion-dom')) {
+            return 'animation';
+          }
 
-          // Roteamento
-          'routing': ['react-router-dom'],
+          // Lucide Icons - lazy load
+          if (id.includes('lucide-react')) {
+            return 'icons';
+          }
 
-          // Internacionalização
-          'i18n': ['react-i18next', 'i18next'],
+          // React Query - estado assíncrono
+          if (id.includes('@tanstack')) {
+            return 'query';
+          }
 
-          // Query e estado
-          'state-management': ['@tanstack/react-query'],
+          // i18n - pode ser lazy loaded
+          if (id.includes('i18next') || id.includes('react-i18next')) {
+            return 'i18n';
+          }
 
-          // Outros vendors grandes
-          'vendor-misc': ['sonner', 'react-hook-form']
+          // UI Libraries
+          if (id.includes('@headlessui') || id.includes('@radix-ui') || id.includes('@floating-ui')) {
+            return 'ui';
+          }
+
+          // Forms - lazy load
+          if (id.includes('react-hook-form') || id.includes('@hookform')) {
+            return 'forms';
+          }
+
+          // Analytics - definitivamente lazy load
+          if (id.includes('@microsoft/clarity') || id.includes('logrocket')) {
+            return 'analytics';
+          }
+
+          // Router
+          if (id.includes('react-router')) {
+            return 'router';
+          }
+
+          // Outros vendors pequenos
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
         },
 
         // Nomeação de chunks
@@ -95,18 +127,41 @@ export default defineConfig({
       }
     },
 
-    // Configurações do Terser para minificação
+    // Configurações do Terser para minificação agressiva
     terserOptions: {
       compress: {
-        drop_console: false, // Manter console.logs para debug em produção
+        drop_console: true, // Remover todos os console.logs em produção
         drop_debugger: true,
-        pure_funcs: ['console.debug']
+        pure_funcs: ['console.log', 'console.info', 'console.debug', 'console.warn'],
+        passes: 2, // Múltiplas passadas de otimização
+        unsafe: true, // Otimizações mais agressivas
+        unsafe_comps: true,
+        unsafe_Function: true,
+        unsafe_math: true,
+        unsafe_symbols: true,
+        unsafe_methods: true,
+        unsafe_proto: true,
+        unsafe_regexp: true,
+        unsafe_undefined: true,
+        conditionals: true,
+        dead_code: true,
+        evaluate: true,
+        if_return: true,
+        join_vars: true,
+        reduce_vars: true,
+        side_effects: false,
+        unused: true
       },
       mangle: {
-        safari10: true
+        safari10: true,
+        toplevel: true, // Mangle nomes de nível superior
+        properties: {
+          regex: /^_/ // Mangle propriedades que começam com _
+        }
       },
       format: {
-        comments: false
+        comments: false,
+        ascii_only: true
       }
     }
   },

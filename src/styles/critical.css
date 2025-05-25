@@ -63,11 +63,41 @@ body {
   content-visibility: visible;
   contain-intrinsic-size: 256px 256px;
   will-change: auto;
+  contain: layout style paint;
 }
 
 .profile-image img {
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
+  transform: translateZ(0); /* Force GPU acceleration */
+}
+
+/* Reduce layout thrashing */
+.container {
+  contain: layout style;
+}
+
+/* Optimize animations for compositor */
+.animate-element {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* Reduce paint complexity */
+.card {
+  contain: layout style paint;
+  isolation: isolate;
+}
+
+/* Optimize text rendering */
+.text-content {
+  text-rendering: optimizeSpeed;
+  font-display: swap;
+}
+
+/* Reduce reflow/repaint */
+.fixed-dimensions {
+  contain: size layout style;
 }
 
 .profile-name {
