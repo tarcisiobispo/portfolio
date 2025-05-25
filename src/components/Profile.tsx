@@ -33,17 +33,18 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
   const profileImages = getProfileImagePaths();
 
   return (
-    <section className="min-h-screen flex flex-col justify-center py-16 relative overflow-hidden" aria-labelledby="profile-title">
+    <section className="min-h-screen flex flex-col justify-center py-16 relative" aria-labelledby="profile-title">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center justify-center max-w-7xl mx-auto px-6">
 
         {/* CARD DE PERFIL PREMIUM - Melhor que LinkedIn */}
         <motion.div
-          className="lg:col-span-4 flex justify-center"
+          className="lg:col-span-4 flex justify-center relative z-10"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
+          style={{ overflow: 'visible' }}
         >
-          <div className="relative group">
+          <div className="relative group p-8">
             {/* Card Container - ESPAÇAMENTOS HEURÍSTICOS PERFEITOS */}
             <div className="profile-card relative rounded-3xl px-6 py-10 max-w-sm w-full transition-all duration-500">
 
