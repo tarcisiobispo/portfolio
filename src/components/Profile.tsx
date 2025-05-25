@@ -78,80 +78,42 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
                 </div>
 
                 {/* Nome e Título */}
-                <div className="text-center mb-6">
-                  <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                <div className="text-center mb-4">
+                  <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
                     {t('profile.name')}
                   </h2>
-                  <p className="text-blue-600 dark:text-blue-400 font-semibold text-sm mb-3">
-                    UX/Product Designer
+                  <p className="text-blue-600 dark:text-blue-400 font-medium text-sm mb-2">
+                    UX Designer | SEO | IA
+                  </p>
+                  <p className="text-gray-500 dark:text-gray-400 text-sm mb-3">
+                    Campinas, São Paulo
                   </p>
 
                   {/* IxDF Badge */}
-                  <div className="ixdf-badge inline-flex items-center gap-2 px-3 py-1.5 rounded-full">
+                  <div className="ixdf-badge inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full">
                     <IxDFLogo
                       size="sm"
                       showText={false}
-                      className="w-4 h-4"
+                      className="w-3.5 h-3.5"
                     />
                     <span className="text-xs font-medium text-blue-700 dark:text-blue-300">
-                      {t('profile.ixdf')}
+                      IxDF - Interaction Design Foundation
                     </span>
                   </div>
                 </div>
 
                 {/* Informações de Contato */}
-                <div className="space-y-3 w-full">
-                  {/* Localização */}
-                  <div className="contact-item flex items-center gap-3 p-2 rounded-lg">
-                    <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/50 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <MapPin className="w-4 h-4 text-blue-600 dark:text-blue-400" aria-hidden="true" />
-                    </div>
-                    <span className="text-sm text-gray-600 dark:text-gray-300 font-medium">
-                      Campinas, SP, Brasil
-                    </span>
-                  </div>
-
+                <div className="space-y-1 w-full">
                   {/* E-mail */}
                   <a
                     href="mailto:tbisp0@hotmail.com"
-                    className="contact-item flex items-center gap-3 p-2 rounded-lg group"
+                    className="contact-item flex items-center gap-2 p-1.5 rounded-lg group text-sm"
                   >
-                    <div className="w-8 h-8 bg-green-100 dark:bg-green-900/50 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Mail className="w-4 h-4 text-green-600 dark:text-green-400" aria-hidden="true" />
-                    </div>
-                    <span className="text-sm text-gray-600 dark:text-gray-300 font-medium group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
-                      tbisp0@hotmail.com
+                    <Mail className="w-4 h-4 text-blue-600 dark:text-blue-400 flex-shrink-0" aria-hidden="true" />
+                    <span className="text-gray-600 dark:text-gray-300 font-medium group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      Informações de contato
                     </span>
                   </a>
-
-                  {/* Telefone */}
-                  <a
-                    href="tel:+5519990137380"
-                    className="contact-item flex items-center gap-3 p-2 rounded-lg group"
-                  >
-                    <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900/50 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Phone className="w-4 h-4 text-purple-600 dark:text-purple-400" aria-hidden="true" />
-                    </div>
-                    <span className="text-sm text-gray-600 dark:text-gray-300 font-medium group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
-                      +55 (19) 99013-7380
-                    </span>
-                  </a>
-                </div>
-
-                {/* Botão CTA Principal */}
-                <div className="mt-6 w-full">
-                  <CTAButton
-                    href="https://wa.me/19990137380"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    variant="primary"
-                    size="md"
-                    icon={MessageCircle}
-                    iconPosition="left"
-                    className="card-cta w-full justify-center"
-                  >
-                    {t('profile.letsChat')}
-                  </CTAButton>
                 </div>
               </div>
             </div>
@@ -203,8 +165,22 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
             </p>
           </div>
 
-          {/* CTAs Secundários */}
+          {/* CTAs Principais */}
           <div className="flex flex-col sm:flex-row gap-4">
+            {/* CTA Principal - Vamos Conversar */}
+            <CTAButton
+              href="https://wa.me/19990137380"
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="primary"
+              size="lg"
+              icon={MessageCircle}
+              iconPosition="left"
+              className="bg-gradient-to-r from-[#25D366] to-[#1ebe5d] hover:from-[#1ebe5d] hover:to-[#25D366] focus:ring-green-400"
+            >
+              {t('profile.letsChat')}
+            </CTAButton>
+
             {/* Download CV */}
             <CTAButton
               href="https://drive.google.com/file/d/1NgQorqxUXbGKUaDruLfflxB4_6GhJyo8/view?usp=drive_link"
