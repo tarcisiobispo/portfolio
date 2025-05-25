@@ -45,14 +45,14 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
         >
           <div className="relative group">
             {/* Card Container com Glassmorphism */}
-            <div className="profile-card relative rounded-3xl p-8 max-w-sm w-full transition-all duration-500">
+            <div className="profile-card relative rounded-3xl p-6 max-w-sm w-full transition-all duration-500">
 
               {/* Background Gradient Sutil */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-purple-50/50 dark:from-blue-900/20 dark:via-transparent dark:to-purple-900/20 rounded-3xl"></div>
 
               {/* Foto de Perfil com Efeitos */}
               <div className="relative z-10 flex flex-col items-center">
-                <div className="relative mb-6">
+                <div className="relative mb-4">
                   {/* Anel Animado */}
                   <div className="profile-ring absolute -inset-1 rounded-full opacity-75 group-hover:opacity-100"></div>
 
@@ -78,42 +78,26 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
                 </div>
 
                 {/* Nome e Título */}
-                <div className="text-center mb-4">
+                <div className="text-center">
                   <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
                     {t('profile.name')}
                   </h2>
-                  <p className="text-blue-600 dark:text-blue-400 font-medium text-sm mb-2">
+                  <p className="text-blue-600 dark:text-blue-400 font-medium text-sm mb-1">
                     UX Designer | SEO | IA
                   </p>
-                  <p className="text-gray-500 dark:text-gray-400 text-sm mb-3">
+                  <p className="text-gray-500 dark:text-gray-400 text-sm mb-4">
                     Campinas, São Paulo
                   </p>
 
-                  {/* IxDF Badge */}
-                  <div className="ixdf-badge inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full">
+                  {/* IxDF Text */}
+                  <div className="flex items-center justify-center gap-2 text-xs text-gray-600 dark:text-gray-400">
                     <IxDFLogo
                       size="sm"
                       showText={false}
-                      className="w-3.5 h-3.5"
+                      className="w-4 h-4"
                     />
-                    <span className="text-xs font-medium text-blue-700 dark:text-blue-300">
-                      IxDF - Interaction Design Foundation
-                    </span>
+                    <span>IxDF - Interaction Design Foundation</span>
                   </div>
-                </div>
-
-                {/* Informações de Contato */}
-                <div className="space-y-1 w-full">
-                  {/* E-mail */}
-                  <a
-                    href="mailto:tbisp0@hotmail.com"
-                    className="contact-item flex items-center gap-2 p-1.5 rounded-lg group text-sm"
-                  >
-                    <Mail className="w-4 h-4 text-blue-600 dark:text-blue-400 flex-shrink-0" aria-hidden="true" />
-                    <span className="text-gray-600 dark:text-gray-300 font-medium group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                      Informações de contato
-                    </span>
-                  </a>
                 </div>
               </div>
             </div>
