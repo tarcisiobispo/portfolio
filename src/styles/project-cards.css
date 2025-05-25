@@ -96,23 +96,12 @@
   border-radius: 6px;
   border: 1px solid #e5e7eb;
   white-space: nowrap;
-  transition: all 0.2s ease;
-}
-
-.project-card-tag:hover {
-  background: #e5e7eb;
-  border-color: #d1d5db;
 }
 
 .dark .project-card-tag {
   background: #374151;
   color: #d1d5db;
   border-color: #4b5563;
-}
-
-.dark .project-card-tag:hover {
-  background: #4b5563;
-  border-color: #6b7280;
 }
 
 /* ===== BOTÃO MODERNO ===== */
