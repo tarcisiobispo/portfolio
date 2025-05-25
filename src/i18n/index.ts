@@ -35,6 +35,7 @@ const resources = {
         insights: "Insights",
         seeMore: "Ver detalhes",
         seeLess: "Ocultar detalhes",
+        projectImage: "Imagem do projeto",
         fgvLaw: {
           title: "FGV LAW",
           category: "Navegação e Usabilidade",
@@ -163,6 +164,65 @@ const resources = {
           linkedin: "LinkedIn",
           whatsapp: "WhatsApp",
           email: "E-mail"
+        }
+      },
+      accessibility: {
+        title: "Acessibilidade",
+        subtitle: "Personalize sua experiência de navegação",
+        description: "Configure as opções de acessibilidade para melhorar sua experiência.",
+        instructions: "Use as opções abaixo para personalizar a interface.",
+        shortcut: "Atalho: Shift + A",
+        openMenu: "Abrir menu de acessibilidade",
+        closeMenu: "Fechar menu de acessibilidade",
+        menuLabel: "Menu de Acessibilidade",
+        menuTooltip: "Configurações de acessibilidade (Shift + A)",
+        fontSize: {
+          label: "Tamanho da fonte",
+          increase: "A+",
+          decrease: "A-",
+          increaseLabel: "Aumentar tamanho da fonte",
+          decreaseLabel: "Diminuir tamanho da fonte"
+        },
+        contrast: {
+          label: "Alto contraste",
+          enabled: "Alto contraste ativado",
+          disabled: "Alto contraste desativado"
+        },
+        focus: {
+          label: "Modo foco",
+          enabled: "Modo foco ativado",
+          disabled: "Modo foco desativado"
+        },
+        screenReader: {
+          label: "Leitor de tela",
+          enabled: "Leitor de tela ativado",
+          disabled: "Leitor de tela desativado"
+        },
+        reset: {
+          label: "Restaurar padrões",
+          action: "Configurações restauradas ao padrão",
+          success: "Configurações restauradas"
+        }
+      },
+      feedback: {
+        title: "Feedback",
+        subtitle: "Sua opinião é importante",
+        description: "Compartilhe sua experiência e sugestões",
+        form: {
+          type: "Tipo de feedback",
+          message: "Sua mensagem",
+          email: "Seu e-mail (opcional)",
+          send: "Enviar feedback",
+          sending: "Enviando...",
+          success: "Feedback enviado com sucesso!",
+          error: "Erro ao enviar feedback. Tente novamente.",
+          messageRequired: "Mensagem é obrigatória"
+        },
+        types: {
+          bug: "Reportar bug",
+          suggestion: "Sugestão",
+          compliment: "Elogio",
+          other: "Outro"
         }
       }
     }
