@@ -77,15 +77,15 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
               <div className="project-card-overlay"></div>
             </div>
 
-            {/* Project Content */}
+            {/* Project Content - ESTRUTURA PREMIUM */}
             <div className="project-card-content">
-              {/* Título e Skills */}
-              <div className="mb-6">
+              {/* Header Section - Título */}
+              <div className="flex flex-col gap-3">
                 <h3 id={`project-title-${index}`} className="project-card-title">
                   {t(`projects.${project.projectKey}.title`)}
                 </h3>
 
-                {/* Badges de Skills/Metodologias - Top 3 */}
+                {/* Badges de Skills/Metodologias - ALINHAMENTO PERFEITO */}
                 <div className="project-card-tags">
                   {(() => {
                     // Buscar badges traduzidos para cada projeto
@@ -126,9 +126,9 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
                 </div>
               </div>
 
-              {/* Actions Row */}
+              {/* Actions Row - POSICIONAMENTO PREMIUM */}
               <div className="project-card-actions">
-                {/* Ver mais Button */}
+                {/* Ver mais Button - DESIGN MELHORADO */}
                 <CTAButton
                   onClick={() => toggleProject(index)}
                   variant="ghost"
@@ -136,7 +136,7 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
                   icon={activeProject === index ? EyeOff : Eye}
                   iconPosition="left"
                   ariaLabel={activeProject === index ? t('projects.seeLess') : t('projects.seeMore')}
-                  className="text-sm"
+                  className="text-sm font-medium hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-200"
                 >
                   {activeProject === index ? t('projects.seeLess') : t('projects.seeMore')}
                 </CTAButton>
