@@ -1,12 +1,17 @@
-/* Profile Card Premium Styles - Melhor que LinkedIn */
+/* ===== PROFILE CARD PREMIUM - EFEITOS MODERNOS ===== */
 
-/* Glassmorphism Effect */
+/* Card Base com Glassmorphism */
 .profile-card {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   background: rgba(255, 255, 255, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 
+  position: relative;
+  overflow: visible !important; /* Permite efeitos saírem do card */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Sombra base elegante */
+  box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.1),
     0 0 0 1px rgba(255, 255, 255, 0.05) inset;
 }
@@ -14,55 +19,175 @@
 .dark .profile-card {
   background: rgba(17, 24, 39, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.3),
     0 0 0 1px rgba(255, 255, 255, 0.05) inset;
 }
 
-/* Hover Effects */
-.profile-card:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
-}
-
-.dark .profile-card:hover {
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
-}
-
-/* Animated Ring */
-.profile-ring {
-  background: linear-gradient(45deg, #3b82f6, #8b5cf6, #3b82f6);
-  background-size: 200% 200%;
+/* ===== EFEITO HOVER MODERNO - GLOW + LEVITAÇÃO ===== */
+.profile-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg,
+    #3b82f6, #8b5cf6, #06b6d4, #10b981, #f59e0b, #ef4444, #3b82f6);
+  background-size: 400% 400%;
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
   animation: gradientShift 3s ease infinite;
 }
 
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+.profile-card:hover::before {
+  opacity: 0.7;
+  animation: gradientShift 1.5s ease infinite;
+}
+
+.profile-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:
+    0 25px 50px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+    0 0 30px rgba(59, 130, 246, 0.3); /* Glow azul */
+}
+
+.dark .profile-card:hover {
+  box-shadow:
+    0 25px 50px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+    0 0 30px rgba(59, 130, 246, 0.4); /* Glow mais forte no dark */
+}
+
+/* ===== ANEL ANIMADO PREMIUM ===== */
+.profile-ring {
+  background: linear-gradient(45deg,
+    #3b82f6, #8b5cf6, #06b6d4, #10b981, #f59e0b, #ef4444, #3b82f6);
+  background-size: 400% 400%;
+  animation: gradientShift 3s ease infinite;
+  transition: all 0.4s ease;
+  filter: blur(0px);
 }
 
 .profile-ring:hover {
   animation: gradientShift 1s ease infinite, spin 2s linear infinite;
+  filter: blur(0.5px) brightness(1.2);
+  transform: scale(1.05);
 }
 
-/* Image Hover Effect */
+/* ===== KEYFRAMES MODERNOS ===== */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 100% 0%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 0% 100%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ===== EFEITO PARTÍCULAS NO HOVER ===== */
+.profile-card:hover::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle,
+    rgba(59, 130, 246, 0.1) 0%,
+    rgba(139, 92, 246, 0.05) 30%,
+    transparent 70%);
+  transform: translate(-50%, -50%) scale(0);
+  animation: particleExplosion 0.6s ease-out forwards;
+  pointer-events: none;
+  z-index: -2;
+}
+
+@keyframes particleExplosion {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+
+/* ===== EFEITO IMAGEM PREMIUM ===== */
 .profile-image-hover {
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-image-hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg,
+    rgba(59, 130, 246, 0.2),
+    rgba(139, 92, 246, 0.2));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.profile-image-hover:hover::before {
+  opacity: 1;
 }
 
 .profile-image-hover:hover {
-  transform: scale(1.1) rotate(2deg);
-  filter: brightness(1.1) contrast(1.1);
+  transform: scale(1.08) rotate(1deg);
+  filter: brightness(1.15) contrast(1.1) saturate(1.2);
 }
 
-/* Status Indicator */
+/* ===== EFEITO RIPPLE NO CLIQUE ===== */
+.profile-image-hover:active {
+  transform: scale(0.98);
+  transition: transform 0.1s ease;
+}
+
+/* ===== STATUS ONLINE PREMIUM ===== */
 .status-online {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  position: relative;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.3);
+  transition: all 0.3s ease;
+}
+
+.status-online::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: radial-gradient(circle,
+    rgba(34, 197, 94, 0.6) 0%,
+    transparent 70%);
+  border-radius: 50%;
+  animation: statusGlow 2s ease-in-out infinite;
+  z-index: -1;
+}
+
+.profile-card:hover .status-online {
+  animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.5);
 }
 
 @keyframes pulse {
@@ -72,7 +197,18 @@
   }
   50% {
     opacity: 0.8;
-    transform: scale(1.1);
+    transform: scale(1.15);
+  }
+}
+
+@keyframes statusGlow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.2);
   }
 }
 
@@ -134,7 +270,7 @@
     max-width: 280px;
     padding: 1.5rem;
   }
-  
+
   .profile-ring {
     width: 120px;
     height: 120px;
@@ -152,7 +288,7 @@
     animation: none;
     transition: none;
   }
-  
+
   .profile-card:hover,
   .profile-image-hover:hover,
   .contact-item:hover,
@@ -168,11 +304,11 @@
     border: 2px solid currentColor;
     background: var(--color-background);
   }
-  
+
   .profile-ring {
     background: currentColor;
   }
-  
+
   .ixdf-badge {
     border: 2px solid currentColor;
     background: var(--color-background);

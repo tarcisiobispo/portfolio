@@ -4,10 +4,9 @@
 /* Reset completo para todos os cards */
 .card,
 .project-card,
-.profile-card,
 .contact-card,
 .backlog-card,
-[class*="card"] {
+[class*="card"]:not(.profile-card) {
   /* Reset básico */
   margin: 0;
   padding: 0;
@@ -16,6 +15,17 @@
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
+}
+
+/* Profile card tem overflow especial para efeitos */
+.profile-card {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  position: relative;
+  overflow: visible; /* Permite efeitos saírem do card */
 }
 
 /* ===== Card Base - Fluent Design ===== */
@@ -252,7 +262,7 @@
   text-align: center;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  overflow: hidden;
+  overflow: visible !important; /* Permite efeitos modernos saírem do card */
 
   /* Fluent Design Glass Effect */
   backdrop-filter: blur(20px);
