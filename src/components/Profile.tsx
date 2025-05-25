@@ -50,6 +50,7 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
                   alt={t('alts.profile.photo')}
                   className="w-full h-full object-cover"
                   loading="eager"
+                  fetchPriority="high"
                   width="256"
                   height="256"
                   role="img"
