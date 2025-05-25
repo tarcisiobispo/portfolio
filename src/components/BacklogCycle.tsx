@@ -9,6 +9,7 @@ import {
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import CTAButton from '@/components/ui/CTAButton';
+import { useTranslationArray } from '@/utils/translationHelpers';
 
 interface BacklogItem {
   id: string;
@@ -24,8 +25,8 @@ const BacklogCycle: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { t } = useTranslation();
 
-  // Agora os itens vêm das traduções
-  const backlogItems = t('backlog.items', { returnObjects: true }) as Array<{
+  // Agora os itens vêm das traduções usando função utilitária segura
+  const backlogItems = useTranslationArray('backlog.items', t) as Array<{
     challenge: string;
     solution: string;
     result: string;

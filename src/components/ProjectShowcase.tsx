@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Eye, EyeOff } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import CTAButton from '@/components/ui/CTAButton';
+import { ensureStringArray } from '@/utils/translationHelpers';
 
 interface ProjectDetails {
   projectKey: string; // Chave para buscar as traduções
@@ -184,21 +185,15 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
                         </h6>
                         <ul className="space-y-2 pl-6">
                           {(() => {
-                            const outcomes = t(`projects.${project.projectKey}.outcomes`, { returnObjects: true });
-                            if (Array.isArray(outcomes)) {
-                              return outcomes.map((item: string, idx: number) => (
-                                <li key={idx} className="flex items-start gap-3 text-[var(--color-muted)] text-sm">
-                                  <div className="w-1 h-1 bg-[var(--color-primary)] rounded-full mt-2 flex-shrink-0"></div>
-                                  <span className="leading-relaxed">{item}</span>
-                                </li>
-                              ));
-                            }
-                            return (
-                              <li className="flex items-start gap-3 text-[var(--color-muted)] text-sm">
+                            const outcomesRaw = t(`projects.${project.projectKey}.outcomes`, { returnObjects: true });
+                            const outcomes = ensureStringArray(outcomesRaw);
+
+                            return outcomes.map((item: string, idx: number) => (
+                              <li key={idx} className="flex items-start gap-3 text-[var(--color-muted)] text-sm">
                                 <div className="w-1 h-1 bg-[var(--color-primary)] rounded-full mt-2 flex-shrink-0"></div>
-                                <span className="leading-relaxed">{outcomes}</span>
+                                <span className="leading-relaxed">{item}</span>
                               </li>
-                            );
+                            ));
                           })()}
                         </ul>
                       </div>
