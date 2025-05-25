@@ -6,6 +6,7 @@ import TypewriterText from '@/components/ui/TypewriterText';
 import { Download, Linkedin, ArrowRight, MapPin, Mail, Phone, MessageCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { getProfileImagePaths } from '@/utils/assetPaths';
+import '@/styles/profile-card.css';
 
 // Ícone do WhatsApp
 const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -33,150 +34,178 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
 
   return (
     <section className="min-h-screen flex flex-col justify-center py-16 relative overflow-hidden" aria-labelledby="profile-title">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center justify-center">
-        {/* Card da foto */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center justify-center max-w-7xl mx-auto px-6">
+
+        {/* CARD DE PERFIL PREMIUM - Melhor que LinkedIn */}
         <motion.div
-          className="lg:col-span-4 flex flex-col items-center"
+          className="lg:col-span-4 flex justify-center"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="profile-image-container">
-            <picture>
-              <source srcSet={profileImages.webp} type="image/webp" />
-              <img
-                src={profileImages.png}
-                alt={t('alts.profile.photo')}
-                className="profile-image"
-                loading="eager"
-                fetchPriority="high"
-                width="256"
-                height="256"
-                decoding="sync"
-                style={{
-                  contentVisibility: 'auto',
-                  containIntrinsicSize: '256px 256px'
-                }}
-              />
-            </picture>
-          </div>
+          <div className="relative group">
+            {/* Card Container com Glassmorphism */}
+            <div className="profile-card relative rounded-3xl p-8 max-w-sm w-full transition-all duration-500">
 
-          {/* Informações abaixo da foto */}
-          <div className="flex flex-col items-center text-center space-y-4 mt-8 lg:mt-6 w-full">
+              {/* Background Gradient Sutil */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-purple-50/50 dark:from-blue-900/20 dark:via-transparent dark:to-purple-900/20 rounded-3xl"></div>
 
-            {/* Nome + Logo IxDF */}
-            <div className="flex flex-col items-center gap-4">
-              <p className="profile-name">
-                {t('profile.name')}
-              </p>
+              {/* Foto de Perfil com Efeitos */}
+              <div className="relative z-10 flex flex-col items-center">
+                <div className="relative mb-6">
+                  {/* Anel Animado */}
+                  <div className="profile-ring absolute -inset-1 rounded-full opacity-75 group-hover:opacity-100"></div>
 
-              {/* Logo IxDF com texto explicativo */}
-              <div className="flex items-center gap-1">
-                <IxDFLogo
-                  size="sm"
-                  showText={false}
-                  className="opacity-90 hover:opacity-100 transition-opacity duration-300"
-                />
-                <span
-                  className="text-sm font-medium"
-                  style={{ color: 'var(--color-muted)' }}
-                >
-                  {t('profile.ixdf')}
-                </span>
+                  {/* Container da Foto */}
+                  <div className="relative w-32 h-32 rounded-full overflow-hidden bg-white p-1 shadow-xl">
+                    <picture>
+                      <source srcSet={profileImages.webp} type="image/webp" />
+                      <img
+                        src={profileImages.png}
+                        alt={t('alts.profile.photo')}
+                        className="profile-image-hover w-full h-full object-cover rounded-full"
+                        loading="eager"
+                        fetchPriority="high"
+                        width="128"
+                        height="128"
+                        decoding="sync"
+                      />
+                    </picture>
+                  </div>
+
+                  {/* Status Online */}
+                  <div className="status-online absolute bottom-2 right-2 w-4 h-4 bg-green-500 rounded-full border-2 border-white shadow-lg"></div>
+                </div>
+
+                {/* Nome e Título */}
+                <div className="text-center mb-6">
+                  <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                    {t('profile.name')}
+                  </h2>
+                  <p className="text-blue-600 dark:text-blue-400 font-semibold text-sm mb-3">
+                    UX/Product Designer
+                  </p>
+
+                  {/* IxDF Badge */}
+                  <div className="ixdf-badge inline-flex items-center gap-2 px-3 py-1.5 rounded-full">
+                    <IxDFLogo
+                      size="sm"
+                      showText={false}
+                      className="w-4 h-4"
+                    />
+                    <span className="text-xs font-medium text-blue-700 dark:text-blue-300">
+                      {t('profile.ixdf')}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Informações de Contato */}
+                <div className="space-y-3 w-full">
+                  {/* Localização */}
+                  <div className="contact-item flex items-center gap-3 p-2 rounded-lg">
+                    <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/50 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <MapPin className="w-4 h-4 text-blue-600 dark:text-blue-400" aria-hidden="true" />
+                    </div>
+                    <span className="text-sm text-gray-600 dark:text-gray-300 font-medium">
+                      Campinas, SP, Brasil
+                    </span>
+                  </div>
+
+                  {/* E-mail */}
+                  <a
+                    href="mailto:tbisp0@hotmail.com"
+                    className="contact-item flex items-center gap-3 p-2 rounded-lg group"
+                  >
+                    <div className="w-8 h-8 bg-green-100 dark:bg-green-900/50 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Mail className="w-4 h-4 text-green-600 dark:text-green-400" aria-hidden="true" />
+                    </div>
+                    <span className="text-sm text-gray-600 dark:text-gray-300 font-medium group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
+                      tbisp0@hotmail.com
+                    </span>
+                  </a>
+
+                  {/* Telefone */}
+                  <a
+                    href="tel:+5519990137380"
+                    className="contact-item flex items-center gap-3 p-2 rounded-lg group"
+                  >
+                    <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900/50 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Phone className="w-4 h-4 text-purple-600 dark:text-purple-400" aria-hidden="true" />
+                    </div>
+                    <span className="text-sm text-gray-600 dark:text-gray-300 font-medium group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                      +55 (19) 99013-7380
+                    </span>
+                  </a>
+                </div>
+
+                {/* Botão CTA Principal */}
+                <div className="mt-6 w-full">
+                  <CTAButton
+                    href="https://wa.me/19990137380"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variant="primary"
+                    size="md"
+                    icon={MessageCircle}
+                    iconPosition="left"
+                    className="card-cta w-full justify-center"
+                  >
+                    {t('profile.letsChat')}
+                  </CTAButton>
+                </div>
               </div>
-            </div>
-
-            {/* Informações de Contato Centralizadas */}
-            <div className="flex flex-col items-center space-y-4 text-sm">
-
-              {/* Localização */}
-              <div className="flex items-center gap-3 min-w-0">
-                <MapPin className="w-4 h-4 flex-shrink-0" style={{ color: "var(--color-primary)" }} aria-hidden="true" />
-                <span style={{ color: "var(--color-muted)" }}>
-                  Campinas, SP, Brasil
-                </span>
-              </div>
-
-              {/* E-mail */}
-              <div className="flex items-center gap-3 min-w-0">
-                <Mail className="w-4 h-4 flex-shrink-0" style={{ color: "var(--color-primary)" }} aria-hidden="true" />
-                <a
-                  href="mailto:tbisp0@hotmail.com"
-                  className="hover:underline transition-all duration-300"
-                  style={{ color: "var(--color-muted)" }}
-                >
-                  tbisp0@hotmail.com
-                </a>
-              </div>
-
-              {/* Telefone */}
-              <div className="flex items-center gap-3 min-w-0">
-                <Phone className="w-4 h-4 flex-shrink-0" style={{ color: "var(--color-primary)" }} aria-hidden="true" />
-                <a
-                  href="tel:+5519990137380"
-                  className="hover:underline transition-all duration-300"
-                  style={{ color: "var(--color-muted)" }}
-                >
-                  +55 (19) 99013-7380
-                </a>
-              </div>
-
             </div>
           </div>
         </motion.div>
 
-        {/* Bio Section */}
+        {/* Bio Section Moderna */}
         <motion.div
-          className="lg:col-span-8 flex flex-col text-left"
+          className="lg:col-span-8 flex flex-col justify-center"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h1 id="profile-title" className="break-words text-left mb-6 text-4xl lg:text-5xl font-bold">
-            <TypewriterText
-              sequence={[
-                'UX Designer',
-                2000,
-                'Product Designer',
-                2000,
-                'Design Strategist',
-                2000,
-                'Interaction Designer',
-                2000
-              ]}
-              className="text-[var(--color-primary)]"
-              speed={50}
-              repeat={0}
-            />
-          </h1>
-          <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: "120px" }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="h-1.5 mb-8 rounded"
-            style={{ background: "var(--color-secondary)" }}
-          ></motion.div>
-          <p id="profile-description" className="text-lead max-w-3xl text-left mb-8">
-            {t('profile.bio')}
-          </p>
-          {/* Botões CTA Modernos */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-start">
+          {/* Título Principal com Typewriter */}
+          <div className="mb-8">
+            <h1 id="profile-title" className="text-4xl lg:text-6xl font-bold mb-4 leading-tight">
+              <span className="text-gray-900 dark:text-white">Olá, eu sou </span>
+              <br />
+              <TypewriterText
+                sequence={[
+                  'UX Designer',
+                  2000,
+                  'Product Designer',
+                  2000,
+                  'Design Strategist',
+                  2000,
+                  'Interaction Designer',
+                  2000
+                ]}
+                className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent"
+                speed={50}
+                repeat={0}
+              />
+            </h1>
 
-            {/* CTA Principal - Vamos Conversar */}
-            <CTAButton
-              href="https://wa.me/19990137380"
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="primary"
-              size="lg"
-              icon={MessageCircle}
-              iconPosition="left"
-              className="bg-gradient-to-r from-[#25D366] to-[#1ebe5d] hover:from-[#1ebe5d] hover:to-[#25D366] focus:ring-green-400"
-            >
-              {t('profile.letsChat')}
-            </CTAButton>
+            {/* Linha Animada */}
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: "120px" }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-6"
+            ></motion.div>
+          </div>
 
-            {/* CTA Ghost - Download CV */}
+          {/* Bio Text */}
+          <div className="mb-8">
+            <p className="text-lg lg:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl">
+              {t('profile.bio')}
+            </p>
+          </div>
+
+          {/* CTAs Secundários */}
+          <div className="flex flex-col sm:flex-row gap-4">
+            {/* Download CV */}
             <CTAButton
               href="https://drive.google.com/file/d/1NgQorqxUXbGKUaDruLfflxB4_6GhJyo8/view?usp=drive_link"
               target="_blank"
@@ -185,11 +214,12 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
               size="lg"
               icon={Download}
               iconPosition="left"
+              className="border-2 border-gray-300 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400"
             >
               {t('profile.downloadCV')}
             </CTAButton>
 
-            {/* CTA Ghost - LinkedIn */}
+            {/* LinkedIn */}
             <CTAButton
               href="https://www.linkedin.com/in/tarcisiobispouxdesigner/"
               target="_blank"
@@ -198,10 +228,10 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
               size="lg"
               icon={Linkedin}
               iconPosition="left"
+              className="border-2 border-gray-300 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400"
             >
               {t('profile.linkedin')}
             </CTAButton>
-
           </div>
         </motion.div>
       </div>
