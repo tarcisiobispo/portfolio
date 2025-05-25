@@ -89,7 +89,10 @@ export default defineConfig({
 
       // Otimizações de tree-shaking
       treeshake: {
-        moduleSideEffects: false,
+        moduleSideEffects: (id) => {
+          // Permitir side effects para i18n e CSS
+          return id.includes('i18n') || id.includes('.css') || id.includes('react-fix');
+        },
         propertyReadSideEffects: false,
         unknownGlobalSideEffects: false
       }
@@ -98,9 +101,9 @@ export default defineConfig({
     // Configurações do Terser para minificação
     terserOptions: {
       compress: {
-        drop_console: true,
+        drop_console: false, // Manter console.logs para debug em produção
         drop_debugger: true,
-        pure_funcs: ['console.log', 'console.info', 'console.debug', 'console.warn']
+        pure_funcs: ['console.debug']
       },
       mangle: {
         safari10: true
