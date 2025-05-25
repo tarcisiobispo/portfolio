@@ -14,6 +14,7 @@ import LoadingSpinner from "@/components/LoadingSpinner";
 import { GTMHead, GTMBody } from "@/components/analytics/GoogleTagManager";
 import { ANALYTICS_CONFIG } from "@/config/analytics";
 import DebugTranslations from "@/components/DebugTranslations";
+import I18nProvider from "@/components/I18nProvider";
 
 // Lazy loading dos componentes de página para code splitting
 const Index = React.lazy(() => import("./pages/Index"));
@@ -26,7 +27,8 @@ const App = () => {
   return (
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
+        <I18nProvider>
+          <TooltipProvider>
           {/* Google Tag Manager - Head Script */}
           {ANALYTICS_CONFIG.ENABLED && (
             <GTMHead gtmId={ANALYTICS_CONFIG.GTM_ID} />
@@ -71,7 +73,8 @@ const App = () => {
               </Routes>
             </Suspense>
           </BrowserRouter>
-        </TooltipProvider>
+          </TooltipProvider>
+        </I18nProvider>
       </QueryClientProvider>
     </HelmetProvider>
   );
