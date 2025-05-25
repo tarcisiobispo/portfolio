@@ -373,7 +373,7 @@ const Contact: React.FC = () => {
             {/* Mensagem de Privacidade - Integrada ao formulário */}
             <div className="mt-2 text-center">
               <p className="text-sm text-[var(--color-muted)] max-w-prose mx-auto">
-                Seus dados não serão compartilhados e serão usados apenas para responder sua mensagem.
+                {t('contact.form.privacy')}
               </p>
             </div>
           </div>

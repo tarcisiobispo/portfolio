@@ -125,7 +125,8 @@ export default function Header() {
           {/* Botão de Feedback */}
           <button
             onClick={() => setFeedbackOpen(true)}
-            className="p-2 rounded-lg text-[var(--color-text)] hover:bg-[var(--color-surface-hover)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-offset-2 transition-colors duration-200"
+            className="transition-all duration-300 flex items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] w-10 h-10 text-[var(--color-primary)] hover:scale-105"
+            style={{ color: 'var(--color-primary)' }}
             aria-label={t('feedback.openFeedback')}
             title={t('feedback.openFeedback')}
           >

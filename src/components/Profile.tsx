@@ -149,7 +149,7 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
             style={{ background: "var(--color-secondary)" }}
           ></motion.div>
           <p id="profile-description" className="text-lead max-w-3xl text-left mb-8">
-            Sou UX/Product Designer com forte atuação no design de produtos digitais focados em experiência do usuário, conversão e impacto de negócio. Com background em Marketing Digital, SEO e IA, integro estratégia, design e usabilidade em processos contínuos de melhoria e inovação. Já atuei em contextos acadêmicos, e-commerce B2B e comunicação institucional, sempre guiado por dados, empatia e visão de produto.
+            {t('profile.bio')}
           </p>
           {/* Botões CTA Modernos */}
           <div className="flex flex-col sm:flex-row gap-4 justify-start">

@@ -134,10 +134,10 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
                   size="sm"
                   icon={activeProject === index ? EyeOff : Eye}
                   iconPosition="left"
-                  ariaLabel={activeProject === index ? 'Ocultar detalhes do projeto' : 'Ver mais detalhes do projeto'}
+                  ariaLabel={activeProject === index ? t('projects.seeLess') : t('projects.seeMore')}
                   className="text-sm"
                 >
-                  {activeProject === index ? 'Ver menos' : 'Ver mais'}
+                  {activeProject === index ? t('projects.seeLess') : t('projects.seeMore')}
                 </CTAButton>
               </div>
 
