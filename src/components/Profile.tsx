@@ -41,23 +41,24 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="flex justify-center items-center mb-6 lg:mb-0 w-full">
-            <div className="w-64 h-64 rounded-full border-4 border-white shadow-2xl bg-white overflow-hidden hover:scale-105 transition-transform duration-300">
-              <picture>
-                <source srcSet={profileImages.webp} type="image/webp" />
-                <img
-                  src={profileImages.png}
-                  alt={t('alts.profile.photo')}
-                  className="w-full h-full object-cover"
-                  loading="eager"
-                  fetchPriority="high"
-                  width="256"
-                  height="256"
-
-                  decoding="async"
-                />
-              </picture>
-            </div>
+          <div className="profile-image-container">
+            <picture>
+              <source srcSet={profileImages.webp} type="image/webp" />
+              <img
+                src={profileImages.png}
+                alt={t('alts.profile.photo')}
+                className="profile-image"
+                loading="eager"
+                fetchPriority="high"
+                width="256"
+                height="256"
+                decoding="sync"
+                style={{
+                  contentVisibility: 'auto',
+                  containIntrinsicSize: '256px 256px'
+                }}
+              />
+            </picture>
           </div>
 
           {/* Informações abaixo da foto */}
