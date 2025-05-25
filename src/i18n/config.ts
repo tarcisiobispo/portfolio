@@ -12,10 +12,10 @@ i18n
     // Configurações de idioma
     lng: 'pt-BR',
     fallbackLng: 'pt-BR',
-    
+
     // DEBUG HABILITADO para diagnóstico completo
     debug: true,
-    
+
     // Configuração do backend HTTP
     backend: {
       loadPath: '/portfolio/locales/{{lng}}.json', // Caminho absoluto com basename
@@ -24,50 +24,39 @@ i18n
         mode: 'cors' // Permite CORS se necessário
       }
     },
-    
+
     // Configurações React
     react: {
       useSuspense: false // Evita problemas de carregamento assíncrono
     },
-    
+
     // Configurações de interpolação
     interpolation: {
       escapeValue: false // React já faz escape por padrão
     },
-    
+
     // Configurações de namespace
     defaultNS: 'translation',
     ns: ['translation'],
-    
+
     // Configurações de detecção de idioma
     detection: {
       order: ['localStorage', 'navigator', 'htmlTag'],
       caches: ['localStorage'],
       lookupLocalStorage: 'i18nextLng'
     },
-    
+
     // Configurações de fallback
     supportedLngs: ['pt-BR', 'en-US', 'es-ES'],
     nonExplicitSupportedLngs: true,
-    
+
     // Configurações adicionais para produção
     load: 'languageOnly',
     cleanCode: true,
-    
+
     // Configurações de carregamento
     initImmediate: false, // Não inicializar imediatamente
-    preload: ['pt-BR'], // Pré-carregar idioma padrão
-    
-    // Configurações de retry
-    backend: {
-      loadPath: '/portfolio/locales/{{lng}}.json',
-      requestOptions: {
-        cache: 'no-cache'
-      },
-      // Retry em caso de falha
-      allowMultiLoading: false,
-      crossDomain: false
-    }
+    preload: ['pt-BR'] // Pré-carregar idioma padrão
   })
   .then(() => {
     console.log('✅ i18n initialized successfully with HTTP backend');
