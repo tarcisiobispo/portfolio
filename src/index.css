@@ -1,5 +1,6 @@
 /* Importa tokens do design system */
 @import './styles/design-system.css';
+@import './styles/grid-system.css';
 @import './styles/toast-optimizations.css';
 
 /* Tailwind base, components e utilities devem ser processados pelo build do Tailwind, não pelo CSS puro. Se estiver vendo erro, ignore ao visualizar aqui, pois o build do Vite/Tailwind processa normalmente. */

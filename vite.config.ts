@@ -7,20 +7,20 @@ export default defineConfig({
   base: '/portfolio/',
   plugins: [
     react(),
-    sitemap({
-      hostname: 'https://tarcisiobispo.github.io',
-      basePath: '/portfolio',
-      routes: [
-        '/',
-        '/privacy-policy',
-        '/#projetos',
-        '/#backlog',
-        '/#contato'
-      ],
-      changefreq: 'weekly',
-      priority: 0.8,
-      lastmod: '2025-01-15'
-    }),
+    // sitemap({
+    //   hostname: 'https://tarcisiobispo.github.io',
+    //   basePath: '/portfolio',
+    //   routes: [
+    //     '/',
+    //     '/privacy-policy',
+    //     '/#projetos',
+    //     '/#backlog',
+    //     '/#contato'
+    //   ],
+    //   changefreq: 'weekly',
+    //   priority: 0.8,
+    //   lastmod: '2025-01-15'
+    // }),
 
   ],
   resolve: {
