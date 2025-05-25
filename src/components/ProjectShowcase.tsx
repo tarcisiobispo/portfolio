@@ -77,19 +77,19 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
               <div className="project-card-overlay"></div>
             </div>
 
-            {/* Project Content - PADRÃO LIMPO IGUAL AOS CARDS DE REFERÊNCIA */}
+            {/* Project Content - SEM CLASSES TAILWIND QUE INTERFEREM */}
             <div className="project-card-content">
-              {/* Título - IGUAL AOS CARDS DE REFERÊNCIA */}
+              {/* Título */}
               <h3 id={`project-title-${index}`} className="project-card-title">
                 {t(`projects.${project.projectKey}.title`)}
               </h3>
 
-              {/* Descrição - TEXTO CINZA LEGÍVEL */}
+              {/* Descrição */}
               <p className="project-card-description">
                 {t(`projects.${project.projectKey}.overview`)}
               </p>
 
-              {/* Tags - IGUAL AOS CARDS DE REFERÊNCIA */}
+              {/* Tags */}
               <div className="project-card-tags">
                 {(() => {
                   // Buscar badges traduzidos para cada projeto
@@ -129,7 +129,7 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
                 })()}
               </div>
 
-              {/* Botão - PADRÃO LIMPO */}
+              {/* Botão */}
               <div className="project-card-actions">
                 <button
                   onClick={() => toggleProject(index)}
