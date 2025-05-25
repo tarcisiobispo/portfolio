@@ -125,6 +125,7 @@ export default function Header() {
             className="transition-all duration-300 flex items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] w-10 h-10 text-[var(--color-primary)] hover:scale-105"
             style={{ color: 'var(--color-primary)' }}
             aria-label={t('feedback.openFeedback')}
+            title={t('feedback.openFeedback')}
           >
             <MessageCircle className="w-5 h-5" aria-hidden="true" />
           </button>

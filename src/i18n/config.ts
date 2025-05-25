@@ -24,7 +24,7 @@ const resources = {
         letsChat: "Vamos Conversar",
         downloadCV: "Download CV",
         linkedin: "LinkedIn",
-        name: "Tarcísio Bispo de Araújo",
+        name: "Tarcisio Bispo de Araujo",
         ixdf: "IxDF | Interaction Design Foundation"
       },
       projects: {
@@ -506,7 +506,7 @@ const resources = {
         letsChat: "Let's Chat",
         downloadCV: "Download CV",
         linkedin: "LinkedIn",
-        name: "Tarcísio Bispo de Araújo",
+        name: "Tarcisio Bispo de Araujo",
         ixdf: "IxDF | Interaction Design Foundation"
       },
       projects: {

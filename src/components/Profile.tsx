@@ -45,7 +45,7 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
         >
           <div className="relative group">
             {/* Card Container - ESPAÇAMENTOS HEURÍSTICOS PERFEITOS */}
-            <div className="profile-card relative rounded-3xl px-8 py-10 max-w-sm w-full transition-all duration-500">
+            <div className="profile-card relative rounded-3xl px-6 py-10 max-w-sm w-full transition-all duration-500">
 
               {/* Background Gradient Sutil */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-purple-50/50 dark:from-blue-900/20 dark:via-transparent dark:to-purple-900/20 rounded-3xl"></div>
@@ -80,9 +80,9 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
                 </div>
 
                 {/* SEÇÃO 2: Informações Pessoais */}
-                <div className="text-center space-y-3">
-                  {/* Nome */}
-                  <h2 className="text-xl font-bold text-gray-900 dark:text-white leading-tight">
+                <div className="text-center space-y-3 w-full">
+                  {/* Nome - FORÇAR UMA LINHA SÓ COM TAMANHO RESPONSIVO */}
+                  <h2 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white leading-tight whitespace-nowrap">
                     {t('profile.name')}
                   </h2>
 
