@@ -86,7 +86,7 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
                 {t(`projects.${project.projectKey}.overview`)}
               </p>
 
-              {/* Badges */}
+              {/* Badges - SEMPRE 3 BADGES PARA ALTURA UNIFORME */}
               <div className="project-card-tags">
                 {(() => {
                   const projectBadges: { [key: string]: string[] } = {
@@ -112,7 +112,22 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
                     ]
                   };
 
-                  const badges = projectBadges[project.projectKey] || [];
+                  let badges = projectBadges[project.projectKey] || [];
+
+                  // GARANTIR EXATAMENTE 3 BADGES PARA ALTURA UNIFORME
+                  if (badges.length > 3) {
+                    badges = badges.slice(0, 3); // Limita a 3 badges
+                  } else if (badges.length < 3) {
+                    // Adiciona badges genéricos se necessário (fallback)
+                    const fallbackBadges = [
+                      t('projects.badges.design'),
+                      t('projects.badges.strategy'),
+                      t('projects.badges.research')
+                    ];
+                    while (badges.length < 3) {
+                      badges.push(fallbackBadges[badges.length] || 'UX Design');
+                    }
+                  }
 
                   return badges.map((badge, badgeIndex) => (
                     <span

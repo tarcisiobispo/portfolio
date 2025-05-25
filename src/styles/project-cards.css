@@ -1,7 +1,7 @@
 /* ===== NOVO SISTEMA DE CARDS EXPANSIVOS ===== */
 /* Design moderno com badges estilo Tailwind neutro */
 
-/* ===== PROJECT CARDS - DESIGN LIMPO ===== */
+/* ===== PROJECT CARDS - DESIGN LIMPO E ALTURA UNIFORME ===== */
 .project-card {
   background: white;
   border: 1px solid #e5e7eb;
@@ -11,6 +11,9 @@
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   position: relative;
   max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: auto; /* Permite expansão para conteúdo dinâmico */
 }
 
 .project-card:hover {
@@ -79,12 +82,14 @@
   color: #9ca3af;
 }
 
-/* ===== BADGES ESTILO TAILWIND NEUTRO ===== */
+/* ===== BADGES ESTILO TAILWIND NEUTRO - ALTURA UNIFORME ===== */
 .project-card-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 20px;
+  min-height: 52px; /* Garante altura mínima para 2 linhas de badges */
+  align-content: flex-start; /* Alinha badges no topo */
 }
 
 .project-card-tag {
@@ -96,6 +101,10 @@
   border-radius: 6px;
   border: 1px solid #e5e7eb;
   white-space: nowrap;
+  height: 22px; /* Altura fixa para todos os badges */
+  display: flex;
+  align-items: center;
+  flex-shrink: 0; /* Evita compressão */
 }
 
 .dark .project-card-tag {
