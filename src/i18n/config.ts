@@ -164,6 +164,219 @@ const resources = {
           whatsapp: "WhatsApp",
           email: "E-mail"
         }
+      },
+      accessibility: {
+        title: "Acessibilidade",
+        subtitle: "Personalize sua experiência de navegação",
+        description: "Configure as opções de acessibilidade para melhorar sua experiência.",
+        instructions: "Use as opções abaixo para personalizar a interface.",
+        shortcut: "Atalho: Shift + A",
+        openMenu: "Abrir menu de acessibilidade",
+        closeMenu: "Fechar menu de acessibilidade",
+        menuLabel: "Menu de Acessibilidade",
+        menuTooltip: "Configurações de acessibilidade (Shift + A)",
+        features: {
+          fontSize: "Tamanho da fonte",
+          fontSizeIncrease: "Aumentar fonte",
+          fontSizeDecrease: "Diminuir fonte",
+          fontSizeReset: "Resetar fonte",
+          highContrast: "Alto contraste",
+          readingMode: "Modo leitura",
+          keyboardNavigation: "Navegação por teclado",
+          screenReader: "Leitor de tela",
+          readPage: "Ler página inteira",
+          stopReading: "Parar leitura",
+          readElement: "Ler elemento",
+          skipToContent: "Pular para conteúdo principal",
+          skipToNavigation: "Pular para navegação"
+        },
+        status: {
+          enabled: "Ativado",
+          disabled: "Desativado",
+          fontIncreased: "Fonte aumentada",
+          fontDecreased: "Fonte diminuída",
+          fontReset: "Fonte resetada",
+          contrastEnabled: "Alto contraste ativado",
+          contrastDisabled: "Alto contraste desativado",
+          readingEnabled: "Modo leitura ativado",
+          readingDisabled: "Modo leitura desativado"
+        }
+      },
+      tooltips: {
+        theme: {
+          light: "Alternar para modo claro",
+          dark: "Alternar para modo escuro",
+          system: "Usar preferência do sistema"
+        },
+        language: {
+          switch: "Trocar idioma",
+          current: "Idioma atual",
+          available: "Idiomas disponíveis"
+        },
+        navigation: {
+          home: "Ir para início",
+          profile: "Ir para perfil",
+          projects: "Ver projetos",
+          backlog: "Ver backlog estratégico",
+          contact: "Entrar em contato"
+        },
+        social: {
+          linkedin: "Perfil no LinkedIn",
+          email: "Enviar e-mail",
+          whatsapp: "Conversar no WhatsApp"
+        },
+        actions: {
+          expand: "Expandir detalhes",
+          collapse: "Recolher detalhes",
+          download: "Baixar arquivo",
+          share: "Compartilhar",
+          copy: "Copiar link",
+          print: "Imprimir página",
+          backToTop: "Voltar ao topo"
+        }
+      },
+      seo: {
+        title: "Tarcísio Bispo - UX/Product Designer | Portfolio",
+        description: "UX/Product Designer especializado em estratégia, impacto e experiência do usuário. Veja meus projetos de design de produtos digitais e soluções de UX.",
+        keywords: "UX Designer, Product Designer, Design de Produto, Experiência do Usuário, UI/UX, Portfolio, São Paulo",
+        author: "Tarcísio Bispo de Araújo",
+        pages: {
+          home: {
+            title: "Tarcísio Bispo - UX/Product Designer | Portfolio",
+            description: "UX/Product Designer com foco em estratégia, impacto e experiência do usuário. Especialista em design de produtos digitais, conversão e impacto de negócio."
+          },
+          projects: {
+            title: "Projetos - Tarcísio Bispo | UX Designer",
+            description: "Veja meus principais projetos de UX/Product Design: FGV LAW, Direito GV, Taliparts e FGV TV Institucional. Cases reais com resultados mensuráveis."
+          },
+          backlog: {
+            title: "Backlog Estratégico - Tarcísio Bispo | UX Designer",
+            description: "Desafios reais enfrentados por stakeholders e soluções de UX aplicadas estrategicamente para resolver problemas de negócio."
+          },
+          contact: {
+            title: "Contato - Tarcísio Bispo | UX Designer",
+            description: "Entre em contato para discutir projetos, parcerias ou oportunidades. Disponível para projetos freelance e oportunidades full-time."
+          }
+        }
+      },
+      schema: {
+        person: {
+          name: "Tarcísio Bispo de Araújo",
+          jobTitle: "UX/Product Designer",
+          description: "UX/Product Designer especializado em estratégia, impacto e experiência do usuário",
+          location: "São Paulo, Brasil",
+          email: "tbisp0@hotmail.com",
+          skills: ["UX Design", "Product Design", "Design Strategy", "User Research", "Prototyping", "Usability Testing"]
+        },
+        organization: {
+          name: "Tarcísio Bispo Portfolio",
+          description: "Portfolio profissional de UX/Product Design",
+          location: "São Paulo, Brasil"
+        }
+      },
+      toasts: {
+        success: {
+          title: "Sucesso!",
+          messageSent: "Mensagem enviada com sucesso!",
+          settingsSaved: "Configurações salvas",
+          linkCopied: "Link copiado para área de transferência",
+          themeChanged: "Tema alterado",
+          languageChanged: "Idioma alterado"
+        },
+        error: {
+          title: "Erro",
+          messageNotSent: "Erro ao enviar mensagem",
+          networkError: "Erro de conexão",
+          genericError: "Algo deu errado",
+          tryAgain: "Tente novamente"
+        },
+        info: {
+          title: "Informação",
+          loading: "Carregando...",
+          processing: "Processando...",
+          saving: "Salvando..."
+        },
+        warning: {
+          title: "Atenção",
+          unsavedChanges: "Você tem alterações não salvas",
+          confirmAction: "Tem certeza que deseja continuar?"
+        }
+      },
+      alts: {
+        profile: {
+          photo: "Foto de perfil de Tarcísio Bispo",
+          ixdfLogo: "Logo do Interaction Design Foundation",
+          ixdfSeal: "Selo de certificação IxDF"
+        },
+        projects: {
+          fgvLaw: "Captura de tela do projeto FGV LAW - interface de cursos jurídicos",
+          direitoGV: "Captura de tela do projeto Direito GV - área de pesquisa acadêmica",
+          taliparts: "Captura de tela do projeto Taliparts - e-commerce de peças automotivas",
+          tvInstitucional: "Captura de tela do projeto FGV TV Institucional - sistema de comunicação visual"
+        },
+        icons: {
+          menu: "Ícone de menu",
+          close: "Ícone de fechar",
+          expand: "Ícone de expandir",
+          collapse: "Ícone de recolher",
+          external: "Ícone de link externo",
+          download: "Ícone de download",
+          email: "Ícone de e-mail",
+          phone: "Ícone de telefone",
+          location: "Ícone de localização",
+          linkedin: "Ícone do LinkedIn",
+          github: "Ícone do GitHub",
+          sun: "Ícone de sol (modo claro)",
+          moon: "Ícone de lua (modo escuro)",
+          globe: "Ícone de globo (idiomas)",
+          accessibility: "Ícone de acessibilidade",
+          loading: "Ícone de carregamento",
+          success: "Ícone de sucesso",
+          error: "Ícone de erro",
+          warning: "Ícone de aviso",
+          info: "Ícone de informação"
+        },
+        decorative: {
+          gradient: "Gradiente decorativo",
+          pattern: "Padrão decorativo",
+          divider: "Divisor visual",
+          background: "Imagem de fundo decorativa"
+        }
+      },
+      feedback: {
+        title: "Feedback",
+        subtitle: "Sua opinião é importante",
+        description: "Compartilhe sua experiência e sugestões",
+        form: {
+          type: "Tipo de feedback",
+          message: "Sua mensagem",
+          email: "Seu e-mail (opcional)",
+          send: "Enviar feedback",
+          sending: "Enviando...",
+          success: "Feedback enviado com sucesso!",
+          error: "Erro ao enviar feedback. Tente novamente.",
+          messageRequired: "Mensagem é obrigatória"
+        },
+        types: {
+          bug: "Reportar bug",
+          suggestion: "Sugestão",
+          compliment: "Elogio",
+          other: "Outro"
+        }
+      },
+      language: {
+        changed: "Idioma alterado com sucesso",
+        current: "Idioma atual",
+        available: "Idiomas disponíveis",
+        portuguese: "Português",
+        english: "English",
+        spanish: "Español"
+      },
+      theme: {
+        changed: "Tema alterado com sucesso",
+        light: "Modo claro ativado",
+        dark: "Modo escuro ativado",
+        system: "Usando preferência do sistema"
       }
     }
   }
