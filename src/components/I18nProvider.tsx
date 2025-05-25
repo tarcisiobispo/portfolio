@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import LoadingSpinner from './LoadingSpinner';
-import i18n from '../i18n';
+import i18n from '../i18n/config';
 
 interface I18nProviderProps {
   children: React.ReactNode;
