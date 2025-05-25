@@ -978,7 +978,9 @@ const resources = {
         exploreProjects: "Explorar proyectos",
         letsChat: "Conversemos",
         downloadCV: "Descargar CV",
-        linkedin: "LinkedIn"
+        linkedin: "LinkedIn",
+        name: "Tarcísio Bispo de Araújo",
+        ixdf: "IxDF | Interaction Design Foundation"
       },
       projects: {
         title: "Proyectos",
@@ -991,6 +993,20 @@ const resources = {
         seeMore: "Ver detalles",
         seeLess: "Ocultar detalles",
         projectImage: "Imagen del proyecto",
+        badges: {
+          usability: "Usabilidad",
+          informationArchitecture: "Arquitectura de la Información",
+          userTesting: "Pruebas de Usuario",
+          uxResearch: "UX Research",
+          journeyMapping: "Mapeo de Jornada",
+          stakeholderManagement: "Gestión de Stakeholders",
+          productStrategy: "Estrategia de Producto",
+          seo: "SEO",
+          productValidation: "Validación de Producto",
+          visualDesign: "Diseño Visual",
+          communication: "Comunicación",
+          engagement: "Engagement"
+        },
         fgvLaw: {
           title: "FGV LAW",
           category: "Navegación y Usabilidad",
@@ -1333,6 +1349,25 @@ const resources = {
           background: "Imagen de fondo decorativa"
         }
       },
+      language: {
+        changed: "Idioma cambiado con éxito",
+        current: "Idioma actual",
+        available: "Idiomas disponibles",
+        portuguese: "Português",
+        english: "English",
+        spanish: "Español",
+        select: "Seleccionar idioma"
+      },
+      theme: {
+        changed: "Tema cambiado con éxito",
+        light: "Modo claro activado",
+        dark: "Modo oscuro activado",
+        system: "Usando preferencia del sistema"
+      },
+      footer: {
+        copyright: "© 2024 Tarcísio Bispo. Todos los derechos reservados.",
+        title: "UX/Product Designer"
+      },
       feedback: {
         title: "Feedback",
         subtitle: "Tu opinión importa",
@@ -1341,6 +1376,13 @@ const resources = {
         thankYou: "¡Gracias por tu feedback!",
         importance: "Tu opinión es muy importante para nosotros.",
         close: "Cerrar",
+        openFeedback: "Abrir feedback",
+        send: "Enviar feedback",
+        sending: "Enviando...",
+        back: "Volver",
+        minimumCharacters: "Mínimo 5 caracteres",
+        includeEmail: "Incluir mi email para respuesta",
+        privacyPolicy: "Política de Privacidad",
         defaultTitle: "Comparte tu feedback",
         defaultInstruction: "Cuéntanos qué piensas",
         defaultPlaceholder: "Escribe tu mensaje aquí...",
@@ -1372,21 +1414,6 @@ const resources = {
           compliment: "Elogio",
           other: "Otro"
         }
-      },
-      language: {
-        changed: "Idioma cambiado con éxito",
-        current: "Idioma actual",
-        available: "Idiomas disponibles",
-        portuguese: "Português",
-        english: "English",
-        spanish: "Español",
-        select: "Seleccionar idioma"
-      },
-      theme: {
-        changed: "Tema cambiado con éxito",
-        light: "Modo claro activado",
-        dark: "Modo oscuro activado",
-        system: "Usando preferencia del sistema"
       }
     }
   }
