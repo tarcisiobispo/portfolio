@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Eye, EyeOff } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import CTAButton from '@/components/ui/CTAButton';
+import OptimizedImage from '@/components/OptimizedImage';
 import { ensureStringArray } from '@/utils/translationHelpers';
 
 interface ProjectDetails {
@@ -61,15 +62,15 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
               }
             }}
           >
-            {/* Project Image - Nielsen Norman Optimized */}
+            {/* Project Image - Otimizada para Performance */}
             <div className="project-card-image-container">
-              <img
+              <OptimizedImage
                 src={project.imageUrl}
                 alt={`${t(`projects.${project.projectKey}.title`)} - ${t('projects.projectImage')}`}
                 className="project-card-image"
                 loading="lazy"
-                decoding="async"
-                sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, (max-width: 1279px) 33vw, 25vw"
+                width={600}
+                height={300}
               />
 
               {/* Overlay sutil para efeito visual */}

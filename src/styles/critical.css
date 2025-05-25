@@ -1,0 +1,111 @@
+/* Critical CSS - Above the fold styles */
+
+/* CSS Variables - Essential */
+:root {
+  --color-primary: #3b82f6;
+  --color-primary-rgb: 59, 130, 246;
+  --color-secondary: #10b981;
+  --color-text: #1f2937;
+  --color-muted: #6b7280;
+  --color-background: #ffffff;
+  --color-surface: #f9fafb;
+  --color-border: #e5e7eb;
+}
+
+[data-theme="dark"] {
+  --color-primary: #60a5fa;
+  --color-primary-rgb: 96, 165, 250;
+  --color-secondary: #34d399;
+  --color-text: #f9fafb;
+  --color-muted: #9ca3af;
+  --color-background: #111827;
+  --color-surface: #1f2937;
+  --color-border: #374151;
+}
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+/* Header styles */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Profile section - Critical for LCP */
+.profile-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 1rem;
+}
+
+.profile-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.text-lead {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--color-text);
+  max-width: 48rem;
+}
+
+/* Button styles - Critical */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #2563eb;
+  transform: translateY(-1px);
+}
+
+/* Loading states */
+.loading-placeholder {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .profile-section {
+    padding: 2rem 1rem;
+  }
+  
+  .text-lead {
+    font-size: 1rem;
+  }
+}
