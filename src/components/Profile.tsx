@@ -5,6 +5,7 @@ import IxDFLogo from '@/components/ui/IxDFLogo';
 import TypewriterText from '@/components/ui/TypewriterText';
 import { Download, Linkedin, ArrowRight, MapPin, Mail, Phone, MessageCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { getProfileImagePaths } from '@/utils/assetPaths';
 
 // Ícone do WhatsApp
 const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -28,6 +29,8 @@ interface ProfileProps {
 
 const Profile: React.FC<ProfileProps> = ({ name }) => {
   const { t } = useTranslation();
+  const profileImages = getProfileImagePaths();
+
   return (
     <section className="min-h-screen flex flex-col justify-center py-16 relative overflow-hidden" aria-labelledby="profile-title">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center justify-center">
@@ -41,9 +44,9 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
           <div className="flex justify-center items-center mb-6 lg:mb-0 w-full">
             <div className="w-64 h-64 rounded-full border-4 border-white shadow-2xl bg-white overflow-hidden hover:scale-105 transition-transform duration-300">
               <picture>
-                <source srcSet="/portfolio/images/tarcisio_bispo.webp" type="image/webp" />
+                <source srcSet={profileImages.webp} type="image/webp" />
                 <img
-                  src="/portfolio/images/tarcisio_bispo.png"
+                  src={profileImages.png}
                   alt={t('alts.profile.photo')}
                   className="w-full h-full object-cover"
                   loading="eager"

@@ -1,4 +1,5 @@
 import React from 'react';
+import { getIxDFLogoPaths } from '@/utils/assetPaths';
 
 interface IxDFLogoProps {
   size?: 'sm' | 'md' | 'lg';
@@ -13,6 +14,7 @@ const IxDFLogo: React.FC<IxDFLogoProps> = ({
   layout = 'horizontal',
   className = ''
 }) => {
+  const logoPaths = getIxDFLogoPaths();
   const sizeClasses = {
     sm: 'h-10',    // 40px - forçando maior para testar
     md: 'h-12',    // 48px - médio
@@ -35,7 +37,7 @@ const IxDFLogo: React.FC<IxDFLogoProps> = ({
       <div className="relative">
         {/* Logo para Light Mode - usa imagem dark */}
         <img
-          src="/portfolio/images/IxDF - Symbol - Dark.png"
+          src={logoPaths.dark}
           alt="Interaction Design Foundation Logo"
           className={`${sizeClasses[size]} w-auto dark:hidden transition-opacity duration-300 hover:opacity-80`}
           style={{ height: size === 'sm' ? '40px' : size === 'md' ? '48px' : '64px', maxHeight: 'none', maxWidth: 'none' }}
@@ -44,7 +46,7 @@ const IxDFLogo: React.FC<IxDFLogoProps> = ({
 
         {/* Logo para Dark Mode - usa imagem white */}
         <img
-          src="/portfolio/images/IxDF - Symbol - White.png"
+          src={logoPaths.white}
           alt="Interaction Design Foundation Logo"
           className={`${sizeClasses[size]} w-auto hidden dark:block transition-opacity duration-300 hover:opacity-80`}
           style={{ height: size === 'sm' ? '40px' : size === 'md' ? '48px' : '64px', maxHeight: 'none', maxWidth: 'none' }}
