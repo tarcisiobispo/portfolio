@@ -11,14 +11,19 @@ const resources = {
         projects: "Projetos",
         backlog: "Backlog",
         contact: "Contato",
-        home: "Início"
+        home: "Início",
+        goToProfile: "Ir para sessão Perfil",
+        goToProjetos: "Ir para sessão Projetos",
+        goToBacklog: "Ir para sessão Backlog",
+        goToContato: "Ir para sessão Contato"
       },
       profile: {
         title: "UX/Product Designer com foco em estratégia, impacto e experiência",
         bio: "Sou UX/Product Designer com forte atuação no design de produtos digitais focados em experiência do usuário, conversão e impacto de negócio. Com background em Marketing Digital, SEO e IA, integro estratégia, design e usabilidade em processos contínuos de melhoria e inovação.",
         exploreProjects: "Explore projetos",
         letsChat: "Vamos Conversar",
-        downloadCV: "Download CV"
+        downloadCV: "Download CV",
+        linkedin: "LinkedIn"
       },
       projects: {
         title: "Projetos",
@@ -176,7 +181,8 @@ const resources = {
         bio: "I'm a UX/Product Designer with strong experience in digital product design focused on user experience, conversion and business impact.",
         exploreProjects: "Explore projects",
         letsChat: "Let's Chat",
-        downloadCV: "Download CV"
+        downloadCV: "Download CV",
+        linkedin: "LinkedIn"
       },
       projects: {
         title: "Projects",
@@ -215,7 +221,8 @@ const resources = {
         bio: "Soy UX/Product Designer con fuerte experiencia en diseño de productos digitales enfocados en experiencia de usuario.",
         exploreProjects: "Explorar proyectos",
         letsChat: "Hablemos",
-        downloadCV: "Descargar CV"
+        downloadCV: "Descargar CV",
+        linkedin: "LinkedIn"
       },
       projects: {
         title: "Proyectos",
