@@ -864,6 +864,437 @@ const resources = {
         system: "Using system preference"
       }
     }
+  },
+  'es-ES': {
+    translation: {
+      navigation: {
+        profile: "Perfil",
+        projects: "Proyectos",
+        backlog: "Backlog",
+        contact: "Contacto",
+        home: "Inicio",
+        goToProfile: "Ir a la sección Perfil",
+        goToProjetos: "Ir a la sección Proyectos",
+        goToBacklog: "Ir a la sección Backlog",
+        goToContato: "Ir a la sección Contacto"
+      },
+      profile: {
+        title: "UX/Product Designer enfocado en estrategia, impacto y experiencia",
+        bio: "Soy UX/Product Designer con amplia experiencia en el diseño de productos digitales enfocados en experiencia del usuario, conversión e impacto empresarial. Con formación en Marketing Digital, SEO e IA, integro estrategia, diseño y usabilidad en procesos continuos de mejora e innovación.",
+        exploreProjects: "Explorar proyectos",
+        letsChat: "Conversemos",
+        downloadCV: "Descargar CV",
+        linkedin: "LinkedIn"
+      },
+      projects: {
+        title: "Proyectos",
+        overview: "Resumen",
+        discovery: "Descubrimiento",
+        solution: "Solución",
+        iteration: "Iteración",
+        outcomes: "Resultados",
+        insights: "Insights",
+        seeMore: "Ver detalles",
+        seeLess: "Ocultar detalles",
+        projectImage: "Imagen del proyecto",
+        fgvLaw: {
+          title: "FGV LAW",
+          category: "Navegación y Usabilidad",
+          overview: "Reestructuración del área de cursos jurídicos de FGV LAW con enfoque en usabilidad y organización de la información.",
+          discovery: "Identifiqué que los usuarios tenían dificultades para localizar y comparar cursos.",
+          solution: "Diseñé un nuevo panel con sistema de pestañas y filtros temáticos.",
+          iteration: "Después de pruebas con usuarios, simplificamos la terminología de los filtros.",
+          outcomes: [
+            "Aumento significativo en la visibilidad e interacción de cursos",
+            "Mejora en la tasa de conversión de visitas a inscripciones o leads",
+            "Reducción del tiempo de navegación para selección de curso deseado"
+          ],
+          insights: "La estructura de navegación necesita guiar, no solo mostrar. La claridad y agrupación relevante influyen directamente en la percepción del valor de un curso."
+        },
+        direitoGV: {
+          title: "Direito GV",
+          category: "Mapas, Flujos e Investigación",
+          overview: "Reorganización del área de investigación de Direito GV para mejorar la visibilidad de proyectos académicos y facilitar el acceso a información sobre investigadores y sus líneas de trabajo.",
+          discovery: "El área de investigación estaba fragmentada y era poco accesible. Los investigadores tenían dificultades para promocionar su trabajo y usuarios externos no encontraban información relevante sobre proyectos en curso.",
+          solution: "Desarrollé una nueva arquitectura de información con categorización por áreas temáticas, perfiles de investigadores y cronología de proyectos. También creé un sistema de búsqueda avanzada.",
+          iteration: "Realizamos pruebas con estudiantes, profesores e investigadores. La navegación se ajustó basándose en feedback sobre nomenclatura y orden de prioridad. Validé cada cambio con stakeholders involucrados.",
+          outcomes: [
+            "Reducción del tiempo de navegación para encontrar proyectos o temas específicos",
+            "Aumento de visitas a páginas de investigadores",
+            "Valorización institucional de la producción académica"
+          ],
+          insights: "Las áreas institucionales ganan relevancia cuando son navegables, actualizadas y estratégicamente reflejadas en la arquitectura de información."
+        },
+        taliparts: {
+          title: "Taliparts",
+          category: "UX Estratégico + B2B",
+          overview: "Proyecto de estructuración y validación digital de Taliparts, enfocado en publicación de autopartes en Mercado Libre, con integración a operaciones físicas. El objetivo era aprender rápidamente, a bajo costo, sobre demanda real, comportamiento del comprador y ventaja competitiva.",
+          discovery: "Realicé benchmark detallado con competidores del sector automotriz. Entrevisté mecánicos y propietarios de talleres, modelé personas y apliqué Matriz CSD para identificar certezas, suposiciones y dudas en el catálogo físico.",
+          solution: "Creé una estrategia de validación con SEO para Mercado Libre, estandarización visual de anuncios, categorización centrada en vocabulario del comprador e historial de búsqueda. También organicé KPIs y definí plan de priorización de productos.",
+          iteration: "Probé productos por bloques temáticos, monitoreando clics, preguntas y tasa de conversión. Refiné descripciones, títulos e incluso selección de ítems basándome en rendimiento real.",
+          outcomes: [
+            "Crecimiento de ventas con productos estratégicamente priorizados",
+            "Reducción de dudas del comprador a través de mejoras en descripciones",
+            "Creación de proceso replicable de publicación + análisis + reposicionamiento"
+          ],
+          insights: "La validación digital a bajo costo es posible — y necesaria. La lógica del producto necesita considerar contexto físico, vocabulario técnico y diferenciales percibidos por el cliente."
+        },
+        tvInstitucional: {
+          title: "FGV TV Institucional",
+          category: "Engagement y Comunicación Visual",
+          overview: "Creación de un sistema visual para TVs en el hall de FGV, con el objetivo de comunicar eventos y actualizaciones institucionales de manera atractiva, dinámica y accesible para estudiantes y visitantes.",
+          discovery: "Los estudiantes ignoraban carteleras físicas y emails institucionales. Identifiqué que el lenguaje de los canales estaba desactualizado y mal integrado con la rutina visual de los espacios.",
+          solution: "Implementé un panel digital con curación semanal de contenido, enfoque en ritmo visual y claridad inmediata del mensaje. La plataforma fue diseñada para ser automatizada, con flexibilidad de actualización remota.",
+          iteration: "Probamos tipos de animación, tiempo de exhibición y contraste. Ajustamos el calendario visual y optimizamos layout basándose en feedback de estudiantes y coordinación.",
+          outcomes: [
+            "72% de aumento en engagement de eventos",
+            "Retención de mensajes en paneles muy superior a emails anteriores",
+            "Reutilización de la solución por otros sectores de la escuela"
+          ],
+          insights: "Los ambientes físicos también son interfaces. Cuando están bien diseñados, informan, involucran y conectan — sin necesidad de login."
+        }
+      },
+      backlog: {
+        title: "Ciclo de Backlog Estratégico",
+        description: "Desafíos reales enfrentados por stakeholders y soluciones UX aplicadas estratégicamente para resolver problemas de negocio.",
+        solution: "Solución",
+        result: "Resultado",
+        note: "Nota",
+        noItems: "No hay elementos en esta página.",
+        previous: "Anterior",
+        next: "Siguiente",
+        page: "Página",
+        of: "de",
+        items: [
+          {
+            challenge: "Usuarios abandonaban carrito en paso de pago",
+            solution: "Rediseñé flujo de checkout con menos pasos y validación en tiempo real",
+            result: "35% de reducción en tasa de abandono de carrito",
+            note: "La simplicidad en el proceso de compra es fundamental para conversión"
+          },
+          {
+            challenge: "Baja adopción del programa de fidelidad",
+            solution: "Creé sistema de gamificación con recompensas visuales y progresión clara",
+            result: "60% de aumento en inscripciones al programa",
+            note: "El feedback visual inmediato motiva el engagement continuo"
+          },
+          {
+            challenge: "Dificultad de usuarios para encontrar productos específicos",
+            solution: "Implementé búsqueda inteligente con filtros contextuales y sugerencias automáticas",
+            result: "45% de mejora en tasa de conversión de búsqueda",
+            note: "La búsqueda debe anticipar la intención del usuario"
+          },
+          {
+            challenge: "Interfaz compleja causaba confusión en usuarios",
+            solution: "Simplifiqué navegación con jerarquía visual clara y menos opciones por pantalla",
+            result: "50% de reducción en solicitudes de soporte",
+            note: "Menos opciones pueden significar más claridad y eficiencia"
+          }
+        ]
+      },
+      contact: {
+        title: "¿Conversamos?",
+        description: "Siempre estoy abierto a nuevas oportunidades y colaboraciones. Ponte en contacto para discutir proyectos, asociaciones o simplemente intercambiar ideas sobre UX y diseño de productos.",
+        form: {
+          name: "Nombre",
+          namePlaceholder: "Ingresa tu nombre completo",
+          email: "Email",
+          emailPlaceholder: "Ingresa tu mejor email",
+          subject: "Asunto",
+          subjectPlaceholder: "¿De qué te gustaría hablar?",
+          message: "Mensaje",
+          messagePlaceholder: "Cuéntame sobre tu proyecto, oportunidad o cómo puedo ayudar...",
+          messageHint: "Mínimo 10 caracteres para un mensaje claro",
+          send: "Enviar mensaje",
+          sending: "Enviando...",
+          success: "¡Mensaje enviado con éxito!",
+          error: "Error al enviar mensaje. Por favor intenta de nuevo.",
+          nameRequired: "El nombre es obligatorio",
+          emailRequired: "El email es obligatorio",
+          emailInvalid: "Email inválido",
+          subjectRequired: "El asunto es obligatorio",
+          messageRequired: "El mensaje es obligatorio"
+        },
+        info: {
+          email: "tbisp0@hotmail.com",
+          location: "São Paulo, Brasil",
+          availability: "Disponible para proyectos freelance y oportunidades full-time"
+        },
+        social: {
+          linkedin: "LinkedIn",
+          whatsapp: "WhatsApp",
+          email: "Email"
+        }
+      },
+      accessibility: {
+        title: "Accesibilidad",
+        subtitle: "Personaliza tu experiencia de navegación",
+        description: "Configura opciones de accesibilidad para mejorar tu experiencia.",
+        instructions: "Usa las opciones a continuación para personalizar la interfaz.",
+        shortcut: "Atajo: Shift + A",
+        openMenu: "Abrir menú de accesibilidad",
+        closeMenu: "Cerrar menú de accesibilidad",
+        menuLabel: "Menú de Accesibilidad",
+        menuTooltip: "Configuraciones de accesibilidad (Shift + A)",
+        fontSize: {
+          label: "Tamaño de fuente",
+          increase: "Aumentar",
+          decrease: "Disminuir",
+          reset: "Resetear",
+          increaseLabel: "Aumentar tamaño de fuente",
+          decreaseLabel: "Disminuir tamaño de fuente",
+          resetLabel: "Resetear tamaño de fuente"
+        },
+        contrast: {
+          label: "Alto contraste",
+          enable: "Activar alto contraste",
+          disable: "Desactivar alto contraste",
+          enabled: "Alto contraste activado",
+          disabled: "Alto contraste desactivado"
+        },
+        readingMode: {
+          label: "Modo lectura",
+          enable: "Activar modo lectura",
+          disable: "Desactivar modo lectura",
+          enabled: "Modo lectura activado",
+          disabled: "Modo lectura desactivado"
+        },
+        screenReader: {
+          label: "Lector de pantalla",
+          enable: "Activar lector de pantalla",
+          disable: "Desactivar lector de pantalla",
+          enabled: "Lector de pantalla activado",
+          disabled: "Lector de pantalla desactivado"
+        },
+        reset: {
+          label: "Resetear configuraciones",
+          action: "Configuraciones de accesibilidad reseteadas",
+          success: "Configuraciones reseteadas con éxito"
+        },
+        features: {
+          fontSize: "Tamaño de fuente",
+          fontSizeIncrease: "Aumentar fuente",
+          fontSizeDecrease: "Disminuir fuente",
+          fontSizeReset: "Resetear fuente",
+          highContrast: "Alto contraste",
+          readingMode: "Modo lectura",
+          keyboardNavigation: "Navegación por teclado",
+          screenReader: "Lector de pantalla",
+          readPage: "Leer página completa",
+          stopReading: "Parar lectura",
+          readElement: "Leer elemento",
+          skipToContent: "Saltar al contenido principal",
+          skipToNavigation: "Saltar a navegación"
+        },
+        status: {
+          enabled: "Activado",
+          disabled: "Desactivado",
+          fontIncreased: "Fuente aumentada",
+          fontDecreased: "Fuente disminuida",
+          fontReset: "Fuente reseteada",
+          contrastEnabled: "Alto contraste activado",
+          contrastDisabled: "Alto contraste desactivado",
+          readingEnabled: "Modo lectura activado",
+          readingDisabled: "Modo lectura desactivado"
+        }
+      },
+      tooltips: {
+        theme: {
+          light: "Cambiar a modo claro",
+          dark: "Cambiar a modo oscuro",
+          system: "Usar preferencia del sistema"
+        },
+        language: {
+          switch: "Cambiar idioma",
+          current: "Idioma actual",
+          available: "Idiomas disponibles"
+        },
+        navigation: {
+          home: "Ir al inicio",
+          profile: "Ir al perfil",
+          projects: "Ver proyectos",
+          backlog: "Ver backlog estratégico",
+          contact: "Ponerse en contacto"
+        },
+        social: {
+          linkedin: "Perfil de LinkedIn",
+          email: "Enviar email",
+          whatsapp: "Chatear en WhatsApp"
+        },
+        actions: {
+          expand: "Expandir detalles",
+          collapse: "Contraer detalles",
+          download: "Descargar archivo",
+          share: "Compartir",
+          copy: "Copiar enlace",
+          print: "Imprimir página",
+          backToTop: "Volver arriba"
+        }
+      },
+      seo: {
+        title: "Tarcísio Bispo - UX/Product Designer | Portfolio",
+        description: "UX/Product Designer especializado en estrategia, impacto y experiencia del usuario. Ve mis proyectos de diseño de productos digitales y soluciones UX.",
+        keywords: "UX Designer, Product Designer, Diseño de Producto, Experiencia del Usuario, UI/UX, Portfolio, São Paulo",
+        author: "Tarcísio Bispo de Araújo",
+        pages: {
+          home: {
+            title: "Tarcísio Bispo - UX/Product Designer | Portfolio",
+            description: "UX/Product Designer enfocado en estrategia, impacto y experiencia del usuario. Experto en diseño de productos digitales, conversión e impacto empresarial."
+          },
+          projects: {
+            title: "Proyectos - Tarcísio Bispo | UX Designer",
+            description: "Ve mis principales proyectos de UX/Product Design: FGV LAW, Direito GV, Taliparts y FGV TV Institucional. Casos reales con resultados medibles."
+          },
+          backlog: {
+            title: "Backlog Estratégico - Tarcísio Bispo | UX Designer",
+            description: "Desafíos reales enfrentados por stakeholders y soluciones UX aplicadas estratégicamente para resolver problemas de negocio."
+          },
+          contact: {
+            title: "Contacto - Tarcísio Bispo | UX Designer",
+            description: "Ponte en contacto para discutir proyectos, asociaciones u oportunidades. Disponible para proyectos freelance y oportunidades full-time."
+          }
+        }
+      },
+      schema: {
+        person: {
+          name: "Tarcísio Bispo de Araújo",
+          jobTitle: "UX/Product Designer",
+          description: "UX/Product Designer especializado en estrategia, impacto y experiencia del usuario",
+          location: "São Paulo, Brasil",
+          email: "tbisp0@hotmail.com",
+          skills: ["UX Design", "Product Design", "Estrategia de Diseño", "Investigación de Usuario", "Prototipado", "Pruebas de Usabilidad"]
+        },
+        organization: {
+          name: "Tarcísio Bispo Portfolio",
+          description: "Portfolio profesional de UX/Product Design",
+          location: "São Paulo, Brasil"
+        }
+      },
+      toasts: {
+        success: {
+          title: "¡Éxito!",
+          messageSent: "¡Mensaje enviado con éxito!",
+          settingsSaved: "Configuraciones guardadas",
+          linkCopied: "Enlace copiado al portapapeles",
+          themeChanged: "Tema cambiado",
+          languageChanged: "Idioma cambiado"
+        },
+        error: {
+          title: "Error",
+          messageNotSent: "Error al enviar mensaje",
+          networkError: "Error de conexión",
+          genericError: "Algo salió mal",
+          tryAgain: "Intenta de nuevo"
+        },
+        info: {
+          title: "Información",
+          loading: "Cargando...",
+          processing: "Procesando...",
+          saving: "Guardando..."
+        },
+        warning: {
+          title: "Advertencia",
+          unsavedChanges: "Tienes cambios no guardados",
+          confirmAction: "¿Estás seguro de que quieres continuar?"
+        }
+      },
+      alts: {
+        profile: {
+          photo: "Foto de perfil de Tarcísio Bispo",
+          ixdfLogo: "Logo de Interaction Design Foundation",
+          ixdfSeal: "Sello de certificación IxDF"
+        },
+        projects: {
+          fgvLaw: "Captura de pantalla del proyecto FGV LAW - interfaz de cursos jurídicos",
+          direitoGV: "Captura de pantalla del proyecto Direito GV - área de investigación académica",
+          taliparts: "Captura de pantalla del proyecto Taliparts - e-commerce de autopartes",
+          tvInstitucional: "Captura de pantalla del proyecto FGV TV Institucional - sistema de comunicación visual"
+        },
+        icons: {
+          menu: "Ícono de menú",
+          close: "Ícono de cerrar",
+          expand: "Ícono de expandir",
+          collapse: "Ícono de contraer",
+          external: "Ícono de enlace externo",
+          download: "Ícono de descarga",
+          email: "Ícono de email",
+          phone: "Ícono de teléfono",
+          location: "Ícono de ubicación",
+          linkedin: "Ícono de LinkedIn",
+          github: "Ícono de GitHub",
+          sun: "Ícono de sol (modo claro)",
+          moon: "Ícono de luna (modo oscuro)",
+          globe: "Ícono de globo (idiomas)",
+          accessibility: "Ícono de accesibilidad",
+          loading: "Ícono de carga",
+          success: "Ícono de éxito",
+          error: "Ícono de error",
+          warning: "Ícono de advertencia",
+          info: "Ícono de información"
+        },
+        decorative: {
+          gradient: "Gradiente decorativo",
+          pattern: "Patrón decorativo",
+          divider: "Divisor visual",
+          background: "Imagen de fondo decorativa"
+        }
+      },
+      feedback: {
+        title: "Feedback",
+        subtitle: "Tu opinión importa",
+        description: "Comparte tu experiencia y sugerencias",
+        typeQuestion: "¿Qué tipo de feedback te gustaría compartir?",
+        thankYou: "¡Gracias por tu feedback!",
+        importance: "Tu opinión es muy importante para nosotros.",
+        close: "Cerrar",
+        defaultTitle: "Comparte tu feedback",
+        defaultInstruction: "Cuéntanos qué piensas",
+        defaultPlaceholder: "Escribe tu mensaje aquí...",
+        problem: "Reportar problema",
+        idea: "Compartir idea",
+        praise: "Enviar elogio",
+        problemTitle: "Reportar un problema",
+        ideaTitle: "Compartir una idea",
+        praiseTitle: "Enviar un elogio",
+        problemInstruction: "Describe el problema que encontraste",
+        ideaInstruction: "Comparte tu sugerencia o idea",
+        praiseInstruction: "Cuéntanos qué te gustó",
+        problemPlaceholder: "Describe el problema en detalle...",
+        ideaPlaceholder: "Comparte tu idea o sugerencia...",
+        praisePlaceholder: "Cuéntanos qué te gustó...",
+        form: {
+          type: "Tipo de feedback",
+          message: "Tu mensaje",
+          email: "Tu email (opcional)",
+          send: "Enviar feedback",
+          sending: "Enviando...",
+          success: "¡Feedback enviado con éxito!",
+          error: "Error al enviar feedback. Por favor intenta de nuevo.",
+          messageRequired: "El mensaje es obligatorio"
+        },
+        types: {
+          bug: "Reportar bug",
+          suggestion: "Sugerencia",
+          compliment: "Elogio",
+          other: "Otro"
+        }
+      },
+      language: {
+        changed: "Idioma cambiado con éxito",
+        current: "Idioma actual",
+        available: "Idiomas disponibles",
+        portuguese: "Português",
+        english: "English",
+        spanish: "Español",
+        select: "Seleccionar idioma"
+      },
+      theme: {
+        changed: "Tema cambiado con éxito",
+        light: "Modo claro activado",
+        dark: "Modo oscuro activado",
+        system: "Usando preferencia del sistema"
+      }
+    }
   }
 };
 
