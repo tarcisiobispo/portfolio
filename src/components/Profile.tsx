@@ -91,11 +91,13 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
 
                   {/* IxDF Text */}
                   <div className="flex items-center justify-center gap-2 text-xs text-gray-600 dark:text-gray-400">
-                    <IxDFLogo
-                      size="sm"
-                      showText={false}
-                      className="w-4 h-4 flex-shrink-0"
-                    />
+                    <div className="w-4 h-4 flex-shrink-0 flex items-center justify-center">
+                      <IxDFLogo
+                        size="sm"
+                        showText={false}
+                        className="max-w-full max-h-full"
+                      />
+                    </div>
                     <span className="whitespace-nowrap">IxDF - Interaction Design Foundation</span>
                   </div>
                 </div>
