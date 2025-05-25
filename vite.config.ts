@@ -34,45 +34,25 @@ export default defineConfig({
 
     rollupOptions: {
       output: {
-        // Manual chunks para otimizar o bundle
-        manualChunks: (id) => {
-          // Vendor chunks - bibliotecas externas
-          if (id.includes('node_modules')) {
-            if (id.includes('react') || id.includes('react-dom')) {
-              return 'react-vendor';
-            }
-            if (id.includes('react-router-dom')) {
-              return 'router-vendor';
-            }
-            if (id.includes('framer-motion') || id.includes('lucide-react')) {
-              return 'ui-vendor';
-            }
-            if (id.includes('react-hook-form') || id.includes('@hookform/resolvers')) {
-              return 'form-vendor';
-            }
-            if (id.includes('@tanstack/react-query')) {
-              return 'query-vendor';
-            }
-            if (id.includes('react-i18next') || id.includes('i18next')) {
-              return 'i18n-vendor';
-            }
-            if (id.includes('sonner')) {
-              return 'toast-vendor';
-            }
-            // Outros vendors
-            return 'vendor';
-          }
+        // Manual chunks simplificado para evitar problemas de bundling
+        manualChunks: {
+          // React core - manter junto para evitar problemas de contexto
+          'react-core': ['react', 'react-dom'],
 
-          // Chunks específicos do app
-          if (id.includes('src/components/accessibility/')) {
-            return 'accessibility';
-          }
-          if (id.includes('src/components/providers/')) {
-            return 'providers';
-          }
-          if (id.includes('src/utils/')) {
-            return 'utils';
-          }
+          // Bibliotecas de UI
+          'ui-libs': ['framer-motion', 'lucide-react'],
+
+          // Roteamento
+          'routing': ['react-router-dom'],
+
+          // Internacionalização
+          'i18n': ['react-i18next', 'i18next'],
+
+          // Query e estado
+          'state-management': ['@tanstack/react-query'],
+
+          // Outros vendors grandes
+          'vendor-misc': ['sonner', 'react-hook-form']
         },
 
         // Nomeação de chunks
@@ -143,5 +123,18 @@ export default defineConfig({
       'i18next'
     ],
     exclude: ['@vite/client', '@vite/env']
+  },
+
+  // Configurações específicas para resolver problemas de React em produção
+  define: {
+    // Garantir que o React está disponível globalmente
+    global: 'globalThis',
+  },
+
+  // Configurações de servidor para desenvolvimento
+  server: {
+    fs: {
+      strict: false
+    }
   }
 });
