@@ -6,7 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
-import ScrollProgress from "@/components/ui/ScrollProgress";
+
 import BackToTop from "@/components/ui/BackToTop";
 import Header from "@/components/Header";
 import FloatingFeedbackButton from "@/components/FloatingFeedbackButton";
@@ -54,7 +54,6 @@ const App = () => {
           <DebugTranslations />
 
           {/* UX Premium Components */}
-          <ScrollProgress showPercentage={true} />
           <BackToTop />
 
           <Header />
