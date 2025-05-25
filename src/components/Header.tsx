@@ -75,7 +75,7 @@ export default function Header() {
       >
         {/* Logo TBA */}
         <a href="#perfil" className="flex items-center gap-2 text-2xl font-bold tracking-tight text-[var(--color-primary-dark)]" aria-label={t('navigation.home')}>
-          <span className="rounded bg-[var(--color-primary)] text-white px-2 py-1 text-lg font-black shadow-sm">TBA</span>
+          <span className="rounded bg-[#1d4ed8] text-white px-2 py-1 text-lg font-black shadow-sm">TBA</span>
         </a>
         {/* Navegação central */}
         <ul className="flex gap-8 items-end">
@@ -91,9 +91,6 @@ export default function Header() {
                     ${isActive ? 'text-[var(--color-primary)]' : 'text-[var(--color-text)] hover:text-[var(--color-primary)]'}
                     focus-visible:text-[var(--color-primary)]`
                   }
-                  tabIndex={0}
-                  aria-label={t(`navigation.goTo${item.sectionId.charAt(0).toUpperCase() + item.sectionId.slice(1)}`)}
-                  title={t(`navigation.goTo${item.sectionId.charAt(0).toUpperCase() + item.sectionId.slice(1)}`)}
                   aria-current={isActive ? 'page' : undefined}
                 >
                   <Icon
@@ -128,7 +125,6 @@ export default function Header() {
             className="transition-all duration-300 flex items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] w-10 h-10 text-[var(--color-primary)] hover:scale-105"
             style={{ color: 'var(--color-primary)' }}
             aria-label={t('feedback.openFeedback')}
-            title={t('feedback.openFeedback')}
           >
             <MessageCircle className="w-5 h-5" aria-hidden="true" />
           </button>

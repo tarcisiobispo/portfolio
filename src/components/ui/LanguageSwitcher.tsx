@@ -102,8 +102,7 @@ export const LanguageSwitcher: React.FC = () => {
           setFocusedIndex(-1);
         }}
         tabIndex={0}
-        className="transition-colors duration-300 flex items-center gap-2 px-3 py-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] text-[var(--color-primary)] min-w-[56px]"
-        style={{ color: 'var(--color-primary)' }}
+        className="transition-colors duration-300 flex items-center gap-2 px-3 py-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] min-w-[56px] text-[#1d4ed8] dark:text-[#60a5fa]"
       >
         <Globe className="w-5 h-5" aria-hidden="true" />
         <span className="font-semibold text-sm uppercase select-none">{currentCode}</span>

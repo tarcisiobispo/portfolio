@@ -104,7 +104,6 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
                   href="mailto:tbisp0@hotmail.com"
                   className="hover:underline transition-all duration-300"
                   style={{ color: "var(--color-muted)" }}
-                  aria-label="Enviar e-mail para tbisp0@hotmail.com"
                 >
                   tbisp0@hotmail.com
                 </a>
@@ -117,7 +116,6 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
                   href="tel:+5519990137380"
                   className="hover:underline transition-all duration-300"
                   style={{ color: "var(--color-muted)" }}
-                  aria-label="Ligar para +55 19 99013-7380"
                 >
                   +55 (19) 99013-7380
                 </a>
@@ -173,7 +171,6 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
               size="lg"
               icon={MessageCircle}
               iconPosition="left"
-              ariaLabel="Iniciar conversa no WhatsApp com Tarcisio Bispo para discutir projetos de UX Design"
               className="bg-gradient-to-r from-[#25D366] to-[#1ebe5d] hover:from-[#1ebe5d] hover:to-[#25D366] focus:ring-green-400"
             >
               {t('profile.letsChat')}
@@ -188,7 +185,6 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
               size="lg"
               icon={Download}
               iconPosition="left"
-              ariaLabel="Baixar currículo em PDF de Tarcisio Bispo, UX Designer com experiência em Design de Interação"
             >
               {t('profile.downloadCV')}
             </CTAButton>
@@ -202,7 +198,6 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
               size="lg"
               icon={Linkedin}
               iconPosition="left"
-              ariaLabel="Visitar perfil profissional de Tarcisio Bispo no LinkedIn para ver experiência e conexões"
             >
               {t('profile.linkedin')}
             </CTAButton>

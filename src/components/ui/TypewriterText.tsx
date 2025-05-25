@@ -31,7 +31,6 @@ export const TypewriterText: React.FC<TypewriterTextProps> = ({
       preRenderFirstString={preRenderFirstString}
       style={{ display: 'inline-block' }}
       aria-live="polite"
-      aria-label="Texto animado com efeito de digitação"
     />
   );
 };

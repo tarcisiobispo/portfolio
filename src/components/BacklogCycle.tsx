@@ -205,7 +205,6 @@ const BacklogCycle: React.FC = () => {
               size="md"
               icon={ChevronLeft}
               iconPosition="left"
-              ariaLabel={t('backlog.previous')}
               className="disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {t('backlog.previous')}
@@ -235,7 +234,6 @@ const BacklogCycle: React.FC = () => {
               size="md"
               icon={ChevronRight}
               iconPosition="right"
-              ariaLabel={t('backlog.next')}
               className="disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {t('backlog.next')}
