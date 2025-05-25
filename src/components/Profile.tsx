@@ -41,7 +41,7 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
           <div className="flex justify-center items-center mb-6 lg:mb-0 w-full">
             <div className="w-64 h-64 rounded-full border-4 border-white shadow-2xl bg-white overflow-hidden hover:scale-105 transition-transform duration-300">
               <img
-                src="/portfolio/images/tarcisio_bispo.png"
+                src="/portfolio/images/tarcisio_bispo.webp"
                 alt="Foto profissional de Tarcisio Bispo de Araujo, UX Designer especializado em Design de Interação e membro da Interaction Design Foundation"
                 className="w-full h-full object-cover"
                 loading="lazy"

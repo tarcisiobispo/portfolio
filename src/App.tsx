@@ -13,6 +13,7 @@ import Header from "@/components/Header";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { GTMHead, GTMBody } from "@/components/analytics/GoogleTagManager";
 import { ANALYTICS_CONFIG } from "@/config/analytics";
+import AnalyticsProvider from "@/components/analytics/AnalyticsProvider";
 import DebugTranslations from "@/components/DebugTranslations";
 
 
@@ -30,6 +31,7 @@ const App = () => {
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
+          <AnalyticsProvider>
           {/* Google Tag Manager - Head Script */}
           {ANALYTICS_CONFIG.ENABLED && (
             <GTMHead gtmId={ANALYTICS_CONFIG.GTM_ID} />
@@ -72,6 +74,7 @@ const App = () => {
               </Routes>
             </Suspense>
           </BrowserRouter>
+          </AnalyticsProvider>
         </TooltipProvider>
       </QueryClientProvider>
     </HelmetProvider>
