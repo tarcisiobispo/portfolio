@@ -13,13 +13,20 @@ const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({ children }) => {
         // LogRocket
         LogRocket.init('fatqpp/portfolio-kbfin');
         console.log('Analytics initialized successfully');
-        
-        // Identificar usuário para LogRocket (opcional)
-        LogRocket.identify('portfolio-visitor', {
-          name: 'Portfolio Visitor',
-          email: 'visitor@portfolio.com',
+
+        // Configurar contexto do portfolio para LogRocket
+        LogRocket.getSessionURL((sessionURL) => {
+          console.log('LogRocket session:', sessionURL);
         });
-        
+
+        // Adicionar informações do portfolio como contexto
+        LogRocket.track('Portfolio Visit', {
+          portfolioOwner: 'Tarcísio Bispo de Araújo',
+          ownerEmail: 'tbisp0@hotmail.com',
+          portfolioType: 'UX/Product Designer',
+          version: '2024'
+        });
+
       } catch (error) {
         console.error('Failed to initialize analytics:', error);
       }
