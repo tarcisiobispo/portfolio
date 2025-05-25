@@ -157,9 +157,9 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
 
                       {/* Overview Section */}
                       <div className="space-y-3">
-                        <h6 className="border-l-3 border-[var(--color-primary)] pl-3">
+                        <h4 className="border-l-3 border-[var(--color-primary)] pl-3 text-base font-semibold">
                           {t('projects.overview')}
-                        </h6>
+                        </h4>
                         <p className="text-[var(--color-muted)] leading-relaxed text-sm pl-6">
                           {t(`projects.${project.projectKey}.overview`)}
                         </p>
@@ -167,9 +167,9 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
 
                       {/* Discovery Section */}
                       <div className="space-y-3">
-                        <h6 className="border-l-3 border-[var(--color-primary)] pl-3">
+                        <h4 className="border-l-3 border-[var(--color-primary)] pl-3 text-base font-semibold">
                           {t('projects.discovery')}
-                        </h6>
+                        </h4>
                         <p className="text-[var(--color-muted)] leading-relaxed text-sm pl-6">
                           {t(`projects.${project.projectKey}.discovery`)}
                         </p>
@@ -177,9 +177,9 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
 
                       {/* Solution Section */}
                       <div className="space-y-3">
-                        <h6 className="border-l-3 border-[var(--color-primary)] pl-3">
+                        <h4 className="border-l-3 border-[var(--color-primary)] pl-3 text-base font-semibold">
                           {t('projects.solution')}
-                        </h6>
+                        </h4>
                         <p className="text-[var(--color-muted)] leading-relaxed text-sm pl-6">
                           {t(`projects.${project.projectKey}.solution`)}
                         </p>
@@ -187,9 +187,9 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
 
                       {/* Iteration Section */}
                       <div className="space-y-3">
-                        <h6 className="border-l-3 border-[var(--color-primary)] pl-3">
+                        <h4 className="border-l-3 border-[var(--color-primary)] pl-3 text-base font-semibold">
                           {t('projects.iteration')}
-                        </h6>
+                        </h4>
                         <p className="text-[var(--color-muted)] leading-relaxed text-sm pl-6">
                           {t(`projects.${project.projectKey}.iteration`)}
                         </p>
@@ -197,9 +197,9 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
 
                       {/* Outcomes Section */}
                       <div className="space-y-3">
-                        <h6 className="border-l-3 border-[var(--color-primary)] pl-3">
+                        <h4 className="border-l-3 border-[var(--color-primary)] pl-3 text-base font-semibold">
                           {t('projects.outcomes')}
-                        </h6>
+                        </h4>
                         <ul className="space-y-2 pl-6">
                           {(() => {
                             const outcomesRaw = t(`projects.${project.projectKey}.outcomes`, { returnObjects: true });
@@ -217,9 +217,9 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
 
                       {/* Insights Section */}
                       <div className="space-y-3">
-                        <h6 className="border-l-3 border-[var(--color-primary)] pl-3">
+                        <h4 className="border-l-3 border-[var(--color-primary)] pl-3 text-base font-semibold">
                           {t('projects.insights')}
-                        </h6>
+                        </h4>
                         <p className="text-[var(--color-muted)] leading-relaxed text-sm pl-6 italic">
                           {t(`projects.${project.projectKey}.insights`)}
                         </p>

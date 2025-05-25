@@ -53,8 +53,7 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
                   fetchPriority="high"
                   width="256"
                   height="256"
-                  role="img"
-                  aria-describedby="profile-description"
+
                   decoding="async"
                 />
               </picture>
@@ -134,7 +133,7 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h1 id="profile-title" className="break-words text-left mb-6">
+          <h1 id="profile-title" className="break-words text-left mb-6 text-4xl lg:text-5xl font-bold">
             <TypewriterText
               sequence={[
                 'UX Designer',

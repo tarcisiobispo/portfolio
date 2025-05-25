@@ -1,27 +1,27 @@
 /* Estilos de Acessibilidade */
 
-/* Alto Contraste Otimizado */
+/* Alto Contraste WCAG 2.2 - 4.5:1 ratio mínimo */
 .high-contrast {
   --color-bg: #000000 !important;
   --color-surface: #000000 !important;
   --color-primary: #ffffff !important;
   --color-primary-light: #ffffff !important;
   --color-primary-dark: #ffffff !important;
-  --color-secondary: #ffffff !important;
-  --color-accent: #ffffff !important;
-  --color-accent-light: #ffffff !important;
+  --color-secondary: #00ffff !important; /* Cyan para diferenciação */
+  --color-accent: #ffff00 !important; /* Yellow para destaque */
+  --color-accent-light: #ffff00 !important;
   --color-neutral: #ffffff !important;
   --color-neutral-dark: #ffffff !important;
   --color-text: #ffffff !important;
   --color-text-light: #ffffff !important;
-  --color-muted: #cccccc !important;
-  --color-success: #ffffff !important;
-  --color-error: #ffffff !important;
-  --color-warning: #ffffff !important;
+  --color-muted: #ffffff !important; /* Mudado para branco total */
+  --color-success: #00ff00 !important; /* Verde puro */
+  --color-error: #ff0000 !important; /* Vermelho puro */
+  --color-warning: #ffff00 !important; /* Amarelo puro */
   --color-border: #ffffff !important;
   --color-card-bg: #000000 !important;
-  --color-link: #ffffff !important;
-  --color-link-hover: #000000 !important;
+  --color-link: #00ffff !important; /* Cyan para links */
+  --color-link-hover: #ffff00 !important; /* Amarelo no hover */
   --color-title-primary: #ffffff !important;
   --color-title-secondary: #ffffff !important;
   --color-subtitle: #ffffff !important;

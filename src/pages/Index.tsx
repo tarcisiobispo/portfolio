@@ -77,7 +77,7 @@ const Index = () => {
       </div>
 
       {/* Projects Section */}
-      <div id="projetos" className="py-12 relative">
+      <section id="projetos" className="py-12 relative" aria-labelledby="projects-heading">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -85,15 +85,16 @@ const Index = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
+            <h2 id="projects-heading" className="sr-only">Projetos de UX Design</h2>
             <Suspense fallback={<LoadingSpinner />}>
               <ProjectShowcase projects={projects} />
             </Suspense>
           </motion.div>
         </div>
-      </div>
+      </section>
 
       {/* Backlog Cycle Section */}
-      <div id="backlog" className="py-12 relative bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
+      <section id="backlog" className="py-12 relative bg-gray-50 dark:bg-gray-800 transition-colors duration-300" aria-labelledby="backlog-heading">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -101,15 +102,16 @@ const Index = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
+            <h2 id="backlog-heading" className="sr-only">Backlog Estratégico</h2>
             <Suspense fallback={<LoadingSpinner />}>
               <BacklogCycle />
             </Suspense>
           </motion.div>
         </div>
-      </div>
+      </section>
 
       {/* Contact Section */}
-      <div id="contato" className="py-12 relative">
+      <section id="contato" className="py-12 relative" aria-labelledby="contact-heading">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -117,12 +119,13 @@ const Index = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
+            <h2 id="contact-heading" className="sr-only">Contato</h2>
             <Suspense fallback={<LoadingSpinner />}>
               <Contact />
             </Suspense>
           </motion.div>
         </div>
-      </div>
+      </section>
 
     </main>
 
