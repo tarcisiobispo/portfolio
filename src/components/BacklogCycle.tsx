@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger
 } from '@/components/ui/accordion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, CheckCircle2, Lightbulb, Target, TrendingUp } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import CTAButton from '@/components/ui/CTAButton';
 import { useTranslationArray } from '@/utils/translationHelpers';
@@ -56,16 +56,18 @@ const BacklogCycle: React.FC = () => {
 
   return (
     <section className="w-full">
-      {/* Header Section - Centralizado e Alinhado */}
+      {/* Header Section - Design System Adequado */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="text-center mb-16"
       >
-        <h1 className="text-center">{t('backlog.title')}</h1>
-        <div className="h-1 w-20 mb-6 rounded mx-auto" style={{ background: "var(--color-primary)" }}></div>
-        <p className="mb-0 max-w-3xl mx-auto text-center" style={{ color: "var(--color-muted)" }}>
+        <h2 className="text-3xl lg:text-4xl font-bold text-[var(--color-text)] mb-4 text-center">
+          {t('backlog.title')}
+        </h2>
+        <div className="h-1 w-20 bg-[var(--color-primary)] rounded mx-auto mb-6"></div>
+        <p className="text-lg text-[var(--color-muted)] max-w-3xl mx-auto text-center leading-relaxed">
           {t('backlog.description')}
         </p>
       </motion.div>
@@ -78,94 +80,161 @@ const BacklogCycle: React.FC = () => {
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
       >
-        <Accordion type="single" collapsible className="w-full space-y-6">
+        <Accordion type="single" collapsible className="w-full space-y-4">
           {paginatedItems.length === 0 ? (
-            <div className="text-center py-8" style={{ color: "var(--color-muted)" }}>
+            <div className="text-center py-12 text-[var(--color-muted)]">
               {t('backlog.noItems')}
             </div>
           ) : (
-            paginatedItems.map((item) => (
-              <AccordionItem value={item.id} key={item.id} className="overflow-hidden border-none">
-                <div className="relative w-full">
-                  {/* Decorative vertical line */}
-                  <div className="absolute left-8 top-0 h-full w-0.5 opacity-20 z-0" style={{ backgroundColor: "var(--color-primary)" }}></div>
-                  <div className="w-full rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 border relative z-10" style={{ backgroundColor: "var(--color-card-bg)", borderColor: "var(--color-border)" }}>
-                    <AccordionTrigger className="px-8 py-6 text-left font-medium hover:no-underline group" style={{ color: "var(--color-text)" }}>
-                      <div className="flex items-start gap-4">
-                        <div className="p-3 rounded-lg flex-shrink-0" style={{ backgroundColor: "var(--color-primary-light)", color: "var(--color-primary-dark)" }}>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                            <polyline points="22 4 12 14.01 9 11.01"/>
-                          </svg>
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-lg pr-8 group-hover:transition-colors" style={{ color: "var(--color-primary-dark)" }}>
-                            {item.challenge}
-                          </h3>
-                        </div>
+            paginatedItems.map((item, index) => (
+              <AccordionItem value={item.id} key={item.id} className="border-none">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="bg-white dark:bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
+                >
+                  <AccordionTrigger className="px-6 py-6 hover:no-underline group [&[data-state=open]]:pb-4">
+                    <div className="flex items-center gap-4 w-full">
+                      {/* Icon Container - Properly Aligned */}
+                      <div className="flex-shrink-0 w-12 h-12 bg-[var(--color-primary)]/10 rounded-xl flex items-center justify-center">
+                        <CheckCircle2 className="w-6 h-6 text-[var(--color-primary)]" />
                       </div>
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="px-8 pb-6 pl-[4.5rem] space-y-6"
-                      >
-                        <div className="space-y-4 border-l-2 pl-6 relative" style={{ borderColor: "var(--color-primary)" }}>
-                          <div className="absolute w-3 h-3 rounded-full -left-[7px] top-2" style={{ backgroundColor: "var(--color-primary)" }}></div>
-                          <h4 className="font-semibold" style={{ color: "var(--color-title-secondary)" }}>{t('backlog.solution')}</h4>
-                          <p style={{ color: "var(--color-text)" }}>{item.solution}</p>
-                        </div>
-                        <div className="space-y-4 border-l-2 pl-6 relative" style={{ borderColor: "var(--color-accent)" }}>
-                          <div className="absolute w-3 h-3 rounded-full -left-[7px] top-2" style={{ backgroundColor: "var(--color-accent)" }}></div>
-                          <h4 className="font-semibold" style={{ color: "var(--color-title-secondary)" }}>{t('backlog.result')}</h4>
-                          <p style={{ color: "var(--color-text)" }}>{item.result}</p>
-                        </div>
-                        <div className="space-y-4 border-l-2 pl-6 relative" style={{ borderColor: "var(--color-secondary)" }}>
-                          <div className="absolute w-3 h-3 rounded-full -left-[7px] top-2" style={{ backgroundColor: "var(--color-secondary)" }}></div>
-                          <h4 className="font-semibold" style={{ color: "var(--color-title-secondary)" }}>{t('backlog.note')}</h4>
-                          <p style={{ color: "var(--color-text)" }}>{item.note}</p>
-                        </div>
-                      </motion.div>
-                    </AccordionContent>
-                  </div>
-                </div>
+
+                      {/* Content Container */}
+                      <div className="flex-1 text-left">
+                        <h3 className="text-lg font-semibold text-[var(--color-text)] group-hover:text-[var(--color-primary)] transition-colors duration-200 pr-4">
+                          {item.challenge}
+                        </h3>
+                      </div>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className="px-6 pb-6">
+                      {/* Grid Responsivo para as seções */}
+                      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+                        {/* Solução */}
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.3, delay: 0.1 }}
+                          className="bg-[var(--color-primary)]/5 rounded-xl p-4 border-l-4 border-[var(--color-primary)]"
+                        >
+                          <div className="flex items-center gap-3 mb-3">
+                            <div className="w-8 h-8 bg-[var(--color-primary)]/10 rounded-lg flex items-center justify-center">
+                              <Lightbulb className="w-4 h-4 text-[var(--color-primary)]" />
+                            </div>
+                            <h4 className="font-semibold text-[var(--color-text)]">
+                              {t('backlog.solution')}
+                            </h4>
+                          </div>
+                          <p className="text-sm text-[var(--color-muted)] leading-relaxed">
+                            {item.solution}
+                          </p>
+                        </motion.div>
+
+                        {/* Resultado */}
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.3, delay: 0.2 }}
+                          className="bg-[var(--color-secondary)]/5 rounded-xl p-4 border-l-4 border-[var(--color-secondary)]"
+                        >
+                          <div className="flex items-center gap-3 mb-3">
+                            <div className="w-8 h-8 bg-[var(--color-secondary)]/10 rounded-lg flex items-center justify-center">
+                              <TrendingUp className="w-4 h-4 text-[var(--color-secondary)]" />
+                            </div>
+                            <h4 className="font-semibold text-[var(--color-text)]">
+                              {t('backlog.result')}
+                            </h4>
+                          </div>
+                          <p className="text-sm text-[var(--color-muted)] leading-relaxed">
+                            {item.result}
+                          </p>
+                        </motion.div>
+
+                        {/* Nota */}
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.3, delay: 0.3 }}
+                          className="bg-purple-50 dark:bg-purple-900/10 rounded-xl p-4 border-l-4 border-purple-500"
+                        >
+                          <div className="flex items-center gap-3 mb-3">
+                            <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900/20 rounded-lg flex items-center justify-center">
+                              <Target className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+                            </div>
+                            <h4 className="font-semibold text-[var(--color-text)]">
+                              {t('backlog.note')}
+                            </h4>
+                          </div>
+                          <p className="text-sm text-[var(--color-muted)] leading-relaxed">
+                            {item.note}
+                          </p>
+                        </motion.div>
+
+                      </div>
+                    </div>
+                  </AccordionContent>
+                </motion.div>
               </AccordionItem>
             ))
           )}
         </Accordion>
 
-        {/* Paginação */}
-        <div className="flex justify-center items-center gap-4 mt-6">
-          <CTAButton
-            onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-            disabled={currentPage === 1}
-            variant="ghost"
-            size="sm"
-            icon={ChevronLeft}
-            iconPosition="left"
-            ariaLabel={t('backlog.previous')}
+        {/* Paginação Melhorada */}
+        {totalPages > 1 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex justify-center items-center gap-4 mt-12"
           >
-            {t('backlog.previous')}
-          </CTAButton>
+            <CTAButton
+              onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+              disabled={currentPage === 1}
+              variant="ghost"
+              size="md"
+              icon={ChevronLeft}
+              iconPosition="left"
+              ariaLabel={t('backlog.previous')}
+              className="disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {t('backlog.previous')}
+            </CTAButton>
 
-          <span className="text-[var(--color-text)] font-medium px-4">
-            {t('backlog.page')} {currentPage} {t('backlog.of')} {totalPages}
-          </span>
+            <div className="flex items-center gap-2">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                <button
+                  key={page}
+                  onClick={() => setCurrentPage(page)}
+                  className={`w-10 h-10 rounded-lg font-medium transition-all duration-200 ${
+                    currentPage === page
+                      ? 'bg-[var(--color-primary)] text-white shadow-md'
+                      : 'text-[var(--color-muted)] hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)]'
+                  }`}
+                  aria-label={`${t('backlog.page')} ${page}`}
+                >
+                  {page}
+                </button>
+              ))}
+            </div>
 
-          <CTAButton
-            onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-            disabled={currentPage === totalPages}
-            variant="ghost"
-            size="sm"
-            icon={ChevronRight}
-            iconPosition="right"
-            ariaLabel={t('backlog.next')}
-          >
-            {t('backlog.next')}
-          </CTAButton>
-        </div>
+            <CTAButton
+              onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+              disabled={currentPage === totalPages}
+              variant="ghost"
+              size="md"
+              icon={ChevronRight}
+              iconPosition="right"
+              ariaLabel={t('backlog.next')}
+              className="disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {t('backlog.next')}
+            </CTAButton>
+          </motion.div>
+        )}
       </motion.div>
     </section>
   );
