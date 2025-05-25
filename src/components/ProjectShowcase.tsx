@@ -77,69 +77,72 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
               <div className="project-card-overlay"></div>
             </div>
 
-            {/* Project Content - ESTRUTURA PREMIUM */}
+            {/* Project Content - PADRÃO LIMPO IGUAL AOS CARDS DE REFERÊNCIA */}
             <div className="project-card-content">
-              {/* Header Section - Título */}
-              <div className="flex flex-col gap-3">
-                <h3 id={`project-title-${index}`} className="project-card-title">
-                  {t(`projects.${project.projectKey}.title`)}
-                </h3>
+              {/* Título - IGUAL AOS CARDS DE REFERÊNCIA */}
+              <h3 id={`project-title-${index}`} className="project-card-title">
+                {t(`projects.${project.projectKey}.title`)}
+              </h3>
 
-                {/* Badges de Skills/Metodologias - ALINHAMENTO PERFEITO */}
-                <div className="project-card-tags">
-                  {(() => {
-                    // Buscar badges traduzidos para cada projeto
-                    const projectBadges: { [key: string]: string[] } = {
-                      'fgvLaw': [
-                        t('projects.badges.usability'),
-                        t('projects.badges.informationArchitecture'),
-                        t('projects.badges.userTesting')
-                      ],
-                      'direitoGV': [
-                        t('projects.badges.uxResearch'),
-                        t('projects.badges.journeyMapping'),
-                        t('projects.badges.stakeholderManagement')
-                      ],
-                      'taliparts': [
-                        t('projects.badges.productStrategy'),
-                        t('projects.badges.seo'),
-                        t('projects.badges.productValidation')
-                      ],
-                      'tvInstitucional': [
-                        t('projects.badges.visualDesign'),
-                        t('projects.badges.communication'),
-                        t('projects.badges.engagement')
-                      ]
-                    };
+              {/* Descrição - TEXTO CINZA LEGÍVEL */}
+              <p className="project-card-description">
+                {t(`projects.${project.projectKey}.overview`)}
+              </p>
 
-                    const badges = projectBadges[project.projectKey] || [];
+              {/* Tags - IGUAL AOS CARDS DE REFERÊNCIA */}
+              <div className="project-card-tags">
+                {(() => {
+                  // Buscar badges traduzidos para cada projeto
+                  const projectBadges: { [key: string]: string[] } = {
+                    'fgvLaw': [
+                      t('projects.badges.usability'),
+                      t('projects.badges.informationArchitecture'),
+                      t('projects.badges.userTesting')
+                    ],
+                    'direitoGV': [
+                      t('projects.badges.uxResearch'),
+                      t('projects.badges.journeyMapping'),
+                      t('projects.badges.stakeholderManagement')
+                    ],
+                    'taliparts': [
+                      t('projects.badges.productStrategy'),
+                      t('projects.badges.seo'),
+                      t('projects.badges.productValidation')
+                    ],
+                    'tvInstitucional': [
+                      t('projects.badges.visualDesign'),
+                      t('projects.badges.communication'),
+                      t('projects.badges.engagement')
+                    ]
+                  };
 
-                    return badges.map((badge, badgeIndex) => (
-                      <span
-                        key={badgeIndex}
-                        className="project-card-tag"
-                      >
-                        {badge}
-                      </span>
-                    ));
-                  })()}
-                </div>
+                  const badges = projectBadges[project.projectKey] || [];
+
+                  return badges.map((badge, badgeIndex) => (
+                    <span
+                      key={badgeIndex}
+                      className="project-card-tag"
+                    >
+                      {badge}
+                    </span>
+                  ));
+                })()}
               </div>
 
-              {/* Actions Row - POSICIONAMENTO PREMIUM */}
+              {/* Botão - PADRÃO LIMPO */}
               <div className="project-card-actions">
-                {/* Ver mais Button - DESIGN MELHORADO */}
-                <CTAButton
+                <button
                   onClick={() => toggleProject(index)}
-                  variant="ghost"
-                  size="sm"
-                  icon={activeProject === index ? EyeOff : Eye}
-                  iconPosition="left"
-                  ariaLabel={activeProject === index ? t('projects.seeLess') : t('projects.seeMore')}
-                  className="text-sm font-medium hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-200"
+                  className="project-card-button"
+                  aria-label={activeProject === index ? t('projects.seeLess') : t('projects.seeMore')}
                 >
                   {activeProject === index ? t('projects.seeLess') : t('projects.seeMore')}
-                </CTAButton>
+                  {activeProject === index ? (
+                    <EyeOff className="w-3.5 h-3.5 ml-2" />
+                  ) : (
+                    <Eye className="w-3.5 h-3.5 ml-2" />
+                  )}
+                </button>
               </div>
 
               {/* Expanded Content */}
