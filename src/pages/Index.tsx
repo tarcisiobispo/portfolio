@@ -29,11 +29,11 @@ const Index = () => {
   const projects = [
     {
       projectKey: "fgvLaw",
-      imageUrl: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=75&fm=webp"
+      imageUrl: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=75&fm=webp"
     },
     {
       projectKey: "direitoGV",
-      imageUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=75&fm=webp"
+      imageUrl: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=600&q=75&fm=webp"
     },
     {
       projectKey: "taliparts",
@@ -41,7 +41,7 @@ const Index = () => {
     },
     {
       projectKey: "tvInstitucional",
-      imageUrl: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&w=600&q=75&fm=webp"
+      imageUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=75&fm=webp"
     }
   ];
 

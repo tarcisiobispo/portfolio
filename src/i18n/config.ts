@@ -67,7 +67,7 @@ const resources = {
           insights: "A estrutura de navegação precisa guiar, não apenas mostrar. Clareza e agrupamento relevante influenciam diretamente a percepção de valor de um curso."
         },
         direitoGV: {
-          title: "Direito GV",
+          title: "Pesquisa Direito FGV",
           category: "Mapas, Fluxos e Pesquisa",
           overview: "Reorganização da área de pesquisa da Direito GV para melhorar a visibilidade dos projetos acadêmicos e facilitar o acesso a informações sobre pesquisadores e suas linhas de trabalho.",
           discovery: "A área de pesquisa estava fragmentada e pouco acessível. Pesquisadores tinham dificuldade para divulgar seus trabalhos e usuários externos não conseguiam encontrar informações relevantes sobre projetos em andamento.",
@@ -361,10 +361,10 @@ const resources = {
           ixdfSeal: "Selo de certificação IxDF"
         },
         projects: {
-          fgvLaw: "Captura de tela do projeto FGV LAW - interface de cursos jurídicos",
-          direitoGV: "Captura de tela do projeto Direito GV - área de pesquisa acadêmica",
+          fgvLaw: "Captura de tela do projeto FGV LAW - designers trabalhando em equipe no escritório",
+          direitoGV: "Captura de tela do projeto Pesquisa Direito FGV - mesa de madeira com livro em frente a estante",
           taliparts: "Captura de tela do projeto Taliparts - e-commerce de peças automotivas",
-          tvInstitucional: "Captura de tela do projeto FGV TV Institucional - sistema de comunicação visual"
+          tvInstitucional: "Captura de tela do projeto FGV TV Institucional - placa branca pendurada na lateral de um edifício"
         },
         icons: {
           menu: "Ícone de menu",
@@ -525,7 +525,7 @@ const resources = {
           insights: "Navigation structure needs to guide, not just show. Clarity and relevant grouping directly influence the perception of a course's value."
         },
         direitoGV: {
-          title: "Direito GV",
+          title: "FGV Law Research",
           category: "Maps, Flows and Research",
           overview: "Reorganization of Direito GV's research area to improve visibility of academic projects and facilitate access to information about researchers and their work lines.",
           discovery: "The research area was fragmented and poorly accessible. Researchers had difficulty promoting their work and external users couldn't find relevant information about ongoing projects.",
@@ -819,10 +819,10 @@ const resources = {
           ixdfSeal: "IxDF certification seal"
         },
         projects: {
-          fgvLaw: "FGV LAW project screenshot - legal courses interface",
-          direitoGV: "Direito GV project screenshot - academic research area",
+          fgvLaw: "FGV LAW project screenshot - designers working as a team in the office",
+          direitoGV: "FGV Law Research project screenshot - wooden table with book in front of bookshelf",
           taliparts: "Taliparts project screenshot - automotive parts e-commerce",
-          tvInstitucional: "FGV Institutional TV project screenshot - visual communication system"
+          tvInstitucional: "FGV Institutional TV project screenshot - white sign hanging on the side of a building"
         },
         icons: {
           menu: "Menu icon",
@@ -984,7 +984,7 @@ const resources = {
           insights: "La estructura de navegación necesita guiar, no solo mostrar. La claridad y agrupación relevante influyen directamente en la percepción del valor de un curso."
         },
         direitoGV: {
-          title: "Direito GV",
+          title: "Investigación Derecho FGV",
           category: "Mapas, Flujos e Investigación",
           overview: "Reorganización del área de investigación de Direito GV para mejorar la visibilidad de proyectos académicos y facilitar el acceso a información sobre investigadores y sus líneas de trabajo.",
           discovery: "El área de investigación estaba fragmentada y era poco accesible. Los investigadores tenían dificultades para promocionar su trabajo y usuarios externos no encontraban información relevante sobre proyectos en curso.",
@@ -1278,10 +1278,10 @@ const resources = {
           ixdfSeal: "Sello de certificación IxDF"
         },
         projects: {
-          fgvLaw: "Captura de pantalla del proyecto FGV LAW - interfaz de cursos jurídicos",
-          direitoGV: "Captura de pantalla del proyecto Direito GV - área de investigación académica",
+          fgvLaw: "Captura de pantalla del proyecto FGV LAW - diseñadores trabajando en equipo en la oficina",
+          direitoGV: "Captura de pantalla del proyecto Investigación Derecho FGV - mesa de madera con libro frente a estantería",
           taliparts: "Captura de pantalla del proyecto Taliparts - e-commerce de autopartes",
-          tvInstitucional: "Captura de pantalla del proyecto FGV TV Institucional - sistema de comunicación visual"
+          tvInstitucional: "Captura de pantalla del proyecto FGV TV Institucional - cartel blanco colgado en el lateral de un edificio"
         },
         icons: {
           menu: "Ícono de menú",
