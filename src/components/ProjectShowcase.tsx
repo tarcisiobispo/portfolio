@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Eye, EyeOff } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import CTAButton from '@/components/ui/CTAButton';
 import OptimizedImage from '@/components/OptimizedImage';
 import { ensureStringArray } from '@/utils/translationHelpers';
+import '@/styles/project-cards.css';
 
 interface ProjectDetails {
   projectKey: string; // Chave para buscar as traduções
@@ -38,8 +38,8 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
         <div className="h-1 w-20 mb-6 rounded mx-auto" style={{ background: "var(--color-primary)" }}></div>
       </motion.div>
 
-      {/* Projects Grid - SEM LIMITAÇÃO DE LARGURA */}
-      <div className="projects-grid max-w-6xl mx-auto">
+      {/* Projects Grid - NOVO DESIGN LIMPO */}
+      <div className="projects-grid">
         {projects.map((project, index) => (
           <motion.article
             key={project.projectKey}
@@ -62,7 +62,7 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
               }
             }}
           >
-            {/* Project Image - Otimizada para Performance */}
+            {/* Imagem */}
             <div className="project-card-image-container">
               <OptimizedImage
                 src={project.imageUrl}
@@ -72,12 +72,9 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
                 width={600}
                 height={300}
               />
-
-              {/* Overlay sutil para efeito visual */}
-              <div className="project-card-overlay"></div>
             </div>
 
-            {/* Project Content - SEM CLASSES TAILWIND QUE INTERFEREM */}
+            {/* Conteúdo */}
             <div className="project-card-content">
               {/* Título */}
               <h3 id={`project-title-${index}`} className="project-card-title">
@@ -89,10 +86,9 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
                 {t(`projects.${project.projectKey}.overview`)}
               </p>
 
-              {/* Tags */}
+              {/* Badges */}
               <div className="project-card-tags">
                 {(() => {
-                  // Buscar badges traduzidos para cada projeto
                   const projectBadges: { [key: string]: string[] } = {
                     'fgvLaw': [
                       t('projects.badges.usability'),
@@ -138,92 +134,92 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
                 >
                   {activeProject === index ? t('projects.seeLess') : t('projects.seeMore')}
                   {activeProject === index ? (
-                    <EyeOff className="w-3.5 h-3.5 ml-2" />
+                    <EyeOff size={14} style={{ marginLeft: '8px' }} />
                   ) : (
-                    <Eye className="w-3.5 h-3.5 ml-2" />
+                    <Eye size={14} style={{ marginLeft: '8px' }} />
                   )}
                 </button>
               </div>
 
-              {/* Expanded Content */}
+              {/* Conteúdo Expansivo */}
               <AnimatePresence>
                 {activeProject === index && (
                   <motion.div
                     id={`project-details-${index}`}
-                    initial={{ opacity: 0, height: 0, y: -20 }}
-                    animate={{ opacity: 1, height: 'auto', y: 0 }}
-                    exit={{ opacity: 0, height: 0, y: -20 }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
                     className="overflow-hidden"
                   >
-                    <div className="mt-6 pt-6 border-t border-[var(--color-border)]/30 space-y-6">
+                    <div className="project-expanded-content">
 
-                      {/* Overview Section */}
-                      <div className="space-y-3">
-                        <h4 className="border-l-3 border-[var(--color-primary)] pl-3 text-base font-semibold">
+                      {/* Overview */}
+                      <div className="project-section">
+                        <h4 className="project-section-title">
                           {t('projects.overview')}
                         </h4>
-                        <p className="text-[var(--color-muted)] leading-relaxed text-sm pl-6">
+                        <p className="project-section-content">
                           {t(`projects.${project.projectKey}.overview`)}
                         </p>
                       </div>
 
-                      {/* Discovery Section */}
-                      <div className="space-y-3">
-                        <h4 className="border-l-3 border-[var(--color-primary)] pl-3 text-base font-semibold">
+                      {/* Discovery */}
+                      <div className="project-section">
+                        <h4 className="project-section-title">
                           {t('projects.discovery')}
                         </h4>
-                        <p className="text-[var(--color-muted)] leading-relaxed text-sm pl-6">
+                        <p className="project-section-content">
                           {t(`projects.${project.projectKey}.discovery`)}
                         </p>
                       </div>
 
-                      {/* Solution Section */}
-                      <div className="space-y-3">
-                        <h4 className="border-l-3 border-[var(--color-primary)] pl-3 text-base font-semibold">
+                      {/* Solution */}
+                      <div className="project-section">
+                        <h4 className="project-section-title">
                           {t('projects.solution')}
                         </h4>
-                        <p className="text-[var(--color-muted)] leading-relaxed text-sm pl-6">
+                        <p className="project-section-content">
                           {t(`projects.${project.projectKey}.solution`)}
                         </p>
                       </div>
 
-                      {/* Iteration Section */}
-                      <div className="space-y-3">
-                        <h4 className="border-l-3 border-[var(--color-primary)] pl-3 text-base font-semibold">
+                      {/* Iteration */}
+                      <div className="project-section">
+                        <h4 className="project-section-title">
                           {t('projects.iteration')}
                         </h4>
-                        <p className="text-[var(--color-muted)] leading-relaxed text-sm pl-6">
+                        <p className="project-section-content">
                           {t(`projects.${project.projectKey}.iteration`)}
                         </p>
                       </div>
 
-                      {/* Outcomes Section */}
-                      <div className="space-y-3">
-                        <h4 className="border-l-3 border-[var(--color-primary)] pl-3 text-base font-semibold">
+                      {/* Outcomes */}
+                      <div className="project-section">
+                        <h4 className="project-section-title">
                           {t('projects.outcomes')}
                         </h4>
-                        <ul className="space-y-2 pl-6">
+                        <ul className="project-outcomes-list">
                           {(() => {
                             const outcomesRaw = t(`projects.${project.projectKey}.outcomes`, { returnObjects: true });
                             const outcomes = ensureStringArray(outcomesRaw);
 
                             return outcomes.map((item: string, idx: number) => (
-                              <li key={idx} className="flex items-start gap-3 text-[var(--color-muted)] text-sm">
-                                <div className="w-1 h-1 bg-[var(--color-primary)] rounded-full mt-2 flex-shrink-0"></div>
-                                <span className="leading-relaxed">{item}</span>
+                              <li key={idx} className="project-outcome-item">
+                                <div className="project-outcome-bullet"></div>
+                                <span>{item}</span>
                               </li>
                             ));
                           })()}
                         </ul>
                       </div>
 
-                      {/* Insights Section */}
-                      <div className="space-y-3">
-                        <h4 className="border-l-3 border-[var(--color-primary)] pl-3 text-base font-semibold">
+                      {/* Insights */}
+                      <div className="project-section">
+                        <h4 className="project-section-title">
                           {t('projects.insights')}
                         </h4>
-                        <p className="text-[var(--color-muted)] leading-relaxed text-sm pl-6 italic">
+                        <p className="project-section-content" style={{ fontStyle: 'italic' }}>
                           {t(`projects.${project.projectKey}.insights`)}
                         </p>
                       </div>

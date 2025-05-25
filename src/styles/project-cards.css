@@ -1,0 +1,284 @@
+/* ===== NOVO SISTEMA DE CARDS EXPANSIVOS ===== */
+/* Design moderno com badges estilo Tailwind neutro */
+
+/* ===== PROJECT CARDS - DESIGN LIMPO ===== */
+.project-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  position: relative;
+  max-width: 100%;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-color: #3b82f6;
+}
+
+/* Dark mode */
+.dark .project-card {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+.dark .project-card:hover {
+  border-color: #60a5fa;
+}
+
+/* ===== IMAGEM DO CARD ===== */
+.project-card-image-container {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background: #f3f4f6;
+}
+
+.project-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-card-image {
+  transform: scale(1.05);
+}
+
+/* ===== CONTEÚDO DO CARD ===== */
+.project-card-content {
+  padding: 24px;
+}
+
+/* Título */
+.project-card-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 12px 0;
+  line-height: 1.3;
+}
+
+.dark .project-card-title {
+  color: #f9fafb;
+}
+
+/* Descrição */
+.project-card-description {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0 0 16px 0;
+  line-height: 1.5;
+}
+
+.dark .project-card-description {
+  color: #9ca3af;
+}
+
+/* ===== BADGES ESTILO TAILWIND NEUTRO ===== */
+.project-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.project-card-tag {
+  background: #f3f4f6;
+  color: #374151;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.project-card-tag:hover {
+  background: #e5e7eb;
+  border-color: #d1d5db;
+}
+
+.dark .project-card-tag {
+  background: #374151;
+  color: #d1d5db;
+  border-color: #4b5563;
+}
+
+.dark .project-card-tag:hover {
+  background: #4b5563;
+  border-color: #6b7280;
+}
+
+/* ===== BOTÃO MODERNO ===== */
+.project-card-actions {
+  margin-top: 20px;
+}
+
+.project-card-button {
+  display: inline-flex;
+  align-items: center;
+  background: #3b82f6;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.project-card-button:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.project-card-button:active {
+  transform: translateY(0);
+}
+
+/* ===== GRID RESPONSIVA ===== */
+.projects-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 12px;
+  }
+
+  .project-card-content {
+    padding: 20px;
+  }
+
+  .project-card-title {
+    font-size: 18px;
+  }
+
+  .project-card-description {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+/* ===== ACESSIBILIDADE ===== */
+.project-card:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card,
+  .project-card-image,
+  .project-card-button {
+    transition: none;
+  }
+}
+
+/* ===== CONTEÚDO EXPANSIVO ===== */
+.project-expanded-content {
+  border-top: 1px solid #e5e7eb;
+  margin-top: 20px;
+  padding-top: 20px;
+}
+
+.dark .project-expanded-content {
+  border-color: #374151;
+}
+
+.project-section {
+  margin-bottom: 20px;
+}
+
+.project-section-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #3b82f6;
+  margin-bottom: 8px;
+  border-left: 3px solid #3b82f6;
+  padding-left: 12px;
+}
+
+.dark .project-section-title {
+  color: #60a5fa;
+  border-color: #60a5fa;
+}
+
+.project-section-content {
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.6;
+  padding-left: 15px;
+}
+
+.dark .project-section-content {
+  color: #9ca3af;
+}
+
+.project-outcomes-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  padding-left: 15px;
+}
+
+.project-outcome-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.dark .project-outcome-item {
+  color: #9ca3af;
+}
+
+.project-outcome-bullet {
+  width: 4px;
+  height: 4px;
+  background: #3b82f6;
+  border-radius: 50%;
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+
+.dark .project-outcome-bullet {
+  background: #60a5fa;
+}
+
+/* ===== DARK MODE GLOBAL ===== */
+.dark .project-card-image-container {
+  background: #374151;
+}

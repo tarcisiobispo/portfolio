@@ -1,31 +1,31 @@
-/* ===== SISTEMA DE CARDS MODERNO - FLUENT DESIGN INSPIRED ===== */
-/* Este é o ÚNICO arquivo que controla TODOS os cards do site */
+/* ===== NOVO SISTEMA DE CARDS EXPANSIVOS ===== */
+/* Design moderno com badges estilo Tailwind neutro */
 
-/* Reset completo para todos os cards */
-.card,
-.project-card,
-.contact-card,
-.backlog-card,
-[class*="card"]:not(.profile-card) {
-  /* Reset básico */
-  margin: 0;
-  padding: 0;
-  border: none;
-  outline: none;
-  box-sizing: border-box;
-  position: relative;
+/* ===== PROJECT CARDS - DESIGN LIMPO ===== */
+.project-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
   overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  position: relative;
 }
 
-/* Profile card tem overflow especial para efeitos */
-.profile-card {
-  margin: 0;
-  padding: 0;
-  border: none;
-  outline: none;
-  box-sizing: border-box;
-  position: relative;
-  overflow: visible; /* Permite efeitos saírem do card */
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-color: #3b82f6;
+}
+
+/* Dark mode */
+.dark .project-card {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+.dark .project-card:hover {
+  border-color: #60a5fa;
 }
 
 /* ===== Card Base - Fluent Design ===== */
