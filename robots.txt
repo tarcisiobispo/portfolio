@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tarcisiobispo.github.io/portfolio/sitemap.xml
+Sitemap: https://tarcisiobispo.github.io/sitemap.xml
