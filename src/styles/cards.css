@@ -165,9 +165,9 @@
   100% { background-position: 200% 0; }
 }
 
-/* ===== CONTEÚDO DOS CARDS - PADRÃO LIMPO ===== */
+/* ===== CONTEÚDO DOS CARDS - COM ESPAÇAMENTO LATERAL CORRETO ===== */
 .project-card-content {
-  padding: 24px;
+  padding: 24px 32px;
 }
 
 /* Título - IGUAL AOS CARDS DE REFERÊNCIA */
