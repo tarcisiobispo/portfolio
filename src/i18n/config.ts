@@ -175,6 +175,41 @@ const resources = {
         closeMenu: "Fechar menu de acessibilidade",
         menuLabel: "Menu de Acessibilidade",
         menuTooltip: "Configurações de acessibilidade (Shift + A)",
+        fontSize: {
+          label: "Tamanho da fonte",
+          increase: "Aumentar",
+          decrease: "Diminuir",
+          reset: "Resetar",
+          increaseLabel: "Aumentar tamanho da fonte",
+          decreaseLabel: "Diminuir tamanho da fonte",
+          resetLabel: "Resetar tamanho da fonte"
+        },
+        contrast: {
+          label: "Alto contraste",
+          enable: "Ativar alto contraste",
+          disable: "Desativar alto contraste",
+          enabled: "Alto contraste ativado",
+          disabled: "Alto contraste desativado"
+        },
+        readingMode: {
+          label: "Modo leitura",
+          enable: "Ativar modo leitura",
+          disable: "Desativar modo leitura",
+          enabled: "Modo leitura ativado",
+          disabled: "Modo leitura desativado"
+        },
+        screenReader: {
+          label: "Leitor de tela",
+          enable: "Ativar leitor de tela",
+          disable: "Desativar leitor de tela",
+          enabled: "Leitor de tela ativado",
+          disabled: "Leitor de tela desativado"
+        },
+        reset: {
+          label: "Resetar configurações",
+          action: "Configurações de acessibilidade resetadas",
+          success: "Configurações resetadas com sucesso"
+        },
         features: {
           fontSize: "Tamanho da fonte",
           fontSizeIncrease: "Aumentar fonte",
@@ -347,6 +382,25 @@ const resources = {
         title: "Feedback",
         subtitle: "Sua opinião é importante",
         description: "Compartilhe sua experiência e sugestões",
+        typeQuestion: "Que tipo de feedback você gostaria de compartilhar?",
+        thankYou: "Obrigado pelo seu feedback!",
+        importance: "Sua opinião é muito importante para nós.",
+        close: "Fechar",
+        defaultTitle: "Compartilhe seu feedback",
+        defaultInstruction: "Conte-nos o que você pensa",
+        defaultPlaceholder: "Digite sua mensagem aqui...",
+        problem: "Reportar problema",
+        idea: "Compartilhar ideia",
+        praise: "Enviar elogio",
+        problemTitle: "Reportar um problema",
+        ideaTitle: "Compartilhar uma ideia",
+        praiseTitle: "Enviar um elogio",
+        problemInstruction: "Descreva o problema que você encontrou",
+        ideaInstruction: "Compartilhe sua sugestão ou ideia",
+        praiseInstruction: "Conte-nos o que você gostou",
+        problemPlaceholder: "Descreva o problema em detalhes...",
+        ideaPlaceholder: "Compartilhe sua ideia ou sugestão...",
+        praisePlaceholder: "Conte-nos o que você gostou...",
         form: {
           type: "Tipo de feedback",
           message: "Sua mensagem",
