@@ -1,7 +1,7 @@
 /* ===== NOVO SISTEMA DE CARDS EXPANSIVOS ===== */
 /* Design moderno com badges estilo Tailwind neutro */
 
-/* ===== PROJECT CARDS - DESIGN LIMPO E ALTURA UNIFORME ===== */
+/* ===== PROJECT CARDS - DIMENSÕES FIXAS PARA ALTURA IDÊNTICA ===== */
 .project-card {
   background: white;
   border: 1px solid #e5e7eb;
@@ -13,7 +13,10 @@
   max-width: 100%;
   display: flex;
   flex-direction: column;
-  height: auto; /* Permite expansão para conteúdo dinâmico */
+
+  /* ALTURA FIXA PARA UNIFORMIDADE TOTAL */
+  height: 480px; /* Altura fixa para desktop */
+  min-height: 480px; /* Garante altura mínima */
 }
 
 .project-card:hover {
@@ -32,12 +35,15 @@
   border-color: #60a5fa;
 }
 
-/* ===== IMAGEM DO CARD ===== */
+/* ===== IMAGEM DO CARD - DIMENSÃO FIXA ===== */
 .project-card-image-container {
   position: relative;
-  height: 200px;
+  height: 180px; /* Altura fixa para todas as imagens */
+  min-height: 180px; /* Garante altura mínima */
+  max-height: 180px; /* Garante altura máxima */
   overflow: hidden;
   background: #f3f4f6;
+  flex-shrink: 0; /* Não permite compressão */
 }
 
 .project-card-image {
@@ -52,35 +58,46 @@
   transform: scale(1.05);
 }
 
-/* ===== CONTEÚDO DO CARD - ALTURA CONSISTENTE ===== */
+/* ===== CONTEÚDO DO CARD - DIMENSÕES FIXAS ===== */
 .project-card-content {
   padding: 24px;
-  flex: 1; /* Ocupa espaço disponível */
+  height: 300px; /* Altura fixa para o conteúdo (480px - 180px imagem) */
+  min-height: 300px; /* Garante altura mínima */
+  max-height: 300px; /* Garante altura máxima */
   display: flex;
   flex-direction: column;
+  flex-shrink: 0; /* Não permite compressão */
 }
 
-/* Título */
+/* Título - ALTURA FIXA */
 .project-card-title {
   font-size: 20px;
   font-weight: 600;
   color: #111827;
   margin: 0 0 12px 0;
   line-height: 1.3;
-  min-height: 26px; /* Altura mínima para títulos */
+  height: 52px; /* Altura fixa para 2 linhas */
+  min-height: 52px;
+  max-height: 52px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Máximo 2 linhas */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .dark .project-card-title {
   color: #f9fafb;
 }
 
-/* Descrição */
+/* Descrição - ALTURA FIXA */
 .project-card-description {
   font-size: 14px;
   color: #6b7280;
   margin: 0 0 16px 0;
   line-height: 1.5;
-  min-height: 42px; /* Altura mínima para 2 linhas */
+  height: 63px; /* Altura fixa para 3 linhas */
+  min-height: 63px;
+  max-height: 63px;
   display: -webkit-box;
   -webkit-line-clamp: 3; /* Máximo 3 linhas */
   -webkit-box-orient: vertical;
@@ -91,14 +108,17 @@
   color: #9ca3af;
 }
 
-/* ===== BADGES ESTILO TAILWIND NEUTRO - ALTURA UNIFORME ===== */
+/* ===== BADGES - ÁREA FIXA PARA 3 BADGES ===== */
 .project-card-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 20px;
-  min-height: 52px; /* Garante altura mínima para 2 linhas de badges */
+  height: 52px; /* Altura fixa para acomodar 3 badges em 2 linhas */
+  min-height: 52px;
+  max-height: 52px;
   align-content: flex-start; /* Alinha badges no topo */
+  overflow: hidden; /* Esconde qualquer overflow */
 }
 
 .project-card-tag {
@@ -111,6 +131,8 @@
   border: 1px solid #e5e7eb;
   white-space: nowrap;
   height: 22px; /* Altura fixa para todos os badges */
+  min-height: 22px;
+  max-height: 22px;
   display: flex;
   align-items: center;
   flex-shrink: 0; /* Evita compressão */
@@ -122,10 +144,14 @@
   border-color: #4b5563;
 }
 
-/* ===== BOTÃO MODERNO - SEMPRE NA MESMA POSIÇÃO ===== */
+/* ===== BOTÃO - POSIÇÃO FIXA NO FINAL ===== */
 .project-card-actions {
-  margin-top: auto; /* Empurra o botão para o final do card */
-  padding-top: 20px; /* Espaço mínimo das badges */
+  height: 41px; /* Altura fixa para o botão */
+  min-height: 41px;
+  max-height: 41px;
+  display: flex;
+  align-items: flex-start; /* Alinha no topo da área */
+  margin-top: auto; /* Empurra para o final do card */
 }
 
 .project-card-button {
@@ -141,6 +167,9 @@
   cursor: pointer;
   transition: all 0.2s ease;
   text-decoration: none;
+  height: 41px; /* Altura fixa do botão */
+  min-height: 41px;
+  max-height: 41px;
 }
 
 .project-card-button:hover {
@@ -163,7 +192,7 @@
   padding: 0 16px;
 }
 
-/* ===== RESPONSIVIDADE ===== */
+/* ===== RESPONSIVIDADE COM ALTURAS FIXAS ===== */
 @media (max-width: 768px) {
   .projects-grid {
     grid-template-columns: 1fr;
@@ -171,16 +200,44 @@
     padding: 0 12px;
   }
 
+  /* MOBILE - ALTURA FIXA MENOR */
+  .project-card {
+    height: 420px; /* Altura fixa para mobile */
+    min-height: 420px;
+    max-height: 420px;
+  }
+
+  .project-card-image-container {
+    height: 160px; /* Imagem menor no mobile */
+    min-height: 160px;
+    max-height: 160px;
+  }
+
   .project-card-content {
+    height: 260px; /* Conteúdo menor no mobile */
+    min-height: 260px;
+    max-height: 260px;
     padding: 20px;
   }
 
   .project-card-title {
     font-size: 18px;
+    height: 48px; /* Altura ajustada para mobile */
+    min-height: 48px;
+    max-height: 48px;
   }
 
   .project-card-description {
     font-size: 13px;
+    height: 58px; /* Altura ajustada para mobile */
+    min-height: 58px;
+    max-height: 58px;
+  }
+
+  .project-card-tags {
+    height: 48px; /* Área de badges menor no mobile */
+    min-height: 48px;
+    max-height: 48px;
   }
 }
 
@@ -189,6 +246,26 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
+
+  /* TABLET - ALTURA FIXA INTERMEDIÁRIA */
+  .project-card {
+    height: 450px; /* Altura fixa para tablet */
+    min-height: 450px;
+    max-height: 450px;
+  }
+
+  .project-card-image-container {
+    height: 170px; /* Imagem intermediária no tablet */
+    min-height: 170px;
+    max-height: 170px;
+  }
+
+  .project-card-content {
+    height: 280px; /* Conteúdo intermediário no tablet */
+    min-height: 280px;
+    max-height: 280px;
+    padding: 22px;
+  }
 }
 
 @media (min-width: 1025px) {
@@ -196,6 +273,8 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
   }
+
+  /* DESKTOP - MANTÉM ALTURA PADRÃO DEFINIDA ACIMA */
 }
 
 /* ===== ACESSIBILIDADE ===== */
