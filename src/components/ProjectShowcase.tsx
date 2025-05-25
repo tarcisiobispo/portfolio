@@ -38,8 +38,8 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
         <div className="h-1 w-20 mb-6 rounded mx-auto" style={{ background: "var(--color-primary)" }}></div>
       </motion.div>
 
-      {/* Projects Grid - Centralizado */}
-      <div className="projects-grid max-w-6xl mx-auto">
+      {/* Projects Grid - SEM LIMITAÇÃO DE LARGURA */}
+      <div className="projects-grid">
         {projects.map((project, index) => (
           <motion.article
             key={project.projectKey}
