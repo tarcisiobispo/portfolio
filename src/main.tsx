@@ -7,7 +7,7 @@ import './styles/theme-transitions.css'
 import './styles/buttons.css'
 import './styles/cards.css'
 import './styles/accessibility.css'
-import './i18n' // Inicializar i18n
+import './i18n/config' // Inicializar i18n com HTTP backend
 import { ThemeProvider } from './components/providers/ThemeProvider'
 
 // Garantir que React está disponível globalmente

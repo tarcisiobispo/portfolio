@@ -1,30 +1,33 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import Backend from 'i18next-http-backend';
 
-// Recursos de tradução inline para evitar problemas de build
-const resources = {
-  'pt-BR': {
-    translation: {
-      navigation: {
-        profile: "Perfil",
-        projects: "Projetos",
-        backlog: "Backlog",
-        contact: "Contato",
-        home: "Início",
-        goToProfile: "Ir para sessão Perfil",
-        goToProjetos: "Ir para sessão Projetos",
-        goToBacklog: "Ir para sessão Backlog",
-        goToContato: "Ir para sessão Contato"
-      },
-      profile: {
-        title: "UX/Product Designer com foco em estratégia, impacto e experiência",
-        bio: "Sou UX/Product Designer com forte atuação no design de produtos digitais focados em experiência do usuário, conversão e impacto de negócio. Com background em Marketing Digital, SEO e IA, integro estratégia, design e usabilidade em processos contínuos de melhoria e inovação.",
-        exploreProjects: "Explore projetos",
-        letsChat: "Vamos Conversar",
-        downloadCV: "Download CV",
-        linkedin: "LinkedIn"
-      },
+// Inicializar i18n com HTTP backend para máxima compatibilidade
+i18n
+  .use(Backend) // ESSENCIAL: Carrega arquivos JSON via HTTP
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    // Configurações de idioma
+    lng: 'pt-BR',
+    fallbackLng: 'pt-BR',
+
+    // DEBUG HABILITADO para diagnóstico
+    debug: true, // SEMPRE true para ver logs detalhados
+
+    // Configuração do backend HTTP
+    backend: {
+      loadPath: '/portfolio/locales/{{lng}}.json', // Caminho absoluto com basename
+      requestOptions: {
+        cache: 'no-cache' // Evita problemas de cache
+      }
+    },
+
+    // Configurações React
+    react: {
+      useSuspense: false // Evita problemas de carregamento assíncrono
+    },
       projects: {
         title: "Projetos",
         overview: "Visão Geral",
