@@ -21,22 +21,7 @@ export default defineConfig({
       priority: 0.8,
       lastmod: '2025-01-15'
     }),
-    // Plugin para otimizar CSS crítico
-    {
-      name: 'defer-non-critical-css',
-      generateBundle(options, bundle) {
-        // Encontrar arquivos CSS
-        Object.keys(bundle).forEach(fileName => {
-          if (fileName.endsWith('.css')) {
-            const cssAsset = bundle[fileName];
-            if (cssAsset.type === 'asset') {
-              // Marcar CSS como não crítico para defer
-              cssAsset.fileName = fileName.replace('.css', '.defer.css');
-            }
-          }
-        });
-      }
-    }
+
   ],
   resolve: {
     alias: {
