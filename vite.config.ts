@@ -32,9 +32,6 @@ export default defineConfig({
     // Configurações de chunk
     chunkSizeWarningLimit: 1000,
 
-    // Desabilitar preload automático que causa problemas
-    modulePreload: false,
-
     rollupOptions: {
       output: {
         // Manual chunks simplificado para evitar problemas de bundling
@@ -90,12 +87,9 @@ export default defineConfig({
         entryFileNames: 'js/[name]-[hash].js'
       },
 
-      // Otimizações de tree-shaking
+      // Tree-shaking mais conservador
       treeshake: {
-        moduleSideEffects: (id) => {
-          // Permitir side effects para i18n e CSS
-          return id.includes('i18n') || id.includes('.css') || id.includes('react-fix');
-        },
+        moduleSideEffects: true, // Permitir todos os side effects
         propertyReadSideEffects: false,
         unknownGlobalSideEffects: false
       }
