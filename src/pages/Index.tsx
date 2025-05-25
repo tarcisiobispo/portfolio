@@ -48,7 +48,7 @@ const Index = () => {
   // Prefetch de rotas e imagens para performance
   const imageSrcs = projects.map(project => project.imageUrl);
   usePrefetch({
-    routes: ['/privacy-policy'],
+    routes: ['/portfolio/privacy-policy'],
     delay: 3000
   });
   useImagePrefetch(imageSrcs);

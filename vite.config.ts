@@ -32,6 +32,9 @@ export default defineConfig({
     // Configurações de chunk
     chunkSizeWarningLimit: 1000,
 
+    // Desabilitar preload automático que causa problemas
+    modulePreload: false,
+
     rollupOptions: {
       output: {
         // Manual chunks simplificado para evitar problemas de bundling

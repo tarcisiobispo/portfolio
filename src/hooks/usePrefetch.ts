@@ -6,12 +6,12 @@ interface PrefetchOptions {
   onHover?: boolean;
 }
 
-export const usePrefetch = ({ 
-  routes = [], 
-  delay = 2000, 
-  onHover = true 
+export const usePrefetch = ({
+  routes = [],
+  delay = 2000,
+  onHover = true
 }: PrefetchOptions = {}) => {
-  
+
   useEffect(() => {
     // Prefetch automático após delay
     const timer = setTimeout(() => {
@@ -29,7 +29,7 @@ export const usePrefetch = ({
     link.rel = 'prefetch';
     link.href = route;
     link.as = 'document';
-    
+
     // Verificar se já não existe
     const existingLink = document.querySelector(`link[href="${route}"]`);
     if (!existingLink) {
@@ -46,12 +46,12 @@ export const usePrefetch = ({
   // Prefetch de recursos críticos
   const prefetchCriticalResources = () => {
     const criticalRoutes = [
-      '/privacy-policy',
+      '/portfolio/privacy-policy',
       '#projetos',
       '#contato',
       '#backlog'
     ];
-    
+
     criticalRoutes.forEach(route => {
       prefetchRoute(route);
     });
@@ -73,7 +73,7 @@ export const useImagePrefetch = (imageSrcs: string[]) => {
         link.rel = 'prefetch';
         link.href = src;
         link.as = 'image';
-        
+
         const existingLink = document.querySelector(`link[href="${src}"]`);
         if (!existingLink) {
           document.head.appendChild(link);
