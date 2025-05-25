@@ -44,6 +44,8 @@ const BacklogCycle: React.FC = () => {
   const endIdx = startIdx + ITEMS_PER_PAGE;
   const paginatedItems = backlogItemsWithIds.slice(startIdx, endIdx);
 
+
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -95,17 +97,22 @@ const BacklogCycle: React.FC = () => {
                   className="bg-white dark:bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
                 >
                   <AccordionTrigger className="px-6 py-6 hover:no-underline group [&[data-state=open]]:pb-4">
-                    <div className="flex items-center gap-4 w-full">
-                      {/* Icon Container - Properly Aligned */}
-                      <div className="flex-shrink-0 w-12 h-12 bg-[var(--color-primary)]/10 rounded-xl flex items-center justify-center">
+                    <div className="flex items-center gap-4 w-full min-h-[60px]">
+                      {/* Icon Container - Middle Aligned */}
+                      <div className="flex-shrink-0 w-12 h-12 bg-[var(--color-primary)]/10 rounded-xl flex items-center justify-center self-center">
                         <CheckCircle2 className="w-6 h-6 text-[var(--color-primary)]" />
                       </div>
 
-                      {/* Content Container */}
-                      <div className="flex-1 text-left">
-                        <h3 className="text-lg font-semibold text-[var(--color-text)] group-hover:text-[var(--color-primary)] transition-colors duration-200 pr-4">
+                      {/* Content Container - Middle Aligned */}
+                      <div className="flex-1 text-left flex items-center">
+                        <h3 className="text-lg font-semibold text-[var(--color-text)] group-hover:text-[var(--color-primary)] transition-colors duration-200 pr-4 leading-relaxed">
                           {item.challenge}
                         </h3>
+                      </div>
+
+                      {/* Chevron Icon - Middle Aligned */}
+                      <div className="flex-shrink-0 flex items-center justify-center self-center">
+                        {/* O ícone do chevron é automaticamente adicionado pelo AccordionTrigger */}
                       </div>
                     </div>
                   </AccordionTrigger>
