@@ -44,15 +44,17 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
           transition={{ duration: 0.8 }}
         >
           <div className="relative group">
-            {/* Card Container com Glassmorphism */}
-            <div className="profile-card relative rounded-3xl p-6 max-w-sm w-full transition-all duration-500">
+            {/* Card Container - ESPAÇAMENTOS HEURÍSTICOS PERFEITOS */}
+            <div className="profile-card relative rounded-3xl px-8 py-10 max-w-sm w-full transition-all duration-500">
 
               {/* Background Gradient Sutil */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-purple-50/50 dark:from-blue-900/20 dark:via-transparent dark:to-purple-900/20 rounded-3xl"></div>
 
-              {/* Foto de Perfil com Efeitos */}
-              <div className="relative z-10 flex flex-col items-center">
-                <div className="relative mb-4">
+              {/* ESTRUTURA COMPLETA COM RESPIRO CORRETO */}
+              <div className="relative z-10 flex flex-col items-center space-y-6">
+
+                {/* SEÇÃO 1: Foto de Perfil */}
+                <div className="relative">
                   {/* Anel Animado */}
                   <div className="profile-ring absolute -inset-1 rounded-full opacity-75 group-hover:opacity-100"></div>
 
@@ -77,29 +79,34 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
                   <div className="status-online absolute bottom-2 right-2 w-4 h-4 bg-green-500 rounded-full border-2 border-white shadow-lg"></div>
                 </div>
 
-                {/* Nome e Título */}
-                <div className="text-center">
-                  <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
+                {/* SEÇÃO 2: Informações Pessoais */}
+                <div className="text-center space-y-3">
+                  {/* Nome */}
+                  <h2 className="text-xl font-bold text-gray-900 dark:text-white leading-tight">
                     {t('profile.name')}
                   </h2>
-                  <p className="text-blue-600 dark:text-blue-400 font-medium text-sm mb-1">
+
+                  {/* Título Profissional */}
+                  <p className="text-blue-600 dark:text-blue-400 font-medium text-sm leading-relaxed">
                     UX Designer | SEO | IA
                   </p>
-                  <p className="text-gray-500 dark:text-gray-400 text-sm mb-4">
+
+                  {/* Localização */}
+                  <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
                     Campinas, São Paulo
                   </p>
+                </div>
 
-                  {/* IxDF Text */}
-                  <div className="flex items-center justify-center gap-2 text-xs text-gray-600 dark:text-gray-400">
-                    <div className="w-4 h-4 flex-shrink-0 flex items-center justify-center">
-                      <IxDFLogo
-                        size="sm"
-                        showText={false}
-                        className="max-w-full max-h-full"
-                      />
-                    </div>
-                    <span className="whitespace-nowrap">IxDF - Interaction Design Foundation</span>
+                {/* SEÇÃO 3: IxDF Badge - ESPAÇAMENTO CORRETO */}
+                <div className="flex items-center justify-center gap-3 text-xs text-gray-600 dark:text-gray-400 px-4 py-2 bg-gray-50/50 dark:bg-gray-800/30 rounded-lg border border-gray-200/50 dark:border-gray-700/50">
+                  <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center">
+                    <IxDFLogo
+                      size="sm"
+                      showText={false}
+                      className="w-full h-full object-contain"
+                    />
                   </div>
+                  <span className="whitespace-nowrap font-medium">IxDF - Interaction Design Foundation</span>
                 </div>
               </div>
             </div>
