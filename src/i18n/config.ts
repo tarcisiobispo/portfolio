@@ -851,46 +851,6 @@ const resources = {
           background: "Decorative background image"
         }
       },
-      feedback: {
-        title: "Feedback",
-        subtitle: "Your opinion matters",
-        description: "Share your experience and suggestions",
-        typeQuestion: "What type of feedback would you like to share?",
-        thankYou: "Thank you for your feedback!",
-        importance: "Your opinion is very important to us.",
-        close: "Close",
-        defaultTitle: "Share your feedback",
-        defaultInstruction: "Tell us what you think",
-        defaultPlaceholder: "Type your message here...",
-        problem: "Report problem",
-        idea: "Share idea",
-        praise: "Send compliment",
-        problemTitle: "Report a problem",
-        ideaTitle: "Share an idea",
-        praiseTitle: "Send a compliment",
-        problemInstruction: "Describe the problem you encountered",
-        ideaInstruction: "Share your suggestion or idea",
-        praiseInstruction: "Tell us what you liked",
-        problemPlaceholder: "Describe the problem in detail...",
-        ideaPlaceholder: "Share your idea or suggestion...",
-        praisePlaceholder: "Tell us what you liked...",
-        form: {
-          type: "Feedback type",
-          message: "Your message",
-          email: "Your email (optional)",
-          send: "Send feedback",
-          sending: "Sending...",
-          success: "Feedback sent successfully!",
-          error: "Error sending feedback. Please try again.",
-          messageRequired: "Message is required"
-        },
-        types: {
-          bug: "Report bug",
-          suggestion: "Suggestion",
-          compliment: "Compliment",
-          other: "Other"
-        }
-      },
       language: {
         changed: "Language changed successfully",
         current: "Current language",
