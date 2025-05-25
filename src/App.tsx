@@ -13,6 +13,7 @@ import FloatingFeedbackButton from "@/components/FloatingFeedbackButton";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { GTMHead, GTMBody } from "@/components/analytics/GoogleTagManager";
 import { ANALYTICS_CONFIG } from "@/config/analytics";
+import DebugTranslations from "@/components/DebugTranslations";
 
 // Lazy loading dos componentes de página para code splitting
 const Index = React.lazy(() => import("./pages/Index"));
@@ -47,6 +48,9 @@ const App = () => {
           <Toaster />
           <Sonner />
 
+          {/* Debug Translations - apenas em desenvolvimento */}
+          <DebugTranslations />
+
           {/* UX Premium Components */}
           <ScrollProgress showPercentage={true} />
           <BackToTop />
@@ -56,7 +60,7 @@ const App = () => {
           <BrowserRouter basename="/portfolio">
             <Suspense fallback={
               <div className="min-h-screen flex items-center justify-center">
-                <LoadingSpinner size="lg" />
+                <LoadingSpinner />
               </div>
             }>
               <Routes>

@@ -345,10 +345,13 @@ i18n
     nonExplicitSupportedLngs: true
   })
   .then(() => {
-    console.log('i18n initialized successfully');
+    console.log('✅ i18n initialized successfully');
+    console.log('📝 Available languages:', Object.keys(resources));
+    console.log('🌐 Current language:', i18n.language);
+    console.log('📊 Sample translation:', i18n.t('profile.title'));
   })
   .catch((error) => {
-    console.error('Error initializing i18n:', error);
+    console.error('❌ Error initializing i18n:', error);
   });
 
 export default i18n;
