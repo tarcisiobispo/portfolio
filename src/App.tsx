@@ -6,10 +6,10 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 
 import BackToTop from "@/components/ui/BackToTop";
 import Header from "@/components/Header";
-import FloatingFeedbackButton from "@/components/FloatingFeedbackButton";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { GTMHead, GTMBody } from "@/components/analytics/GoogleTagManager";
 import { ANALYTICS_CONFIG } from "@/config/analytics";
@@ -24,6 +24,8 @@ const PrivacyPolicy = React.lazy(() => import("./pages/PrivacyPolicy"));
 const queryClient = new QueryClient();
 
 const App = () => {
+  const { t } = useTranslation();
+
   return (
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
@@ -40,10 +42,10 @@ const App = () => {
 
           {/* Skip Links para Navegação por Teclado */}
           <a href="#main-content" className="skip-link">
-            Pular para o conteúdo principal
+            {t('accessibility.features.skipToContent')}
           </a>
           <a href="#navigation" className="skip-link">
-            Pular para a navegação
+            {t('accessibility.features.skipToNavigation')}
           </a>
 
           <Toaster />
@@ -56,7 +58,6 @@ const App = () => {
           <BackToTop />
 
           <Header />
-          <FloatingFeedbackButton />
           <BrowserRouter basename="/portfolio">
             <Suspense fallback={
               <div className="min-h-screen flex items-center justify-center">

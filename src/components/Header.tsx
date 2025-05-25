@@ -1,8 +1,9 @@
 import { useEffect, useState, useCallback } from 'react';
-import { User, Folder, Repeat, Mail } from 'lucide-react';
+import { User, Folder, Repeat, Mail, MessageCircle } from 'lucide-react';
 import SimpleThemeToggle from './ui/SimpleThemeToggle';
 import { LanguageSwitcher } from './ui/LanguageSwitcher';
 import AccessibilityButton from './accessibility/AccessibilityButton';
+import FeedbackModal from './FeedbackModal';
 import { useTranslation } from 'react-i18next';
 import { useAnalytics } from '@/hooks/useAnalytics';
 
@@ -16,6 +17,7 @@ const navItems = [
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('perfil');
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
   const { t } = useTranslation();
   const { trackNavigation } = useAnalytics();
 
@@ -119,8 +121,25 @@ export default function Header() {
           <LanguageSwitcher />
           <SimpleThemeToggle />
           <AccessibilityButton />
+
+          {/* Botão de Feedback */}
+          <button
+            onClick={() => setFeedbackOpen(true)}
+            className="p-2 rounded-lg text-[var(--color-text)] hover:bg-[var(--color-surface-hover)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-offset-2 transition-colors duration-200"
+            aria-label={t('feedback.openFeedback')}
+            title={t('feedback.openFeedback')}
+          >
+            <MessageCircle className="w-5 h-5" aria-hidden="true" />
+          </button>
         </div>
       </nav>
+
+      {/* Modal de Feedback */}
+      <FeedbackModal
+        open={feedbackOpen}
+        onClose={() => setFeedbackOpen(false)}
+        section={activeSection}
+      />
     </header>
   );
 }
