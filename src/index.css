@@ -1,6 +1,7 @@
 /* ===== DESIGN SYSTEM IMPORTS ===== */
 @import './styles/design-system.css';
 @import './styles/toast-optimizations.css';
+@import './styles/visual-enhancements.css';
 
 /* ===== TAILWIND CSS ===== */
 @tailwind base;
