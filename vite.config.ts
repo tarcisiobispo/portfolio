@@ -29,8 +29,8 @@ export default defineConfig({
     },
   },
   build: {
-    // Otimizações de bundle
-    target: 'esnext',
+    // Otimizações de bundle - target moderno para evitar polyfills antigos
+    target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14'],
     minify: 'terser',
     sourcemap: false,
 
@@ -42,6 +42,13 @@ export default defineConfig({
     cssMinify: true,
 
     rollupOptions: {
+      // Evitar polyfills desnecessários
+      external: (id) => {
+        // Excluir core-js se detectado
+        if (id.includes('core-js')) return true;
+        return false;
+      },
+
       output: {
         // Manual chunks mais conservador para evitar quebrar React
         manualChunks: {
@@ -151,7 +158,13 @@ export default defineConfig({
       'react-i18next',
       'i18next'
     ],
-    exclude: ['@vite/client', '@vite/env']
+    exclude: [
+      '@vite/client',
+      '@vite/env',
+      'core-js',
+      'core-js-pure',
+      'core-js-global'
+    ]
   },
 
   // Configurações específicas para resolver problemas de React em produção
