@@ -25,17 +25,19 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
 
   return (
     <section className="w-full">
-      {/* Header Section - Centralizado e Alinhado */}
+      {/* Header Section - Padronizado com Contact */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="mb-16 text-center"
       >
-        <h2 className="text-center">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-text)] mb-4">
           {t('projects.title')}
-        </h2>
-        <div className="h-1 w-20 mb-6 rounded mx-auto" style={{ background: "var(--color-primary)" }}></div>
+        </h1>
+        <p className="text-[var(--color-muted)] text-lg max-w-2xl mx-auto">
+          {t('projects.description')}
+        </p>
       </motion.div>
 
       {/* Projects Grid - NOVO DESIGN LIMPO */}

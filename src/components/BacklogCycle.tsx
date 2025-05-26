@@ -58,18 +58,17 @@ const BacklogCycle: React.FC = () => {
 
   return (
     <section className="w-full">
-      {/* Header Section - Design System Adequado */}
+      {/* Header Section - Padronizado com Contact */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
         className="text-center mb-16"
       >
-        <h2 className="text-3xl lg:text-4xl font-bold text-[var(--color-text)] mb-4 text-center">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-text)] mb-4">
           {t('backlog.title')}
-        </h2>
-        <div className="h-1 w-20 bg-[var(--color-primary)] rounded mx-auto mb-6"></div>
-        <p className="text-lg text-[var(--color-muted)] max-w-3xl mx-auto text-center leading-relaxed">
+        </h1>
+        <p className="text-[var(--color-muted)] text-lg max-w-2xl mx-auto">
           {t('backlog.description')}
         </p>
       </motion.div>
