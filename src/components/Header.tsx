@@ -99,7 +99,7 @@ export default function Header() {
                     `}
                     aria-hidden="true"
                   />
-                  <span className="text-sm font-medium transition-colors duration-300 ease-out">{t(item.i18nKey)}</span>
+                  <span className="text-sm font-medium transition-colors duration-300 ease-out text-gray-900 dark:text-gray-100">{t(item.i18nKey)}</span>
 
                   {/* Linha animada no hover - implementação controlada */}
                   {isActive && (

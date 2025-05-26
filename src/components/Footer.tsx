@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
         transition={{ duration: 0.6 }}
         className="text-center"
       >
-        <div className="space-y-2 text-sm text-[var(--color-muted)]">
+        <div className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
           <p>{t('footer.copyright')}</p>
           <p className="font-medium">{t('footer.title')}</p>
         </div>

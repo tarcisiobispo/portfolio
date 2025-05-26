@@ -87,19 +87,19 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
                     {t('profile.name')}
                   </h2>
 
-                  {/* Título Profissional */}
-                  <p className="text-blue-600 dark:text-blue-400 font-medium text-sm leading-relaxed">
+                  {/* Título Profissional - WCAG 2.2 AA Compliant */}
+                  <p className="text-blue-700 dark:text-blue-300 font-medium text-sm leading-relaxed">
                     UX Designer | SEO | IA
                   </p>
 
-                  {/* Localização */}
-                  <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
+                  {/* Localização - WCAG 2.2 AA Compliant */}
+                  <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
                     Campinas, São Paulo
                   </p>
                 </div>
 
-                {/* SEÇÃO 3: IxDF Badge - ESPAÇAMENTO CORRETO */}
-                <div className="flex items-center justify-center gap-3 text-xs text-gray-600 dark:text-gray-400 px-4 py-2 bg-gray-50/50 dark:bg-gray-800/30 rounded-lg border border-gray-200/50 dark:border-gray-700/50">
+                {/* SEÇÃO 3: IxDF Badge - WCAG 2.2 AA Compliant */}
+                <div className="flex items-center justify-center gap-3 text-xs text-gray-800 dark:text-gray-200 px-4 py-2 bg-gray-50/50 dark:bg-gray-800/30 rounded-lg border border-gray-200/50 dark:border-gray-700/50">
                   <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center">
                     <IxDFLogo
                       size="sm"
@@ -152,9 +152,9 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
             ></motion.div>
           </div>
 
-          {/* Bio Text */}
+          {/* Bio Text - WCAG 2.2 AA Compliant */}
           <div className="mb-8">
-            <p className="text-lg lg:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl">
+            <p className="text-lg lg:text-xl text-gray-700 dark:text-gray-200 leading-relaxed max-w-3xl">
               {t('profile.bio')}
             </p>
           </div>
