@@ -62,7 +62,7 @@ import { useParallax } from '@/hooks/useParallax';
 
 const MyComponent = () => {
   const parallaxRef = useParallax({ speed: 0.5, direction: 'up' });
-  
+
   return (
     <div ref={parallaxRef} className="parallax-element">
       {/* Content moves with parallax */}
@@ -73,7 +73,9 @@ const MyComponent = () => {
 
 ## 🎯 Available Background Variants
 
-### Hero Section
+### Original Enhanced Backgrounds
+
+#### Hero Section
 ```tsx
 import { HeroBackground } from '@/components/ui/EnhancedBackground';
 
@@ -82,7 +84,7 @@ import { HeroBackground } from '@/components/ui/EnhancedBackground';
 </HeroBackground>
 ```
 
-### Projects Section
+#### Projects Section
 ```tsx
 import { ProjectsBackground } from '@/components/ui/EnhancedBackground';
 
@@ -91,7 +93,7 @@ import { ProjectsBackground } from '@/components/ui/EnhancedBackground';
 </ProjectsBackground>
 ```
 
-### Contact Section
+#### Contact Section
 ```tsx
 import { ContactBackground } from '@/components/ui/EnhancedBackground';
 
@@ -100,12 +102,55 @@ import { ContactBackground } from '@/components/ui/EnhancedBackground';
 </ContactBackground>
 ```
 
+### NEW: SEO.ing-Inspired Backgrounds
+
+#### SEO-Inspired Hero Section
+```tsx
+import { SeoInspiredHeroBackground } from '@/components/ui/EnhancedBackground';
+
+<SeoInspiredHeroBackground>
+  {/* Subtle floating particles with organic movement */}
+</SeoInspiredHeroBackground>
+```
+
+#### SEO-Inspired Projects Section
+```tsx
+import { SeoInspiredProjectsBackground } from '@/components/ui/EnhancedBackground';
+
+<SeoInspiredProjectsBackground>
+  {/* Organic particle movement with elliptical patterns */}
+</SeoInspiredProjectsBackground>
+```
+
+#### SEO-Inspired Contact Section
+```tsx
+import { SeoInspiredContactBackground } from '@/components/ui/EnhancedBackground';
+
+<SeoInspiredContactBackground>
+  {/* Subtle glow effects with gentle pulsing */}
+</SeoInspiredContactBackground>
+```
+
+#### Generic SEO-Inspired Background
+```tsx
+import { EnhancedBackground } from '@/components/ui/EnhancedBackground';
+
+<EnhancedBackground variant="seo-inspired" parallax={true}>
+  {/* Uses hero-seo-inspired-bg by default */}
+</EnhancedBackground>
+```
+
 ## ⚡ CSS Classes Available
 
-### Background Effects
+### Original Background Effects
 - `.hero-enhanced-bg` - Animated gradient
 - `.projects-enhanced-bg` - Floating particles
 - `.contact-enhanced-bg` - Wave patterns
+
+### NEW: SEO.ing-Inspired Background Effects
+- `.hero-seo-inspired-bg` - Subtle floating particles with organic movement
+- `.projects-seo-inspired-bg` - Elliptical particle patterns with organic movement
+- `.contact-seo-inspired-bg` - Gentle glow effects with subtle pulsing
 
 ### Transition Effects
 - `.section-reveal` - Curved reveal transition
@@ -262,7 +307,7 @@ import { useParallax } from '@/hooks/useParallax';
 
 const HeroSection = () => {
   const parallaxRef = useParallax({ speed: 0.4 });
-  
+
   return (
     <div ref={parallaxRef} className="hero-content">
       {/* Hero content */}

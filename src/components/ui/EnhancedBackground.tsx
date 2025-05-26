@@ -3,7 +3,7 @@ import { useParallax, useSectionTransition } from '../../hooks/useParallax';
 
 interface EnhancedBackgroundProps {
   children: React.ReactNode;
-  variant?: 'hero' | 'projects' | 'contact' | 'default';
+  variant?: 'hero' | 'projects' | 'contact' | 'seo-inspired' | 'default';
   parallax?: boolean;
   transition?: 'reveal' | 'wave' | 'diagonal' | 'none';
   className?: string;
@@ -27,6 +27,10 @@ export const EnhancedBackground: React.FC<EnhancedBackgroundProps> = ({
         return 'projects-enhanced-bg';
       case 'contact':
         return 'contact-enhanced-bg';
+      case 'seo-inspired':
+        // Determine which SEO-inspired variant to use based on context
+        // Default to hero variant, but can be customized
+        return 'hero-seo-inspired-bg';
       default:
         return '';
     }
@@ -63,7 +67,7 @@ export const EnhancedBackground: React.FC<EnhancedBackgroundProps> = ({
           {/* Parallax background content can be added here */}
         </div>
       )}
-      
+
       <div className={parallax ? 'parallax-content' : ''}>
         {children}
       </div>
@@ -114,6 +118,34 @@ export const ContactBackground: React.FC<{ children: React.ReactNode; className?
   </EnhancedBackground>
 );
 
+// SEO-Inspired Background Components (NEW)
+export const SeoInspiredHeroBackground: React.FC<{ children: React.ReactNode; className?: string }> = ({
+  children,
+  className = '',
+}) => (
+  <div className={`hero-seo-inspired-bg ${className}`}>
+    {children}
+  </div>
+);
+
+export const SeoInspiredProjectsBackground: React.FC<{ children: React.ReactNode; className?: string }> = ({
+  children,
+  className = '',
+}) => (
+  <div className={`projects-seo-inspired-bg ${className}`}>
+    {children}
+  </div>
+);
+
+export const SeoInspiredContactBackground: React.FC<{ children: React.ReactNode; className?: string }> = ({
+  children,
+  className = '',
+}) => (
+  <div className={`contact-seo-inspired-bg ${className}`}>
+    {children}
+  </div>
+);
+
 // SVG Background Patterns Component
 export const SVGBackgroundPattern: React.FC<{
   pattern: 'dots' | 'waves' | 'grid' | 'organic';
@@ -128,7 +160,7 @@ export const SVGBackgroundPattern: React.FC<{
             <circle cx="30" cy="30" r="2" fill={color} opacity={opacity} />
           </svg>
         );
-      
+
       case 'waves':
         return (
           <svg width="100" height="20" viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg">
@@ -139,7 +171,7 @@ export const SVGBackgroundPattern: React.FC<{
             />
           </svg>
         );
-      
+
       case 'grid':
         return (
           <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
@@ -152,7 +184,7 @@ export const SVGBackgroundPattern: React.FC<{
             />
           </svg>
         );
-      
+
       case 'organic':
         return (
           <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
@@ -165,7 +197,7 @@ export const SVGBackgroundPattern: React.FC<{
             />
           </svg>
         );
-      
+
       default:
         return null;
     }
