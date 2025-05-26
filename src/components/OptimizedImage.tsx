@@ -22,30 +22,54 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   const [imageError, setImageError] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  // Gerar URLs WebP e fallback
+  // Validação segura de URL
+  const isValidUnsplashUrl = (url: string): boolean => {
+    try {
+      const parsedUrl = new URL(url);
+      // Verificação rigorosa do hostname
+      return parsedUrl.hostname === 'images.unsplash.com' ||
+             parsedUrl.hostname === 'unsplash.com' ||
+             parsedUrl.hostname.endsWith('.unsplash.com');
+    } catch {
+      return false;
+    }
+  };
+
+  // Gerar URLs WebP e fallback com validação de segurança
   const getOptimizedSrc = (originalSrc: string) => {
-    // Se for Unsplash, adicionar parâmetros de otimização
-    if (originalSrc.includes('unsplash.com')) {
+    // Validação de segurança antes de processar
+    if (!isValidUnsplashUrl(originalSrc)) {
+      return originalSrc;
+    }
+
+    try {
       const url = new URL(originalSrc);
       url.searchParams.set('fm', 'webp');
       url.searchParams.set('q', '80');
       if (width) url.searchParams.set('w', width.toString());
       if (height) url.searchParams.set('h', height.toString());
       return url.toString();
+    } catch {
+      return originalSrc;
     }
-    return originalSrc;
   };
 
   const getFallbackSrc = (originalSrc: string) => {
-    if (originalSrc.includes('unsplash.com')) {
+    // Validação de segurança antes de processar
+    if (!isValidUnsplashUrl(originalSrc)) {
+      return originalSrc;
+    }
+
+    try {
       const url = new URL(originalSrc);
       url.searchParams.set('fm', 'jpg');
       url.searchParams.set('q', '80');
       if (width) url.searchParams.set('w', width.toString());
       if (height) url.searchParams.set('h', height.toString());
       return url.toString();
+    } catch {
+      return originalSrc;
     }
-    return originalSrc;
   };
 
   const webpSrc = getOptimizedSrc(src);
@@ -63,16 +87,16 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     <div className={`relative ${className}`}>
       {/* Loading placeholder */}
       {!imageLoaded && !imageError && (
-        <div 
+        <div
           className="absolute inset-0 bg-gray-200 dark:bg-gray-700 animate-pulse rounded"
           style={{ width, height }}
         />
       )}
-      
+
       <picture>
         {/* WebP source */}
         <source srcSet={webpSrc} type="image/webp" />
-        
+
         {/* Fallback */}
         <img
           src={fallbackSrc}

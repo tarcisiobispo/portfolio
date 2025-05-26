@@ -34,6 +34,18 @@ export const ensureStringArray = (value: any): string[] => {
 export const useTranslationArray = (key: string, t: (key: string, options?: any) => any): any[] => {
   try {
     const result = t(key, { returnObjects: true });
+
+    // Debug temporário para verificar o que está sendo retornado
+    if (import.meta.env.DEV && key === 'backlog.items') {
+      console.log('🔍 Debug backlog.items:', {
+        key,
+        result,
+        type: typeof result,
+        isArray: Array.isArray(result),
+        length: Array.isArray(result) ? result.length : 'N/A'
+      });
+    }
+
     return ensureArray(result);
   } catch (error) {
     logger.warn(`Translation error for key "${key}":`, error);

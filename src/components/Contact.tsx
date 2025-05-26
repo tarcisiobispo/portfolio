@@ -194,14 +194,13 @@ const Contact: React.FC = () => {
     }
   };
 
-  // Verificar se o formulário é válido
+  // Verificar se o formulário é válido - SIMPLES: só precisa ter o mínimo
   const isFormValid = () => {
-    const hasNoErrors = Object.keys(errors).length === 0;
-    const hasValidName = formData.name.trim().length >= 2;
-    const hasValidEmail = formData.email.trim() && isValidEmail(formData.email);
-    const hasValidMessage = formData.message.trim().length >= 10;
+    const hasName = formData.name.trim().length >= 2;
+    const hasEmail = formData.email.trim().length > 0 && formData.email.includes('@');
+    const hasMessage = formData.message.trim().length >= 10;
 
-    return hasNoErrors && hasValidName && hasValidEmail && hasValidMessage;
+    return hasName && hasEmail && hasMessage;
   };
 
   return (

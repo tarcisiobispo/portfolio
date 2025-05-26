@@ -26,10 +26,9 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
   const initialFocusRef = useRef(null);
   const { t } = useTranslation();
 
-  // Validação
-  const isEmailValid = email === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const isMessageValid = message.trim().length > 5;
-  const canSend = isMessageValid && isEmailValid && !sending;
+  // Validação SIMPLES - só precisa ter mensagem
+  const isMessageValid = message.trim().length >= 5;
+  const canSend = isMessageValid && !sending;
 
   const handleSend = async (e) => {
     e.preventDefault();
@@ -41,8 +40,11 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
         {
           feedback_type: feedbackType,
           message,
-          email,
+          email: email || 'Não informado',
           section,
+          to_email: 'tbisp0@hotmail.com',
+          subject: `Feedback do Portfolio - ${feedbackType} (${section})`,
+          from_name: 'Feedback Portfolio'
         },
         'eRzZy4gTZ2NXGjFKz'
       );
