@@ -12,7 +12,7 @@ const CriticalProfile: React.FC = () => {
   return (
     <section className="min-h-screen flex items-center justify-center py-16 px-4">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        
+
         {/* Profile Image - LCP Element */}
         <div className="lg:col-span-4 flex justify-center">
           <div className="relative">
@@ -24,7 +24,7 @@ const CriticalProfile: React.FC = () => {
                   alt="Foto de perfil de Tarcísio Bispo"
                   className="w-full h-full object-cover"
                   loading="eager"
-                  fetchPriority="high"
+                  fetchpriority="high"
                   width="256"
                   height="256"
                   decoding="sync"
@@ -43,9 +43,9 @@ const CriticalProfile: React.FC = () => {
           <h1 className="text-4xl lg:text-5xl font-bold text-[var(--color-text)] mb-4">
             <span className="text-[var(--color-primary)]">UX Designer</span>
           </h1>
-          
+
           <div className="h-1.5 w-32 bg-[var(--color-secondary)] rounded mb-6 mx-auto lg:mx-0"></div>
-          
+
           <p className="text-lg text-[var(--color-text)] max-w-2xl mb-8 leading-relaxed">
             Sou UX/Product Designer com forte atuação no design de produtos digitais focados em experiência do usuário, conversão e impacto de negócio.
           </p>

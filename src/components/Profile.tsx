@@ -69,7 +69,7 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
                         alt={t('alts.profile.photo')}
                         className="profile-image-hover w-full h-full object-cover rounded-full"
                         loading="eager"
-                        fetchPriority="high"
+                        fetchpriority="high"
                         width="128"
                         height="128"
                         decoding="sync"

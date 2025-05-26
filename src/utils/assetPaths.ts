@@ -4,20 +4,14 @@
 
 /**
  * Get the correct asset path for the current environment
- * In development: /images/filename
- * In production (GitHub Pages): /portfolio/images/filename
+ * Must respect Vite's base path configuration
  */
 export const getAssetPath = (path: string): string => {
   // Remove leading slash if present
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
-  
-  // In production (GitHub Pages), add the base path
-  if (import.meta.env.PROD) {
-    return `/portfolio/${cleanPath}`;
-  }
-  
-  // In development, use root path
-  return `/${cleanPath}`;
+
+  // Use import.meta.env.BASE_URL which Vite provides automatically
+  return `${import.meta.env.BASE_URL}${cleanPath}`;
 };
 
 /**
@@ -42,7 +36,7 @@ export const getProfileImagePaths = () => {
  */
 export const getIxDFLogoPaths = () => {
   return {
-    dark: getImagePath('IxDF - Symbol - Dark.png'),
-    white: getImagePath('IxDF - Symbol - White.png')
+    dark: getImagePath('ixdf-symbol-dark.png'),
+    white: getImagePath('ixdf-symbol-white.png')
   };
 };

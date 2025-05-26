@@ -32,7 +32,7 @@ export default defineConfig({
     // Otimizações de bundle - target moderno para evitar polyfills antigos
     target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14'],
     minify: 'terser',
-    sourcemap: false,
+    sourcemap: true, // Habilitar source maps para debugging
 
     // Configurações de chunk
     chunkSizeWarningLimit: 1000,
@@ -42,10 +42,13 @@ export default defineConfig({
     cssMinify: true,
 
     rollupOptions: {
-      // Evitar polyfills desnecessários
+      // Evitar polyfills desnecessários - mais agressivo
       external: (id) => {
-        // Excluir core-js se detectado
+        // Excluir todos os tipos de core-js
         if (id.includes('core-js')) return true;
+        if (id.includes('core-js-pure')) return true;
+        if (id.includes('core-js-global')) return true;
+        if (id.includes('@babel/runtime')) return true;
         return false;
       },
 
@@ -163,7 +166,9 @@ export default defineConfig({
       '@vite/env',
       'core-js',
       'core-js-pure',
-      'core-js-global'
+      'core-js-global',
+      '@babel/runtime',
+      '@babel/runtime-corejs3'
     ]
   },
 
