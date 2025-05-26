@@ -90,7 +90,7 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
 
                   {/* Título Profissional - WCAG 2.2 AA Compliant */}
                   <p className="text-blue-700 dark:text-blue-300 font-medium text-sm leading-relaxed">
-                    UX Designer | SEO | IA
+                    UX/Product Designer
                   </p>
 
                   {/* Localização - WCAG 2.2 AA Compliant */}

@@ -166,7 +166,7 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
                     aria-describedby="feedback-email-help"
                   />
                 )}
-                <a href="/politica-de-privacidade" target="_blank" rel="noopener noreferrer" className="text-xs text-blue-700 underline mb-2">{t('feedback.privacyPolicy')}</a>
+                <a href="/portfolio/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-xs text-blue-700 underline mb-2">{t('feedback.privacyPolicy')}</a>
                 <div className="flex gap-2 mt-2">
                   <CTAButton
                     onClick={handleSend}

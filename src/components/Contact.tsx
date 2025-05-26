@@ -195,10 +195,14 @@ const Contact: React.FC = () => {
   };
 
   // Verificar se o formulário é válido
-  const isFormValid = Object.keys(errors).length === 0 &&
-                     formData.name.trim() &&
-                     formData.email.trim() &&
-                     formData.message.trim();
+  const isFormValid = () => {
+    const hasNoErrors = Object.keys(errors).length === 0;
+    const hasValidName = formData.name.trim().length >= 2;
+    const hasValidEmail = formData.email.trim() && isValidEmail(formData.email);
+    const hasValidMessage = formData.message.trim().length >= 10;
+
+    return hasNoErrors && hasValidName && hasValidEmail && hasValidMessage;
+  };
 
   return (
     <section id="contact" className="py-8">
@@ -362,7 +366,7 @@ const Contact: React.FC = () => {
               size="lg"
               icon={Send}
               iconPosition="left"
-              disabled={!isFormValid || isSubmitting}
+              disabled={!isFormValid() || isSubmitting}
               loading={isSubmitting}
               className="w-full"
               ariaLabel={isSubmitting ? t('contact.form.sending') : t('contact.form.send')}

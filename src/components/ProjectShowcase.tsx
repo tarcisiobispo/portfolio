@@ -35,6 +35,9 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] mb-4">
           {t('projects.title')}
         </h1>
+        <p className="text-lg md:text-xl text-[var(--color-text-secondary)] max-w-4xl mx-auto leading-relaxed">
+          {t('projects.description')}
+        </p>
       </motion.div>
 
       {/* Projects Grid - NOVO DESIGN LIMPO */}

@@ -313,32 +313,32 @@ const resources = {
         }
       },
       seo: {
-        title: "Tarcísio Bispo - UX/Product Designer | Portfolio",
+        title: "Tarcisio Bispo - UX/Product Designer | Portfolio",
         description: "UX/Product Designer especializado em estratégia, impacto e experiência do usuário. Veja meus projetos de design de produtos digitais e soluções de UX.",
         keywords: "UX Designer, Product Designer, Design de Produto, Experiência do Usuário, UI/UX, Portfolio, São Paulo",
-        author: "Tarcísio Bispo de Araújo",
+        author: "Tarcisio Bispo de Araujo",
         pages: {
           home: {
-            title: "Tarcísio Bispo - UX/Product Designer | Portfolio",
+            title: "Tarcisio Bispo - UX/Product Designer | Portfolio",
             description: "UX/Product Designer com foco em estratégia, impacto e experiência do usuário. Especialista em design de produtos digitais, conversão e impacto de negócio."
           },
           projects: {
-            title: "Projetos - Tarcísio Bispo | UX Designer",
+            title: "Projetos - Tarcisio Bispo | UX Designer",
             description: "Veja meus principais projetos de UX/Product Design: FGV LAW, Direito GV, Taliparts e FGV TV Institucional. Cases reais com resultados mensuráveis."
           },
           backlog: {
-            title: "Backlog Estratégico - Tarcísio Bispo | UX Designer",
+            title: "Backlog Estratégico - Tarcisio Bispo | UX Designer",
             description: "Demonstração prática de como transformo desafios de negócio em soluções de UX mensuráveis. Metodologia aplicada, resultados alcançados e insights estratégicos."
           },
           contact: {
-            title: "Contato - Tarcísio Bispo | UX Designer",
+            title: "Contato - Tarcisio Bispo | UX Designer",
             description: "Entre em contato para discutir projetos, parcerias ou oportunidades. Disponível para projetos freelance e oportunidades full-time."
           }
         }
       },
       schema: {
         person: {
-          name: "Tarcísio Bispo de Araújo",
+          name: "Tarcisio Bispo de Araujo",
           jobTitle: "UX/Product Designer",
           description: "UX/Product Designer especializado em estratégia, impacto e experiência do usuário",
           location: "São Paulo, Brasil",
@@ -381,7 +381,7 @@ const resources = {
       },
       alts: {
         profile: {
-          photo: "Foto de perfil de Tarcísio Bispo",
+          photo: "Foto de perfil de Tarcisio Bispo",
           ixdfLogo: "Logo do Interaction Design Foundation",
           ixdfSeal: "Selo de certificação IxDF"
         },
@@ -482,7 +482,7 @@ const resources = {
         system: "Usando preferência do sistema"
       },
       footer: {
-        copyright: "© 2024 Tarcísio Bispo. Todos os direitos reservados.",
+        copyright: "© 2024 Tarcisio Bispo. Todos os direitos reservados.",
         title: "UX/Product Designer"
       }
     }
@@ -512,6 +512,7 @@ const resources = {
       },
       projects: {
         title: "Projects",
+        description: "Real UX/Product Design cases focused on strategy, impact and measurable results for business and users.",
         overview: "Overview",
         discovery: "Discovery",
         solution: "Solution",
@@ -771,32 +772,32 @@ const resources = {
         }
       },
       seo: {
-        title: "Tarcísio Bispo - UX/Product Designer | Portfolio",
+        title: "Tarcisio Bispo - UX/Product Designer | Portfolio",
         description: "UX/Product Designer specialized in strategy, impact and user experience. See my digital product design projects and UX solutions.",
         keywords: "UX Designer, Product Designer, Product Design, User Experience, UI/UX, Portfolio, São Paulo",
-        author: "Tarcísio Bispo de Araújo",
+        author: "Tarcisio Bispo de Araujo",
         pages: {
           home: {
-            title: "Tarcísio Bispo - UX/Product Designer | Portfolio",
+            title: "Tarcisio Bispo - UX/Product Designer | Portfolio",
             description: "UX/Product Designer focused on strategy, impact and user experience. Expert in digital product design, conversion and business impact."
           },
           projects: {
-            title: "Projects - Tarcísio Bispo | UX Designer",
+            title: "Projects - Tarcisio Bispo | UX Designer",
             description: "See my main UX/Product Design projects: FGV LAW, Direito GV, Taliparts and FGV Institutional TV. Real cases with measurable results."
           },
           backlog: {
-            title: "Strategic Backlog - Tarcísio Bispo | UX Designer",
+            title: "Strategic Backlog - Tarcisio Bispo | UX Designer",
             description: "Practical demonstration of how I transform business challenges into measurable UX solutions. Applied methodology, achieved results, and strategic insights."
           },
           contact: {
-            title: "Contact - Tarcísio Bispo | UX Designer",
+            title: "Contact - Tarcisio Bispo | UX Designer",
             description: "Get in touch to discuss projects, partnerships or opportunities. Available for freelance projects and full-time opportunities."
           }
         }
       },
       schema: {
         person: {
-          name: "Tarcísio Bispo de Araújo",
+          name: "Tarcisio Bispo de Araujo",
           jobTitle: "UX/Product Designer",
           description: "UX/Product Designer specialized in strategy, impact and user experience",
           location: "São Paulo, Brazil",
@@ -839,7 +840,7 @@ const resources = {
       },
       alts: {
         profile: {
-          photo: "Tarcísio Bispo profile photo",
+          photo: "Tarcisio Bispo profile photo",
           ixdfLogo: "Interaction Design Foundation logo",
           ixdfSeal: "IxDF certification seal"
         },
@@ -894,7 +895,7 @@ const resources = {
         system: "Using system preference"
       },
       footer: {
-        copyright: "© 2024 Tarcísio Bispo. All rights reserved.",
+        copyright: "© 2024 Tarcisio Bispo. All rights reserved.",
         title: "UX/Product Designer"
       },
       feedback: {
@@ -966,11 +967,12 @@ const resources = {
         letsChat: "Conversemos",
         downloadCV: "Descargar CV",
         linkedin: "LinkedIn",
-        name: "Tarcísio Bispo de Araújo",
+        name: "Tarcisio Bispo de Araujo",
         ixdf: "IxDF | Interaction Design Foundation"
       },
       projects: {
         title: "Proyectos",
+        description: "Casos reales de UX/Product Design enfocados en estrategia, impacto y resultados medibles para negocios y usuarios.",
         overview: "Resumen",
         discovery: "Descubrimiento",
         solution: "Solución",
@@ -1230,32 +1232,32 @@ const resources = {
         }
       },
       seo: {
-        title: "Tarcísio Bispo - UX/Product Designer | Portfolio",
+        title: "Tarcisio Bispo - UX/Product Designer | Portfolio",
         description: "UX/Product Designer especializado en estrategia, impacto y experiencia del usuario. Ve mis proyectos de diseño de productos digitales y soluciones UX.",
         keywords: "UX Designer, Product Designer, Diseño de Producto, Experiencia del Usuario, UI/UX, Portfolio, São Paulo",
-        author: "Tarcísio Bispo de Araújo",
+        author: "Tarcisio Bispo de Araujo",
         pages: {
           home: {
-            title: "Tarcísio Bispo - UX/Product Designer | Portfolio",
+            title: "Tarcisio Bispo - UX/Product Designer | Portfolio",
             description: "UX/Product Designer enfocado en estrategia, impacto y experiencia del usuario. Experto en diseño de productos digitales, conversión e impacto empresarial."
           },
           projects: {
-            title: "Proyectos - Tarcísio Bispo | UX Designer",
+            title: "Proyectos - Tarcisio Bispo | UX Designer",
             description: "Ve mis principales proyectos de UX/Product Design: FGV LAW, Direito GV, Taliparts y FGV TV Institucional. Casos reales con resultados medibles."
           },
           backlog: {
-            title: "Backlog Estratégico - Tarcísio Bispo | UX Designer",
+            title: "Backlog Estratégico - Tarcisio Bispo | UX Designer",
             description: "Demostración práctica de cómo transformo desafíos empresariales en soluciones UX medibles. Metodología aplicada, resultados alcanzados e insights estratégicos."
           },
           contact: {
-            title: "Contacto - Tarcísio Bispo | UX Designer",
+            title: "Contacto - Tarcisio Bispo | UX Designer",
             description: "Ponte en contacto para discutir proyectos, asociaciones u oportunidades. Disponible para proyectos freelance y oportunidades full-time."
           }
         }
       },
       schema: {
         person: {
-          name: "Tarcísio Bispo de Araújo",
+          name: "Tarcisio Bispo de Araujo",
           jobTitle: "UX/Product Designer",
           description: "UX/Product Designer especializado en estrategia, impacto y experiencia del usuario",
           location: "São Paulo, Brasil",
@@ -1263,7 +1265,7 @@ const resources = {
           skills: ["UX Design", "Product Design", "Estrategia de Diseño", "Investigación de Usuario", "Prototipado", "Pruebas de Usabilidad"]
         },
         organization: {
-          name: "Tarcísio Bispo Portfolio",
+          name: "Tarcisio Bispo Portfolio",
           description: "Portfolio profesional de UX/Product Design",
           location: "São Paulo, Brasil"
         }
@@ -1298,7 +1300,7 @@ const resources = {
       },
       alts: {
         profile: {
-          photo: "Foto de perfil de Tarcísio Bispo",
+          photo: "Foto de perfil de Tarcisio Bispo",
           ixdfLogo: "Logo de Interaction Design Foundation",
           ixdfSeal: "Sello de certificación IxDF"
         },
@@ -1353,7 +1355,7 @@ const resources = {
         system: "Usando preferencia del sistema"
       },
       footer: {
-        copyright: "© 2024 Tarcísio Bispo. Todos los derechos reservados.",
+        copyright: "© 2024 Tarcisio Bispo. Todos los derechos reservados.",
         title: "UX/Product Designer"
       },
       feedback: {

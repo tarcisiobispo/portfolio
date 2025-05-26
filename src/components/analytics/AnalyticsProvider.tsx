@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import LogRocket from 'logrocket';
 import MicrosoftClarityInit from './MicrosoftClarity';
+import { GTMHead, GTMBody } from './GoogleTagManager';
+import { ANALYTICS_CONFIG } from '@/config/analytics';
 
 interface AnalyticsProviderProps {
   children: React.ReactNode;
@@ -22,7 +24,7 @@ const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({ children }) => {
 
         // Adicionar informações do portfolio como contexto
         LogRocket.track('Portfolio Visit', {
-          portfolioOwner: 'Tarcísio Bispo de Araújo',
+          portfolioOwner: 'Tarcisio Bispo de Araujo',
           ownerEmail: 'tbisp0@hotmail.com',
           portfolioType: 'UX/Product Designer',
           version: '2024'
@@ -40,7 +42,13 @@ const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({ children }) => {
 
   return (
     <>
+      {/* Google Tag Manager */}
+      <GTMHead gtmId={ANALYTICS_CONFIG.GTM_ID} />
+      <GTMBody gtmId={ANALYTICS_CONFIG.GTM_ID} />
+
+      {/* Microsoft Clarity */}
       <MicrosoftClarityInit />
+
       {children}
     </>
   );
