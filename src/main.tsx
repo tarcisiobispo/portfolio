@@ -2,13 +2,16 @@ import './react-fix'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom/client'
 import App from './App.tsx'
+import './styles/critical.css' // Critical CSS first for LCP
 import './index.css'
 import './styles/theme-transitions.css'
 import './styles/buttons.css'
 import './styles/cards.css'
 import './styles/accessibility.css'
-import './i18n/config' // Inicializar i18n com HTTP backend
 import { ThemeProvider } from './components/providers/ThemeProvider'
+
+// Lazy load i18n to not block initial render
+const loadI18n = () => import('./i18n/config');
 
 // Garantir que React está disponível globalmente
 if (typeof window !== 'undefined') {
@@ -20,11 +23,29 @@ if (!rootElement) {
   throw new Error('Root element not found');
 }
 
-// Renderizar app diretamente - i18n já está configurado
-ReactDOM.createRoot(rootElement).render(
+// Renderizar app imediatamente para melhor LCP
+const root = ReactDOM.createRoot(rootElement);
+
+// Render immediately with critical content
+root.render(
   <React.StrictMode>
     <ThemeProvider defaultTheme="system" storageKey="portfolio-theme">
       <App />
     </ThemeProvider>
   </React.StrictMode>
 );
+
+// Load i18n after initial render to not block LCP
+const scheduleI18nLoad = () => {
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(() => {
+      loadI18n().catch(console.error);
+    }, { timeout: 1000 });
+  } else {
+    setTimeout(() => {
+      loadI18n().catch(console.error);
+    }, 100);
+  }
+};
+
+scheduleI18nLoad();

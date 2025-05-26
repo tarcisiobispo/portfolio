@@ -31,15 +31,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://images.unsplash.com">
 
-    <!-- Preload critical image for LCP -->
+    <!-- Preload critical resources for LCP -->
     <link rel="preload" as="image" href="/portfolio/images/tarcisio_bispo.webp" type="image/webp">
     <link rel="preload" as="image" href="/portfolio/images/tarcisio_bispo.png" type="image/png">
+    <link rel="preload" as="style" href="/src/styles/critical.css">
+    <link rel="preload" as="script" href="/src/main.tsx">
 
 
 
-    <!-- Fontes otimizadas para performance -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&subset=latin&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <!-- Fontes otimizadas para LCP - carregamento crítico -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&subset=latin&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&subset=latin&display=swap" rel="stylesheet"></noscript>
+
+    <!-- Fallback font para evitar FOIT -->
+    <style>
+      body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+      .font-loaded body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    </style>
   </head>
 
   <body style="font-family: 'Inter', sans-serif;">

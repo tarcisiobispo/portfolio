@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { motion } from 'framer-motion';
 import CTAButton from '@/components/ui/CTAButton';
 import IxDFLogo from '@/components/ui/IxDFLogo';
 import TypewriterText from '@/components/ui/TypewriterText';
+import CriticalBio from '@/components/CriticalBio';
 import { Download, Linkedin, ArrowRight, MapPin, Mail, Phone, MessageCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { getProfileImagePaths } from '@/utils/assetPaths';
@@ -152,12 +153,8 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
             ></motion.div>
           </div>
 
-          {/* Bio Text - WCAG 2.2 AA Compliant */}
-          <div className="mb-8">
-            <p className="text-lg lg:text-xl text-gray-700 dark:text-gray-200 leading-relaxed max-w-3xl">
-              {t('profile.bio')}
-            </p>
-          </div>
+          {/* Bio Text - Critical for LCP */}
+          <CriticalBio />
 
           {/* CTAs Principais */}
           <div className="flex flex-col sm:flex-row gap-4">
