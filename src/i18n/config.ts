@@ -29,6 +29,7 @@ const resources = {
       },
       projects: {
         title: "Projetos",
+        description: "Seleção de projetos de UX/Product Design focados em estratégia, usabilidade e impacto de negócio.",
         overview: "Visão Geral",
         discovery: "Descoberta",
         solution: "Solução",
@@ -511,6 +512,7 @@ const resources = {
       },
       projects: {
         title: "Projects",
+        description: "Selection of UX/Product Design projects focused on strategy, usability and business impact.",
         overview: "Overview",
         discovery: "Discovery",
         solution: "Solution",
@@ -970,6 +972,7 @@ const resources = {
       },
       projects: {
         title: "Proyectos",
+        description: "Selección de proyectos de UX/Product Design enfocados en estrategia, usabilidad e impacto de negocio.",
         overview: "Resumen",
         discovery: "Descubrimiento",
         solution: "Solución",
