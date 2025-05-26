@@ -187,7 +187,14 @@
   font-size: 12px;
   font-weight: 500;
   color: var(--color-muted);
-  /* Removed hover effects as per user preference */
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card-tag:hover {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
 }
 
 .project-card-actions {
@@ -246,10 +253,10 @@
 }
 
 .project-card-tag {
-  /* Visual de chip/tag como sugerido - NO HOVER EFFECTS */
+  /* Visual de chip/tag como sugerido */
   background: #dbeafe; /* bg-blue-100 */
   color: #1e40af; /* text-blue-800 */
-  font-size: 12px; /* text-xs - user preference for accessibility */
+  font-size: 12px; /* text-xs */
   font-weight: 500; /* font-medium */
   margin-right: 8px; /* mr-2 */
   padding: 4px 10px; /* px-2.5 py-0.5 */
@@ -259,7 +266,6 @@
 
   /* Evitar quebra isolada da terceira tag */
   flex-shrink: 0;
-  /* No hover effects - user preference */
 }
 
 .dark .project-card-tag {

@@ -42,38 +42,37 @@ select:focus-visible {
 :root {
   /* ===== DESIGN TOKENS - LIGHT MODE ===== */
 
-  /* Primary Color System - WCAG 2.2 Compliant Professional Blue */
-  --primary: 221 83% 53%; /* Blue 600 - 4.5:1 contrast on white */
+  /* Primary Color System - Professional Blue */
+  --primary: 217 91% 60%;
   --primary-foreground: 210 40% 98%;
   --primary-50: 214 100% 97%;
   --primary-100: 214 95% 93%;
   --primary-500: 217 91% 60%;
-  --primary-600: 221 83% 53%; /* Main primary - WCAG compliant */
-  --primary-700: 224 76% 48%; /* Darker for better contrast */
+  --primary-600: 221 83% 53%;
   --primary-900: 224 64% 33%;
 
-  /* Secondary Color System - WCAG Compliant Green */
-  --secondary: 142 71% 45%; /* Emerald 600 - 4.5:1 contrast */
-  --secondary-foreground: 220 14% 96%;
-  --secondary-50: 142 76% 97%;
-  --secondary-500: 142 71% 45%;
-  --secondary-600: 142 76% 36%;
+  /* Secondary Color System - Complementary Purple */
+  --secondary: 270 91% 65%;
+  --secondary-foreground: 270 100% 98%;
+  --secondary-50: 270 100% 98%;
+  --secondary-500: 270 91% 65%;
+  --secondary-600: 271 81% 56%;
 
-  /* Accent Color System - WCAG Compliant Sky Blue */
-  --accent: 199 89% 48%; /* Sky 600 - 4.5:1 contrast */
+  /* Accent Color System - Sky Blue */
+  --accent: 199 89% 48%;
   --accent-foreground: 204 100% 97%;
   --accent-50: 204 100% 97%;
   --accent-500: 199 89% 48%;
 
-  /* Neutral Color System - WCAG 2.2 Compliant */
+  /* Neutral Color System */
   --background: 210 40% 98%;
-  --foreground: 222 84% 5%; /* Gray 950 - 15.3:1 contrast */
+  --foreground: 222 84% 5%;
   --surface: 0 0% 100%;
-  --muted: 215 25% 27%; /* Gray 700 - 9.6:1 contrast (improved from 47%) */
-  --muted-foreground: 215 16% 47%; /* Gray 600 - 7.0:1 contrast */
+  --muted: 215 16% 47%;
+  --muted-foreground: 215 20% 65%;
   --border: 214 32% 91%;
   --input: 214 32% 91%;
-  --ring: 221 83% 53%; /* Use primary-600 for better contrast */
+  --ring: 217 91% 60%;
 
   /* Semantic Colors */
   --success: 142 71% 45%;
@@ -170,39 +169,38 @@ select:focus-visible {
   --transition: 0.2s cubic-bezier(.4,0,.2,1);
 }
 
-/* ===== DARK MODE TOKENS - WCAG 2.2 COMPLIANT ===== */
+/* ===== DARK MODE TOKENS ===== */
 .dark {
-  /* Primary Color System - WCAG Compliant for Dark Mode */
-  --primary: 217 91% 60%; /* Blue 400 - 4.5:1 contrast on dark */
+  /* Primary Color System - Adjusted for Dark Mode */
+  --primary: 199 89% 48%;
   --primary-foreground: 222 84% 5%;
   --primary-50: 202 80% 16%;
-  --primary-500: 217 91% 60%;
-  --primary-600: 221 83% 53%;
-  --primary-700: 224 76% 48%;
+  --primary-500: 199 89% 48%;
+  --primary-600: 200 98% 39%;
   --primary-900: 202 80% 24%;
 
-  /* Secondary Color System - WCAG Compliant Dark Mode */
-  --secondary: 142 69% 58%; /* Emerald 400 - 4.5:1 contrast on dark */
+  /* Secondary Color System - Dark Mode */
+  --secondary: 270 91% 65%;
   --secondary-foreground: 222 84% 5%;
-  --secondary-50: 142 76% 97%;
-  --secondary-500: 142 69% 58%;
-  --secondary-600: 142 76% 36%;
+  --secondary-50: 274 87% 21%;
+  --secondary-500: 270 91% 65%;
+  --secondary-600: 271 81% 56%;
 
-  /* Accent Color System - WCAG Compliant Dark Mode */
-  --accent: 199 89% 48%; /* Sky 500 - 4.5:1 contrast on dark */
+  /* Accent Color System - Dark Mode */
+  --accent: 217 91% 60%;
   --accent-foreground: 222 84% 5%;
   --accent-50: 226 55% 21%;
-  --accent-500: 199 89% 48%;
+  --accent-500: 217 91% 60%;
 
-  /* Neutral Color System - WCAG Compliant Dark Mode */
-  --background: 222 84% 5%; /* Gray 950 */
-  --foreground: 210 40% 98%; /* Gray 50 - 15.3:1 contrast */
-  --surface: 215 25% 27%; /* Gray 800 */
-  --muted: 215 20% 65%; /* Gray 400 - 7.0:1 contrast on dark */
-  --muted-foreground: 215 16% 47%; /* Gray 500 - 4.5:1 contrast on dark */
-  --border: 215 25% 27%; /* Gray 800 */
-  --input: 215 25% 27%; /* Gray 800 */
-  --ring: 217 91% 60%; /* Blue 400 for dark mode */
+  /* Neutral Color System - Dark Mode */
+  --background: 222 84% 5%;
+  --foreground: 210 40% 98%;
+  --surface: 215 25% 27%;
+  --muted: 215 20% 65%;
+  --muted-foreground: 215 16% 47%;
+  --border: 215 25% 27%;
+  --input: 215 25% 27%;
+  --ring: 199 89% 48%;
 
   /* Semantic Colors - Dark Mode */
   --success: 142 71% 45%;
@@ -299,15 +297,14 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-title-primary);
 }
 
-/* H1 - Títulos de Seções Principais - Estilo "Vamos Conversar" Padronizado */
+/* H1 - Títulos de Seções Principais (Projetos, Backlog) */
 h1 {
-  font-size: clamp(2rem, 5vw, 3rem) !important; /* 32px - 48px - Maior que antes */
-  font-weight: 700 !important; /* Bold, não black - mais legível */
-  color: var(--color-text) !important; /* Texto principal, não primary - melhor contraste */
+  font-size: clamp(1.953rem, 5vw, 2.441rem) !important; /* 31px - 39px */
+  font-weight: 900 !important;
+  color: var(--color-primary) !important;
   line-height: 1.2 !important;
   letter-spacing: -0.025em !important;
-  margin-bottom: 1rem !important; /* Reduzido para melhor espaçamento */
-  text-align: left !important; /* Alinhamento consistente à esquerda */
+  margin-bottom: 1.5rem !important;
 }
 
 /* H1 Hero - Nome da pessoa (maior destaque) */
@@ -316,7 +313,6 @@ h1 {
   font-weight: 900 !important;
   line-height: 1.2 !important;
   letter-spacing: -0.025em !important;
-  text-align: left !important; /* Alinhado à esquerda como solicitado */
 }
 
 /* H2 - Subtítulos de Seções */

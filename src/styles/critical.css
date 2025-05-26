@@ -1,23 +1,15 @@
-/* Critical CSS - Above the fold styles only */
+/* Critical CSS - Above the fold styles */
 
-/* Essential CSS Variables - WCAG 2.2 Compliant Colors */
+/* CSS Variables - WCAG 2.2 Compliant Colors */
 :root {
   --color-primary: #1d4ed8; /* Blue 700 - 4.5:1 contrast on white */
   --color-primary-rgb: 29, 78, 216;
+  --color-secondary: #059669; /* Emerald 600 - 4.5:1 contrast */
   --color-text: #111827; /* Gray 900 - 15.3:1 contrast */
-  --color-muted: #374151; /* Gray 700 - 9.6:1 contrast */
+  --color-muted: #374151; /* Gray 700 - 9.6:1 contrast (was 6b7280) */
   --color-background: #ffffff;
   --color-surface: #f9fafb;
   --color-border: #d1d5db; /* Gray 300 - better contrast */
-
-  /* Typography essentials */
-  --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-size-base: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-weight-regular: 400;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --line-height-relaxed: 1.6;
 }
 
 [data-theme="dark"] {

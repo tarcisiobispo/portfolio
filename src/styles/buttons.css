@@ -134,56 +134,32 @@ W3C ARIA BUTTON REQUIREMENTS:
 /* ===== BOTÃO BASE FLUENT DESIGN ===== */
 .fluent-button {
   /* Dimensões base */
-  min-height: 44px; /* WCAG 2.2 minimum touch target */
-  padding: 12px 24px;
-  gap: 8px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  min-height: 32px;
+  padding: var(--fluent-spacing-sm) var(--fluent-spacing-lg);
+  gap: var(--fluent-spacing-sm);
 
   /* Tipografia */
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--fluent-font-size-200);
+  font-weight: var(--fluent-font-weight-medium);
   line-height: 1.4;
-  text-decoration: none;
 
   /* Aparência */
-  border-radius: 8px;
-  border: 2px solid transparent;
-  background: var(--color-primary, #3b82f6);
-  color: #ffffff;
-  cursor: pointer;
+  border-radius: var(--fluent-corner-radius-medium);
+  border: 1px solid transparent;
+  background: var(--color-surface);
+  color: var(--color-text);
 
   /* Interação */
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--fluent-duration-fast) var(--fluent-curve-easy-ease);
 
   /* Elevação */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--fluent-shadow-2);
 }
 
 /* Estados de interação base */
 .fluent-button:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  background: var(--color-primary-dark, #2563eb);
-}
-
-.fluent-button:focus {
-  outline: none;
-  ring: 2px solid var(--color-primary, #3b82f6);
-  ring-offset: 2px;
-}
-
-.fluent-button:active {
-  transform: translateY(0);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-.fluent-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
+  box-shadow: var(--fluent-shadow-4);
 }
 
 .fluent-button:active {
@@ -798,19 +774,6 @@ COMPORTAMENTO: Design claro com feedback visual adequado
   box-shadow:
     0 2px 4px rgba(0, 0, 0, 0.08),
     0 1px 2px rgba(0, 0, 0, 0.06);
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Specific styling for pagination number buttons */
-.btn-pagination {
-  min-width: 40px;
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  border-radius: 8px;
 }
 
 .btn-expand:hover,
@@ -841,16 +804,6 @@ COMPORTAMENTO: Design claro com feedback visual adequado
   background: var(--color-primary);
   color: white;
   border-color: var(--color-primary);
-}
-
-/* Active state for pagination buttons */
-.btn-pagination.active {
-  background: var(--color-primary) !important;
-  color: white !important;
-  border-color: var(--color-primary) !important;
-  box-shadow:
-    0 4px 8px rgba(var(--color-primary-rgb, 59, 130, 246), 0.3),
-    0 2px 4px rgba(0, 0, 0, 0.1) !important;
 }
 
 /* Expand button específico (migrado do index.css) */

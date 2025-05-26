@@ -14,7 +14,7 @@
   --color-neutral-dark: #ffffff !important;
   --color-text: #ffffff !important;
   --color-text-light: #ffffff !important;
-  --color-muted: #cccccc !important; /* Cinza claro para texto secundário */
+  --color-muted: #ffffff !important; /* Mudado para branco total */
   --color-success: #00ff00 !important; /* Verde puro */
   --color-error: #ff0000 !important; /* Vermelho puro */
   --color-warning: #ffff00 !important; /* Amarelo puro */
@@ -27,30 +27,13 @@
   --color-subtitle: #ffffff !important;
 }
 
-/* Aplicação específica do alto contraste com melhor especificidade */
-.high-contrast {
+/* Aplicação mais específica do alto contraste */
+.high-contrast,
+.high-contrast * {
   background-color: #000000 !important;
   color: #ffffff !important;
-}
-
-.high-contrast *:not(img):not(svg):not(video) {
-  background-color: transparent !important;
-  color: inherit !important;
   border-color: #ffffff !important;
-}
-
-.high-contrast .bg-white,
-.high-contrast .bg-gray-50,
-.high-contrast .bg-gray-100,
-.high-contrast [class*="bg-"] {
-  background-color: #000000 !important;
-}
-
-.high-contrast .text-gray-500,
-.high-contrast .text-gray-600,
-.high-contrast .text-muted,
-.high-contrast [class*="text-gray"] {
-  color: #cccccc !important;
+  box-shadow: none !important;
 }
 
 /* Exceções para elementos que precisam manter funcionalidade */
@@ -150,8 +133,6 @@
   --color-text: #1a1a1a !important;
   --color-card-bg: #ffffff !important;
   --color-border: #e0e0e0 !important;
-  --color-muted: #4a4a4a !important;
-  --color-primary: #2563eb !important;
 }
 
 /* Tipografia otimizada para leitura */
@@ -159,40 +140,6 @@
   font-family: 'Georgia', 'Times New Roman', serif !important;
   line-height: 1.8 !important;
   letter-spacing: 0.02em !important;
-  word-spacing: 0.1em !important;
-}
-
-/* Melhorar contraste no modo leitura */
-.focus-mode h1,
-.focus-mode h2,
-.focus-mode h3,
-.focus-mode h4,
-.focus-mode h5,
-.focus-mode h6 {
-  color: #000000 !important;
-  font-weight: 700 !important;
-  margin-bottom: 1em !important;
-}
-
-.focus-mode p,
-.focus-mode li,
-.focus-mode span {
-  color: #1a1a1a !important;
-  font-size: 1.1em !important;
-}
-
-/* Remover distrações visuais no modo leitura */
-.focus-mode .unified-hero-bg,
-.focus-mode [class*="bg-gradient"],
-.focus-mode [class*="shadow"] {
-  background: #fefefe !important;
-  box-shadow: none !important;
-}
-
-.focus-mode img,
-.focus-mode video {
-  opacity: 0.8 !important;
-  filter: grayscale(20%) !important;
 }
 
 .focus-mode h1,

@@ -34,16 +34,12 @@ export default defineConfig({
     minify: 'terser',
     sourcemap: false,
 
-    // Configurações de chunk - otimizadas para LCP
-    chunkSizeWarningLimit: 800, // Reduzido para chunks menores
+    // Configurações de chunk
+    chunkSizeWarningLimit: 1000,
 
-    // CSS otimizado para performance crítica
+    // CSS otimizado para performance
     cssCodeSplit: true,
-    cssMinify: true, // Use default esbuild minifier
-
-    // Otimizações de assets
-    assetsInlineLimit: 4096, // Inline pequenos assets
-    reportCompressedSize: false, // Acelera build
+    cssMinify: true,
 
     rollupOptions: {
       // Evitar polyfills desnecessários
@@ -54,7 +50,7 @@ export default defineConfig({
       },
 
       output: {
-        // Manual chunks simplificados para evitar problemas de inicialização
+        // Manual chunks mais conservador para evitar quebrar React
         manualChunks: {
           // React core - manter junto para evitar problemas de contexto
           'react-vendor': ['react', 'react-dom'],
@@ -62,7 +58,7 @@ export default defineConfig({
           // Roteamento
           'router': ['react-router-dom'],
 
-          // Animações
+          // Animações - pode ser separado
           'animation': ['framer-motion'],
 
           // UI Libraries
@@ -116,11 +112,11 @@ export default defineConfig({
         entryFileNames: 'js/[name]-[hash].js'
       },
 
-      // Tree-shaking mais conservador para evitar problemas de inicialização
+      // Tree-shaking mais conservador
       treeshake: {
         moduleSideEffects: true, // Permitir todos os side effects
-        propertyReadSideEffects: true, // Mais conservador
-        unknownGlobalSideEffects: true // Mais conservador para evitar problemas
+        propertyReadSideEffects: false,
+        unknownGlobalSideEffects: false
       }
     },
 
@@ -177,57 +173,10 @@ export default defineConfig({
     global: 'globalThis',
   },
 
-  // Configure server middleware to ensure CSP is applied
-  configureServer(server) {
-    server.middlewares.use((req, res, next) => {
-      // Apply security headers to all requests
-      res.setHeader('X-Content-Type-Options', 'nosniff');
-      res.setHeader('X-Frame-Options', 'DENY');
-      res.setHeader('X-XSS-Protection', '1; mode=block');
-      res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
-      res.setHeader('Content-Security-Policy', "default-src 'self'; img-src 'self' data: https: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://googletagmanager.com https://google-analytics.com https://clarity.ms https://www.clarity.ms https://cdn.gpteng.co https://cdn.lgrckt-in.com https://static.logrocket.io https://cdn.logrocket.com https://ssl.google-analytics.com; script-src-elem 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://googletagmanager.com https://google-analytics.com https://clarity.ms https://www.clarity.ms https://cdn.gpteng.co https://cdn.lgrckt-in.com https://static.logrocket.io https://cdn.logrocket.com https://ssl.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://tagmanager.google.com; style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com https://tagmanager.google.com; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self' https://www.google-analytics.com https://google-analytics.com https://ssl.google-analytics.com https://analytics.google.com https://clarity.ms https://www.clarity.ms https://api.logrocket.io https://ingest.logrocket.io https://r.logrocket.io https://cdn.logrocket.io https://cdn.logrocket.com https://region1.google-analytics.com https://region1.analytics.google.com; worker-src 'self' blob: data: https://cdn.logrocket.com; object-src 'none';");
-      next();
-    });
-  },
-
-  // Configurações de servidor para desenvolvimento - SECURITY HARDENED
+  // Configurações de servidor para desenvolvimento
   server: {
-    // Security: Restrict file system access
     fs: {
-      strict: true,
-      // Only allow serving files from specific directories
-      allow: ['..', 'src', 'public', 'node_modules']
-    },
-    // Security: Configure CORS properly
-    cors: {
-      origin: process.env.NODE_ENV === 'development'
-        ? ['http://localhost:5173', 'http://127.0.0.1:5173']
-        : false,
-      credentials: false
-    },
-    // Security: Restrict host access
-    host: process.env.NODE_ENV === 'development' ? 'localhost' : false,
-    // Security: Configure headers for development (backup)
-    headers: {
-      'X-Content-Type-Options': 'nosniff',
-      'X-Frame-Options': 'DENY',
-      'X-XSS-Protection': '1; mode=block',
-      'Referrer-Policy': 'strict-origin-when-cross-origin',
-      'Content-Security-Policy': "default-src 'self'; img-src 'self' data: https: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://googletagmanager.com https://google-analytics.com https://clarity.ms https://www.clarity.ms https://cdn.gpteng.co https://cdn.lgrckt-in.com https://static.logrocket.io https://cdn.logrocket.com https://ssl.google-analytics.com; script-src-elem 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://googletagmanager.com https://google-analytics.com https://clarity.ms https://www.clarity.ms https://cdn.gpteng.co https://cdn.lgrckt-in.com https://static.logrocket.io https://cdn.logrocket.com https://ssl.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://tagmanager.google.com; style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com https://tagmanager.google.com; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self' https://www.google-analytics.com https://google-analytics.com https://ssl.google-analytics.com https://analytics.google.com https://clarity.ms https://www.clarity.ms https://api.logrocket.io https://ingest.logrocket.io https://r.logrocket.io https://cdn.logrocket.io https://cdn.logrocket.com https://region1.google-analytics.com https://region1.analytics.google.com https://api.emailjs.com https://emailjs.com; worker-src 'self' blob: data: https://cdn.logrocket.com; object-src 'none';"
-    }
-  },
-
-  // Security: Preview server configuration
-  preview: {
-    // Security: Restrict host access for preview
-    host: 'localhost',
-    cors: false,
-    headers: {
-      'X-Content-Type-Options': 'nosniff',
-      'X-Frame-Options': 'DENY',
-      'X-XSS-Protection': '1; mode=block',
-      'Referrer-Policy': 'strict-origin-when-cross-origin',
-      'Content-Security-Policy': "default-src 'self'; img-src 'self' data: https: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://googletagmanager.com https://google-analytics.com https://clarity.ms https://www.clarity.ms https://cdn.gpteng.co https://cdn.lgrckt-in.com https://static.logrocket.io https://cdn.logrocket.com https://ssl.google-analytics.com; script-src-elem 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://googletagmanager.com https://google-analytics.com https://clarity.ms https://www.clarity.ms https://cdn.gpteng.co https://cdn.lgrckt-in.com https://static.logrocket.io https://cdn.logrocket.com https://ssl.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://tagmanager.google.com; style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com https://tagmanager.google.com; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self' https://www.google-analytics.com https://google-analytics.com https://ssl.google-analytics.com https://analytics.google.com https://clarity.ms https://www.clarity.ms https://api.logrocket.io https://ingest.logrocket.io https://r.logrocket.io https://cdn.logrocket.io https://cdn.logrocket.com https://region1.google-analytics.com https://region1.analytics.google.com https://api.emailjs.com https://emailjs.com; worker-src 'self' blob: data: https://cdn.logrocket.com; object-src 'none';"
+      strict: false
     }
   }
 });
