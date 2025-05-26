@@ -104,7 +104,7 @@ const BacklogCycle: React.FC = () => {
 
                       {/* Content Container - Middle Aligned */}
                       <div className="flex-1 text-left flex items-center">
-                        <h2 className="text-base md:text-lg font-medium text-[var(--color-text)] group-hover:text-[var(--color-primary)] transition-colors duration-200 pr-4 leading-relaxed">
+                        <h2 className="text-sm md:text-base font-normal text-[var(--color-text)] group-hover:text-[var(--color-primary)] transition-colors duration-200 pr-4 leading-relaxed">
                           {item.challenge}
                         </h2>
                       </div>
