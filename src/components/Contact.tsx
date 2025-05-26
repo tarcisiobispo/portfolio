@@ -209,7 +209,7 @@ const Contact: React.FC = () => {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="mb-12 text-center"
       >
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-text)] mb-4">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] mb-4">
           {t('contact.title')}
         </h1>
         <p className="text-[var(--color-muted)] text-lg max-w-2xl mx-auto">

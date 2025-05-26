@@ -65,7 +65,7 @@ const BacklogCycle: React.FC = () => {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="text-center mb-16"
       >
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-text)] mb-4">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] mb-4">
           {t('backlog.title')}
         </h1>
         <p className="text-[var(--color-muted)] text-lg max-w-2xl mx-auto">
@@ -104,7 +104,7 @@ const BacklogCycle: React.FC = () => {
 
                       {/* Content Container - Middle Aligned */}
                       <div className="flex-1 text-left flex items-center">
-                        <h2 className="text-sm md:text-base font-normal text-[var(--color-text)] group-hover:text-[var(--color-primary)] transition-colors duration-200 pr-4 leading-relaxed">
+                        <h2 className="text-xs md:text-sm font-normal text-[var(--color-text)] group-hover:text-[var(--color-primary)] transition-colors duration-200 pr-4 leading-relaxed">
                           {item.challenge}
                         </h2>
                       </div>

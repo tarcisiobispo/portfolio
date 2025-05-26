@@ -32,7 +32,7 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="mb-16 text-center"
       >
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-text)] mb-4">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] mb-4">
           {t('projects.title')}
         </h1>
       </motion.div>
@@ -76,9 +76,9 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
             {/* Conteúdo */}
             <div className="project-card-content">
               {/* Título */}
-              <h2 id={`project-title-${index}`} className="project-card-title">
+              <h3 id={`project-title-${index}`} className="project-card-title">
                 {t(`projects.${project.projectKey}.title`)}
-              </h2>
+              </h3>
 
               {/* Descrição */}
               <p className="project-card-description">

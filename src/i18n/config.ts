@@ -328,7 +328,7 @@ const resources = {
           },
           backlog: {
             title: "Backlog Estratégico - Tarcísio Bispo | UX Designer",
-            description: "Desafios reais enfrentados por stakeholders e soluções de UX aplicadas estrategicamente para resolver problemas de negócio."
+            description: "Demonstração prática de como transformo desafios de negócio em soluções de UX mensuráveis. Metodologia aplicada, resultados alcançados e insights estratégicos."
           },
           contact: {
             title: "Contato - Tarcísio Bispo | UX Designer",
@@ -594,7 +594,7 @@ const resources = {
       },
       backlog: {
         title: "Strategic Backlog Cycle",
-        description: "Real challenges faced by stakeholders and UX solutions strategically applied to solve business problems.",
+        description: "Practical demonstration of how I transform business challenges into measurable UX solutions. Each case presents applied methodology, achieved results, and strategic insights that generate real impact for stakeholders and users.",
         solution: "Solution",
         result: "Result",
         note: "Note",
@@ -786,7 +786,7 @@ const resources = {
           },
           backlog: {
             title: "Strategic Backlog - Tarcísio Bispo | UX Designer",
-            description: "Real challenges faced by stakeholders and UX solutions strategically applied to solve business problems."
+            description: "Practical demonstration of how I transform business challenges into measurable UX solutions. Applied methodology, achieved results, and strategic insights."
           },
           contact: {
             title: "Contact - Tarcísio Bispo | UX Designer",
@@ -1053,7 +1053,7 @@ const resources = {
       },
       backlog: {
         title: "Ciclo de Backlog Estratégico",
-        description: "Desafíos reales enfrentados por stakeholders y soluciones UX aplicadas estratégicamente para resolver problemas de negocio.",
+        description: "Demostración práctica de cómo transformo desafíos empresariales en soluciones UX medibles. Cada caso presenta metodología aplicada, resultados alcanzados e insights estratégicos que generan impacto real para stakeholders y usuarios.",
         solution: "Solución",
         result: "Resultado",
         note: "Nota",
@@ -1245,7 +1245,7 @@ const resources = {
           },
           backlog: {
             title: "Backlog Estratégico - Tarcísio Bispo | UX Designer",
-            description: "Desafíos reales enfrentados por stakeholders y soluciones UX aplicadas estratégicamente para resolver problemas de negocio."
+            description: "Demostración práctica de cómo transformo desafíos empresariales en soluciones UX medibles. Metodología aplicada, resultados alcanzados e insights estratégicos."
           },
           contact: {
             title: "Contacto - Tarcísio Bispo | UX Designer",
