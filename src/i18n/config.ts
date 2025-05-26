@@ -29,6 +29,7 @@ const resources = {
       },
       projects: {
         title: "Projetos",
+        description: "Casos reais de UX/Product Design com foco em estratégia, impacto e resultados mensuráveis para negócios e usuários.",
         overview: "Visão Geral",
         discovery: "Descoberta",
         solution: "Solução",
