@@ -29,8 +29,18 @@ const SEO: React.FC<SEOProps> = ({
   structuredData
 }) => {
   const siteUrl = "https://tarcisiobispo.github.io/portfolio";
-  const fullUrl = url.startsWith('http') ? url : `${siteUrl}${url}`;
-  const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
+  // Validação segura de URLs
+  const isValidUrl = (urlString: string): boolean => {
+    try {
+      const parsedUrl = new URL(urlString);
+      return parsedUrl.protocol === 'https:' || parsedUrl.protocol === 'http:';
+    } catch {
+      return false;
+    }
+  };
+
+  const fullUrl = url.startsWith('http') && isValidUrl(url) ? url : `${siteUrl}${url}`;
+  const fullImageUrl = image.startsWith('http') && isValidUrl(image) ? image : `${siteUrl}${image}`;
 
   return (
     <Helmet>
@@ -42,10 +52,10 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="robots" content="index, follow" />
       <meta name="language" content="pt-BR" />
       <meta name="revisit-after" content="7 days" />
-      
+
       {/* Canonical URL */}
       <link rel="canonical" href={fullUrl} />
-      
+
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={type} />
       <meta property="og:title" content={title} />
@@ -57,7 +67,7 @@ const SEO: React.FC<SEOProps> = ({
       <meta property="og:url" content={fullUrl} />
       <meta property="og:site_name" content="Portfólio Tarcisio Bispo" />
       <meta property="og:locale" content="pt_BR" />
-      
+
       {/* Article specific (for blog posts/projects) */}
       {type === 'article' && (
         <>
@@ -67,7 +77,7 @@ const SEO: React.FC<SEOProps> = ({
           {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
         </>
       )}
-      
+
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
@@ -75,11 +85,11 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="twitter:image" content={fullImageUrl} />
       <meta name="twitter:creator" content="@tarcisiobispo" />
       <meta name="twitter:site" content="@tarcisiobispo" />
-      
+
       {/* Additional Meta Tags */}
       <meta name="theme-color" content="#1e3a8a" />
       <meta name="msapplication-TileColor" content="#1e3a8a" />
-      
+
       {/* Structured Data */}
       {structuredData && (
         <script type="application/ld+json">

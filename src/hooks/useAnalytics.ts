@@ -86,15 +86,33 @@ export const useAnalytics = () => {
     });
   }, [sendEvent]);
 
-  // Tracking de links externos
+  // Tracking de links externos com validação segura
   const trackExternalLink = useCallback((url: string, linkText?: string) => {
+    let linkDomain = 'unknown';
+
+    try {
+      // Validação rigorosa de URL
+      const parsedUrl = new URL(url);
+
+      // Verificar se é HTTPS
+      if (parsedUrl.protocol !== 'https:' && parsedUrl.protocol !== 'http:') {
+        console.warn('URL com protocolo não permitido:', url);
+        return;
+      }
+
+      linkDomain = parsedUrl.hostname;
+    } catch (error) {
+      console.warn('URL inválida para tracking:', url);
+      return;
+    }
+
     sendEvent({
       event: ANALYTICS_CONFIG.EVENTS.EXTERNAL_LINK,
       event_category: ANALYTICS_CONFIG.CATEGORIES.ENGAGEMENT,
       event_label: linkText || url,
       custom_parameters: {
         destination_url: url,
-        link_domain: new URL(url).hostname,
+        link_domain: linkDomain,
       },
     });
   }, [sendEvent]);

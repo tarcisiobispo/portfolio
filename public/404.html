@@ -29,6 +29,20 @@
     var pathSegmentsToKeep = 1;
 
     var l = window.location;
+
+    // Validação de segurança
+    if (l.protocol !== 'https:' && l.protocol !== 'http:') {
+      console.error('Protocolo não permitido');
+      return;
+    }
+
+    // Validação do hostname
+    var allowedHosts = ['tarcisiobispo.github.io', 'localhost', '127.0.0.1'];
+    if (allowedHosts.indexOf(l.hostname) === -1) {
+      console.error('Hostname não permitido');
+      return;
+    }
+
     l.replace(
       l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
       l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +

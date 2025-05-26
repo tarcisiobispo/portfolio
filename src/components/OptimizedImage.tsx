@@ -22,14 +22,29 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   const [imageError, setImageError] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
+  // Lista de hostnames permitidos - validação rigorosa
+  const ALLOWED_HOSTNAMES = [
+    'images.unsplash.com',
+    'unsplash.com',
+    'plus.unsplash.com'
+  ];
+
   // Validação segura de URL
   const isValidUnsplashUrl = (url: string): boolean => {
     try {
       const parsedUrl = new URL(url);
-      // Verificação rigorosa do hostname
-      return parsedUrl.hostname === 'images.unsplash.com' ||
-             parsedUrl.hostname === 'unsplash.com' ||
-             parsedUrl.hostname.endsWith('.unsplash.com');
+
+      // Verificação rigorosa: apenas hostnames exatos da lista
+      if (!ALLOWED_HOSTNAMES.includes(parsedUrl.hostname)) {
+        return false;
+      }
+
+      // Verificação adicional: deve usar HTTPS
+      if (parsedUrl.protocol !== 'https:') {
+        return false;
+      }
+
+      return true;
     } catch {
       return false;
     }
