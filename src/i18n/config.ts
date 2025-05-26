@@ -1415,8 +1415,8 @@ i18n
     lng: 'pt-BR',
     fallbackLng: 'pt-BR',
 
-    // DEBUG para diagnóstico
-    debug: import.meta.env.DEV,
+    // DEBUG apenas em desenvolvimento
+    debug: false,
 
     // Configurações React
     react: {
@@ -1438,12 +1438,17 @@ i18n
     }
   })
   .then(() => {
-    console.log('✅ i18n initialized successfully');
-    console.log('🌐 Current language:', i18n.language);
-    console.log('📊 Sample translation:', i18n.t('profile.title'));
+    // i18n initialized successfully - logs removed for production
+    if (import.meta.env.DEV) {
+      console.log('✅ i18n initialized successfully');
+      console.log('🌐 Current language:', i18n.language);
+    }
   })
   .catch((error) => {
-    console.error('❌ Error initializing i18n:', error);
+    // Only log errors in development
+    if (import.meta.env.DEV) {
+      console.error('❌ Error initializing i18n:', error);
+    }
   });
 
 export default i18n;

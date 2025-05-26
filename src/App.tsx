@@ -43,7 +43,7 @@ const App = () => {
           <Sonner />
 
           {/* Debug Translations - apenas em desenvolvimento */}
-          <DebugTranslations />
+          {import.meta.env.DEV && <DebugTranslations />}
 
           {/* UX Premium Components */}
           <BackToTop />

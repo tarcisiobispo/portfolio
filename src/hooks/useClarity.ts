@@ -7,7 +7,7 @@ export const useClarity = () => {
     if (import.meta.env.PROD) {
       try {
         Clarity.event(eventName);
-        console.log(`Clarity event tracked: ${eventName}`);
+        // Clarity event tracked successfully
       } catch (error) {
         console.error('Failed to track Clarity event:', error);
       }
@@ -19,7 +19,7 @@ export const useClarity = () => {
     if (import.meta.env.PROD) {
       try {
         Clarity.setTag(key, value);
-        console.log(`Clarity tag set: ${key} = ${value}`);
+        // Clarity tag set successfully
       } catch (error) {
         console.error('Failed to set Clarity tag:', error);
       }
@@ -36,7 +36,7 @@ export const useClarity = () => {
     if (import.meta.env.PROD) {
       try {
         Clarity.identify(customId, customSessionId, customPageId, friendlyName);
-        console.log(`Clarity user identified: ${customId}`);
+        // Clarity user identified successfully
       } catch (error) {
         console.error('Failed to identify Clarity user:', error);
       }
@@ -48,7 +48,7 @@ export const useClarity = () => {
     if (import.meta.env.PROD) {
       try {
         Clarity.upgrade(reason);
-        console.log(`Clarity session upgraded: ${reason}`);
+        // Clarity session upgraded successfully
       } catch (error) {
         console.error('Failed to upgrade Clarity session:', error);
       }

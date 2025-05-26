@@ -88,7 +88,7 @@ export const initWebVitals = () => {
     getLCP(sendToAnalytics);
     getTTFB(sendToAnalytics);
 
-    console.log('✅ Web Vitals monitoring initialized');
+    // Web Vitals monitoring initialized successfully
   } catch (error) {
     console.warn('❌ Failed to initialize Web Vitals:', error);
   }

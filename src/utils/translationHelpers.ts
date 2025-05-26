@@ -1,4 +1,5 @@
 // Utilitários para lidar com traduções de forma segura
+import { logger } from './logger';
 
 /**
  * Garante que o resultado de uma tradução seja um array
@@ -8,11 +9,11 @@ export const ensureArray = <T = any>(value: any): T[] => {
   if (Array.isArray(value)) {
     return value;
   }
-  
+
   if (value === null || value === undefined || value === '') {
     return [];
   }
-  
+
   // Se for uma string ou objeto, coloca em um array
   return [value];
 };
@@ -35,7 +36,7 @@ export const useTranslationArray = (key: string, t: (key: string, options?: any)
     const result = t(key, { returnObjects: true });
     return ensureArray(result);
   } catch (error) {
-    console.warn(`Translation error for key "${key}":`, error);
+    logger.warn(`Translation error for key "${key}":`, error);
     return [];
   }
 };
@@ -49,7 +50,7 @@ export const getTranslationObject = (key: string, t: (key: string, options?: any
     const result = t(key, { returnObjects: true });
     return typeof result === 'object' && result !== null ? result : {};
   } catch (error) {
-    console.warn(`Translation error for key "${key}":`, error);
+    logger.warn(`Translation error for key "${key}":`, error);
     return {};
   }
 };
@@ -59,8 +60,8 @@ export const getTranslationObject = (key: string, t: (key: string, options?: any
  * Com fallback para evitar erros
  */
 export const getArrayTranslation = (
-  key: string, 
-  index: number, 
+  key: string,
+  index: number,
   t: (key: string, options?: any) => any,
   fallback: string = ''
 ): string => {
@@ -68,7 +69,7 @@ export const getArrayTranslation = (
     const array = ensureStringArray(t(key, { returnObjects: true }));
     return array[index] || fallback;
   } catch (error) {
-    console.warn(`Translation error for key "${key}[${index}]":`, error);
+    logger.warn(`Translation error for key "${key}[${index}]":`, error);
     return fallback;
   }
 };
@@ -89,8 +90,8 @@ export const hasValidTranslation = (key: string, t: (key: string, options?: any)
  * Função para obter traduções com fallback
  */
 export const getTranslationWithFallback = (
-  key: string, 
-  fallback: string, 
+  key: string,
+  fallback: string,
   t: (key: string, options?: any) => any
 ): string => {
   try {

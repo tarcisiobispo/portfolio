@@ -13,11 +13,11 @@ const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({ children }) => {
       try {
         // LogRocket
         LogRocket.init('fatqpp/portfolio-kbfin');
-        console.log('Analytics initialized successfully');
+        // Analytics initialized successfully - log removed for production
 
         // Configurar contexto do portfolio para LogRocket
         LogRocket.getSessionURL((sessionURL) => {
-          console.log('LogRocket session:', sessionURL);
+          // Session URL available for debugging if needed
         });
 
         // Adicionar informações do portfolio como contexto
@@ -29,11 +29,13 @@ const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({ children }) => {
         });
 
       } catch (error) {
-        console.error('Failed to initialize analytics:', error);
+        // Analytics initialization failed - error handling without console logs
+        if (import.meta.env.DEV) {
+          console.error('Failed to initialize analytics:', error);
+        }
       }
-    } else {
-      console.log('Analytics disabled in development mode');
     }
+    // Analytics disabled in development mode - no console log needed
   }, []);
 
   return (
