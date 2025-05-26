@@ -97,6 +97,12 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
                   <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
                     Campinas, São Paulo
                   </p>
+
+                  {/* Telefone - WCAG 2.2 AA Compliant */}
+                  <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed flex items-center justify-center gap-1">
+                    <Phone className="w-3 h-3" aria-hidden="true" />
+                    +55 (19) 9 9013-7380
+                  </p>
                 </div>
 
                 {/* SEÇÃO 3: IxDF Badge - WCAG 2.2 AA Compliant */}

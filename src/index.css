@@ -3,6 +3,8 @@
 @import './styles/toast-optimizations.css';
 @import './styles/visual-enhancements.css';
 @import './styles/wcag-compliance.css';
+@import './styles/section-backgrounds.css';
+@import './styles/unified-background.css';
 
 /* ===== TAILWIND CSS ===== */
 @tailwind base;

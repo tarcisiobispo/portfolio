@@ -28,8 +28,8 @@ const IxDFLogo: React.FC<IxDFLogoProps> = ({
   };
 
   const containerClasses = layout === 'vertical'
-    ? 'flex flex-col items-center gap-2'
-    : 'flex items-center gap-3';
+    ? 'flex flex-col items-center gap-3'
+    : 'flex items-center gap-6';
 
   return (
     <div className={`${containerClasses} ${className}`}>
