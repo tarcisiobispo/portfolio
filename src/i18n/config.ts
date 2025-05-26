@@ -112,7 +112,7 @@ const resources = {
       },
       backlog: {
         title: "Ciclo de Backlogs Estratégicos",
-        description: "Desafios reais enfrentados por stakeholders e soluções de UX aplicadas estrategicamente para resolver problemas de negócio.",
+        description: "Demonstração prática de como transformo desafios de negócio em soluções de UX mensuráveis. Cada caso apresenta metodologia aplicada, resultados alcançados e insights estratégicos que geram impacto real para stakeholders e usuários.",
         solution: "Solução",
         result: "Resultado",
         note: "Nota",
