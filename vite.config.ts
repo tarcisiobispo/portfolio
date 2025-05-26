@@ -50,35 +50,8 @@ export default defineConfig({
       },
 
       output: {
-        // Manual chunks mais conservador para evitar quebrar React
-        manualChunks: {
-          // React core - manter junto para evitar problemas de contexto
-          'react-vendor': ['react', 'react-dom'],
-
-          // Roteamento
-          'router': ['react-router-dom'],
-
-          // Animações - pode ser separado
-          'animation': ['framer-motion'],
-
-          // UI Libraries
-          'ui': ['@headlessui/react', '@radix-ui/react-tooltip', '@floating-ui/react'],
-
-          // Query
-          'query': ['@tanstack/react-query'],
-
-          // i18n
-          'i18n': ['react-i18next', 'i18next', 'i18next-browser-languagedetector'],
-
-          // Icons
-          'icons': ['lucide-react'],
-
-          // Forms
-          'forms': ['react-hook-form'],
-
-          // Analytics
-          'analytics': ['@microsoft/clarity', 'logrocket']
-        },
+        // Deixar o Vite fazer o chunking automático
+        manualChunks: undefined,
 
         // Nomeação de chunks
         chunkFileNames: (chunkInfo) => {
