@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -32,7 +31,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://images.unsplash.com">
 
-    <!-- Images are loaded with eager loading and high priority in Profile component -->
+    <!-- Preload critical resources for LCP -->
+    <link rel="preload" as="image" href="/portfolio/images/tarcisio_bispo.webp" type="image/webp">
+    <link rel="preload" as="image" href="/portfolio/images/tarcisio_bispo.png" type="image/png">
+
+
 
     <!-- Fontes otimizadas para LCP - carregamento crítico -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&subset=latin&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -43,8 +46,16 @@
       body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
       .font-loaded body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
     </style>
-    <script type="module" crossorigin src="/portfolio/js/index-CLCxj6J3.js"></script>
-    <link rel="stylesheet" crossorigin href="/portfolio/css/index-DMxBaERc.css">
+    <script type="module" crossorigin src="/portfolio/js/index-CkJIzZ7q.js"></script>
+    <link rel="modulepreload" crossorigin href="/portfolio/js/chunk-DJqUFuPP.js">
+    <link rel="modulepreload" crossorigin href="/portfolio/js/chunk-D3Ns84uO.js">
+    <link rel="modulepreload" crossorigin href="/portfolio/js/chunk-L3uak9dD.js">
+    <link rel="modulepreload" crossorigin href="/portfolio/js/chunk-oy1jMaet.js">
+    <link rel="modulepreload" crossorigin href="/portfolio/js/chunk-Boc20JEh.js">
+    <link rel="modulepreload" crossorigin href="/portfolio/js/chunk-DylKGAq6.js">
+    <link rel="modulepreload" crossorigin href="/portfolio/js/chunk-CS50z45r.js">
+    <link rel="modulepreload" crossorigin href="/portfolio/js/chunk-BKy2Or7W.js">
+    <link rel="stylesheet" crossorigin href="/portfolio/css/index-lnm5zr6e.css">
   </head>
 
   <body style="font-family: 'Inter', sans-serif;">
@@ -68,7 +79,6 @@
 
 
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
   </body>
 </html>
