@@ -1,1 +1,0 @@
-const r=r=>Array.isArray(r)?r.filter((r=>"string"==typeof r)):"string"==typeof r?[r]:[],t=(r,t)=>{try{const n=t(r,{returnObjects:!0});return Array.isArray(n)?n:[]}catch(n){return console.warn(`Translation key "${r}" not found or invalid`),[]}};export{r as e,t as u};
