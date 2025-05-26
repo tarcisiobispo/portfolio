@@ -96,7 +96,7 @@
 .project-card-tag {
   background: #f3f4f6;
   color: #374151;
-  font-size: 10px; /* Reduzido de 12px para 10px */
+  font-size: 12px; /* Revertido para 12px para melhor legibilidade */
   font-weight: 500;
   padding: 4px 12px;
   border-radius: 6px;

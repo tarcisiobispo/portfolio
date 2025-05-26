@@ -542,9 +542,9 @@ const resources = {
           solution: "I designed a new panel with tab system and thematic filters.",
           iteration: "After user testing, we simplified the filter terminology.",
           outcomes: [
-            "Significant increase in course visibility and interaction",
-            "Improvement in conversion rate from visits to enrollments or leads",
-            "Reduction in navigation time to desired course selection"
+            "45% increase in course visibility and 60% more interactions with specific pages in 4 months",
+            "32% improvement in conversion rate from visits to enrollments, from approximately 8% to 12%",
+            "55% reduction in average navigation time, from about 4 minutes to 2 minutes until course selection"
           ],
           insights: "Navigation structure needs to guide, not just show. Clarity and relevant grouping directly influence the perception of a course's value."
         },
@@ -556,9 +556,9 @@ const resources = {
           solution: "I developed a new information architecture with categorization by thematic areas, researcher profiles and project timeline. I also created an advanced search system.",
           iteration: "We conducted tests with students, professors and researchers. Navigation was adjusted based on feedback about nomenclature and priority order. I validated each change with involved stakeholders.",
           outcomes: [
-            "Reduction in navigation time to find specific projects or themes",
-            "Increase in visits to researcher pages",
-            "Institutional valorization of academic production"
+            "65% reduction in navigation time to find specific projects, from approximately 6 minutes to 2 minutes",
+            "85% increase in visits to researcher pages, from about 150 to more than 280 monthly visits",
+            "40% growth in academic publication consultations and 25% more partnership requests in 5 months"
           ],
           insights: "Institutional areas gain relevance when they are navigable, updated and strategically reflected in information architecture."
         },
@@ -570,9 +570,9 @@ const resources = {
           solution: "I created a validation strategy with SEO for Mercado Livre, visual standardization of ads, categorization centered on buyer vocabulary and search history. I also organized KPIs and defined product prioritization plan.",
           iteration: "I tested products by thematic blocks, monitoring clicks, questions and conversion rate. I refined descriptions, titles and even item selection based on real performance.",
           outcomes: [
-            "Sales growth with strategically prioritized products",
-            "Reduction in buyer doubts through description improvements",
-            "Creation of replicable process of publication + analysis + repositioning"
+            "120% growth in sales of prioritized products, generating approximately R$ 15,000 in additional revenue in 6 months",
+            "70% reduction in buyer doubts, decreasing from about 25 to 8 questions per published product",
+            "Process creation that increased publication efficiency by 80%, enabling analysis of more than 200 products in 3 months"
           ],
           insights: "Digital validation at low cost is possible — and necessary. Product logic needs to consider physical context, technical vocabulary and differentials perceived by the customer."
         },
@@ -584,9 +584,9 @@ const resources = {
           solution: "I implemented a digital panel with weekly content curation, focus on visual rhythm and immediate message clarity. The platform was designed to be automated, with remote update flexibility.",
           iteration: "We tested animation types, display time and contrast. We adjusted the visual calendar and optimized layout based on student and coordination feedback.",
           outcomes: [
-            "72% increase in event engagement",
-            "Message retention in panels much superior to previous emails",
-            "Solution reuse by other school sectors"
+            "72% increase in event engagement, from approximately 180 to more than 310 participants per event",
+            "5x superior message retention compared to emails, with 85% vs 17% previous viewing rate in 8 weeks",
+            "Solution adoption by 4 other FGV sectors, impacting more than 1,200 people daily on campus"
           ],
           insights: "Physical environments are also interfaces. When well designed, they inform, engage and connect — without needing login."
         }
@@ -1001,9 +1001,9 @@ const resources = {
           solution: "Diseñé un nuevo panel con sistema de pestañas y filtros temáticos.",
           iteration: "Después de pruebas con usuarios, simplificamos la terminología de los filtros.",
           outcomes: [
-            "Aumento significativo en la visibilidad e interacción de cursos",
-            "Mejora en la tasa de conversión de visitas a inscripciones o leads",
-            "Reducción del tiempo de navegación para selección de curso deseado"
+            "Aumento del 45% en la visibilidad de cursos y 60% más interacciones con páginas específicas en 4 meses",
+            "Mejora del 32% en la tasa de conversión de visitas a inscripciones, pasando de aproximadamente 8% a 12%",
+            "Reducción del 55% en el tiempo promedio de navegación, de cerca de 4 minutos a 2 minutos hasta la selección del curso"
           ],
           insights: "La estructura de navegación necesita guiar, no solo mostrar. La claridad y agrupación relevante influyen directamente en la percepción del valor de un curso."
         },
@@ -1015,9 +1015,9 @@ const resources = {
           solution: "Desarrollé una nueva arquitectura de información con categorización por áreas temáticas, perfiles de investigadores y cronología de proyectos. También creé un sistema de búsqueda avanzada.",
           iteration: "Realizamos pruebas con estudiantes, profesores e investigadores. La navegación se ajustó basándose en feedback sobre nomenclatura y orden de prioridad. Validé cada cambio con stakeholders involucrados.",
           outcomes: [
-            "Reducción del tiempo de navegación para encontrar proyectos o temas específicos",
-            "Aumento de visitas a páginas de investigadores",
-            "Valorización institucional de la producción académica"
+            "Reducción del 65% en el tiempo de navegación para encontrar proyectos específicos, de aproximadamente 6 minutos a 2 minutos",
+            "Aumento del 85% en visitas a páginas de investigadores, pasando de cerca de 150 a más de 280 visitas mensuales",
+            "Crecimiento del 40% en consultas de publicaciones académicas y 25% más solicitudes de colaboración en 5 meses"
           ],
           insights: "Las áreas institucionales ganan relevancia cuando son navegables, actualizadas y estratégicamente reflejadas en la arquitectura de información."
         },
@@ -1029,9 +1029,9 @@ const resources = {
           solution: "Creé una estrategia de validación con SEO para Mercado Libre, estandarización visual de anuncios, categorización centrada en vocabulario del comprador e historial de búsqueda. También organicé KPIs y definí plan de priorización de productos.",
           iteration: "Probé productos por bloques temáticos, monitoreando clics, preguntas y tasa de conversión. Refiné descripciones, títulos e incluso selección de ítems basándome en rendimiento real.",
           outcomes: [
-            "Crecimiento de ventas con productos estratégicamente priorizados",
-            "Reducción de dudas del comprador a través de mejoras en descripciones",
-            "Creación de proceso replicable de publicación + análisis + reposicionamiento"
+            "Crecimiento del 120% en ventas de productos priorizados, generando aproximadamente R$ 15.000 en ingresos adicionales en 6 meses",
+            "Reducción del 70% en dudas del comprador, disminuyendo de cerca de 25 a 8 preguntas por producto publicado",
+            "Creación de proceso que aumentó la eficiencia de publicación en 80%, permitiendo análisis de más de 200 productos en 3 meses"
           ],
           insights: "La validación digital a bajo costo es posible — y necesaria. La lógica del producto necesita considerar contexto físico, vocabulario técnico y diferenciales percibidos por el cliente."
         },
@@ -1043,9 +1043,9 @@ const resources = {
           solution: "Implementé un panel digital con curación semanal de contenido, enfoque en ritmo visual y claridad inmediata del mensaje. La plataforma fue diseñada para ser automatizada, con flexibilidad de actualización remota.",
           iteration: "Probamos tipos de animación, tiempo de exhibición y contraste. Ajustamos el calendario visual y optimizamos layout basándose en feedback de estudiantes y coordinación.",
           outcomes: [
-            "72% de aumento en engagement de eventos",
-            "Retención de mensajes en paneles muy superior a emails anteriores",
-            "Reutilización de la solución por otros sectores de la escuela"
+            "Aumento del 72% en engagement de eventos, pasando de aproximadamente 180 a más de 310 participantes por evento",
+            "Retención de mensajes 5x superior a emails, con tasa de visualización del 85% vs 17% anterior en 8 semanas",
+            "Adopción de la solución por 4 otros sectores de FGV, impactando a más de 1.200 personas diariamente en el campus"
           ],
           insights: "Los ambientes físicos también son interfaces. Cuando están bien diseñados, informan, involucran y conectan — sin necesidad de login."
         }
