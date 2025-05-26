@@ -31,32 +31,25 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://images.unsplash.com">
 
-    <!-- Preload critical resources for LCP -->
+    <!-- Preload critical image for LCP -->
     <link rel="preload" as="image" href="/portfolio/images/tarcisio_bispo.webp" type="image/webp">
-    <link rel="preload" as="image" href="/portfolio/images/tarcisio_bispo.png" type="image/png">
-    <link rel="preload" as="script" href="data:application/octet-stream;base64,aW1wb3J0ICcuL3JlYWN0LWZpeCcNCmltcG9ydCAqIGFzIFJlYWN0IGZyb20gJ3JlYWN0Jw0KaW1wb3J0ICogYXMgUmVhY3RET00gZnJvbSAncmVhY3QtZG9tL2NsaWVudCcNCmltcG9ydCBBcHAgZnJvbSAnLi9BcHAudHN4Jw0KaW1wb3J0ICcuL3N0eWxlcy9jcml0aWNhbC5jc3MnIC8vIENyaXRpY2FsIENTUyBmaXJzdCBmb3IgTENQDQppbXBvcnQgJy4vaW5kZXguY3NzJw0KaW1wb3J0ICcuL3N0eWxlcy90aGVtZS10cmFuc2l0aW9ucy5jc3MnDQppbXBvcnQgJy4vc3R5bGVzL2J1dHRvbnMuY3NzJw0KaW1wb3J0ICcuL3N0eWxlcy9jYXJkcy5jc3MnDQppbXBvcnQgJy4vc3R5bGVzL2FjY2Vzc2liaWxpdHkuY3NzJw0KaW1wb3J0IHsgVGhlbWVQcm92aWRlciB9IGZyb20gJy4vY29tcG9uZW50cy9wcm92aWRlcnMvVGhlbWVQcm92aWRlcicNCg0KLy8gTGF6eSBsb2FkIGkxOG4gdG8gbm90IGJsb2NrIGluaXRpYWwgcmVuZGVyDQpjb25zdCBsb2FkSTE4biA9ICgpID0+IGltcG9ydCgnLi9pMThuL2NvbmZpZycpOw0KDQovLyBHYXJhbnRpciBxdWUgUmVhY3QgZXN0w6EgZGlzcG9uw612ZWwgZ2xvYmFsbWVudGUNCmlmICh0eXBlb2Ygd2luZG93ICE9PSAndW5kZWZpbmVkJykgew0KICAod2luZG93IGFzIGFueSkuUmVhY3QgPSBSZWFjdDsNCn0NCg0KY29uc3Qgcm9vdEVsZW1lbnQgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncm9vdCcpOw0KaWYgKCFyb290RWxlbWVudCkgew0KICB0aHJvdyBuZXcgRXJyb3IoJ1Jvb3QgZWxlbWVudCBub3QgZm91bmQnKTsNCn0NCg0KLy8gUmVuZGVyaXphciBhcHAgaW1lZGlhdGFtZW50ZSBwYXJhIG1lbGhvciBMQ1ANCmNvbnN0IHJvb3QgPSBSZWFjdERPTS5jcmVhdGVSb290KHJvb3RFbGVtZW50KTsNCg0KLy8gUmVuZGVyIGltbWVkaWF0ZWx5IHdpdGggY3JpdGljYWwgY29udGVudA0Kcm9vdC5yZW5kZXIoDQogIDxSZWFjdC5TdHJpY3RNb2RlPg0KICAgIDxUaGVtZVByb3ZpZGVyIGRlZmF1bHRUaGVtZT0ic3lzdGVtIiBzdG9yYWdlS2V5PSJwb3J0Zm9saW8tdGhlbWUiPg0KICAgICAgPEFwcCAvPg0KICAgIDwvVGhlbWVQcm92aWRlcj4NCiAgPC9SZWFjdC5TdHJpY3RNb2RlPg0KKTsNCg0KLy8gTG9hZCBpMThuIGFmdGVyIGluaXRpYWwgcmVuZGVyIHRvIG5vdCBibG9jayBMQ1ANCmNvbnN0IHNjaGVkdWxlSTE4bkxvYWQgPSAoKSA9PiB7DQogIGlmICgncmVxdWVzdElkbGVDYWxsYmFjaycgaW4gd2luZG93KSB7DQogICAgcmVxdWVzdElkbGVDYWxsYmFjaygoKSA9PiB7DQogICAgICBsb2FkSTE4bigpLmNhdGNoKGNvbnNvbGUuZXJyb3IpOw0KICAgIH0sIHsgdGltZW91dDogMTAwMCB9KTsNCiAgfSBlbHNlIHsNCiAgICBzZXRUaW1lb3V0KCgpID0+IHsNCiAgICAgIGxvYWRJMThuKCkuY2F0Y2goY29uc29sZS5lcnJvcik7DQogICAgfSwgMTAwKTsNCiAgfQ0KfTsNCg0Kc2NoZWR1bGVJMThuTG9hZCgpOw0K">
+    <link rel="preload" as="image" href="/portfolio/images/tarcisio_bispo.png" type="image/png">
 
 
 
-    <!-- Fontes otimizadas para LCP - carregamento crítico -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&subset=latin&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <!-- Fontes otimizadas para performance -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&subset=latin&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&subset=latin&display=swap" rel="stylesheet"></noscript>
-
-    <!-- Fallback font para evitar FOIT -->
-    <style>
-      body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-      .font-loaded body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-    </style>
-    <script type="module" crossorigin src="/portfolio/js/index-kmGp91FN.js"></script>
-    <link rel="modulepreload" crossorigin href="/portfolio/js/chunk-DJqUFuPP.js">
-    <link rel="modulepreload" crossorigin href="/portfolio/js/chunk-D3Ns84uO.js">
-    <link rel="modulepreload" crossorigin href="/portfolio/js/chunk-L3uak9dD.js">
-    <link rel="modulepreload" crossorigin href="/portfolio/js/chunk-oy1jMaet.js">
-    <link rel="modulepreload" crossorigin href="/portfolio/js/chunk-Boc20JEh.js">
-    <link rel="modulepreload" crossorigin href="/portfolio/js/chunk-DylKGAq6.js">
-    <link rel="modulepreload" crossorigin href="/portfolio/js/chunk-CS50z45r.js">
+    <script type="module" crossorigin src="/portfolio/js/index-Dl9hO6Ht.js"></script>
+    <link rel="modulepreload" crossorigin href="/portfolio/js/chunk-DEAn_aty.js">
+    <link rel="modulepreload" crossorigin href="/portfolio/js/chunk-CKCyFj10.js">
+    <link rel="modulepreload" crossorigin href="/portfolio/js/chunk-BIs0iv2y.js">
+    <link rel="modulepreload" crossorigin href="/portfolio/js/chunk-jfxh2Kht.js">
+    <link rel="modulepreload" crossorigin href="/portfolio/js/chunk-BO1EbHr3.js">
+    <link rel="modulepreload" crossorigin href="/portfolio/js/chunk-CekayOl3.js">
+    <link rel="modulepreload" crossorigin href="/portfolio/js/chunk-gh87Ez_i.js">
     <link rel="modulepreload" crossorigin href="/portfolio/js/chunk-BKy2Or7W.js">
-    <link rel="stylesheet" crossorigin href="/portfolio/css/index-3UpPrz15.css">
+    <link rel="stylesheet" crossorigin href="/portfolio/css/index-CXpiag2E.css">
   </head>
 
   <body style="font-family: 'Inter', sans-serif;">
