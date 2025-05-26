@@ -1,0 +1,245 @@
+/* ===== UNIFIED HERO BACKGROUND SYSTEM ===== */
+
+/* Base background system - applies hero style uniformly across entire page */
+.unified-hero-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -10;
+  overflow: hidden;
+}
+
+.unified-hero-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.03) 0%,
+    rgba(147, 51, 234, 0.02) 25%,
+    rgba(236, 72, 153, 0.03) 50%,
+    rgba(59, 130, 246, 0.02) 75%,
+    rgba(147, 51, 234, 0.03) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  z-index: -1;
+}
+
+.dark .unified-hero-bg::before {
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.05) 0%,
+    rgba(147, 51, 234, 0.04) 25%,
+    rgba(236, 72, 153, 0.05) 50%,
+    rgba(59, 130, 246, 0.04) 75%,
+    rgba(147, 51, 234, 0.05) 100%
+  );
+  background-size: 400% 400%;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Section variations - subtle color differences while maintaining hero style */
+.section-hero {
+  position: relative;
+  z-index: 1;
+}
+
+.section-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.01) 0%,
+    rgba(147, 51, 234, 0.008) 50%,
+    rgba(59, 130, 246, 0.01) 100%
+  );
+  z-index: -1;
+  pointer-events: none;
+}
+
+.section-projects {
+  position: relative;
+  z-index: 1;
+}
+
+.section-projects::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(147, 51, 234, 0.01) 0%,
+    rgba(236, 72, 153, 0.008) 50%,
+    rgba(147, 51, 234, 0.01) 100%
+  );
+  z-index: -1;
+  pointer-events: none;
+}
+
+.section-backlog {
+  position: relative;
+  z-index: 1;
+}
+
+.section-backlog::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(236, 72, 153, 0.01) 0%,
+    rgba(59, 130, 246, 0.008) 50%,
+    rgba(236, 72, 153, 0.01) 100%
+  );
+  z-index: -1;
+  pointer-events: none;
+}
+
+.section-contact {
+  position: relative;
+  z-index: 1;
+}
+
+.section-contact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.012) 0%,
+    rgba(147, 51, 234, 0.01) 50%,
+    rgba(59, 130, 246, 0.012) 100%
+  );
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Dark mode adjustments for sections */
+.dark .section-hero::before {
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.015) 0%,
+    rgba(147, 51, 234, 0.012) 50%,
+    rgba(59, 130, 246, 0.015) 100%
+  );
+}
+
+.dark .section-projects::before {
+  background: linear-gradient(
+    135deg,
+    rgba(147, 51, 234, 0.015) 0%,
+    rgba(236, 72, 153, 0.012) 50%,
+    rgba(147, 51, 234, 0.015) 100%
+  );
+}
+
+.dark .section-backlog::before {
+  background: linear-gradient(
+    135deg,
+    rgba(236, 72, 153, 0.015) 0%,
+    rgba(59, 130, 246, 0.012) 50%,
+    rgba(236, 72, 153, 0.015) 100%
+  );
+}
+
+.dark .section-contact::before {
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.018) 0%,
+    rgba(147, 51, 234, 0.015) 50%,
+    rgba(59, 130, 246, 0.018) 100%
+  );
+}
+
+/* Responsive design improvements with proper alignment */
+.page-container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* Permite que o conteúdo use toda a largura */
+  justify-content: flex-start; /* Alinhamento normal do topo */
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+
+.content-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 2;
+  display: block; /* Layout normal em vez de flex */
+}
+
+/* Fix for main content normal layout */
+#main-content {
+  width: 100%;
+  display: block; /* Layout normal */
+  padding: 2rem 0;
+}
+
+@media (min-width: 640px) {
+  .content-wrapper {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .content-wrapper {
+    padding: 0 2rem;
+  }
+}
+
+/* Accessibility - respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .unified-hero-bg::before {
+    animation: none;
+  }
+
+  .section-hero::before,
+  .section-projects::before,
+  .section-backlog::before,
+  .section-contact::before {
+    background: static;
+  }
+}
+
+/* Performance optimizations */
+.unified-hero-bg,
+.unified-hero-bg::before,
+.section-hero::before,
+.section-projects::before,
+.section-backlog::before,
+.section-contact::before {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform;
+}

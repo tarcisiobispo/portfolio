@@ -1,0 +1,249 @@
+/* ===== SECTION BACKGROUND SYSTEM ===== */
+/* SEO-inspired backgrounds for section differentiation */
+
+/* ===== BASE SECTION STYLING ===== */
+.section-base {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* ===== SEO HERO BACKGROUND ===== */
+.seo-hero-bg {
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.03) 0%,
+    rgba(147, 51, 234, 0.02) 25%,
+    rgba(236, 72, 153, 0.03) 50%,
+    rgba(59, 130, 246, 0.02) 75%,
+    rgba(147, 51, 234, 0.03) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+.seo-hero-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ===== SEO PROJECTS BACKGROUND ===== */
+.seo-projects-bg {
+  background: linear-gradient(
+    180deg,
+    rgba(34, 197, 94, 0.02) 0%,
+    rgba(59, 130, 246, 0.03) 50%,
+    rgba(168, 85, 247, 0.02) 100%
+  );
+  position: relative;
+}
+
+.seo-projects-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(45deg, transparent 40%, rgba(34, 197, 94, 0.05) 50%, transparent 60%),
+    linear-gradient(-45deg, transparent 40%, rgba(59, 130, 246, 0.05) 50%, transparent 60%);
+  background-size: 60px 60px;
+  animation: slidePattern 20s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ===== SEO BACKLOG BACKGROUND ===== */
+.seo-backlog-bg {
+  background: linear-gradient(
+    45deg,
+    rgba(245, 158, 11, 0.02) 0%,
+    rgba(239, 68, 68, 0.02) 25%,
+    rgba(168, 85, 247, 0.03) 50%,
+    rgba(34, 197, 94, 0.02) 75%,
+    rgba(59, 130, 246, 0.02) 100%
+  );
+  position: relative;
+}
+
+.seo-backlog-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(245, 158, 11, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(168, 85, 247, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ===== SEO CONTACT BACKGROUND ===== */
+.seo-contact-bg {
+  background: linear-gradient(
+    135deg,
+    rgba(16, 185, 129, 0.03) 0%,
+    rgba(59, 130, 246, 0.02) 50%,
+    rgba(139, 92, 246, 0.03) 100%
+  );
+  position: relative;
+}
+
+.seo-contact-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    conic-gradient(from 0deg at 50% 50%, 
+      rgba(16, 185, 129, 0.05) 0deg, 
+      transparent 60deg, 
+      rgba(59, 130, 246, 0.05) 120deg, 
+      transparent 180deg, 
+      rgba(139, 92, 246, 0.05) 240deg, 
+      transparent 300deg, 
+      rgba(16, 185, 129, 0.05) 360deg);
+  background-size: 200px 200px;
+  animation: rotatePattern 30s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ===== ALTERNATIVE SUBTLE BACKGROUNDS ===== */
+
+/* Minimal Dot Pattern */
+.subtle-dots-bg {
+  background-image: radial-gradient(circle, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+}
+
+/* Minimal Grid Pattern */
+.subtle-grid-bg {
+  background-image: 
+    linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Minimal Wave Pattern */
+.subtle-wave-bg {
+  background: linear-gradient(
+    90deg,
+    rgba(59, 130, 246, 0.02) 0%,
+    rgba(147, 51, 234, 0.02) 50%,
+    rgba(59, 130, 246, 0.02) 100%
+  );
+  background-size: 200px 100%;
+  animation: waveMove 10s ease-in-out infinite;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes slidePattern {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(60px); }
+}
+
+@keyframes rotatePattern {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes waveMove {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ===== DARK MODE ADAPTATIONS ===== */
+.dark .seo-hero-bg {
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.05) 0%,
+    rgba(147, 51, 234, 0.03) 25%,
+    rgba(236, 72, 153, 0.05) 50%,
+    rgba(59, 130, 246, 0.03) 75%,
+    rgba(147, 51, 234, 0.05) 100%
+  );
+}
+
+.dark .seo-projects-bg {
+  background: linear-gradient(
+    180deg,
+    rgba(34, 197, 94, 0.03) 0%,
+    rgba(59, 130, 246, 0.05) 50%,
+    rgba(168, 85, 247, 0.03) 100%
+  );
+}
+
+.dark .seo-contact-bg {
+  background: linear-gradient(
+    135deg,
+    rgba(16, 185, 129, 0.05) 0%,
+    rgba(59, 130, 246, 0.03) 50%,
+    rgba(139, 92, 246, 0.05) 100%
+  );
+}
+
+/* ===== ACCESSIBILITY & REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  .seo-hero-bg,
+  .seo-projects-bg::before,
+  .seo-contact-bg::before,
+  .subtle-wave-bg {
+    animation: none;
+  }
+  
+  .seo-hero-bg::before,
+  .seo-projects-bg::before,
+  .seo-backlog-bg::before,
+  .seo-contact-bg::before {
+    animation: none;
+  }
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+.seo-hero-bg,
+.seo-projects-bg,
+.seo-backlog-bg,
+.seo-contact-bg {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.seo-hero-bg::before,
+.seo-projects-bg::before,
+.seo-backlog-bg::before,
+.seo-contact-bg::before {
+  will-change: transform;
+  contain: layout style paint;
+}
+
+/* ===== UTILITY CLASSES ===== */
+.bg-section-hero { @apply seo-hero-bg; }
+.bg-section-projects { @apply seo-projects-bg; }
+.bg-section-backlog { @apply seo-backlog-bg; }
+.bg-section-contact { @apply seo-contact-bg; }
+.bg-section-subtle-dots { @apply subtle-dots-bg; }
+.bg-section-subtle-grid { @apply subtle-grid-bg; }
+.bg-section-subtle-wave { @apply subtle-wave-bg; }
