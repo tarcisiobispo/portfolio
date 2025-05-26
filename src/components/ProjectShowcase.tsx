@@ -76,9 +76,9 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
             {/* Conteúdo */}
             <div className="project-card-content">
               {/* Título */}
-              <h3 id={`project-title-${index}`} className="project-card-title">
+              <h2 id={`project-title-${index}`} className="project-card-title">
                 {t(`projects.${project.projectKey}.title`)}
-              </h3>
+              </h2>
 
               {/* Descrição */}
               <p className="project-card-description">

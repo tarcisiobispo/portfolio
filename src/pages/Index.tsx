@@ -64,7 +64,7 @@ const Index = () => {
       structuredData={mainPageSchema}
     />
     <SkipLink />
-    <main id="main-content" className="flex-1 w-full bg-white dark:bg-gray-900 transition-colors duration-300">
+    <main id="main-content" className="flex-1 w-full relative transition-colors duration-300">
       {/* Hero Section */}
       <div id="perfil" className="relative overflow-hidden">
 
@@ -94,7 +94,7 @@ const Index = () => {
       </section>
 
       {/* Backlog Cycle Section */}
-      <section id="backlog" className="py-12 relative bg-gray-50 dark:bg-gray-800 transition-colors duration-300" aria-labelledby="backlog-heading">
+      <section id="backlog" className="py-12 relative transition-colors duration-300" aria-labelledby="backlog-heading">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

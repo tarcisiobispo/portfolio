@@ -13,6 +13,8 @@ import Header from "@/components/Header";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import AnalyticsProvider from "@/components/analytics/AnalyticsProvider";
 import DebugTranslations from "@/components/DebugTranslations";
+import FluidGradientBackground, { GradientSectionIndicator } from "@/components/FluidGradientBackground";
+import FluidGradientDemo from "@/components/examples/FluidGradientDemo";
 
 
 // Lazy loading dos componentes de página para code splitting
@@ -44,6 +46,13 @@ const App = () => {
 
           {/* Debug Translations - apenas em desenvolvimento */}
           {import.meta.env.DEV && <DebugTranslations />}
+
+          {/* Sistema de Gradientes Fluidos */}
+          <FluidGradientBackground />
+
+          {/* Indicador de Seção (apenas em desenvolvimento) */}
+          {import.meta.env.DEV && <GradientSectionIndicator />}
+          {import.meta.env.DEV && <FluidGradientDemo />}
 
           {/* UX Premium Components */}
           <BackToTop />

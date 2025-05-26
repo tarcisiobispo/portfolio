@@ -3,6 +3,7 @@
 @import './styles/toast-optimizations.css';
 @import './styles/visual-enhancements.css';
 @import './styles/wcag-compliance.css';
+@import './styles/fluid-gradients.css';
 
 /* ===== TAILWIND CSS ===== */
 @tailwind base;
