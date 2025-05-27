@@ -16,7 +16,17 @@
     "exploreProjects": "Explore projetos",
     "letsChat": "Vamos Conversar",
     "downloadCV": "Download CV",
-    "linkedin": "LinkedIn"
+    "linkedin": "LinkedIn",
+    "hero": {
+      "greeting": "Olá, eu sou",
+      "subtitle": "Sou UX/Product Designer com forte atuação no design de produtos digitais focados em experiência do usuário, conversão e impacto de negócio",
+      "roles": {
+        "uxDesigner": "UX Designer",
+        "productDesigner": "Product Designer",
+        "designStrategist": "Design Strategist",
+        "interactionDesigner": "Interaction Designer"
+      }
+    }
   },
   "projects": {
     "title": "Projetos",
