@@ -7,6 +7,7 @@ import CriticalBio from '@/components/CriticalBio';
 import { Download, Linkedin, ArrowRight, MapPin, Mail, Phone, MessageCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { getProfileImagePaths } from '@/utils/assetPaths';
+import { useTypewriterLCPOptimization } from '@/hooks/useLCPOptimization';
 import '@/styles/profile-card.css';
 
 // Ícone do WhatsApp
@@ -32,6 +33,7 @@ interface ProfileProps {
 const Profile: React.FC<ProfileProps> = ({ name }) => {
   const { t } = useTranslation();
   const profileImages = getProfileImagePaths();
+  const { showTypewriter, isLCPComplete } = useTypewriterLCPOptimization();
 
   return (
     <section className="min-h-screen flex flex-col justify-center py-16 relative" aria-labelledby="profile-title">
@@ -121,42 +123,51 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
           </div>
         </motion.div>
 
-        {/* Bio Section Moderna */}
-        <motion.div
-          className="lg:col-span-8 flex flex-col justify-center"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          {/* Título Principal com Typewriter */}
+        {/* Bio Section Moderna - LCP Optimized */}
+        <div className="lg:col-span-8 flex flex-col justify-center">
+          {/* Título Principal - Renderização Imediata para LCP */}
           <div className="mb-8">
-            <h1 id="profile-title" className="text-4xl lg:text-6xl font-bold mb-4 leading-tight">
+            <h1
+              id="profile-title"
+              className="text-4xl lg:text-6xl font-bold mb-4 leading-tight"
+              style={{
+                contentVisibility: 'visible',
+                containIntrinsicSize: 'auto 200px',
+                willChange: 'auto',
+                transform: 'translateZ(0)',
+                contain: 'layout style paint'
+              }}
+            >
               <span className="text-gray-900 dark:text-white">Olá, eu sou </span>
               <br />
-              <TypewriterText
-                sequence={[
-                  'UX Designer',
-                  2000,
-                  'Product Designer',
-                  2000,
-                  'Design Strategist',
-                  2000,
-                  'Interaction Designer',
-                  2000
-                ]}
-                className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent"
-                speed={50}
-                repeat={0}
-              />
+              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
+                {showTypewriter ? (
+                  <Suspense fallback="UX Designer">
+                    <TypewriterText
+                      sequence={[
+                        'UX Designer',
+                        2000,
+                        'Product Designer',
+                        2000,
+                        'Design Strategist',
+                        2000,
+                        'Interaction Designer',
+                        2000
+                      ]}
+                      className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent"
+                      speed={50}
+                      repeat={0}
+                      preRenderFirstString={true}
+                    />
+                  </Suspense>
+                ) : (
+                  'UX Designer'
+                )}
+              </span>
             </h1>
 
-            {/* Linha Animada */}
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: "120px" }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-6"
-            ></motion.div>
+            {/* Linha Decorativa - Renderização Imediata */}
+            <div className="h-1 w-[120px] bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-6"></div>
           </div>
 
           {/* Bio Text - Critical for LCP */}
@@ -206,7 +217,7 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
               {t('profile.linkedin')}
             </CTAButton>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
