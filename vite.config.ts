@@ -187,6 +187,10 @@ export default defineConfig({
   server: {
     fs: {
       strict: false
+    },
+    // Headers de cache para desenvolvimento
+    headers: {
+      'Cache-Control': 'public, max-age=31536000' // 1 ano para assets com hash
     }
   }
 });

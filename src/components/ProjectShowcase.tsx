@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Eye, EyeOff } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -15,13 +15,13 @@ interface ProjectShowcaseProps {
   projects: ProjectDetails[];
 }
 
-const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
+const ProjectShowcase: React.FC<ProjectShowcaseProps> = memo(({ projects }) => {
   const [activeProject, setActiveProject] = useState<number | null>(null);
   const { t } = useTranslation();
 
-  const toggleProject = (index: number) => {
+  const toggleProject = useCallback((index: number) => {
     setActiveProject(activeProject === index ? null : index);
-  };
+  }, [activeProject]);
 
   return (
     <section className="w-full">
@@ -268,6 +268,8 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
       </div>
     </section>
   );
-};
+});
+
+ProjectShowcase.displayName = 'ProjectShowcase';
 
 export default ProjectShowcase;
