@@ -191,10 +191,12 @@ const resources = {
           success: "Mensagem enviada com sucesso!",
           error: "Erro ao enviar mensagem. Tente novamente.",
           nameRequired: "Nome é obrigatório",
+          nameMinLength: "Nome deve ter pelo menos 2 caracteres",
           emailRequired: "E-mail é obrigatório",
           emailInvalid: "E-mail inválido",
           subjectRequired: "Assunto é obrigatório",
-          messageRequired: "Mensagem é obrigatória"
+          messageRequired: "Mensagem é obrigatória",
+          messageMinLength: "Mensagem deve ter pelo menos 10 caracteres"
         },
         info: {
           email: "tbisp0@hotmail.com",
@@ -456,8 +458,8 @@ const resources = {
           email: "Seu e-mail (opcional)",
           send: "Enviar feedback",
           sending: "Enviando...",
-          success: "Feedback enviado com sucesso!",
-          error: "Erro ao enviar feedback. Tente novamente.",
+          success: "🎉 Obrigado pelo seu feedback! Sua opinião é muito importante para melhorar a experiência.",
+          error: "❌ Ops! Não conseguimos enviar seu feedback. Tente novamente ou entre em contato diretamente.",
           messageRequired: "Mensagem é obrigatória"
         },
         types: {
@@ -606,28 +608,22 @@ const resources = {
         of: "of",
         items: [
           {
-            challenge: "Users abandoned cart at payment step",
-            solution: "I redesigned checkout flow with fewer steps and real-time validation",
-            result: "35% reduction in cart abandonment rate",
-            note: "Simplicity in purchase process is fundamental for conversion"
+            challenge: "FGV needed to increase visibility of courses, lectures and institutional updates.",
+            solution: "The solution was to implement a strategic digital panel in the institution's hall, with content curation and automated updates.",
+            result: "72% increase in face-to-face engagement and greater institutional perception.",
+            note: "I understood that to communicate efficiently in physical environments, content needs to be thought of as a living interface: visual rhythm, contextual relevance and immediate clarity make all the difference in attention and message retention."
           },
           {
-            challenge: "Low loyalty program adoption",
-            solution: "I created a gamification system with visual rewards and clear progression",
-            result: "60% increase in program enrollments",
-            note: "Immediate visual feedback motivates continuous engagement"
+            challenge: "At Taliparts, the titles and descriptions of ads on Mercado Livre were not optimized for SEO on Mercado Livre.",
+            solution: "I restructured titles based on SEO practices specific to marketplaces and tested descriptions with frequent keywords.",
+            result: "Significant improvement in offer positioning and more than 20% increase in organic traffic in 6 months.",
+            note: "In the marketplace, SEO is as important as price — it's what brings the click."
           },
           {
-            challenge: "Users difficulty finding specific products",
-            solution: "I implemented smart search with contextual filters and automatic suggestions",
-            result: "45% improvement in search conversion rate",
-            note: "Search should anticipate user intention"
-          },
-          {
-            challenge: "Complex interface caused user confusion",
-            solution: "I simplified navigation with clear visual hierarchy and fewer options per screen",
-            result: "50% reduction in support requests",
-            note: "Fewer options can mean more clarity and efficiency"
+            challenge: "At FGV some pages had dense institutional content that kept users from reading in full.",
+            solution: "I applied UX writing techniques (scannability, objective titles, visual lists) to key pages.",
+            result: "Average reading time increased and there was a drop in page abandonment.",
+            note: "Small decisions in text have great impact on reading experience and comprehension."
           }
         ]
       },
@@ -647,13 +643,15 @@ const resources = {
           privacy: "Your data will not be shared and will only be used to respond to your message.",
           send: "Send message",
           sending: "Sending...",
-          success: "Message sent successfully!",
-          error: "Error sending message. Please try again.",
+          success: "🎉 Thank you for your message! I'll get back to you soon. Your contact is very important to me.",
+          error: "❌ Oops! I couldn't send your message. Please try again or contact me directly at tbisp0@hotmail.com.",
           nameRequired: "Name is required",
+          nameMinLength: "Name must be at least 2 characters",
           emailRequired: "Email is required",
           emailInvalid: "Invalid email",
           subjectRequired: "Subject is required",
-          messageRequired: "Message is required"
+          messageRequired: "Message is required",
+          messageMinLength: "Message must be at least 10 characters"
         },
         info: {
           email: "tbisp0@hotmail.com",
@@ -934,8 +932,8 @@ const resources = {
           email: "Your email (optional)",
           send: "Send feedback",
           sending: "Sending...",
-          success: "Feedback sent successfully!",
-          error: "Error sending feedback. Please try again.",
+          success: "🎉 Thank you for your feedback! Your opinion is very important to improve the experience.",
+          error: "❌ Oops! We couldn't send your feedback. Please try again or contact directly.",
           messageRequired: "Message is required"
         },
         types: {
@@ -1066,28 +1064,22 @@ const resources = {
         of: "de",
         items: [
           {
-            challenge: "Usuarios abandonaban carrito en paso de pago",
-            solution: "Rediseñé flujo de checkout con menos pasos y validación en tiempo real",
-            result: "35% de reducción en tasa de abandono de carrito",
-            note: "La simplicidad en el proceso de compra es fundamental para conversión"
+            challenge: "FGV necesitaba aumentar la visibilidad de cursos, conferencias y actualizaciones institucionales.",
+            solution: "La solución fue implementar un panel digital estratégico en el hall de la institución, con curaduría de contenido y actualización automatizada.",
+            result: "Aumento del 72% en el engagement presencial y mayor percepción institucional.",
+            note: "Entendí que para comunicar eficientemente en ambientes físicos, el contenido necesita ser pensado como una interfaz viva: ritmo visual, relevancia contextual y claridad inmediata hacen toda la diferencia en la atención y retención del mensaje."
           },
           {
-            challenge: "Baja adopción del programa de fidelidad",
-            solution: "Creé sistema de gamificación con recompensas visuales y progresión clara",
-            result: "60% de aumento en inscripciones al programa",
-            note: "El feedback visual inmediato motiva el engagement continuo"
+            challenge: "En Taliparts, los títulos y descripciones de anuncios en Mercado Libre no estaban optimizados para SEO en Mercado Libre.",
+            solution: "Reestructuré títulos basándome en prácticas de SEO específicas para marketplaces y probé descripciones con palabras clave frecuentes.",
+            result: "Mejora significativa en el posicionamiento de ofertas y más del 20% de aumento en tráfico orgánico en 6 meses.",
+            note: "En el marketplace, el SEO es tan importante como el precio — es lo que trae el clic."
           },
           {
-            challenge: "Dificultad de usuarios para encontrar productos específicos",
-            solution: "Implementé búsqueda inteligente con filtros contextuales y sugerencias automáticas",
-            result: "45% de mejora en tasa de conversión de búsqueda",
-            note: "La búsqueda debe anticipar la intención del usuario"
-          },
-          {
-            challenge: "Interfaz compleja causaba confusión en usuarios",
-            solution: "Simplifiqué navegación con jerarquía visual clara y menos opciones por pantalla",
-            result: "50% de reducción en solicitudes de soporte",
-            note: "Menos opciones pueden significar más claridad y eficiencia"
+            challenge: "En FGV algunas páginas tenían contenido institucional denso que impedía a los usuarios leer completamente.",
+            solution: "Apliqué técnicas de UX writing (escaneabilidad, títulos objetivos, listas visuales) en páginas clave.",
+            result: "Aumentó el tiempo promedio de lectura y hubo una caída en el abandono de páginas.",
+            note: "Pequeñas decisiones en el texto tienen gran impacto en la experiencia de lectura y comprensión."
           }
         ]
       },
@@ -1107,13 +1099,15 @@ const resources = {
           privacy: "Tus datos no serán compartidos y solo se usarán para responder tu mensaje.",
           send: "Enviar mensaje",
           sending: "Enviando...",
-          success: "¡Mensaje enviado con éxito!",
-          error: "Error al enviar mensaje. Por favor intenta de nuevo.",
+          success: "🎉 ¡Gracias por tu mensaje! Te responderé pronto. Tu contacto es muy importante para mí.",
+          error: "❌ ¡Ups! No pude enviar tu mensaje. Intenta de nuevo o contáctame directamente a tbisp0@hotmail.com.",
           nameRequired: "El nombre es obligatorio",
+          nameMinLength: "El nombre debe tener al menos 2 caracteres",
           emailRequired: "El email es obligatorio",
           emailInvalid: "Email inválido",
           subjectRequired: "El asunto es obligatorio",
-          messageRequired: "El mensaje es obligatorio"
+          messageRequired: "El mensaje es obligatorio",
+          messageMinLength: "El mensaje debe tener al menos 10 caracteres"
         },
         info: {
           email: "tbisp0@hotmail.com",
@@ -1394,8 +1388,8 @@ const resources = {
           email: "Tu email (opcional)",
           send: "Enviar feedback",
           sending: "Enviando...",
-          success: "¡Feedback enviado con éxito!",
-          error: "Error al enviar feedback. Por favor intenta de nuevo.",
+          success: "🎉 ¡Gracias por tu feedback! Tu opinión es muy importante para mejorar la experiencia.",
+          error: "❌ ¡Ups! No pudimos enviar tu feedback. Intenta de nuevo o contacta directamente.",
           messageRequired: "El mensaje es obligatorio"
         },
         types: {

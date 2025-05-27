@@ -1,8 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, User, MessageSquare, Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { Mail, User, MessageSquare, Send, CheckCircle, AlertCircle, Loader2, Check, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { toast } from 'sonner';
 import emailjs from 'emailjs-com';
 import CTAButton from '@/components/ui/CTAButton';
 
@@ -50,10 +49,32 @@ const Contact: React.FC = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const messageRef = useRef<HTMLTextAreaElement>(null);
 
-  // Validação de email
+  // Auto-hide da mensagem de sucesso após 4 segundos
+  useEffect(() => {
+    if (submitStatus === 'success') {
+      const timer = setTimeout(() => {
+        setSubmitStatus('idle');
+      }, 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [submitStatus]);
+
+  // Validação de email segura - usando API nativa do browser
   const isValidEmail = (email: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+    try {
+      // Validação básica de formato
+      if (!email || !email.includes('@') || email.length < 5) {
+        return false;
+      }
+
+      // Usar validação nativa do HTML5 que é mais segura
+      const input = document.createElement('input');
+      input.type = 'email';
+      input.value = email;
+      return input.validity.valid && input.value === email;
+    } catch {
+      return false;
+    }
   };
 
   // Validação dos campos
@@ -177,30 +198,33 @@ const Contact: React.FC = () => {
       setTouched({ name: false, email: false, message: false });
       setErrors({});
 
-      toast.success(t('contact.success.title'), {
-        description: t('contact.success.description'),
-        duration: 5000,
-      });
+      // REMOVIDO: toast flutuante - agora só mostra mensagem embaixo do botão
 
     } catch (error) {
       console.error('Erro ao enviar e-mail:', error);
       setSubmitStatus('error');
-      toast.error(t('contact.error.title'), {
-        description: t('contact.error.description'),
-        duration: 5000,
-      });
+      // REMOVIDO: toast flutuante - agora só mostra mensagem embaixo do botão
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  // Verificar se o formulário é válido - SIMPLES: só precisa ter o mínimo
+  // SUPER SIMPLES: só verifica se tem alguma coisa digitada
   const isFormValid = () => {
-    const hasName = formData.name.trim().length >= 2;
-    const hasEmail = formData.email.trim().length > 0 && formData.email.includes('@');
-    const hasMessage = formData.message.trim().length >= 10;
+    return formData.name.length > 0 &&
+           formData.email.length > 0 &&
+           formData.message.length > 0;
+  };
 
-    return hasName && hasEmail && hasMessage;
+  // Verificar se campo individual está válido (para mostrar linha verde + ✓)
+  const isFieldValid = (fieldName: keyof FormData): boolean => {
+    if (!touched[fieldName] || !formData[fieldName]) return false;
+    return !validateField(fieldName, formData[fieldName]);
+  };
+
+  // Verificar se campo tem erro (para mostrar linha vermelha + ✗)
+  const hasFieldError = (fieldName: keyof FormData): boolean => {
+    return touched[fieldName] && !!errors[fieldName];
   };
 
   return (
@@ -248,18 +272,24 @@ const Contact: React.FC = () => {
                 value={formData.name}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className={`w-full px-4 py-3 rounded-lg border transition-all duration-300 bg-[var(--color-surface)] text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent ${
-                  errors.name && touched.name
-                    ? 'border-[var(--color-error)] focus:ring-[var(--color-error)]'
+                className={`w-full px-4 py-3 rounded-lg border-2 transition-all duration-300 bg-[var(--color-surface)] text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent ${
+                  hasFieldError('name')
+                    ? 'border-red-500 focus:ring-red-500'
+                    : isFieldValid('name')
+                    ? 'border-green-500 focus:ring-green-500'
                     : 'border-[var(--color-border)] hover:border-[var(--color-primary)]/50'
                 }`}
                 placeholder={t('contact.form.namePlaceholder')}
-                aria-invalid={errors.name && touched.name ? 'true' : 'false'}
-                aria-describedby={errors.name && touched.name ? 'name-error' : undefined}
+                aria-invalid={hasFieldError('name') ? 'true' : 'false'}
+                aria-describedby={hasFieldError('name') ? 'name-error' : undefined}
                 autoComplete="name"
               />
-              {errors.name && touched.name && (
-                <AlertCircle className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[var(--color-error)]" aria-hidden="true" />
+              {/* Ícone de validação */}
+              {hasFieldError('name') && (
+                <X className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-red-500" aria-hidden="true" />
+              )}
+              {isFieldValid('name') && (
+                <Check className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-green-500" aria-hidden="true" />
               )}
             </div>
             {errors.name && touched.name && (
@@ -289,19 +319,25 @@ const Contact: React.FC = () => {
                 value={formData.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className={`w-full px-4 py-3 rounded-lg border transition-all duration-300 bg-[var(--color-surface)] text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent ${
-                  errors.email && touched.email
-                    ? 'border-[var(--color-error)] focus:ring-[var(--color-error)]'
+                className={`w-full px-4 py-3 rounded-lg border-2 transition-all duration-300 bg-[var(--color-surface)] text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent ${
+                  hasFieldError('email')
+                    ? 'border-red-500 focus:ring-red-500'
+                    : isFieldValid('email')
+                    ? 'border-green-500 focus:ring-green-500'
                     : 'border-[var(--color-border)] hover:border-[var(--color-primary)]/50'
                 }`}
                 placeholder={t('contact.form.emailPlaceholder')}
-                aria-invalid={errors.email && touched.email ? 'true' : 'false'}
-                aria-describedby={errors.email && touched.email ? 'email-error' : undefined}
+                aria-invalid={hasFieldError('email') ? 'true' : 'false'}
+                aria-describedby={hasFieldError('email') ? 'email-error' : undefined}
                 autoComplete="email"
                 inputMode="email"
               />
-              {errors.email && touched.email && (
-                <AlertCircle className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[var(--color-error)]" aria-hidden="true" />
+              {/* Ícone de validação */}
+              {hasFieldError('email') && (
+                <X className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-red-500" aria-hidden="true" />
+              )}
+              {isFieldValid('email') && (
+                <Check className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-green-500" aria-hidden="true" />
               )}
             </div>
             {errors.email && touched.email && (
@@ -331,18 +367,24 @@ const Contact: React.FC = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 rows={5}
-                className={`w-full px-4 py-3 rounded-lg border transition-all duration-300 bg-[var(--color-surface)] text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent resize-vertical ${
-                  errors.message && touched.message
-                    ? 'border-[var(--color-error)] focus:ring-[var(--color-error)]'
+                className={`w-full px-4 py-3 rounded-lg border-2 transition-all duration-300 bg-[var(--color-surface)] text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent resize-vertical ${
+                  hasFieldError('message')
+                    ? 'border-red-500 focus:ring-red-500'
+                    : isFieldValid('message')
+                    ? 'border-green-500 focus:ring-green-500'
                     : 'border-[var(--color-border)] hover:border-[var(--color-primary)]/50'
                 }`}
                 placeholder={t('contact.form.messagePlaceholder')}
-                aria-invalid={errors.message && touched.message ? 'true' : 'false'}
-                aria-describedby={errors.message && touched.message ? 'message-error' : 'message-hint'}
+                aria-invalid={hasFieldError('message') ? 'true' : 'false'}
+                aria-describedby={hasFieldError('message') ? 'message-error' : 'message-hint'}
                 minLength={10}
               />
-              {errors.message && touched.message && (
-                <AlertCircle className="absolute right-3 top-3 w-5 h-5 text-[var(--color-error)]" aria-hidden="true" />
+              {/* Ícone de validação */}
+              {hasFieldError('message') && (
+                <X className="absolute right-3 top-3 w-5 h-5 text-red-500" aria-hidden="true" />
+              )}
+              {isFieldValid('message') && (
+                <Check className="absolute right-3 top-3 w-5 h-5 text-green-500" aria-hidden="true" />
               )}
             </div>
             {errors.message && touched.message ? (
@@ -365,7 +407,7 @@ const Contact: React.FC = () => {
               size="lg"
               icon={Send}
               iconPosition="left"
-              disabled={!isFormValid() || isSubmitting}
+              disabled={isSubmitting}
               loading={isSubmitting}
               className="w-full"
               ariaLabel={isSubmitting ? t('contact.form.sending') : t('contact.form.send')}
@@ -381,17 +423,32 @@ const Contact: React.FC = () => {
             </div>
           </div>
 
-          {/* Status de Sucesso */}
+          {/* Mensagens de Status - Embaixo do Botão */}
           {submitStatus === 'success' && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="flex items-center gap-3 p-4 bg-[var(--color-success)]/10 border border-[var(--color-success)]/20 rounded-lg text-[var(--color-success)]"
+              exit={{ opacity: 0, y: -10 }}
+              className="mt-4 flex items-center gap-3 p-4 bg-green-50 dark:bg-green-900/10 border border-green-200 dark:border-green-800 rounded-lg text-green-700 dark:text-green-400"
               role="status"
               aria-live="polite"
             >
-              <CheckCircle className="w-5 h-5" aria-hidden="true" />
-              <span className="font-medium">{t('contact.success.message')}</span>
+              <CheckCircle className="w-5 h-5 flex-shrink-0" aria-hidden="true" />
+              <span className="font-medium text-left">{t('contact.form.success')}</span>
+            </motion.div>
+          )}
+
+          {submitStatus === 'error' && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="mt-4 flex items-center gap-3 p-4 bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-800 rounded-lg text-red-700 dark:text-red-400"
+              role="alert"
+              aria-live="assertive"
+            >
+              <AlertCircle className="w-5 h-5 flex-shrink-0" aria-hidden="true" />
+              <span className="font-medium text-left">{t('contact.form.error')}</span>
             </motion.div>
           )}
 

@@ -420,10 +420,25 @@ const AccessibilityButton: React.FC = () => {
         aria-expanded={isOpen}
         aria-haspopup="true"
         title={t('accessibility.openMenu')}
-        className="transition-all duration-300 flex items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] w-10 h-10 text-[var(--color-primary)] hover:scale-105"
+        className="group relative transition-all duration-300 flex items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] shadow hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] w-10 h-10 text-[var(--color-primary)] hover:scale-110 overflow-hidden"
         style={{ color: 'var(--color-primary)' }}
       >
-        <Accessibility className="w-5 h-5" aria-hidden="true" />
+        {/* Efeito de ondas de acessibilidade */}
+        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-400/10 via-blue-400/10 to-green-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+        {/* Partículas representando inclusão */}
+        <div className="absolute top-1 left-1 w-1 h-1 bg-purple-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:animate-pulse"></div>
+        <div className="absolute top-2 right-1 w-0.5 h-0.5 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-600 group-hover:animate-bounce"></div>
+        <div className="absolute bottom-1 left-2 w-0.5 h-0.5 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:animate-ping"></div>
+        <div className="absolute bottom-2 right-2 w-1 h-1 bg-indigo-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-800 group-hover:animate-pulse"></div>
+
+        <Accessibility
+          className="w-5 h-5 transition-all duration-300 relative z-10 group-hover:text-purple-500 group-hover:drop-shadow-[0_0_8px_rgba(147,51,234,0.6)] group-hover:rotate-12 group-hover:translate-y-[-2px] group-hover:translate-x-[1px]"
+          aria-hidden="true"
+        />
+
+        {/* Anel de acessibilidade que expande */}
+        <div className="absolute inset-0 rounded-full border-2 border-purple-400/30 scale-0 group-hover:scale-125 transition-transform duration-500 opacity-0 group-hover:opacity-100"></div>
       </button>
 
       {/* Menu de Acessibilidade */}

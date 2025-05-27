@@ -146,14 +146,22 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
               <div className="project-card-actions">
                 <button
                   onClick={() => toggleProject(index)}
-                  className="project-card-button"
+                  className="project-card-button group"
                   aria-label={activeProject === index ? t('projects.seeLess') : t('projects.seeMore')}
                 >
                   {activeProject === index ? t('projects.seeLess') : t('projects.seeMore')}
                   {activeProject === index ? (
-                    <EyeOff size={14} style={{ marginLeft: '8px' }} />
+                    <EyeOff
+                      size={14}
+                      style={{ marginLeft: '8px' }}
+                      className="transition-all duration-300 group-hover:scale-125"
+                    />
                   ) : (
-                    <Eye size={14} style={{ marginLeft: '8px' }} />
+                    <Eye
+                      size={14}
+                      style={{ marginLeft: '8px' }}
+                      className="transition-all duration-300 group-hover:scale-125"
+                    />
                   )}
                 </button>
               </div>

@@ -1,9 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Dialog } from '@headlessui/react';
 import CTAButton from './ui/CTAButton';
-import { Mail, Lightbulb, Smile, X, Send, ArrowLeft } from 'lucide-react';
+import { Mail, Lightbulb, Smile, X, Send, ArrowLeft, CheckCircle, AlertCircle } from 'lucide-react';
 import emailjs from 'emailjs-com';
 import { useTranslation } from 'react-i18next';
+import { motion } from 'framer-motion';
 
 const feedbackTypes = [
   { type: 'problem', icon: Mail },
@@ -23,16 +24,33 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
   const [showEmail, setShowEmail] = useState(false);
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState('idle'); // 'idle' | 'success' | 'error'
   const initialFocusRef = useRef(null);
   const { t } = useTranslation();
 
+  // Auto-hide da mensagem de sucesso após 4 segundos
+  useEffect(() => {
+    if (submitStatus === 'success') {
+      const timer = setTimeout(() => {
+        setSubmitStatus('idle');
+      }, 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [submitStatus]);
+
   // Validação SIMPLES - só precisa ter mensagem
   const isMessageValid = message.trim().length >= 5;
+
+  // Validação de email (se fornecido)
+  const isEmailValid = !email || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
   const canSend = isMessageValid && !sending;
 
   const handleSend = async (e) => {
     e.preventDefault();
     setSending(true);
+    setSubmitStatus('idle');
+
     try {
       await emailjs.send(
         'service_4z3a60b',
@@ -44,13 +62,17 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
           section,
           to_email: 'tbisp0@hotmail.com',
           subject: `Feedback do Portfolio - ${feedbackType} (${section})`,
-          from_name: 'Feedback Portfolio'
+          from_name: 'Feedback Portfolio',
+          reply_to: email || 'tbisp0@hotmail.com'
         },
         'eRzZy4gTZ2NXGjFKz'
       );
+      setSubmitStatus('success');
       setSent(true);
     } catch (err) {
-      alert('Erro ao enviar feedback. Tente novamente.');
+      console.error('Erro ao enviar feedback:', err);
+      setSubmitStatus('error');
+      // REMOVIDO: toast - agora só mostra mensagem embaixo do botão
     } finally {
       setSending(false);
     }
@@ -64,6 +86,7 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
     setEmail('');
     setShowEmail(false);
     setSent(false);
+    setSubmitStatus('idle');
     onClose();
   };
 
@@ -90,9 +113,10 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
           <div className="p-6 sm:p-8 flex flex-col gap-4">
             {sent ? (
               <div className="flex flex-col items-center py-8">
-                <Smile className="w-10 h-10 text-green-600 mb-2" />
-                <h2 className="text-xl font-bold mb-2 text-center">{t('feedback.thankYou')}</h2>
-                <p className="text-slate-600 text-center">{t('feedback.importance')}</p>
+                <Smile className="w-12 h-12 text-green-600 mb-4" />
+                <div className="text-center max-w-xs">
+                  <p className="text-lg font-semibold text-green-700 mb-2">{t('feedback.form.success')}</p>
+                </div>
                 <CTAButton
                   onClick={handleCompleteClose}
                   variant="primary"
@@ -156,17 +180,26 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
                   </label>
                 </div>
                 {showEmail && (
-                  <input
-                    className={`rounded-lg border p-2 text-base transition-all focus-visible:ring-2 focus-visible:ring-blue-700 outline-none bg-slate-50 w-full
-                      ${email.length > 0 ? (isEmailValid ? 'border-green-400' : 'border-red-400') : 'border-slate-300'}
-                    `}
-                    type="email"
-                    placeholder="E-mail"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    aria-invalid={email.length > 0 && !isEmailValid}
-                    aria-describedby="feedback-email-help"
-                  />
+                  <div className="relative">
+                    <input
+                      className={`rounded-lg border-2 p-2 text-base transition-all focus-visible:ring-2 focus-visible:ring-blue-700 outline-none bg-slate-50 w-full pr-10
+                        ${email.length > 0 ? (isEmailValid ? 'border-green-500' : 'border-red-500') : 'border-slate-300'}
+                      `}
+                      type="email"
+                      placeholder="E-mail"
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
+                      aria-invalid={email.length > 0 && !isEmailValid}
+                      aria-describedby="feedback-email-help"
+                    />
+                    {/* Ícone de validação */}
+                    {email.length > 0 && !isEmailValid && (
+                      <X className="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-red-500" aria-hidden="true" />
+                    )}
+                    {email.length > 0 && isEmailValid && (
+                      <CheckCircle className="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-green-500" aria-hidden="true" />
+                    )}
+                  </div>
                 )}
                 <a href="/portfolio/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-xs text-blue-700 underline mb-2">{t('feedback.privacyPolicy')}</a>
                 <div className="flex gap-2 mt-2">
@@ -194,6 +227,36 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
                     {t('feedback.back')}
                   </CTAButton>
                 </div>
+
+                {/* Mensagens de Status - Embaixo dos Botões */}
+                {submitStatus === 'success' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="mt-4 flex items-center gap-3 p-3 bg-green-50 dark:bg-green-900/10 border border-green-200 dark:border-green-800 rounded-lg text-green-700 dark:text-green-400"
+                    role="status"
+                    aria-live="polite"
+                  >
+                    <CheckCircle className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
+                    <span className="text-sm font-medium text-left">{t('feedback.form.success')}</span>
+                  </motion.div>
+                )}
+
+                {submitStatus === 'error' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="mt-4 flex items-center gap-3 p-3 bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-800 rounded-lg text-red-700 dark:text-red-400"
+                    role="alert"
+                    aria-live="assertive"
+                  >
+                    <AlertCircle className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
+                    <span className="text-sm font-medium text-left">{t('feedback.form.error')}</span>
+                  </motion.div>
+                )}
+
               </form>
             )}
           </div>

@@ -97,6 +97,11 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
                   <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
                     Campinas, São Paulo
                   </p>
+
+                  {/* Telefone - WCAG 2.2 AA Compliant */}
+                  <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                    +55 19 9 9013-7380
+                  </p>
                 </div>
 
                 {/* SEÇÃO 3: IxDF Badge - WCAG 2.2 AA Compliant */}
@@ -108,7 +113,8 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
                       className="w-full h-full object-contain"
                     />
                   </div>
-                  <span className="whitespace-nowrap font-medium">IxDF - Interaction Design Foundation</span>
+                  {/* Espaçamento heuristicamente correto entre ícone e texto */}
+                  <span className="whitespace-nowrap font-medium ml-1">IxDF - Interaction Design Foundation</span>
                 </div>
               </div>
             </div>

@@ -41,7 +41,7 @@ const EnhancedProjectShowcase: React.FC<EnhancedProjectShowcaseProps> = ({ proje
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mb-16 text-center"
         >
-          <motion.h2 
+          <motion.h2
             className="text-center"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -49,8 +49,8 @@ const EnhancedProjectShowcase: React.FC<EnhancedProjectShowcaseProps> = ({ proje
           >
             {t('projects.title')}
           </motion.h2>
-          <motion.div 
-            className="h-1 w-20 mb-6 rounded mx-auto" 
+          <motion.div
+            className="h-1 w-20 mb-6 rounded mx-auto"
             style={{ background: "var(--color-primary)" }}
             initial={{ width: 0 }}
             animate={{ width: 80 }}
@@ -70,7 +70,7 @@ const EnhancedProjectShowcase: React.FC<EnhancedProjectShowcaseProps> = ({ proje
                 delay: index * 0.2,
                 ease: [0.4, 0, 0.2, 1]
               }}
-              whileHover={{ 
+              whileHover={{
                 y: -8,
                 transition: { duration: 0.3, ease: "easeOut" }
               }}
@@ -87,7 +87,7 @@ const EnhancedProjectShowcase: React.FC<EnhancedProjectShowcaseProps> = ({ proje
               }}
             >
               {/* Enhanced Image Container */}
-              <motion.div 
+              <motion.div
                 className="project-card-image-container"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
@@ -111,8 +111,8 @@ const EnhancedProjectShowcase: React.FC<EnhancedProjectShowcaseProps> = ({ proje
               {/* Enhanced Content */}
               <div className="project-card-content">
                 {/* Animated Title */}
-                <motion.h3 
-                  id={`project-title-${index}`} 
+                <motion.h3
+                  id={`project-title-${index}`}
                   className="project-card-title"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -122,7 +122,7 @@ const EnhancedProjectShowcase: React.FC<EnhancedProjectShowcaseProps> = ({ proje
                 </motion.h3>
 
                 {/* Animated Description */}
-                <motion.p 
+                <motion.p
                   className="project-card-description"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -132,7 +132,7 @@ const EnhancedProjectShowcase: React.FC<EnhancedProjectShowcaseProps> = ({ proje
                 </motion.p>
 
                 {/* Enhanced Tags with stagger animation */}
-                <motion.div 
+                <motion.div
                   className="project-card-tags"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -148,9 +148,9 @@ const EnhancedProjectShowcase: React.FC<EnhancedProjectShowcaseProps> = ({ proje
                       className="project-card-tag"
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      transition={{ 
-                        duration: 0.3, 
-                        delay: index * 0.1 + 0.6 + badgeIndex * 0.1 
+                      transition={{
+                        duration: 0.3,
+                        delay: index * 0.1 + 0.6 + badgeIndex * 0.1
                       }}
                       whileHover={{ scale: 1.05 }}
                     >
@@ -163,15 +163,26 @@ const EnhancedProjectShowcase: React.FC<EnhancedProjectShowcaseProps> = ({ proje
                 <div className="project-card-actions">
                   <ProjectCardButton
                     onClick={() => toggleProject(index)}
-                    className="w-full"
+                    className="w-full group"
                   >
                     <motion.span
                       animate={{ rotate: activeProject === index ? 180 : 0 }}
                       transition={{ duration: 0.3 }}
+                      className="inline-flex items-center"
                     >
-                      {activeProject === index ? <EyeOff size={16} /> : <Eye size={16} />}
+                      {activeProject === index ? (
+                        <EyeOff
+                          size={16}
+                          className="transition-all duration-300 group-hover:scale-125"
+                        />
+                      ) : (
+                        <Eye
+                          size={16}
+                          className="transition-all duration-300 group-hover:scale-125"
+                        />
+                      )}
                     </motion.span>
-                    {activeProject === index ? t('projects.seeLess') : t('projects.seeMore')}
+                    <span className="ml-2">{activeProject === index ? t('projects.seeLess') : t('projects.seeMore')}</span>
                   </ProjectCardButton>
                 </div>
 
@@ -183,14 +194,14 @@ const EnhancedProjectShowcase: React.FC<EnhancedProjectShowcaseProps> = ({ proje
                       initial={{ opacity: 0, height: 0, y: -20 }}
                       animate={{ opacity: 1, height: 'auto', y: 0 }}
                       exit={{ opacity: 0, height: 0, y: -20 }}
-                      transition={{ 
-                        duration: 0.5, 
+                      transition={{
+                        duration: 0.5,
                         ease: [0.4, 0, 0.2, 1],
                         height: { duration: 0.4 }
                       }}
                       className="overflow-hidden"
                     >
-                      <motion.div 
+                      <motion.div
                         className="project-expanded-content"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -209,9 +220,9 @@ const EnhancedProjectShowcase: React.FC<EnhancedProjectShowcaseProps> = ({ proje
                             className="project-section"
                             initial={{ opacity: 0, x: -30 }}
                             animate={{ opacity: 1, x: 0 }}
-                            transition={{ 
-                              duration: 0.4, 
-                              delay: sectionIndex * 0.1 + 0.3 
+                            transition={{
+                              duration: 0.4,
+                              delay: sectionIndex * 0.1 + 0.3
                             }}
                           >
                             <h4 className="project-section-title">
@@ -224,9 +235,9 @@ const EnhancedProjectShowcase: React.FC<EnhancedProjectShowcaseProps> = ({ proje
                                     key={outcomeIndex}
                                     initial={{ opacity: 0, x: -20 }}
                                     animate={{ opacity: 1, x: 0 }}
-                                    transition={{ 
-                                      duration: 0.3, 
-                                      delay: sectionIndex * 0.1 + 0.4 + outcomeIndex * 0.1 
+                                    transition={{
+                                      duration: 0.3,
+                                      delay: sectionIndex * 0.1 + 0.4 + outcomeIndex * 0.1
                                     }}
                                   >
                                     {outcome}
