@@ -25,7 +25,7 @@ interface FormTouched {
 }
 
 const Contact: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   // Estados do formulário
   const [formData, setFormData] = useState<FormData>({
@@ -79,50 +79,56 @@ const Contact: React.FC = () => {
 
   // Validação dos campos
   const validateField = (name: keyof FormData, value: string): string | undefined => {
-    const lang = i18n.language;
+    try {
+      const lang = i18n?.language || 'pt-BR';
+      const safeValue = value || '';
 
-    switch (name) {
-      case 'name':
-        if (!value.trim()) {
-          if (lang === 'en-US') return 'Name is required';
-          if (lang === 'es-ES') return 'El nombre es obligatorio';
-          return 'Nome é obrigatório';
-        }
-        if (value.trim().length < 2) {
-          if (lang === 'en-US') return 'Name must be at least 2 characters';
-          if (lang === 'es-ES') return 'El nombre debe tener al menos 2 caracteres';
-          return 'Nome deve ter pelo menos 2 caracteres';
-        }
-        return undefined;
+      switch (name) {
+        case 'name':
+          if (!safeValue.trim()) {
+            if (lang === 'en-US') return 'Name is required';
+            if (lang === 'es-ES') return 'El nombre es obligatorio';
+            return 'Nome é obrigatório';
+          }
+          if (safeValue.trim().length < 2) {
+            if (lang === 'en-US') return 'Name must be at least 2 characters';
+            if (lang === 'es-ES') return 'El nombre debe tener al menos 2 caracteres';
+            return 'Nome deve ter pelo menos 2 caracteres';
+          }
+          return undefined;
 
-      case 'email':
-        if (!value.trim()) {
-          if (lang === 'en-US') return 'Email is required';
-          if (lang === 'es-ES') return 'El email es obligatorio';
-          return 'E-mail é obrigatório';
-        }
-        if (!isValidEmail(value)) {
-          if (lang === 'en-US') return 'Invalid email';
-          if (lang === 'es-ES') return 'Email inválido';
-          return 'E-mail inválido';
-        }
-        return undefined;
+        case 'email':
+          if (!safeValue.trim()) {
+            if (lang === 'en-US') return 'Email is required';
+            if (lang === 'es-ES') return 'El email es obligatorio';
+            return 'E-mail é obrigatório';
+          }
+          if (!isValidEmail(safeValue)) {
+            if (lang === 'en-US') return 'Invalid email';
+            if (lang === 'es-ES') return 'Email inválido';
+            return 'E-mail inválido';
+          }
+          return undefined;
 
-      case 'message':
-        if (!value.trim()) {
-          if (lang === 'en-US') return 'Message is required';
-          if (lang === 'es-ES') return 'El mensaje es obligatorio';
-          return 'Mensagem é obrigatória';
-        }
-        if (value.trim().length < 10) {
-          if (lang === 'en-US') return 'Message must be at least 10 characters';
-          if (lang === 'es-ES') return 'El mensaje debe tener al menos 10 caracteres';
-          return 'Mensagem deve ter pelo menos 10 caracteres';
-        }
-        return undefined;
+        case 'message':
+          if (!safeValue.trim()) {
+            if (lang === 'en-US') return 'Message is required';
+            if (lang === 'es-ES') return 'El mensaje es obligatorio';
+            return 'Mensagem é obrigatória';
+          }
+          if (safeValue.trim().length < 10) {
+            if (lang === 'en-US') return 'Message must be at least 10 characters';
+            if (lang === 'es-ES') return 'El mensaje debe tener al menos 10 caracteres';
+            return 'Mensagem deve ter pelo menos 10 caracteres';
+          }
+          return undefined;
 
-      default:
-        return undefined;
+        default:
+          return undefined;
+      }
+    } catch (error) {
+      console.error('Erro na validação do campo:', error);
+      return 'Erro na validação';
     }
   };
 
@@ -144,39 +150,57 @@ const Contact: React.FC = () => {
 
   // Manipular mudanças nos campos
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    const fieldName = name as keyof FormData;
+    try {
+      const { name, value } = e.target;
+      const fieldName = name as keyof FormData;
 
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+      // Verificar se o campo é válido antes de processar
+      if (!name || !Object.keys(formData).includes(name)) {
+        return;
+      }
 
-    // Validação em tempo real apenas se o campo já foi tocado
-    if (touched[fieldName]) {
-      const error = validateField(fieldName, value);
-      setErrors(prev => ({
+      setFormData(prev => ({
         ...prev,
-        [name]: error
+        [name]: value
       }));
+
+      // Validação em tempo real apenas se o campo já foi tocado
+      if (touched[fieldName]) {
+        const error = validateField(fieldName, value || '');
+        setErrors(prev => ({
+          ...prev,
+          [name]: error
+        }));
+      }
+    } catch (error) {
+      console.error('Erro no handleChange:', error);
     }
   };
 
   // Manipular blur (quando sai do campo)
   const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    const fieldName = name as keyof FormData;
+    try {
+      const { name, value } = e.target;
+      const fieldName = name as keyof FormData;
 
-    setTouched(prev => ({
-      ...prev,
-      [name]: true
-    }));
+      // Verificar se o campo é válido antes de processar
+      if (!name || !Object.keys(formData).includes(name)) {
+        return;
+      }
 
-    const error = validateField(fieldName, value);
-    setErrors(prev => ({
-      ...prev,
-      [name]: error
-    }));
+      setTouched(prev => ({
+        ...prev,
+        [name]: true
+      }));
+
+      const error = validateField(fieldName, value || '');
+      setErrors(prev => ({
+        ...prev,
+        [name]: error
+      }));
+    } catch (error) {
+      console.error('Erro no handleBlur:', error);
+    }
   };
 
   // Enviar formulário
@@ -191,8 +215,17 @@ const Contact: React.FC = () => {
     });
 
     if (!validateForm()) {
-      // Focar no primeiro campo com erro
-      const firstErrorField = Object.keys(errors)[0] as keyof FormData;
+      // Focar no primeiro campo com erro - validação mais segura
+      const newErrors: FormErrors = {};
+      Object.keys(formData).forEach((key) => {
+        const fieldName = key as keyof FormData;
+        const error = validateField(fieldName, formData[fieldName]);
+        if (error) {
+          newErrors[fieldName] = error;
+        }
+      });
+
+      const firstErrorField = Object.keys(newErrors)[0] as keyof FormData;
       if (firstErrorField === 'name') nameRef.current?.focus();
       else if (firstErrorField === 'email') emailRef.current?.focus();
       else if (firstErrorField === 'message') messageRef.current?.focus();
@@ -244,13 +277,23 @@ const Contact: React.FC = () => {
 
   // Verificar se campo individual está válido (para mostrar linha verde + ✓)
   const isFieldValid = (fieldName: keyof FormData): boolean => {
-    if (!touched[fieldName] || !formData[fieldName]) return false;
-    return !validateField(fieldName, formData[fieldName]);
+    try {
+      if (!touched[fieldName] || !formData[fieldName]) return false;
+      return !validateField(fieldName, formData[fieldName]);
+    } catch (error) {
+      console.error('Erro ao verificar se campo é válido:', error);
+      return false;
+    }
   };
 
   // Verificar se campo tem erro (para mostrar linha vermelha + ✗)
   const hasFieldError = (fieldName: keyof FormData): boolean => {
-    return touched[fieldName] && !!errors[fieldName];
+    try {
+      return touched[fieldName] && !!errors[fieldName];
+    } catch (error) {
+      console.error('Erro ao verificar erro do campo:', error);
+      return false;
+    }
   };
 
   return (

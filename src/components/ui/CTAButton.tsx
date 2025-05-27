@@ -1,11 +1,12 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { LucideIcon } from 'lucide-react';
 
 interface CTAButtonProps {
   children: React.ReactNode;
   onClick?: () => void;
   href?: string;
-  variant?: 'primary' | 'secondary' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'ghost' | 'hero';
   size?: 'sm' | 'md' | 'lg';
   icon?: LucideIcon;
   iconPosition?: 'left' | 'right';
@@ -32,19 +33,30 @@ const CTAButton: React.FC<CTAButtonProps> = ({
   target,
   rel
 }) => {
-  // Estilos agora controlados pelo CSS centralizado
-
   // Classes CSS centralizadas
   const baseClasses = `cta-button variant-${variant} size-${size} ${className}`.trim();
 
+  // Variantes de animação
+  const buttonVariants = {
+    initial: { scale: 1 },
+    hover: { scale: 1.05, y: -2 },
+    tap: { scale: 0.98, y: 0 },
+  };
+
   // Conteúdo do botão
   const buttonContent = (
-    <>
+    <motion.div
+      className="flex items-center justify-center gap-2 relative z-10"
+      variants={{
+        initial: { y: 0 },
+        hover: { y: -1 },
+      }}
+    >
       {Icon && iconPosition === 'left' && (
         <Icon className="w-5 h-5" aria-hidden="true" />
       )}
 
-      <span className="relative">
+      <span>
         {loading ? (
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
@@ -58,34 +70,45 @@ const CTAButton: React.FC<CTAButtonProps> = ({
       {Icon && iconPosition === 'right' && !loading && (
         <Icon className="w-5 h-5" aria-hidden="true" />
       )}
-    </>
+    </motion.div>
   );
 
   if (href) {
     return (
-      <a
+      <motion.a
         href={href}
         target={target}
         rel={rel}
         className={baseClasses}
         aria-label={ariaLabel}
-        style={{ textDecoration: 'none' }}
+        style={{
+          textDecoration: 'none',
+          pointerEvents: disabled ? 'none' : 'auto',
+          opacity: disabled ? 0.5 : 1
+        }}
+        variants={buttonVariants}
+        initial="initial"
+        whileHover="hover"
+        whileTap="tap"
       >
         {buttonContent}
-      </a>
+      </motion.a>
     );
   }
 
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={disabled || loading}
+    <motion.button
+      onClick={disabled ? undefined : onClick}
       className={baseClasses}
+      disabled={disabled || loading}
       aria-label={ariaLabel}
+      variants={buttonVariants}
+      initial="initial"
+      whileHover="hover"
+      whileTap="tap"
     >
       {buttonContent}
-    </button>
+    </motion.button>
   );
 };
 
