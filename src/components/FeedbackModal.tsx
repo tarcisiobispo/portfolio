@@ -53,19 +53,17 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
 
     try {
       await emailjs.send(
-        'service_4z3a60b',
-        'template_nc73bg4',
+        'service_4z3a60b',    // Service ID do EmailJS
+        'template_nc73bg4',   // Template ID do EmailJS
         {
-          feedback_type: feedbackType,
-          message,
-          email: email || 'Não informado',
-          section,
+          from_name: `Feedback Portfolio - ${feedbackType}`,
+          from_email: email || 'tbisp0@hotmail.com',
+          message: `Tipo: ${feedbackType}\nSeção: ${section}\n\nMensagem:\n${message}`,
           to_email: 'tbisp0@hotmail.com',
           subject: `Feedback do Portfolio - ${feedbackType} (${section})`,
-          from_name: 'Feedback Portfolio',
           reply_to: email || 'tbisp0@hotmail.com'
         },
-        'eRzZy4gTZ2NXGjFKz'
+        'eRzZy4gTZ2NXGjFKz'  // User ID do EmailJS
       );
       setSubmitStatus('success');
       setSent(true);
