@@ -148,7 +148,7 @@
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0 32px; /* Mesmo padding do header */
 }
 
 /* ===== RESPONSIVIDADE ===== */
@@ -156,7 +156,7 @@
   .projects-grid {
     grid-template-columns: 1fr;
     gap: 20px;
-    padding: 0 12px;
+    padding: 0 16px; /* Consistente com header mobile */
   }
 
   .project-card-content {
