@@ -469,6 +469,37 @@ const resources = {
           other: "Outro"
         }
       },
+      cookies: {
+        title: "Este site usa cookies",
+        description: "Usamos cookies para melhorar sua experiência, analisar o tráfego do site e personalizar conteúdo.",
+        learnMore: "Saiba mais",
+        acceptAll: "Aceitar todos",
+        acceptNecessary: "Apenas necessários",
+        customize: "Personalizar",
+        savePreferences: "Salvar preferências",
+        required: "Obrigatório",
+        preferences: {
+          title: "Preferências de Cookies"
+        },
+        types: {
+          necessary: {
+            title: "Cookies Necessários",
+            description: "Estes cookies são essenciais para o funcionamento do site e não podem ser desabilitados."
+          },
+          analytics: {
+            title: "Cookies de Análise",
+            description: "Nos ajudam a entender como os visitantes interagem com o site, coletando informações de forma anônima.",
+            providers: "Provedores"
+          },
+          marketing: {
+            title: "Cookies de Marketing",
+            description: "Usados para rastrear visitantes em sites para exibir anúncios relevantes e envolventes."
+          }
+        }
+      },
+      common: {
+        close: "Fechar"
+      },
       language: {
         changed: "Idioma alterado com sucesso",
         current: "Idioma atual",
@@ -942,6 +973,37 @@ const resources = {
           compliment: "Compliment",
           other: "Other"
         }
+      },
+      cookies: {
+        title: "This site uses cookies",
+        description: "We use cookies to improve your experience, analyze site traffic and personalize content.",
+        learnMore: "Learn more",
+        acceptAll: "Accept all",
+        acceptNecessary: "Only necessary",
+        customize: "Customize",
+        savePreferences: "Save preferences",
+        required: "Required",
+        preferences: {
+          title: "Cookie Preferences"
+        },
+        types: {
+          necessary: {
+            title: "Necessary Cookies",
+            description: "These cookies are essential for the website to function and cannot be disabled."
+          },
+          analytics: {
+            title: "Analytics Cookies",
+            description: "Help us understand how visitors interact with the site by collecting information anonymously.",
+            providers: "Providers"
+          },
+          marketing: {
+            title: "Marketing Cookies",
+            description: "Used to track visitors across websites to display relevant and engaging ads."
+          }
+        }
+      },
+      common: {
+        close: "Close"
       }
     }
   },
@@ -1398,6 +1460,37 @@ const resources = {
           compliment: "Elogio",
           other: "Otro"
         }
+      },
+      cookies: {
+        title: "Este sitio usa cookies",
+        description: "Usamos cookies para mejorar tu experiencia, analizar el tráfico del sitio y personalizar contenido.",
+        learnMore: "Saber más",
+        acceptAll: "Aceptar todas",
+        acceptNecessary: "Solo necesarias",
+        customize: "Personalizar",
+        savePreferences: "Guardar preferencias",
+        required: "Obligatorio",
+        preferences: {
+          title: "Preferencias de Cookies"
+        },
+        types: {
+          necessary: {
+            title: "Cookies Necesarias",
+            description: "Estas cookies son esenciales para el funcionamiento del sitio web y no se pueden desactivar."
+          },
+          analytics: {
+            title: "Cookies de Análisis",
+            description: "Nos ayudan a entender cómo los visitantes interactúan con el sitio recopilando información de forma anónima.",
+            providers: "Proveedores"
+          },
+          marketing: {
+            title: "Cookies de Marketing",
+            description: "Se utilizan para rastrear visitantes en sitios web para mostrar anuncios relevantes y atractivos."
+          }
+        }
+      },
+      common: {
+        close: "Cerrar"
       }
     }
   }

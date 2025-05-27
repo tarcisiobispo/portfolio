@@ -26,6 +26,7 @@ const GradientSectionIndicator = React.lazy(() => import("@/components/FluidGrad
 const FluidGradientDemo = React.lazy(() => import("@/components/examples/FluidGradientDemo"));
 const DebugTranslations = React.lazy(() => import("@/components/DebugTranslations"));
 const LazyScripts = React.lazy(() => import("@/components/LazyScripts"));
+const CookieConsent = React.lazy(() => import("@/components/CookieConsent"));
 
 const queryClient = new QueryClient();
 
@@ -82,6 +83,11 @@ const App = () => {
             {/* Lazy load third-party scripts */}
             <Suspense fallback={null}>
               <LazyScripts delay={2000} />
+            </Suspense>
+
+            {/* Cookie Consent Banner */}
+            <Suspense fallback={null}>
+              <CookieConsent />
             </Suspense>
 
           <Header />
