@@ -4,6 +4,7 @@ import CTAButton from '@/components/ui/CTAButton';
 import IxDFLogo from '@/components/ui/IxDFLogo';
 import TypewriterText from '@/components/ui/TypewriterText';
 import CriticalBio from '@/components/CriticalBio';
+import CLSOptimizedImage from '@/components/CLSOptimizedImage';
 import { Download, Linkedin, ArrowRight, MapPin, Mail, Phone, MessageCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { getProfileImagePaths } from '@/utils/assetPaths';
@@ -64,19 +65,15 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
 
                   {/* Container da Foto */}
                   <div className="relative w-32 h-32 rounded-full overflow-hidden bg-white p-1 shadow-xl">
-                    <picture>
-                      <source srcSet={profileImages.webp} type="image/webp" />
-                      <img
-                        src={profileImages.png}
-                        alt={t('alts.profile.photo')}
-                        className="profile-image-hover w-full h-full object-cover rounded-full"
-                        loading="eager"
-                        fetchpriority="high"
-                        width="128"
-                        height="128"
-                        decoding="sync"
-                      />
-                    </picture>
+                    <CLSOptimizedImage
+                      src={profileImages.png}
+                      webpSrc={profileImages.webp}
+                      alt={t('alts.profile.photo')}
+                      width={128}
+                      height={128}
+                      priority={true}
+                      className="profile-image-hover rounded-full"
+                    />
                   </div>
 
                   {/* Status Online */}

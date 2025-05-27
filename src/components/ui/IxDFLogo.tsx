@@ -40,8 +40,16 @@ const IxDFLogo: React.FC<IxDFLogoProps> = ({
           src={logoPaths.dark}
           alt="Interaction Design Foundation Logo"
           className={`${sizeClasses[size]} w-auto dark:hidden transition-opacity duration-300 hover:opacity-80`}
-          style={{ height: size === 'sm' ? '40px' : size === 'md' ? '48px' : '64px', maxHeight: 'none', maxWidth: 'none' }}
+          width={size === 'sm' ? '40' : size === 'md' ? '48' : '64'}
+          height={size === 'sm' ? '40' : size === 'md' ? '48' : '64'}
+          style={{
+            height: size === 'sm' ? '40px' : size === 'md' ? '48px' : '64px',
+            width: size === 'sm' ? '40px' : size === 'md' ? '48px' : '64px',
+            maxHeight: 'none',
+            maxWidth: 'none'
+          }}
           loading="lazy"
+          decoding="async"
         />
 
         {/* Logo para Dark Mode - usa imagem white */}
@@ -49,8 +57,16 @@ const IxDFLogo: React.FC<IxDFLogoProps> = ({
           src={logoPaths.white}
           alt="Interaction Design Foundation Logo"
           className={`${sizeClasses[size]} w-auto hidden dark:block transition-opacity duration-300 hover:opacity-80`}
-          style={{ height: size === 'sm' ? '40px' : size === 'md' ? '48px' : '64px', maxHeight: 'none', maxWidth: 'none' }}
+          width={size === 'sm' ? '40' : size === 'md' ? '48' : '64'}
+          height={size === 'sm' ? '40' : size === 'md' ? '48' : '64'}
+          style={{
+            height: size === 'sm' ? '40px' : size === 'md' ? '48px' : '64px',
+            width: size === 'sm' ? '40px' : size === 'md' ? '48px' : '64px',
+            maxHeight: 'none',
+            maxWidth: 'none'
+          }}
           loading="lazy"
+          decoding="async"
         />
       </div>
 

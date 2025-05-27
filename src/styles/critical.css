@@ -101,6 +101,30 @@ body {
   transform: translateZ(0); /* Force GPU acceleration */
 }
 
+/* CLS Prevention - Explicit Image Dimensions */
+img {
+  /* Prevent layout shifts by ensuring images have dimensions */
+  max-width: 100%;
+  height: auto;
+  /* Ensure images don't cause layout shifts */
+  contain-intrinsic-size: attr(width) attr(height);
+}
+
+/* Specific optimizations for logo images */
+img[alt*="Logo"], img[alt*="logo"] {
+  /* Prevent layout shifts for logos */
+  contain: layout style paint;
+  content-visibility: visible;
+}
+
+/* Profile image specific optimizations */
+.profile-image-hover {
+  /* Prevent layout shifts for profile images */
+  contain: layout style paint;
+  content-visibility: visible;
+  contain-intrinsic-size: 128px 128px;
+}
+
 /* Reduce layout thrashing */
 .container {
   contain: layout style;

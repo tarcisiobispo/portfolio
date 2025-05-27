@@ -9,6 +9,7 @@ import './styles/buttons.css'
 import './styles/cards.css'
 import './styles/accessibility.css'
 import { ThemeProvider } from './components/providers/ThemeProvider'
+import { initializeCacheOptimizations } from './utils/cacheOptimization'
 
 // Import i18n synchronously to avoid translation errors
 import './i18n/config';
@@ -25,6 +26,12 @@ if (!rootElement) {
 
 // Renderizar app imediatamente para melhor LCP
 const root = ReactDOM.createRoot(rootElement);
+
+// Initialize cache optimizations after DOM is ready
+if (typeof window !== 'undefined') {
+  // Initialize immediately for critical resources
+  initializeCacheOptimizations();
+}
 
 // Render immediately with critical content
 root.render(
