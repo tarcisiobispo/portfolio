@@ -35,9 +35,18 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] mb-4">
           {t('projects.title')}
         </h1>
-        <p className="text-lg md:text-xl text-[var(--color-text-secondary)] max-w-4xl mx-auto leading-relaxed">
-          {t('projects.description')}
-        </p>
+        <div className="max-w-4xl mx-auto text-left">
+          <p className="text-lg md:text-xl text-[var(--color-text-secondary)] leading-relaxed mb-4">
+            {t('projects.description')}
+          </p>
+          {/* Linha Azul Animada - Similar ao Hero */}
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: "120px" }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"
+          ></motion.div>
+        </div>
       </motion.div>
 
       {/* Projects Grid - NOVO DESIGN LIMPO */}

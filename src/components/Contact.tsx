@@ -265,9 +265,18 @@ const Contact: React.FC = () => {
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] mb-4">
           {t('contact.title')}
         </h1>
-        <p className="text-[var(--color-muted)] text-lg max-w-2xl mx-auto">
-          {t('contact.description')}
-        </p>
+        <div className="max-w-2xl mx-auto text-left">
+          <p className="text-[var(--color-muted)] text-lg mb-4">
+            {t('contact.description')}
+          </p>
+          {/* Linha Azul Animada - Similar ao Hero */}
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: "120px" }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"
+          ></motion.div>
+        </div>
       </motion.div>
 
       {/* Formulário */}
