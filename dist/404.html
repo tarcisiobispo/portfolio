@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tarcisio Bispo | UX/Product Designer</title>
+    <meta name="description" content="Portfólio de Tarcisio Bispo de Araujo - UX/Product Designer com foco em estratégia, impacto e experiência." />
+    <meta name="author" content="Tarcisio Bispo de Araujo" />
+
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="CzXKmRs9sEDs3Jqpsy5KtXmXUDt4t_vi4gTt9hjyHLk" />
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Tarcisio Bispo | UX/Product Designer" />
+    <meta property="og:description" content="Portfólio de Tarcisio Bispo de Araujo - UX/Product Designer com foco em estratégia, impacto e experiência." />
+    <meta property="og:type" content="website" />
+
+    <!-- Preconnect para recursos externos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Fontes otimizadas -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&subset=latin&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&subset=latin&display=swap" rel="stylesheet"></noscript>
+
+    <!-- Fallback font para evitar FOIT -->
+    <style>
+      body { 
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .font-loaded body { 
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+      }
+      .loading-container {
+        text-align: center;
+        color: white;
+        padding: 2rem;
+      }
+      .loading-spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-top: 4px solid white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 1rem;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      .loading-text {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+      .loading-subtext {
+        font-size: 0.9rem;
+        opacity: 0.8;
+      }
+    </style>
+
+    <!-- GitHub Pages SPA redirect script -->
+    <script type="text/javascript">
+      // Single Page Apps for GitHub Pages
+      // https://github.com/rafgraph/spa-github-pages
+      // Redireciona para index.html com o caminho preservado
+      (function(l) {
+        var repo = '/portfolio';
+        var segmentCount = 1; // Número de segmentos do caminho do repositório
+        
+        var path = l.pathname.slice(1).split('/').slice(segmentCount).join('/');
+        var query = l.search.slice(1);
+        var hash = l.hash;
+        
+        var url = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + 
+                  repo + '/?/' + path + (query ? '&' + query.replace(/&/g, '~and~') : '') + hash;
+        
+        l.replace(url);
+      }(window.location))
+    </script>
+  </head>
+
+  <body>
+    <!-- Loading indicator enquanto redireciona -->
+    <div class="loading-container">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Redirecionando...</div>
+      <div class="loading-subtext">Você será redirecionado automaticamente</div>
+    </div>
+
+    <!-- Fallback caso JavaScript esteja desabilitado -->
+    <noscript>
+      <div style="text-align: center; padding: 2rem; color: white;">
+        <h1>JavaScript Necessário</h1>
+        <p>Este site requer JavaScript para funcionar corretamente.</p>
+        <p><a href="/portfolio/" style="color: #87CEEB;">Clique aqui para ir para a página inicial</a></p>
+      </div>
+    </noscript>
+  </body>
+</html>
