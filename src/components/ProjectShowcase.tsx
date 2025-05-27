@@ -30,12 +30,12 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="mb-16 text-center"
+        className="mb-16"
       >
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] mb-4">
-          {t('projects.title')}
-        </h1>
         <div className="max-w-4xl mx-auto text-left">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] mb-4">
+            {t('projects.title')}
+          </h1>
           <p className="text-lg md:text-xl text-[var(--color-text-secondary)] leading-relaxed mb-4">
             {t('projects.description')}
           </p>

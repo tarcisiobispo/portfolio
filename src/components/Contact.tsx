@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, User, MessageSquare, Send, CheckCircle, AlertCircle, Loader2, Check, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -77,8 +77,8 @@ const Contact: React.FC = () => {
     }
   };
 
-  // Validação dos campos
-  const validateField = (name: keyof FormData, value: string): string | undefined => {
+  // Validação dos campos - usando useCallback para evitar re-criação
+  const validateField = useCallback((name: keyof FormData, value: string): string | undefined => {
     try {
       const lang = i18n?.language || 'pt-BR';
       const safeValue = value || '';
@@ -130,7 +130,7 @@ const Contact: React.FC = () => {
       console.error('Erro na validação do campo:', error);
       return 'Erro na validação';
     }
-  };
+  }, [i18n?.language]);
 
   // Validar todos os campos
   const validateForm = (): boolean => {
@@ -148,8 +148,8 @@ const Contact: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Manipular mudanças nos campos
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  // Manipular mudanças nos campos - usando useCallback
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     try {
       const { name, value } = e.target;
       const fieldName = name as keyof FormData;
@@ -175,10 +175,10 @@ const Contact: React.FC = () => {
     } catch (error) {
       console.error('Erro no handleChange:', error);
     }
-  };
+  }, [formData, touched, validateField]);
 
-  // Manipular blur (quando sai do campo)
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  // Manipular blur (quando sai do campo) - usando useCallback
+  const handleBlur = useCallback((e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     try {
       const { name, value } = e.target;
       const fieldName = name as keyof FormData;
@@ -201,7 +201,7 @@ const Contact: React.FC = () => {
     } catch (error) {
       console.error('Erro no handleBlur:', error);
     }
-  };
+  }, [formData, validateField]);
 
   // Enviar formulário
   const handleSubmit = async (e: React.FormEvent) => {
@@ -275,26 +275,37 @@ const Contact: React.FC = () => {
            formData.message.length > 0;
   };
 
-  // Verificar se campo individual está válido (para mostrar linha verde + ✓)
-  const isFieldValid = (fieldName: keyof FormData): boolean => {
-    try {
-      if (!touched[fieldName] || !formData[fieldName]) return false;
-      return !validateField(fieldName, formData[fieldName]);
-    } catch (error) {
-      console.error('Erro ao verificar se campo é válido:', error);
-      return false;
-    }
-  };
+  // Verificar se campo individual está válido (para mostrar linha verde + ✓) - usando useMemo
+  const fieldValidationStates = useMemo(() => {
+    const states: Record<keyof FormData, { isValid: boolean; hasError: boolean }> = {
+      name: { isValid: false, hasError: false },
+      email: { isValid: false, hasError: false },
+      message: { isValid: false, hasError: false }
+    };
 
-  // Verificar se campo tem erro (para mostrar linha vermelha + ✗)
-  const hasFieldError = (fieldName: keyof FormData): boolean => {
-    try {
-      return touched[fieldName] && !!errors[fieldName];
-    } catch (error) {
-      console.error('Erro ao verificar erro do campo:', error);
-      return false;
-    }
-  };
+    Object.keys(formData).forEach((key) => {
+      const fieldName = key as keyof FormData;
+      try {
+        const hasError = touched[fieldName] && !!errors[fieldName];
+        const isValid = touched[fieldName] && formData[fieldName] && !validateField(fieldName, formData[fieldName]);
+
+        states[fieldName] = { isValid, hasError };
+      } catch (error) {
+        console.error(`Erro ao verificar estado do campo ${fieldName}:`, error);
+        states[fieldName] = { isValid: false, hasError: false };
+      }
+    });
+
+    return states;
+  }, [formData, touched, errors, validateField]);
+
+  const isFieldValid = useCallback((fieldName: keyof FormData): boolean => {
+    return fieldValidationStates[fieldName]?.isValid || false;
+  }, [fieldValidationStates]);
+
+  const hasFieldError = useCallback((fieldName: keyof FormData): boolean => {
+    return fieldValidationStates[fieldName]?.hasError || false;
+  }, [fieldValidationStates]);
 
   return (
     <section id="contact" className="py-8">
@@ -303,12 +314,12 @@ const Contact: React.FC = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="mb-12 text-center"
+        className="mb-12"
       >
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] mb-4">
-          {t('contact.title')}
-        </h1>
         <div className="max-w-2xl mx-auto text-left">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] mb-4">
+            {t('contact.title')}
+          </h1>
           <p className="text-[var(--color-muted)] text-lg mb-4">
             {t('contact.description')}
           </p>

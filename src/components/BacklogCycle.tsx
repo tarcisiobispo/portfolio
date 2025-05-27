@@ -63,12 +63,12 @@ const BacklogCycle: React.FC = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="text-center mb-16"
+        className="mb-16"
       >
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] mb-4">
-          {t('backlog.title')}
-        </h1>
         <div className="max-w-2xl mx-auto text-left">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] mb-4">
+            {t('backlog.title')}
+          </h1>
           <p className="text-[var(--color-muted)] text-lg mb-4">
             {t('backlog.description')}
           </p>
