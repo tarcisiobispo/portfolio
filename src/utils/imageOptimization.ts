@@ -15,11 +15,12 @@ interface ImageLoadOptions {
  * Preload critical images to improve LCP
  */
 export const preloadCriticalImages = () => {
+  const baseUrl = import.meta.env.BASE_URL;
   const criticalImages = [
-    '/portfolio/images/tarcisio_bispo.webp',
-    '/portfolio/images/tarcisio_bispo.png',
-    '/portfolio/images/ixdf-symbol-dark.png',
-    '/portfolio/images/ixdf-symbol-white.png'
+    `${baseUrl}images/tarcisio_bispo.webp`,
+    `${baseUrl}images/tarcisio_bispo.png`,
+    `${baseUrl}images/ixdf-symbol-dark.png`,
+    `${baseUrl}images/ixdf-symbol-white.png`
   ];
 
   criticalImages.forEach(src => {
@@ -27,12 +28,12 @@ export const preloadCriticalImages = () => {
     link.rel = 'preload';
     link.as = 'image';
     link.href = src;
-    
+
     // Add error handling for missing images
     link.onerror = () => {
       console.warn(`Failed to preload image: ${src}`);
     };
-    
+
     document.head.appendChild(link);
   });
 };
@@ -49,7 +50,7 @@ export const loadImageWithFallback = async (options: ImageLoadOptions): Promise<
       return src;
     } catch (error) {
       console.warn(`Image load attempt ${attempt + 1} failed for: ${src}`);
-      
+
       if (attempt < retryAttempts - 1) {
         await delay(retryDelay);
       }
@@ -95,7 +96,7 @@ const delay = (ms: number): Promise<void> => {
 export const generateResponsiveImageUrls = (baseSrc: string, sizes: number[]): string => {
   const baseUrl = baseSrc.split('.').slice(0, -1).join('.');
   const extension = baseSrc.split('.').pop();
-  
+
   return sizes
     .map(size => `${baseUrl}_${size}w.${extension} ${size}w`)
     .join(', ');
@@ -121,9 +122,10 @@ export const getOptimizedImagePath = (imageName: string): {
   png: string;
   fallback: string;
 } => {
-  const basePath = '/portfolio/images/';
+  const baseUrl = import.meta.env.BASE_URL;
+  const basePath = `${baseUrl}images/`;
   const name = imageName.replace(/\.(webp|png|jpg|jpeg)$/i, '');
-  
+
   return {
     webp: `${basePath}${name}.webp`,
     png: `${basePath}${name}.png`,
@@ -143,7 +145,7 @@ export const createPlaceholderDataUrl = (width: number, height: number, color = 
       </text>
     </svg>
   `;
-  
+
   return `data:image/svg+xml;base64,${btoa(svg)}`;
 };
 
@@ -168,11 +170,11 @@ export const createImageIntersectionObserver = (callback: (entries: Intersection
 export const batchPreloadImages = async (imageSrcs: string[], batchSize = 3): Promise<void> => {
   for (let i = 0; i < imageSrcs.length; i += batchSize) {
     const batch = imageSrcs.slice(i, i + batchSize);
-    
+
     await Promise.allSettled(
       batch.map(src => loadImageWithFallback({ src }))
     );
-    
+
     // Small delay between batches to avoid overwhelming the network
     if (i + batchSize < imageSrcs.length) {
       await delay(100);
@@ -203,14 +205,14 @@ export const getImageDimensions = (src: string): Promise<{ width: number; height
 export const initializeImageOptimizations = () => {
   // Preload critical images
   preloadCriticalImages();
-  
+
   // Set up intersection observer for lazy loading
   const observer = createImageIntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const img = entry.target as HTMLImageElement;
         const src = img.dataset.src;
-        
+
         if (src) {
           loadImageWithFallback({ src })
             .then(loadedSrc => {
@@ -224,7 +226,7 @@ export const initializeImageOptimizations = () => {
               img.classList.add('lazy-error');
             });
         }
-        
+
         observer?.unobserve(img);
       }
     });

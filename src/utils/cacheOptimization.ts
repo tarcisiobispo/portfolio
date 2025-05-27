@@ -43,7 +43,7 @@ const CACHE_CONFIGS: Record<string, CacheConfig> = {
  */
 export const getCacheHeaders = (resourceType: keyof typeof CACHE_CONFIGS): Record<string, string> => {
   const config = CACHE_CONFIGS[resourceType];
-  
+
   if (!config) {
     return {};
   }
@@ -67,15 +67,16 @@ export const getCacheHeaders = (resourceType: keyof typeof CACHE_CONFIGS): Recor
  * Preload critical resources with proper cache headers
  */
 export const preloadCriticalResources = () => {
+  const baseUrl = import.meta.env.BASE_URL;
   const criticalResources = [
     {
-      href: '/images/tarcisio_bispo.webp',
+      href: `${baseUrl}images/tarcisio_bispo.webp`,
       as: 'image',
       type: 'image/webp',
       fetchpriority: 'high'
     },
     {
-      href: '/images/tarcisio_bispo.png',
+      href: `${baseUrl}images/tarcisio_bispo.png`,
       as: 'image',
       type: 'image/png',
       fetchpriority: 'high'
@@ -92,18 +93,23 @@ export const preloadCriticalResources = () => {
     link.rel = 'preload';
     link.href = resource.href;
     link.as = resource.as;
-    
+
     if (resource.type) {
       link.type = resource.type;
     }
-    
+
     if (resource.fetchpriority) {
       link.setAttribute('fetchpriority', resource.fetchpriority);
     }
-    
+
     if (resource.crossorigin) {
-      link.crossOrigin = resource.crossorigin;
+      link.setAttribute('crossorigin', resource.crossorigin);
     }
+
+    // Add error handling for missing resources
+    link.onerror = () => {
+      console.warn(`Failed to preload resource: ${resource.href}`);
+    };
 
     document.head.appendChild(link);
   });
@@ -115,7 +121,9 @@ export const preloadCriticalResources = () => {
 export const registerServiceWorker = async () => {
   if ('serviceWorker' in navigator) {
     try {
-      const registration = await navigator.serviceWorker.register('/sw.js');
+      // Use correct path for GitHub Pages
+      const swPath = import.meta.env.BASE_URL + 'sw.js';
+      const registration = await navigator.serviceWorker.register(swPath);
       console.log('Service Worker registered successfully:', registration);
       return registration;
     } catch (error) {
@@ -135,23 +143,23 @@ export const createImageObserver = () => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const img = entry.target as HTMLImageElement;
-          
+
           // Load the image
           if (img.dataset.src) {
             img.src = img.dataset.src;
             img.removeAttribute('data-src');
           }
-          
+
           // Load srcset if available
           if (img.dataset.srcset) {
             img.srcset = img.dataset.srcset;
             img.removeAttribute('data-srcset');
           }
-          
+
           // Remove loading class
           img.classList.remove('lazy-loading');
           img.classList.add('lazy-loaded');
-          
+
           // Stop observing this image
           imageObserver.unobserve(img);
         }
@@ -163,7 +171,7 @@ export const createImageObserver = () => {
 
     return imageObserver;
   }
-  
+
   return null;
 };
 
@@ -228,32 +236,40 @@ export const optimizeFontLoading = () => {
  * Initialize all cache optimizations
  */
 export const initializeCacheOptimizations = () => {
-  // Preload critical resources
-  preloadCriticalResources();
-  
+  // Skip preload in development to avoid warnings
+  if (import.meta.env.PROD) {
+    // Preload critical resources only in production
+    preloadCriticalResources();
+  }
+
   // Optimize font loading
   optimizeFontLoading();
-  
-  // Register service worker
-  registerServiceWorker();
-  
+
+  // Register service worker only in production
+  if (import.meta.env.PROD) {
+    registerServiceWorker();
+  }
+
   // Create image observer for lazy loading
   const imageObserver = createImageObserver();
-  
+
   if (imageObserver) {
     // Observe all images with data-src attribute
     const lazyImages = document.querySelectorAll('img[data-src]');
     lazyImages.forEach(img => imageObserver.observe(img));
   }
-  
-  // Prefetch likely next pages
-  const nextPageUrls = [
-    '/projetos',
-    '/backlog',
-    '/contato'
-  ];
-  
-  prefetchNextPageResources(nextPageUrls);
+
+  // Skip prefetch in development
+  if (import.meta.env.PROD) {
+    // Prefetch likely next pages
+    const nextPageUrls = [
+      '/projetos',
+      '/backlog',
+      '/contato'
+    ];
+
+    prefetchNextPageResources(nextPageUrls);
+  }
 };
 
 export default {
