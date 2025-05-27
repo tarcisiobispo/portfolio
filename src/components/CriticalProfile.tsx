@@ -24,7 +24,7 @@ const CriticalProfile: React.FC = () => {
                   alt="Foto de perfil de Tarcísio Bispo"
                   className="w-full h-full object-cover"
                   loading="eager"
-                  fetchpriority="high"
+                  fetchPriority="high"
                   width="256"
                   height="256"
                   decoding="sync"

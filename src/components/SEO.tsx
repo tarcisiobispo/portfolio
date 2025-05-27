@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { SecureValidation } from '@/utils/secureValidation';
 
 interface SEOProps {
   title?: string;
@@ -29,18 +30,10 @@ const SEO: React.FC<SEOProps> = ({
   structuredData
 }) => {
   const siteUrl = "https://tarcisiobispo.github.io/portfolio";
-  // Validação segura de URLs
-  const isValidUrl = (urlString: string): boolean => {
-    try {
-      const parsedUrl = new URL(urlString);
-      return parsedUrl.protocol === 'https:' || parsedUrl.protocol === 'http:';
-    } catch {
-      return false;
-    }
-  };
 
-  const fullUrl = url.startsWith('http') && isValidUrl(url) ? url : `${siteUrl}${url}`;
-  const fullImageUrl = image.startsWith('http') && isValidUrl(image) ? image : `${siteUrl}${image}`;
+  // Usar validação segura de URLs
+  const fullUrl = url.startsWith('http') && SecureValidation.validateUrl(url) ? url : `${siteUrl}${url}`;
+  const fullImageUrl = image.startsWith('http') && SecureValidation.validateUrl(image) ? image : `${siteUrl}${image}`;
 
   return (
     <Helmet>

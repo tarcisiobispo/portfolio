@@ -4,6 +4,7 @@ import { Mail, User, MessageSquare, Send, CheckCircle, AlertCircle, Loader2, Che
 import { useTranslation } from 'react-i18next';
 import emailjs from 'emailjs-com';
 import CTAButton from '@/components/ui/CTAButton';
+import { SecureValidation } from '@/utils/secureValidation';
 
 // Tipos para o formulário
 interface FormData {
@@ -59,22 +60,9 @@ const Contact: React.FC = () => {
     }
   }, [submitStatus]);
 
-  // Validação de email segura - usando API nativa do browser
+  // Validação de email segura usando utilitário seguro
   const isValidEmail = (email: string): boolean => {
-    try {
-      // Validação básica de formato
-      if (!email || !email.includes('@') || email.length < 5) {
-        return false;
-      }
-
-      // Usar validação nativa do HTML5 que é mais segura
-      const input = document.createElement('input');
-      input.type = 'email';
-      input.value = email;
-      return input.validity.valid && input.value === email;
-    } catch {
-      return false;
-    }
+    return SecureValidation.validateEmail(email);
   };
 
   // Validação dos campos - usando useCallback para evitar re-criação

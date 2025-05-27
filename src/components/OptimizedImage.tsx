@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { SecureValidation } from '@/utils/secureValidation';
 
 interface OptimizedImageProps {
   src: string;
@@ -22,32 +23,9 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   const [imageError, setImageError] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  // Lista de hostnames permitidos - validação rigorosa
-  const ALLOWED_HOSTNAMES = [
-    'images.unsplash.com',
-    'unsplash.com',
-    'plus.unsplash.com'
-  ];
-
-  // Validação segura de URL
+  // Validação segura de URL usando utilitário seguro
   const isValidUnsplashUrl = (url: string): boolean => {
-    try {
-      const parsedUrl = new URL(url);
-
-      // Verificação rigorosa: apenas hostnames exatos da lista
-      if (!ALLOWED_HOSTNAMES.includes(parsedUrl.hostname)) {
-        return false;
-      }
-
-      // Verificação adicional: deve usar HTTPS
-      if (parsedUrl.protocol !== 'https:') {
-        return false;
-      }
-
-      return true;
-    } catch {
-      return false;
-    }
+    return SecureValidation.validateUrl(url);
   };
 
   // Gerar URLs WebP e fallback com validação de segurança

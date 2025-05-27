@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ANALYTICS_CONFIG, PORTFOLIO_EVENTS, GTMEvent } from '@/config/analytics';
+import { SecureValidation } from '@/utils/secureValidation';
 
 // Hook para analytics do portfolio
 export const useAnalytics = () => {
@@ -88,23 +89,13 @@ export const useAnalytics = () => {
 
   // Tracking de links externos com validação segura
   const trackExternalLink = useCallback((url: string, linkText?: string) => {
-    let linkDomain = 'unknown';
-
-    try {
-      // Validação rigorosa de URL
-      const parsedUrl = new URL(url);
-
-      // Verificar se é HTTPS
-      if (parsedUrl.protocol !== 'https:' && parsedUrl.protocol !== 'http:') {
-        console.warn('URL com protocolo não permitido:', url);
-        return;
-      }
-
-      linkDomain = parsedUrl.hostname;
-    } catch (error) {
+    // Usar validação segura
+    if (!SecureValidation.validateUrl(url)) {
       console.warn('URL inválida para tracking:', url);
       return;
     }
+
+    const linkDomain = SecureValidation.extractDomain(url) || 'unknown';
 
     sendEvent({
       event: ANALYTICS_CONFIG.EVENTS.EXTERNAL_LINK,
