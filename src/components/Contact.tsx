@@ -79,20 +79,46 @@ const Contact: React.FC = () => {
 
   // Validação dos campos
   const validateField = (name: keyof FormData, value: string): string | undefined => {
+    const lang = i18n.language;
+
     switch (name) {
       case 'name':
-        if (!value.trim()) return t('contact.form.nameRequired');
-        if (value.trim().length < 2) return t('contact.form.nameMinLength');
+        if (!value.trim()) {
+          if (lang === 'en-US') return 'Name is required';
+          if (lang === 'es-ES') return 'El nombre es obligatorio';
+          return 'Nome é obrigatório';
+        }
+        if (value.trim().length < 2) {
+          if (lang === 'en-US') return 'Name must be at least 2 characters';
+          if (lang === 'es-ES') return 'El nombre debe tener al menos 2 caracteres';
+          return 'Nome deve ter pelo menos 2 caracteres';
+        }
         return undefined;
 
       case 'email':
-        if (!value.trim()) return t('contact.form.emailRequired');
-        if (!isValidEmail(value)) return t('contact.form.emailInvalid');
+        if (!value.trim()) {
+          if (lang === 'en-US') return 'Email is required';
+          if (lang === 'es-ES') return 'El email es obligatorio';
+          return 'E-mail é obrigatório';
+        }
+        if (!isValidEmail(value)) {
+          if (lang === 'en-US') return 'Invalid email';
+          if (lang === 'es-ES') return 'Email inválido';
+          return 'E-mail inválido';
+        }
         return undefined;
 
       case 'message':
-        if (!value.trim()) return t('contact.form.messageRequired');
-        if (value.trim().length < 10) return t('contact.form.messageMinLength');
+        if (!value.trim()) {
+          if (lang === 'en-US') return 'Message is required';
+          if (lang === 'es-ES') return 'El mensaje es obligatorio';
+          return 'Mensagem é obrigatória';
+        }
+        if (value.trim().length < 10) {
+          if (lang === 'en-US') return 'Message must be at least 10 characters';
+          if (lang === 'es-ES') return 'El mensaje debe tener al menos 10 caracteres';
+          return 'Mensagem deve ter pelo menos 10 caracteres';
+        }
         return undefined;
 
       default:
@@ -434,7 +460,11 @@ const Contact: React.FC = () => {
               aria-live="polite"
             >
               <CheckCircle className="w-5 h-5 flex-shrink-0" aria-hidden="true" />
-              <span className="font-medium text-left">{t('contact.form.success')}</span>
+              <span className="font-medium text-left">
+                {i18n.language === 'en-US' ? 'Message sent successfully!' :
+                 i18n.language === 'es-ES' ? '¡Mensaje enviado con éxito!' :
+                 'Mensagem enviada com sucesso!'}
+              </span>
             </motion.div>
           )}
 
@@ -448,7 +478,11 @@ const Contact: React.FC = () => {
               aria-live="assertive"
             >
               <AlertCircle className="w-5 h-5 flex-shrink-0" aria-hidden="true" />
-              <span className="font-medium text-left">{t('contact.form.error')}</span>
+              <span className="font-medium text-left">
+                {i18n.language === 'en-US' ? 'Error sending message. Please try again.' :
+                 i18n.language === 'es-ES' ? 'Error al enviar mensaje. Inténtalo de nuevo.' :
+                 'Erro ao enviar mensagem. Tente novamente.'}
+              </span>
             </motion.div>
           )}
 

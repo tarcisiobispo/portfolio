@@ -4,6 +4,7 @@ import CTAButton from './ui/CTAButton';
 import { Mail, Lightbulb, Smile, X, Send, ArrowLeft, CheckCircle, AlertCircle } from 'lucide-react';
 import emailjs from 'emailjs-com';
 import { useTranslation } from 'react-i18next';
+import i18n from '../i18n/config';
 import { motion } from 'framer-motion';
 
 const feedbackTypes = [
@@ -183,11 +184,15 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
                 {touched && !isMessageValid ? (
                   <div id="feedback-message-help" className="text-xs text-red-500 flex items-center gap-1 mb-1" role="alert">
                     <AlertCircle className="w-3 h-3" aria-hidden="true" />
-                    {t('feedback.form.messageRequired')}
+                    {i18n.language === 'en-US' ? 'Message is required' :
+                     i18n.language === 'es-ES' ? 'El mensaje es obligatorio' :
+                     'Mensagem é obrigatória'}
                   </div>
                 ) : (
                   <div id="feedback-message-help" className="text-xs text-slate-500 mb-1">
-                    {t('feedback.minimumCharacters')}
+                    {i18n.language === 'en-US' ? 'Minimum 5 characters' :
+                     i18n.language === 'es-ES' ? 'Mínimo 5 caracteres' :
+                     'Mínimo 5 caracteres'}
                   </div>
                 )}
                 <div className="flex items-center gap-2">
@@ -262,7 +267,11 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
                     aria-live="polite"
                   >
                     <CheckCircle className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
-                    <span className="text-sm font-medium text-left">{t('feedback.form.success')}</span>
+                    <span className="text-sm font-medium text-left">
+                      {i18n.language === 'en-US' ? 'Thank you for your feedback!' :
+                       i18n.language === 'es-ES' ? '¡Gracias por tu feedback!' :
+                       'Obrigado pelo seu feedback!'}
+                    </span>
                   </motion.div>
                 )}
 
@@ -276,7 +285,11 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
                     aria-live="assertive"
                   >
                     <AlertCircle className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
-                    <span className="text-sm font-medium text-left">{t('feedback.form.error')}</span>
+                    <span className="text-sm font-medium text-left">
+                      {i18n.language === 'en-US' ? 'Error sending feedback. Please try again.' :
+                       i18n.language === 'es-ES' ? 'Error al enviar feedback. Inténtalo de nuevo.' :
+                       'Erro ao enviar feedback. Tente novamente.'}
+                    </span>
                   </motion.div>
                 )}
 
