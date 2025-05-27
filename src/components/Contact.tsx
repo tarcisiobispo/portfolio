@@ -81,18 +81,18 @@ const Contact: React.FC = () => {
   const validateField = (name: keyof FormData, value: string): string | undefined => {
     switch (name) {
       case 'name':
-        if (!value.trim()) return t('contact.errors.nameRequired');
-        if (value.trim().length < 2) return t('contact.errors.nameMinLength');
+        if (!value.trim()) return t('contact.form.nameRequired');
+        if (value.trim().length < 2) return t('contact.form.nameMinLength');
         return undefined;
 
       case 'email':
-        if (!value.trim()) return t('contact.errors.emailRequired');
-        if (!isValidEmail(value)) return t('contact.errors.emailInvalid');
+        if (!value.trim()) return t('contact.form.emailRequired');
+        if (!isValidEmail(value)) return t('contact.form.emailInvalid');
         return undefined;
 
       case 'message':
-        if (!value.trim()) return t('contact.errors.messageRequired');
-        if (value.trim().length < 10) return t('contact.errors.messageMinLength');
+        if (!value.trim()) return t('contact.form.messageRequired');
+        if (value.trim().length < 10) return t('contact.form.messageMinLength');
         return undefined;
 
       default:
