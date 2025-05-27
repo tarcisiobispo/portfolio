@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import LogRocket from 'logrocket';
+import { secureLogRocket } from '@/utils/secureLogRocket';
 import MicrosoftClarityInit from './MicrosoftClarity';
 import { GTMHead, GTMBody } from './GoogleTagManager';
 import { ANALYTICS_CONFIG } from '@/config/analytics';
@@ -13,21 +13,30 @@ const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({ children }) => {
     // Inicializar analytics apenas em produção
     if (import.meta.env.PROD) {
       try {
-        // LogRocket
-        LogRocket.init('fatqpp/portfolio-kbfin');
-        // Analytics initialized successfully - log removed for production
+        // Secure LogRocket initialization
+        secureLogRocket.init('fatqpp/portfolio-kbfin', {
+          shouldAugmentNPS: false, // Disable to prevent regex vulnerabilities
+          shouldParseXHRBlob: false, // Disable for security
+          network: {
+            isEnabled: true
+          }
+        }).then(() => {
+          // Analytics initialized successfully - log removed for production
 
-        // Configurar contexto do portfolio para LogRocket
-        LogRocket.getSessionURL((sessionURL) => {
-          // Session URL available for debugging if needed
-        });
+          // Configurar contexto do portfolio para LogRocket
+          secureLogRocket.getSessionURL((sessionURL) => {
+            // Session URL available for debugging if needed
+          });
 
-        // Adicionar informações do portfolio como contexto
-        LogRocket.track('Portfolio Visit', {
-          portfolioOwner: 'Tarcisio Bispo de Araujo',
-          ownerEmail: 'tbisp0@hotmail.com',
-          portfolioType: 'UX/Product Designer',
-          version: '2024'
+          // Adicionar informações do portfolio como contexto
+          secureLogRocket.track('Portfolio Visit', {
+            portfolioOwner: 'Tarcisio Bispo de Araujo',
+            ownerEmail: 'tbisp0@hotmail.com',
+            portfolioType: 'UX/Product Designer',
+            version: '2024'
+          });
+        }).catch((error) => {
+          console.error('Failed to initialize secure LogRocket:', error);
         });
 
       } catch (error) {

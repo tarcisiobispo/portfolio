@@ -20,7 +20,12 @@ export const validateHostname = (hostname: string): boolean => {
     '::1', // IPv6 localhost
     'images.unsplash.com',
     'unsplash.com',
-    'plus.unsplash.com'
+    'plus.unsplash.com',
+    // Analytics and tracking domains (secure validation)
+    'production.wootric.com',
+    'web.delighted.com',
+    'e.logrocket.com',
+    'api.logrocket.com'
   ];
 
   // Normalize hostname (lowercase, trim)
@@ -41,7 +46,7 @@ export const validateUrl = (url: string): boolean => {
 
   try {
     const parsedUrl = new URL(url);
-    
+
     // Validate protocol
     if (parsedUrl.protocol !== 'https:' && parsedUrl.protocol !== 'http:') {
       return false;
@@ -147,7 +152,7 @@ export const parseQueryParams = (search: string): Record<string, string> => {
   }
 
   const params: Record<string, string> = {};
-  
+
   try {
     const urlParams = new URLSearchParams(search);
     for (const [key, value] of urlParams.entries()) {
@@ -215,6 +220,88 @@ export const validateFileExtension = (filename: string): boolean => {
 };
 
 /**
+ * Secure validation for analytics and tracking domains
+ * Prevents regex bypass attacks on third-party analytics services
+ */
+export const validateAnalyticsDomain = (hostname: string): boolean => {
+  if (typeof hostname !== 'string' || !hostname) {
+    return false;
+  }
+
+  // Specific allowlist for analytics domains
+  const ANALYTICS_DOMAINS = [
+    'production.wootric.com',
+    'web.delighted.com',
+    'e.logrocket.com',
+    'api.logrocket.com',
+    'www.google-analytics.com',
+    'analytics.google.com',
+    'clarity.microsoft.com'
+  ];
+
+  const normalizedHostname = hostname.toLowerCase().trim();
+  return ANALYTICS_DOMAINS.includes(normalizedHostname);
+};
+
+/**
+ * Secure URL validation specifically for analytics endpoints
+ * Uses exact string matching instead of vulnerable regex patterns
+ */
+export const validateAnalyticsUrl = (url: string): boolean => {
+  if (typeof url !== 'string' || !url) {
+    return false;
+  }
+
+  try {
+    const parsedUrl = new URL(url);
+
+    // Must use HTTPS for analytics
+    if (parsedUrl.protocol !== 'https:') {
+      return false;
+    }
+
+    // Validate against analytics domain allowlist
+    return validateAnalyticsDomain(parsedUrl.hostname);
+  } catch {
+    return false;
+  }
+};
+
+/**
+ * Secure pattern matching for analytics endpoints
+ * Replaces vulnerable regex patterns with safe string operations
+ */
+export const matchesAnalyticsPattern = (url: string, pattern: 'wootric' | 'delighted' | 'logrocket'): boolean => {
+  if (typeof url !== 'string' || !url) {
+    return false;
+  }
+
+  try {
+    const parsedUrl = new URL(url);
+
+    switch (pattern) {
+      case 'wootric':
+        return parsedUrl.hostname === 'production.wootric.com' &&
+               parsedUrl.pathname.startsWith('/responses');
+
+      case 'delighted':
+        return parsedUrl.hostname === 'web.delighted.com' &&
+               parsedUrl.pathname.includes('/e/') &&
+               parsedUrl.pathname.includes('/c');
+
+      case 'logrocket':
+        return (parsedUrl.hostname === 'e.logrocket.com' ||
+                parsedUrl.hostname === 'api.logrocket.com');
+
+      default:
+        return false;
+    }
+  } catch {
+    return false;
+  }
+};
+
+/**
  * Export all validation functions as a namespace
  */
 export const SecureValidation = {
@@ -226,7 +313,10 @@ export const SecureValidation = {
   extractDomain,
   parseQueryParams,
   validateContentType,
-  validateFileExtension
+  validateFileExtension,
+  validateAnalyticsDomain,
+  validateAnalyticsUrl,
+  matchesAnalyticsPattern
 };
 
 export default SecureValidation;

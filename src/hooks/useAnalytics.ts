@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ANALYTICS_CONFIG, PORTFOLIO_EVENTS, GTMEvent } from '@/config/analytics';
 import { SecureValidation } from '@/utils/secureValidation';
+import { secureLogRocket } from '@/utils/secureLogRocket';
 
 // Hook para analytics do portfolio
 export const useAnalytics = () => {
