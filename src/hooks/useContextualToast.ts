@@ -27,9 +27,9 @@ export const useContextualToast = () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 
-    // Posição abaixo do elemento com margem
+    // Posição abaixo do elemento com margem mínima para proximidade
     const position: ToastPosition = {
-      top: rect.bottom + scrollTop + 8,
+      top: rect.bottom + scrollTop + 4, // Margem reduzida para maior proximidade
       left: rect.left + scrollLeft + (rect.width / 2)
     };
 
@@ -40,7 +40,7 @@ export const useContextualToast = () => {
       fixed z-[10000] pointer-events-auto
       bg-[var(--color-surface)] border border-[var(--color-border)]
       rounded-lg shadow-xl backdrop-blur-sm
-      px-4 py-3 max-w-xs
+      px-3 py-2 max-w-xs text-sm
       transform -translate-x-1/2
       animate-in slide-in-from-top-2 duration-300
     `;
@@ -61,21 +61,21 @@ export const useContextualToast = () => {
     toast.style.top = `${position.top}px`;
     toast.style.left = `${position.left}px`;
 
-    // Conteúdo do toast
+    // Conteúdo do toast mais compacto
     toast.innerHTML = `
-      <div class="flex items-start gap-2">
+      <div class="flex items-center gap-2">
         <div class="flex-1 min-w-0">
-          <div class="font-semibold text-sm leading-tight">
+          <div class="font-medium text-sm leading-tight">
             ${options.message}
           </div>
           ${options.description ? `
-            <div class="text-xs opacity-80 mt-1 leading-tight">
+            <div class="text-xs opacity-75 mt-0.5 leading-tight">
               ${options.description}
             </div>
           ` : ''}
         </div>
-        <button 
-          class="flex-shrink-0 w-5 h-5 flex items-center justify-center rounded-md hover:bg-black/10 dark:hover:bg-white/10 transition-colors ml-2"
+        <button
+          class="flex-shrink-0 w-4 h-4 flex items-center justify-center rounded hover:bg-black/10 dark:hover:bg-white/10 transition-colors ml-1"
           onclick="this.parentElement.parentElement.remove()"
           aria-label="Fechar notificação"
         >
@@ -105,11 +105,11 @@ export const useContextualToast = () => {
 
     // Ajusta verticalmente se necessário (mostra acima do elemento)
     if (toastRect.bottom > viewportHeight - 16) {
-      toast.style.top = `${rect.top + scrollTop - toastRect.height - 8}px`;
+      toast.style.top = `${rect.top + scrollTop - toastRect.height - 4}px`; // Margem reduzida para maior proximidade
     }
 
-    // Remove automaticamente após duração especificada
-    const duration = options.duration || 3000;
+    // Remove automaticamente após duração especificada (mais rápido para proximidade)
+    const duration = options.duration || 2000;
     setTimeout(() => {
       if (toast.parentElement) {
         toast.style.animation = 'fade-out 200ms ease-out forwards';
@@ -148,11 +148,11 @@ if (typeof document !== 'undefined') {
       from { opacity: 1; transform: translateY(0); }
       to { opacity: 0; transform: translateY(-8px); }
     }
-    
+
     [data-contextual-toast] {
       animation: slide-in-from-top 300ms cubic-bezier(0.16, 1, 0.3, 1);
     }
-    
+
     @keyframes slide-in-from-top {
       from {
         opacity: 0;
@@ -164,7 +164,7 @@ if (typeof document !== 'undefined') {
       }
     }
   `;
-  
+
   if (!document.head.querySelector('[data-contextual-toast-styles]')) {
     style.setAttribute('data-contextual-toast-styles', 'true');
     document.head.appendChild(style);

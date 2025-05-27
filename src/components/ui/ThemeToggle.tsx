@@ -98,7 +98,7 @@ export const ThemeToggle: React.FC = () => {
           message: t(selectedOption.labelKey),
           description: t('theme.changed'),
           type: 'success',
-          duration: 2000,
+          duration: 1500, // Duração reduzida para maior proximidade
         });
       }
     } catch (error) {

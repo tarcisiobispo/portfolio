@@ -96,7 +96,7 @@ export const LanguageSwitcher: React.FC = () => {
         message: selectedLang.nativeName,
         description: t('language.changed'),
         type: 'success',
-        duration: 2000,
+        duration: 1500, // Duração reduzida para maior proximidade
       });
     }
   }

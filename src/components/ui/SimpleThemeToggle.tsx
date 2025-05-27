@@ -30,7 +30,7 @@ export const SimpleThemeToggle: React.FC = () => {
           message: themeLabel,
           description: t('theme.changed'),
           type: 'success',
-          duration: 2000,
+          duration: 1500, // Duração reduzida para maior proximidade
         });
       }
     } catch (error) {
