@@ -25,14 +25,14 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
 
   return (
     <section className="w-full">
-      {/* Header Section - Padronizado com Contact */}
+      {/* Header Section - Alinhado com Cards */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="mb-16"
       >
-        <div className="max-w-4xl mx-auto text-left">
+        <div className="max-w-4xl mx-auto text-left px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] mb-4">
             {t('projects.title')}
           </h1>

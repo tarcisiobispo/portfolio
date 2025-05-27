@@ -58,14 +58,14 @@ const BacklogCycle: React.FC = () => {
 
   return (
     <section className="w-full">
-      {/* Header Section - Padronizado com Contact */}
+      {/* Header Section - Alinhado com Cards */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="mb-16"
       >
-        <div className="max-w-2xl mx-auto text-left">
+        <div className="max-w-4xl mx-auto text-left px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] mb-4">
             {t('backlog.title')}
           </h1>
@@ -82,9 +82,9 @@ const BacklogCycle: React.FC = () => {
         </div>
       </motion.div>
 
-      {/* Content Section - Centralizado */}
+      {/* Content Section - Alinhado com Header */}
       <motion.div
-        className="w-full max-w-4xl mx-auto"
+        className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"

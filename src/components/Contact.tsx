@@ -316,7 +316,7 @@ const Contact: React.FC = () => {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="mb-12"
       >
-        <div className="max-w-2xl mx-auto text-left">
+        <div className="max-w-2xl mx-auto text-left px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] mb-4">
             {t('contact.title')}
           </h1>
@@ -338,7 +338,7 @@ const Contact: React.FC = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-        className="max-w-2xl mx-auto"
+        className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8"
       >
         <form onSubmit={handleSubmit} className="space-y-6" noValidate>
 

@@ -576,10 +576,11 @@
   /* Grid responsiva seguindo NN/g guidelines */
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
 
-  /* Espaçamento balanceado para "respiração" visual */
-  padding: 0;
+  /* Espaçamento balanceado para "respiração" visual - Alinhado com headers */
+  padding: 0 1rem;
   margin: 0 auto;
   width: 100%;
+  max-width: 1400px;
 
   /* Alinhamento centralizado e consistente */
   justify-items: center;
@@ -594,7 +595,7 @@
   .projects-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
-    padding: 0 0.5rem;
+    padding: 0 1rem;
   }
 
   .project-card {
@@ -627,7 +628,7 @@
   .projects-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
-    padding: 0 1rem;
+    padding: 0 1.5rem;
   }
 
   .project-card-content {
@@ -645,6 +646,7 @@
   .projects-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 2.5rem;
+    padding: 0 2rem;
   }
 
   .project-card-content {
@@ -659,6 +661,7 @@
     max-width: 1400px;
     margin: 0 auto;
     gap: 2.5rem;
+    padding: 0 2rem;
   }
 }
 
