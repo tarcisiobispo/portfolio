@@ -24,11 +24,21 @@ export const usePrefetch = ({
   }, [routes, delay]);
 
   const prefetchRoute = (route: string) => {
+    // Skip prefetch in development to avoid 404 errors
+    if (!import.meta.env.PROD) {
+      return;
+    }
+
     // Criar link element para prefetch
     const link = document.createElement('link');
     link.rel = 'prefetch';
     link.href = route;
     link.as = 'document';
+
+    // Add error handling
+    link.onerror = () => {
+      console.warn(`Failed to prefetch route: ${route}`);
+    };
 
     // Verificar se já não existe
     const existingLink = document.querySelector(`link[href="${route}"]`);
@@ -45,11 +55,10 @@ export const usePrefetch = ({
 
   // Prefetch de recursos críticos
   const prefetchCriticalResources = () => {
+    // Only prefetch actual routes that exist
+    const baseUrl = import.meta.env.BASE_URL;
     const criticalRoutes = [
-      '/portfolio/privacy-policy',
-      '#projetos',
-      '#contato',
-      '#backlog'
+      `${baseUrl}privacy-policy`
     ];
 
     criticalRoutes.forEach(route => {

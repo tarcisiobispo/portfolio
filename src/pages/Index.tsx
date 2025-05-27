@@ -47,8 +47,9 @@ const Index = () => {
 
   // Prefetch de rotas e imagens para performance
   const imageSrcs = projects.map(project => project.imageUrl);
+  const baseUrl = import.meta.env.BASE_URL;
   usePrefetch({
-    routes: ['/portfolio/privacy-policy'],
+    routes: [`${baseUrl}privacy-policy`],
     delay: 3000
   });
   useImagePrefetch(imageSrcs);

@@ -83,8 +83,7 @@ export const preloadCriticalResources = () => {
     },
     {
       href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&subset=latin&display=swap',
-      as: 'style',
-      crossorigin: 'anonymous'
+      as: 'style'
     }
   ];
 
@@ -102,7 +101,7 @@ export const preloadCriticalResources = () => {
       link.setAttribute('fetchpriority', resource.fetchpriority);
     }
 
-    if (resource.crossorigin) {
+    if (resource.crossorigin && resource.crossorigin !== '') {
       link.setAttribute('crossorigin', resource.crossorigin);
     }
 
@@ -261,11 +260,10 @@ export const initializeCacheOptimizations = () => {
 
   // Skip prefetch in development
   if (import.meta.env.PROD) {
-    // Prefetch likely next pages
+    // Only prefetch routes that actually exist
+    const baseUrl = import.meta.env.BASE_URL;
     const nextPageUrls = [
-      '/projetos',
-      '/backlog',
-      '/contato'
+      `${baseUrl}privacy-policy`
     ];
 
     prefetchNextPageResources(nextPageUrls);
