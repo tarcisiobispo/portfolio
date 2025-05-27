@@ -283,6 +283,16 @@
       "success": "Configuración restaurada"
     }
   },
+  "sound": {
+    "enabled": "Sonido activado",
+    "disabled": "Sonido desactivado",
+    "enabledDesc": "Retroalimentación sonora ahora está activa",
+    "disabledDesc": "Retroalimentación sonora ahora está silenciada",
+    "enable": "Activar sonido",
+    "disable": "Desactivar sonido",
+    "volume": "Volumen",
+    "volumeControl": "Ajustar volumen del sonido"
+  },
   "tooltips": {
     "linkedin": "¡Conectemos en LinkedIn!",
     "github": "Revisa mi código en GitHub",
@@ -298,6 +308,14 @@
     "edit": "Editar información",
     "delete": "Eliminar elemento",
     "copy": "Copiar enlace",
-    "external": "Abrir en nueva pestaña"
+    "external": "Abrir en nueva pestaña",
+    "sound": {
+      "enable": "Activar efectos de sonido",
+      "disable": "Desactivar efectos de sonido"
+    },
+    "theme": {
+      "light": "Cambiar a tema claro",
+      "dark": "Cambiar a tema oscuro"
+    }
   }
 }

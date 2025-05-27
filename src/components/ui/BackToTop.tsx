@@ -7,7 +7,7 @@ interface BackToTopProps {
   className?: string;
 }
 
-export const BackToTop: React.FC<BackToTopProps> = ({ 
+export const BackToTop: React.FC<BackToTopProps> = ({
   showAfter = 300,
   className = ''
 }) => {
@@ -52,8 +52,8 @@ export const BackToTop: React.FC<BackToTopProps> = ({
           onClick={scrollToTop}
           onKeyDown={handleKeyDown}
           className={`
-            fixed bottom-8 right-8 z-50 
-            p-3 rounded-full shadow-lg hover:shadow-xl 
+            fixed bottom-20 right-20 z-40
+            p-4 md:p-5 rounded-full shadow-lg hover:shadow-xl
             bg-[var(--color-primary)] text-white
             transition-all duration-300
             focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-offset-2
@@ -62,7 +62,7 @@ export const BackToTop: React.FC<BackToTopProps> = ({
           aria-label="Voltar ao topo da página"
           title="Voltar ao topo"
         >
-          <ChevronUp className="w-6 h-6" />
+          <ChevronUp className="w-6 h-6 md:w-7 md:h-7" />
         </motion.button>
       )}
     </AnimatePresence>

@@ -6,6 +6,7 @@ import emailjs from 'emailjs-com';
 import { useTranslation } from 'react-i18next';
 import i18n from '../i18n/config';
 import { motion } from 'framer-motion';
+import { useFormSounds, useNavigationSounds } from '@/hooks/useSound';
 
 const feedbackTypes = [
   { type: 'problem', icon: Mail },
@@ -29,6 +30,8 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
   const [touched, setTouched] = useState(false); // Para mostrar validação visual
   const initialFocusRef = useRef(null);
   const { t } = useTranslation();
+  const { playSubmitSuccess, playSubmitError, playFieldFocus } = useFormSounds();
+  const { playButtonClick } = useNavigationSounds();
 
   // Auto-hide da mensagem de sucesso após 4 segundos
   useEffect(() => {
@@ -48,7 +51,7 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
 
   const canSend = isMessageValid && !sending;
 
-  const handleSend = async (e) => {
+  const handleSend = async (e: React.FormEvent) => {
     e.preventDefault();
     setSending(true);
     setSubmitStatus('idle');
@@ -69,13 +72,24 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
       );
       setSubmitStatus('success');
       setSent(true);
+
+      // Play success sound
+      playSubmitSuccess();
     } catch (err) {
       console.error('Erro ao enviar feedback:', err);
       setSubmitStatus('error');
-      // REMOVIDO: toast - agora só mostra mensagem embaixo do botão
+
+      // Play error sound
+      playSubmitError();
     } finally {
       setSending(false);
     }
+  };
+
+  // Wrapper for button click
+  const handleSendClick = () => {
+    const fakeEvent = { preventDefault: () => {} } as React.FormEvent;
+    handleSend(fakeEvent);
   };
 
   // Fechamento completo (limpa tudo) - usado apenas no botão X ou após envio
@@ -138,7 +152,11 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
                       size="md"
                       icon={ft.icon}
                       iconPosition="left"
-                      onClick={() => { setFeedbackType(ft.type); setStep(2); }}
+                      onClick={() => {
+                        setFeedbackType(ft.type);
+                        setStep(2);
+                        playButtonClick();
+                      }}
                       className="justify-center py-3"
                     >
                       {t(`feedback.${ft.type}`)}
@@ -167,6 +185,7 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
                     value={message}
                     onChange={e => setMessage(e.target.value)}
                     onBlur={() => setTouched(true)}
+                    onFocus={() => playFieldFocus()}
                     required
                     autoFocus
                     maxLength={1000}
@@ -232,7 +251,7 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
                 <a href="/portfolio/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-xs text-blue-700 underline mb-2">{t('feedback.privacyPolicy')}</a>
                 <div className="flex gap-2 mt-2">
                   <CTAButton
-                    onClick={handleSend}
+                    onClick={handleSendClick}
                     variant="primary"
                     size="md"
                     icon={Send}
@@ -245,7 +264,10 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
                   </CTAButton>
 
                   <CTAButton
-                    onClick={() => setStep(1)}
+                    onClick={() => {
+                      setStep(1);
+                      playButtonClick();
+                    }}
                     variant="ghost"
                     size="md"
                     icon={ArrowLeft}

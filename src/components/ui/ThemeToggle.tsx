@@ -3,6 +3,7 @@ import { Sun, Moon, Monitor } from 'lucide-react';
 import { useTheme } from '../providers/ThemeProvider';
 import { useTranslation } from 'react-i18next';
 import { useContextualToast } from '@/hooks/useContextualToast';
+import { useNavigationSounds } from '@/hooks/useSound';
 
 type ThemeOption = 'light' | 'dark' | 'system';
 
@@ -22,6 +23,7 @@ export const ThemeToggle: React.FC = () => {
   const { theme, setTheme, resolvedTheme, isLoading } = useTheme();
   const { t } = useTranslation();
   const { showToast } = useContextualToast();
+  const { playButtonHover, playButtonClick } = useNavigationSounds();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLUListElement>(null);
 
@@ -91,6 +93,9 @@ export const ThemeToggle: React.FC = () => {
       setOpen(false);
       setFocusedIndex(-1);
 
+      // Play click sound
+      playButtonClick();
+
       // Feedback visual com toast contextual abaixo do botão
       const selectedOption = THEME_OPTIONS.find(option => option.value === newTheme);
       if (selectedOption && buttonRef.current) {
@@ -126,7 +131,9 @@ export const ThemeToggle: React.FC = () => {
         onClick={() => {
           setOpen(v => !v);
           setFocusedIndex(-1);
+          playButtonClick();
         }}
+        onMouseEnter={() => playButtonHover()}
         tabIndex={0}
         className="transition-all duration-300 flex items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] w-10 h-10 text-[var(--color-primary)] hover:scale-105"
         style={{ color: 'var(--color-primary)' }}
@@ -158,6 +165,7 @@ export const ThemeToggle: React.FC = () => {
                   role="option"
                   aria-selected={theme === option.value}
                   onClick={() => handleThemeSelect(option.value)}
+                  onMouseEnter={() => playButtonHover()}
                   tabIndex={-1}
                 >
                   <OptionIcon className="w-4 h-4" aria-hidden="true" />

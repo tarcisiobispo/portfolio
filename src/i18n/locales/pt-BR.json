@@ -300,5 +300,40 @@
     "alternative": "Ou entre em contato diretamente:",
     "emailDirect": "Enviar e-mail direto para tbisp0@hotmail.com",
     "copyright": "© 2024 Tarcísio Bispo. Todos os direitos reservados."
+  },
+  "sound": {
+    "enabled": "Som ativado",
+    "disabled": "Som desativado",
+    "enabledDesc": "Feedback sonoro agora está ativo",
+    "disabledDesc": "Feedback sonoro agora está silenciado",
+    "enable": "Ativar som",
+    "disable": "Desativar som",
+    "volume": "Volume",
+    "volumeControl": "Ajustar volume do som"
+  },
+  "tooltips": {
+    "linkedin": "Vamos nos conectar no LinkedIn!",
+    "github": "Confira meu código no GitHub",
+    "behance": "Veja meus designs no Behance",
+    "email": "Me envie um e-mail",
+    "phone": "Vamos conversar por telefone",
+    "download": "Baixar meu currículo",
+    "share": "Compartilhar este projeto",
+    "like": "Curtir este projeto",
+    "bookmark": "Salvar para depois",
+    "expand": "Ver em tela cheia",
+    "collapse": "Minimizar",
+    "edit": "Editar informações",
+    "delete": "Remover item",
+    "copy": "Copiar link",
+    "external": "Abrir em nova aba",
+    "sound": {
+      "enable": "Ativar efeitos sonoros",
+      "disable": "Desativar efeitos sonoros"
+    },
+    "theme": {
+      "light": "Mudar para tema claro",
+      "dark": "Mudar para tema escuro"
+    }
   }
 }

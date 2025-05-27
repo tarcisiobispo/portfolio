@@ -1,11 +1,13 @@
 import { useEffect, useState, useCallback } from 'react';
 import { User, Folder, Repeat, Mail, MessageCircle } from 'lucide-react';
 import SimpleThemeToggle from './ui/SimpleThemeToggle';
+import SoundToggle from './ui/SoundToggle';
 import { LanguageSwitcher } from './ui/LanguageSwitcher';
 import AccessibilityButton from './accessibility/AccessibilityButton';
 import FeedbackModal from './FeedbackModal';
 import { useTranslation } from 'react-i18next';
 import { useAnalytics } from '@/hooks/useAnalytics';
+import { useNavigationSounds } from '@/hooks/useSound';
 
 const navItems = [
   { href: '#perfil', icon: User, sectionId: 'perfil', i18nKey: 'navigation.profile' },
@@ -20,6 +22,7 @@ export default function Header() {
   const [feedbackOpen, setFeedbackOpen] = useState(false);
   const { t } = useTranslation();
   const { trackNavigation } = useAnalytics();
+  const { playButtonHover, playButtonClick, playPageTransition } = useNavigationSounds();
 
   useEffect(() => {
     const onScroll = () => {
@@ -86,7 +89,11 @@ export default function Header() {
               <li key={item.href} className="group relative flex flex-col items-center justify-end">
                 <a
                   href={item.href}
-                  onClick={e => handleNavClick(e, item.sectionId)}
+                  onClick={e => {
+                    handleNavClick(e, item.sectionId);
+                    playPageTransition();
+                  }}
+                  onMouseEnter={() => playButtonHover()}
                   className={`relative flex flex-col items-center px-3 py-2 outline-none transition-all duration-300 ease-out
                     ${isActive ? 'text-[var(--color-primary)]' : 'text-[var(--color-text)] hover:text-[var(--color-primary)]'}
                     focus-visible:text-[var(--color-primary)]`
@@ -121,11 +128,16 @@ export default function Header() {
         <div className="flex gap-2 sm:gap-3 items-center">
           <LanguageSwitcher />
           <SimpleThemeToggle />
+          <SoundToggle />
           <AccessibilityButton />
 
           {/* Botão de Feedback */}
           <button
-            onClick={() => setFeedbackOpen(true)}
+            onClick={() => {
+              setFeedbackOpen(true);
+              playButtonClick();
+            }}
+            onMouseEnter={() => playButtonHover()}
             className="group relative transition-all duration-300 flex items-center justify-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] shadow hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] w-10 h-10 text-[var(--color-primary)] hover:scale-110 overflow-hidden"
             style={{ color: 'var(--color-primary)' }}
             aria-label={t('feedback.openFeedback')}

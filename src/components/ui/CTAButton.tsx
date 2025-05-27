@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { LucideIcon } from 'lucide-react';
+import { useNavigationSounds } from '@/hooks/useSound';
 
 interface CTAButtonProps {
   children: React.ReactNode;
@@ -16,6 +17,7 @@ interface CTAButtonProps {
   ariaLabel?: string;
   target?: '_blank' | '_self';
   rel?: string;
+  enableSound?: boolean; // New prop to control sound
 }
 
 const CTAButton: React.FC<CTAButtonProps> = ({
@@ -31,10 +33,27 @@ const CTAButton: React.FC<CTAButtonProps> = ({
   className = '',
   ariaLabel,
   target,
-  rel
+  rel,
+  enableSound = true
 }) => {
+  const { playButtonHover, playButtonClick } = useNavigationSounds();
   // Classes CSS centralizadas
   const baseClasses = `cta-button variant-${variant} size-${size} ${className}`.trim();
+
+  // Handle click with sound
+  const handleClick = () => {
+    if (enableSound) {
+      playButtonClick();
+    }
+    onClick?.();
+  };
+
+  // Handle hover with sound
+  const handleHover = () => {
+    if (enableSound) {
+      playButtonHover();
+    }
+  };
 
   // Variantes de animação
   const buttonVariants = {
@@ -81,6 +100,8 @@ const CTAButton: React.FC<CTAButtonProps> = ({
         rel={rel}
         className={baseClasses}
         aria-label={ariaLabel}
+        onClick={handleClick}
+        onMouseEnter={handleHover}
         style={{
           textDecoration: 'none',
           pointerEvents: disabled ? 'none' : 'auto',
@@ -98,7 +119,8 @@ const CTAButton: React.FC<CTAButtonProps> = ({
 
   return (
     <motion.button
-      onClick={disabled ? undefined : onClick}
+      onClick={disabled ? undefined : handleClick}
+      onMouseEnter={handleHover}
       className={baseClasses}
       disabled={disabled || loading}
       aria-label={ariaLabel}

@@ -4,6 +4,7 @@ import { Eye, EyeOff } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import OptimizedImage from '@/components/OptimizedImage';
 import { ensureStringArray } from '@/utils/translationHelpers';
+import { useProjectSounds } from '@/hooks/useSound';
 import '@/styles/project-cards.css';
 
 interface ProjectDetails {
@@ -18,10 +19,19 @@ interface ProjectShowcaseProps {
 const ProjectShowcase: React.FC<ProjectShowcaseProps> = memo(({ projects }) => {
   const [activeProject, setActiveProject] = useState<number | null>(null);
   const { t } = useTranslation();
+  const { playCardHover, playCardClick, playExpand, playCollapse } = useProjectSounds();
 
   const toggleProject = useCallback((index: number) => {
+    const isExpanding = activeProject !== index;
     setActiveProject(activeProject === index ? null : index);
-  }, [activeProject]);
+
+    // Play appropriate sound
+    if (isExpanding) {
+      playExpand();
+    } else {
+      playCollapse();
+    }
+  }, [activeProject, playExpand, playCollapse]);
 
   return (
     <section className="w-full">
@@ -66,6 +76,7 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = memo(({ projects }) => {
             role="article"
             aria-labelledby={`project-title-${index}`}
             aria-describedby={`project-overview-${index}`}
+
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
@@ -155,6 +166,7 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = memo(({ projects }) => {
               <div className="project-card-actions">
                 <button
                   onClick={() => toggleProject(index)}
+
                   className="project-card-button group"
                   aria-label={activeProject === index ? t('projects.seeLess') : t('projects.seeMore')}
                 >

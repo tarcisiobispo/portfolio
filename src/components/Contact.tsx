@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import emailjs from 'emailjs-com';
 import CTAButton from '@/components/ui/CTAButton';
 import { SecureValidation } from '@/utils/secureValidation';
+import { useFormSounds } from '@/hooks/useSound';
 
 // Tipos para o formulário
 interface FormData {
@@ -27,6 +28,7 @@ interface FormTouched {
 
 const Contact: React.FC = () => {
   const { t, i18n } = useTranslation();
+  const { playSubmitSuccess, playSubmitError, playFieldFocus, playFieldValid } = useFormSounds();
 
   // Estados do formulário
   const [formData, setFormData] = useState<FormData>({
@@ -245,12 +247,15 @@ const Contact: React.FC = () => {
       setTouched({ name: false, email: false, message: false });
       setErrors({});
 
-      // REMOVIDO: toast flutuante - agora só mostra mensagem embaixo do botão
+      // Play success sound
+      playSubmitSuccess();
 
     } catch (error) {
       console.error('Erro ao enviar e-mail:', error);
       setSubmitStatus('error');
-      // REMOVIDO: toast flutuante - agora só mostra mensagem embaixo do botão
+
+      // Play error sound
+      playSubmitError();
     } finally {
       setIsSubmitting(false);
     }
@@ -349,6 +354,7 @@ const Contact: React.FC = () => {
                 value={formData.name}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                onFocus={() => playFieldFocus()}
                 className={`w-full px-4 py-3 rounded-lg border-2 transition-all duration-300 bg-[var(--color-surface)] text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent ${
                   hasFieldError('name')
                     ? 'border-red-500 focus:ring-red-500'
@@ -396,6 +402,7 @@ const Contact: React.FC = () => {
                 value={formData.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                onFocus={() => playFieldFocus()}
                 className={`w-full px-4 py-3 rounded-lg border-2 transition-all duration-300 bg-[var(--color-surface)] text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent ${
                   hasFieldError('email')
                     ? 'border-red-500 focus:ring-red-500'
@@ -443,6 +450,7 @@ const Contact: React.FC = () => {
                 value={formData.message}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                onFocus={() => playFieldFocus()}
                 rows={5}
                 className={`w-full px-4 py-3 rounded-lg border-2 transition-all duration-300 bg-[var(--color-surface)] text-[var(--color-text)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-transparent resize-vertical ${
                   hasFieldError('message')

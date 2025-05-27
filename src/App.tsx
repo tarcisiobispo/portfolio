@@ -25,6 +25,7 @@ const FluidGradientBackground = React.lazy(() => import("@/components/FluidGradi
 const GradientSectionIndicator = React.lazy(() => import("@/components/FluidGradientBackground").then(module => ({ default: module.GradientSectionIndicator })));
 const FluidGradientDemo = React.lazy(() => import("@/components/examples/FluidGradientDemo"));
 const DebugTranslations = React.lazy(() => import("@/components/DebugTranslations"));
+const SoundDemo = React.lazy(() => import("@/components/ui/SoundDemo"));
 const LazyScripts = React.lazy(() => import("@/components/LazyScripts"));
 const CookieConsent = React.lazy(() => import("@/components/CookieConsent"));
 
@@ -73,6 +74,15 @@ const App = () => {
               <Suspense fallback={null}>
                 <FluidGradientDemo />
               </Suspense>
+            )}
+
+            {/* Sound Demo - apenas em desenvolvimento */}
+            {import.meta.env.DEV && (
+              <div className="fixed bottom-4 right-4 z-50">
+                <Suspense fallback={null}>
+                  <SoundDemo />
+                </Suspense>
+              </div>
             )}
 
             {/* UX Premium Components */}

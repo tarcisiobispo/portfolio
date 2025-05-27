@@ -284,6 +284,16 @@
       "success": "Settings restored"
     }
   },
+  "sound": {
+    "enabled": "Sound enabled",
+    "disabled": "Sound disabled",
+    "enabledDesc": "Audio feedback is now active",
+    "disabledDesc": "Audio feedback is now muted",
+    "enable": "Enable sound",
+    "disable": "Disable sound",
+    "volume": "Volume",
+    "volumeControl": "Adjust sound volume"
+  },
   "tooltips": {
     "linkedin": "Let's connect on LinkedIn!",
     "github": "Check out my code on GitHub",
@@ -299,6 +309,14 @@
     "edit": "Edit information",
     "delete": "Remove item",
     "copy": "Copy link",
-    "external": "Open in new tab"
+    "external": "Open in new tab",
+    "sound": {
+      "enable": "Enable sound effects",
+      "disable": "Disable sound effects"
+    },
+    "theme": {
+      "light": "Switch to light theme",
+      "dark": "Switch to dark theme"
+    }
   }
 }

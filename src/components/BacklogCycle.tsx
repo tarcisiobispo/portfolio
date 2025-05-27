@@ -10,6 +10,7 @@ import { ChevronLeft, ChevronRight, CheckCircle2, Lightbulb, Target, TrendingUp 
 import { useTranslation } from 'react-i18next';
 import CTAButton from '@/components/ui/CTAButton';
 import { useTranslationArray } from '@/utils/translationHelpers';
+import { useProjectSounds, useNavigationSounds } from '@/hooks/useSound';
 
 interface BacklogItem {
   id: string;
@@ -24,6 +25,8 @@ const ITEMS_PER_PAGE = 4;
 const BacklogCycle: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { t } = useTranslation();
+  const { playExpand, playCollapse } = useProjectSounds();
+  const { playButtonClick, playButtonHover } = useNavigationSounds();
 
   // Agora os itens vêm das traduções usando função utilitária segura
   const backlogItems = useTranslationArray('backlog.items', t) as Array<{
@@ -222,7 +225,11 @@ const BacklogCycle: React.FC = () => {
               {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                 <button
                   key={page}
-                  onClick={() => setCurrentPage(page)}
+                  onClick={() => {
+                    setCurrentPage(page);
+                    playButtonClick();
+                  }}
+                  onMouseEnter={() => playButtonHover()}
                   className={`w-10 h-10 rounded-lg font-medium transition-all duration-200 ${
                     currentPage === page
                       ? 'bg-[var(--color-primary)] text-white shadow-md'
