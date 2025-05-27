@@ -177,6 +177,9 @@ class SecureLogRocket {
       // Install security interceptors before LogRocket initialization
       this.interceptor.install();
 
+      // Prevent deprecated unload event listeners
+      this.preventDeprecatedEventListeners();
+
       // Dynamically import LogRocket to ensure interceptors are in place
       const LogRocket = await import('logrocket');
       this.logRocket = LogRocket.default;
@@ -310,6 +313,33 @@ class SecureLogRocket {
     } catch (captureError) {
       console.error('SecureLogRocket: Error capturing exception:', captureError);
     }
+  }
+
+  /**
+   * Prevent deprecated unload event listeners
+   */
+  private preventDeprecatedEventListeners(): void {
+    // Only apply in production to avoid interfering with development
+    if (!import.meta.env.PROD) {
+      return;
+    }
+
+    // Override deprecated event listener methods to use modern alternatives
+    const originalAddEventListener = window.addEventListener;
+
+    window.addEventListener = function(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions) {
+      // Replace deprecated unload events with modern alternatives
+      if (type === 'unload') {
+        console.warn('SecureLogRocket: Replacing deprecated "unload" event with "pagehide"');
+        return originalAddEventListener.call(this, 'pagehide', listener, options);
+      } else if (type === 'beforeunload') {
+        // Keep beforeunload but add warning
+        console.warn('SecureLogRocket: "beforeunload" event should be used sparingly');
+        return originalAddEventListener.call(this, type, listener, options);
+      }
+
+      return originalAddEventListener.call(this, type, listener, options);
+    };
   }
 
   /**
