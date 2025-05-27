@@ -6,7 +6,12 @@ import sitemap from 'vite-plugin-sitemap';
 export default defineConfig({
   base: '/portfolio/',
   plugins: [
-    react(),
+    react({
+      // SWC optimizations for production
+      plugins: process.env.NODE_ENV === 'production' ? [
+        ['@swc/plugin-remove-console', { exclude: ['error', 'warn'] }]
+      ] : []
+    }),
     // sitemap({
     //   hostname: 'https://tarcisiobispo.github.io',
     //   basePath: '/portfolio',

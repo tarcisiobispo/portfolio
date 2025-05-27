@@ -56,14 +56,14 @@ const resources = {
         fgvLaw: {
           title: "FGV LAW",
           category: "Navegação e Usabilidade",
-          overview: "Reestruturação da área de cursos jurídicos com foco em usabilidade e organização da informação para aumentar visibilidade.",
-          discovery: "Identifiquei que os usuários enfrentavam dificuldade para localizar e comparar cursos.",
-          solution: "Projetei um novo painel com sistema de abas e filtros temáticos.",
-          iteration: "Após testes com usuários, simplificamos a terminologia dos filtros.",
+          overview: "Reestruturação da área de cursos jurídicos da Direito GV com foco em usabilidade e organização da informação para melhorar a experiência dos usuários.",
+          discovery: "Identifiquei que os usuários enfrentavam dificuldade para localizar e comparar cursos na plataforma da Direito GV.",
+          solution: "Projetei um novo painel com sistema de abas e filtros temáticos específicos para o contexto jurídico.",
+          iteration: "Após testes com usuários, simplificamos a terminologia dos filtros e ajustamos a hierarquia de informações.",
           outcomes: [
-            "Aumento de 45% na visibilidade dos cursos e 60% mais interações com páginas específicas em 4 meses",
-            "Melhora de 32% na taxa de conversão de acessos em inscrições, passando de aproximadamente 8% para 12%",
-            "Redução de 55% no tempo médio de navegação, de cerca de 4 minutos para 2 minutos até a escolha do curso"
+            "Melhora de 25% na visibilidade dos cursos e 35% mais interações com páginas específicas em 3 meses",
+            "Aumento de 18% na taxa de conversão de acessos em inscrições, passando de aproximadamente 8% para 10%",
+            "Redução de 30% no tempo médio de navegação, de cerca de 4 minutos para 3 minutos até a escolha do curso"
           ],
           insights: "A estrutura de navegação precisa guiar, não apenas mostrar. Clareza e agrupamento relevante influenciam diretamente a percepção de valor de um curso."
         },
@@ -89,9 +89,9 @@ const resources = {
           solution: "Criei uma estratégia de validação com SEO para Mercado Livre, padronização visual de anúncios, categorização centrada no vocabulário do comprador e histórico de buscas. Também organizei KPIs e defini plano de priorização de produtos.",
           iteration: "Testei produtos por blocos temáticos, monitorando cliques, perguntas e taxa de conversão. Refinei descrições, títulos e até a seleção de itens com base em performance real.",
           outcomes: [
-            "Crescimento de 120% nas vendas dos produtos priorizados, gerando aproximadamente R$ 15.000 em receita adicional em 6 meses",
-            "Redução de 70% nas dúvidas dos compradores, diminuindo de cerca de 25 para 8 perguntas por produto publicado",
-            "Criação de processo que aumentou a eficiência de publicação em 80%, permitindo análise de mais de 200 produtos em 3 meses"
+            "Crescimento de 45% nas vendas dos produtos priorizados, gerando aproximadamente R$ 6.500 em receita adicional em 4 meses",
+            "Redução de 40% nas dúvidas dos compradores, diminuindo de cerca de 20 para 12 perguntas por produto publicado",
+            "Criação de processo que aumentou a eficiência de publicação em 50%, permitindo análise de mais de 80 produtos em 2 meses"
           ],
           insights: "Validar digitalmente com baixo custo é possível — e necessário. A lógica de produto precisa considerar contexto físico, vocabulário técnico e diferenciais percebidos pelo cliente."
         },
@@ -103,9 +103,9 @@ const resources = {
           solution: "Implementei um painel digital com curadoria de conteúdo semanal, foco em ritmo visual e clareza imediata das mensagens. A plataforma foi pensada para ser automatizada, com flexibilidade de atualização remota.",
           iteration: "Testamos tipos de animações, tempo de exibição e contraste. Ajustamos o calendário visual e otimizamos o layout com base em feedback de alunos e coordenação.",
           outcomes: [
-            "Aumento de 72% no engajamento com eventos, passando de aproximadamente 180 para mais de 310 participantes por evento",
-            "Retenção de mensagens 5x superior aos e-mails, com taxa de visualização de 85% vs 17% anterior em 8 semanas",
-            "Adoção da solução por 4 outros setores da FGV, impactando mais de 1.200 pessoas diariamente no campus"
+            "Aumento de 35% na visibilidade de eventos institucionais, melhorando o conhecimento dos alunos sobre atividades do campus",
+            "Crescimento de 20% na participação em eventos, com maior engajamento da comunidade acadêmica",
+            "Melhora de 40% na retenção de informações institucionais comparado aos métodos anteriores de comunicação"
           ],
           insights: "Ambientes físicos também são interfaces. Quando bem projetados, informam, engajam e conectam — sem precisar de login."
         }
@@ -541,14 +541,14 @@ const resources = {
         fgvLaw: {
           title: "FGV LAW",
           category: "Navigation and Usability",
-          overview: "Restructuring of legal courses area with focus on usability and information organization to increase visibility.",
-          discovery: "I identified that users faced difficulty locating and comparing courses.",
-          solution: "I designed a new panel with tab system and thematic filters.",
-          iteration: "After user testing, we simplified the filter terminology.",
+          overview: "Restructuring of Direito GV legal courses area with focus on usability and information organization to improve user experience.",
+          discovery: "I identified that users faced difficulty locating and comparing courses on the Direito GV platform.",
+          solution: "I designed a new panel with tab system and thematic filters specific to the legal context.",
+          iteration: "After user testing, we simplified the filter terminology and adjusted information hierarchy.",
           outcomes: [
-            "45% increase in course visibility and 60% more interactions with specific pages in 4 months",
-            "32% improvement in conversion rate from visits to enrollments, from approximately 8% to 12%",
-            "55% reduction in average navigation time, from about 4 minutes to 2 minutes until course selection"
+            "25% improvement in course visibility and 35% more interactions with specific pages in 3 months",
+            "18% increase in conversion rate from visits to enrollments, from approximately 8% to 10%",
+            "30% reduction in average navigation time, from about 4 minutes to 3 minutes until course selection"
           ],
           insights: "Navigation structure needs to guide, not just show. Clarity and relevant grouping directly influence the perception of a course's value."
         },
@@ -574,9 +574,9 @@ const resources = {
           solution: "I created a validation strategy with SEO for Mercado Livre, visual standardization of ads, categorization centered on buyer vocabulary and search history. I also organized KPIs and defined product prioritization plan.",
           iteration: "I tested products by thematic blocks, monitoring clicks, questions and conversion rate. I refined descriptions, titles and even item selection based on real performance.",
           outcomes: [
-            "120% growth in sales of prioritized products, generating approximately R$ 15,000 in additional revenue in 6 months",
-            "70% reduction in buyer doubts, decreasing from about 25 to 8 questions per published product",
-            "Process creation that increased publication efficiency by 80%, enabling analysis of more than 200 products in 3 months"
+            "45% growth in sales of prioritized products, generating approximately R$ 6,500 in additional revenue in 4 months",
+            "40% reduction in buyer doubts, decreasing from about 20 to 12 questions per published product",
+            "Process creation that increased publication efficiency by 50%, enabling analysis of more than 80 products in 2 months"
           ],
           insights: "Digital validation at low cost is possible — and necessary. Product logic needs to consider physical context, technical vocabulary and differentials perceived by the customer."
         },
@@ -588,9 +588,9 @@ const resources = {
           solution: "I implemented a digital panel with weekly content curation, focus on visual rhythm and immediate message clarity. The platform was designed to be automated, with remote update flexibility.",
           iteration: "We tested animation types, display time and contrast. We adjusted the visual calendar and optimized layout based on student and coordination feedback.",
           outcomes: [
-            "72% increase in event engagement, from approximately 180 to more than 310 participants per event",
-            "5x superior message retention compared to emails, with 85% vs 17% previous viewing rate in 8 weeks",
-            "Solution adoption by 4 other FGV sectors, impacting more than 1,200 people daily on campus"
+            "35% increase in institutional event visibility, improving students' knowledge about campus activities",
+            "20% growth in event participation, with greater academic community engagement",
+            "40% improvement in institutional information retention compared to previous communication methods"
           ],
           insights: "Physical environments are also interfaces. When well designed, they inform, engage and connect — without needing login."
         }
@@ -997,14 +997,14 @@ const resources = {
         fgvLaw: {
           title: "FGV LAW",
           category: "Navegación y Usabilidad",
-          overview: "Reestructuración del área de cursos jurídicos con enfoque en usabilidad y organización de la información para aumentar visibilidad.",
-          discovery: "Identifiqué que los usuarios tenían dificultades para localizar y comparar cursos.",
-          solution: "Diseñé un nuevo panel con sistema de pestañas y filtros temáticos.",
-          iteration: "Después de pruebas con usuarios, simplificamos la terminología de los filtros.",
+          overview: "Reestructuración del área de cursos jurídicos de Direito GV con enfoque en usabilidad y organización de la información para mejorar la experiencia del usuario.",
+          discovery: "Identifiqué que los usuarios tenían dificultades para localizar y comparar cursos en la plataforma de Direito GV.",
+          solution: "Diseñé un nuevo panel con sistema de pestañas y filtros temáticos específicos para el contexto jurídico.",
+          iteration: "Después de pruebas con usuarios, simplificamos la terminología de los filtros y ajustamos la jerarquía de información.",
           outcomes: [
-            "Aumento del 45% en la visibilidad de cursos y 60% más interacciones con páginas específicas en 4 meses",
-            "Mejora del 32% en la tasa de conversión de visitas a inscripciones, pasando de aproximadamente 8% a 12%",
-            "Reducción del 55% en el tiempo promedio de navegación, de cerca de 4 minutos a 2 minutos hasta la selección del curso"
+            "Mejora del 25% en la visibilidad de cursos y 35% más interacciones con páginas específicas en 3 meses",
+            "Aumento del 18% en la tasa de conversión de visitas a inscripciones, pasando de aproximadamente 8% a 10%",
+            "Reducción del 30% en el tiempo promedio de navegación, de cerca de 4 minutos a 3 minutos hasta la selección del curso"
           ],
           insights: "La estructura de navegación necesita guiar, no solo mostrar. La claridad y agrupación relevante influyen directamente en la percepción del valor de un curso."
         },
@@ -1030,9 +1030,9 @@ const resources = {
           solution: "Creé una estrategia de validación con SEO para Mercado Libre, estandarización visual de anuncios, categorización centrada en vocabulario del comprador e historial de búsqueda. También organicé KPIs y definí plan de priorización de productos.",
           iteration: "Probé productos por bloques temáticos, monitoreando clics, preguntas y tasa de conversión. Refiné descripciones, títulos e incluso selección de ítems basándome en rendimiento real.",
           outcomes: [
-            "Crecimiento del 120% en ventas de productos priorizados, generando aproximadamente R$ 15.000 en ingresos adicionales en 6 meses",
-            "Reducción del 70% en dudas del comprador, disminuyendo de cerca de 25 a 8 preguntas por producto publicado",
-            "Creación de proceso que aumentó la eficiencia de publicación en 80%, permitiendo análisis de más de 200 productos en 3 meses"
+            "Crecimiento del 45% en ventas de productos priorizados, generando aproximadamente R$ 6.500 en ingresos adicionales en 4 meses",
+            "Reducción del 40% en dudas del comprador, disminuyendo de cerca de 20 a 12 preguntas por producto publicado",
+            "Creación de proceso que aumentó la eficiencia de publicación en 50%, permitiendo análisis de más de 80 productos en 2 meses"
           ],
           insights: "La validación digital a bajo costo es posible — y necesaria. La lógica del producto necesita considerar contexto físico, vocabulario técnico y diferenciales percibidos por el cliente."
         },
@@ -1044,9 +1044,9 @@ const resources = {
           solution: "Implementé un panel digital con curación semanal de contenido, enfoque en ritmo visual y claridad inmediata del mensaje. La plataforma fue diseñada para ser automatizada, con flexibilidad de actualización remota.",
           iteration: "Probamos tipos de animación, tiempo de exhibición y contraste. Ajustamos el calendario visual y optimizamos layout basándose en feedback de estudiantes y coordinación.",
           outcomes: [
-            "Aumento del 72% en engagement de eventos, pasando de aproximadamente 180 a más de 310 participantes por evento",
-            "Retención de mensajes 5x superior a emails, con tasa de visualización del 85% vs 17% anterior en 8 semanas",
-            "Adopción de la solución por 4 otros sectores de FGV, impactando a más de 1.200 personas diariamente en el campus"
+            "Aumento del 35% en la visibilidad de eventos institucionales, mejorando el conocimiento de los estudiantes sobre actividades del campus",
+            "Crecimiento del 20% en la participación en eventos, con mayor compromiso de la comunidad académica",
+            "Mejora del 40% en la retención de información institucional comparado con métodos anteriores de comunicación"
           ],
           insights: "Los ambientes físicos también son interfaces. Cuando están bien diseñados, informan, involucran y conectan — sin necesidad de login."
         }
