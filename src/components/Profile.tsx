@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { motion } from 'framer-motion';
+import { OptimizedMotion } from '@/components/LazyMotion';
 import CTAButton from '@/components/ui/CTAButton';
 import IxDFLogo from '@/components/ui/IxDFLogo';
 import TypewriterText from '@/components/ui/TypewriterText';
