@@ -137,7 +137,7 @@ class SecureAnalyticsInterceptor {
         if (secureValidation.matchesAnalyticsPattern(url, 'wootric') ||
             secureValidation.matchesAnalyticsPattern(url, 'delighted') ||
             secureValidation.matchesAnalyticsPattern(url, 'logrocket')) {
-          
+
           if (!secureValidation.validateAnalyticsUrl(url)) {
             console.warn('SecureLogRocket: Blocked potentially unsafe analytics URL:', url);
             return Promise.reject(new Error('URL validation failed'));
@@ -250,11 +250,24 @@ class SecureLogRocket {
 
     try {
       this.logRocket.getSessionURL((url: string) => {
-        // Validate the returned URL
-        if (SecureValidation.validateUrl(url) || SecureValidation.validateAnalyticsUrl(url)) {
-          callback(url);
+        // More lenient validation for LogRocket session URLs
+        if (url && typeof url === 'string' && url.length > 0) {
+          try {
+            const parsedUrl = new URL(url);
+            // Allow LogRocket domains and app.logrocket.com
+            if (parsedUrl.hostname.includes('logrocket.com') ||
+                parsedUrl.hostname.includes('logrocket.io')) {
+              callback(url);
+            } else {
+              console.warn('SecureLogRocket: Invalid session URL domain:', parsedUrl.hostname);
+              callback('');
+            }
+          } catch (urlError) {
+            console.warn('SecureLogRocket: Invalid session URL format:', url);
+            callback('');
+          }
         } else {
-          console.warn('SecureLogRocket: Invalid session URL received');
+          console.warn('SecureLogRocket: Empty or invalid session URL received');
           callback('');
         }
       });
@@ -324,7 +337,7 @@ class SecureLogRocket {
 
     for (const [key, value] of Object.entries(info)) {
       const sanitizedKey = SecureValidation.sanitizeString(String(key));
-      
+
       if (typeof value === 'string') {
         sanitized[sanitizedKey] = SecureValidation.sanitizeString(value);
       } else if (typeof value === 'number' || typeof value === 'boolean') {
