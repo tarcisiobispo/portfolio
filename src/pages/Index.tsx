@@ -45,11 +45,11 @@ const Index = () => {
     }
   ];
 
-  // Prefetch de rotas e imagens para performance
+  // Prefetch de imagens para performance
   const imageSrcs = projects.map(project => project.imageUrl);
-  const baseUrl = import.meta.env.BASE_URL;
+  // SPA routes are handled by React Router and don't need prefetching
   usePrefetch({
-    routes: [`${baseUrl}privacy-policy`],
+    routes: [], // Only static files that exist in dist folder
     delay: 3000
   });
   useImagePrefetch(imageSrcs);

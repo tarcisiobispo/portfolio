@@ -246,13 +246,17 @@ export const initializeCacheOptimizations = () => {
 
   // Skip prefetch in development
   if (import.meta.env.PROD) {
-    // Only prefetch routes that actually exist
+    // Only prefetch static resources that actually exist
+    // SPA routes are handled by React Router and don't need prefetching
     const baseUrl = import.meta.env.BASE_URL;
-    const nextPageUrls = [
-      `${baseUrl}privacy-policy`
+    const nextPageUrls: string[] = [
+      // Add only static files that exist in dist folder
+      // SPA routes like /privacy-policy are handled by React Router
     ];
 
-    prefetchNextPageResources(nextPageUrls);
+    if (nextPageUrls.length > 0) {
+      prefetchNextPageResources(nextPageUrls);
+    }
   }
 };
 

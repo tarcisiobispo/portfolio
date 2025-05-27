@@ -55,10 +55,12 @@ export const usePrefetch = ({
 
   // Prefetch de recursos críticos
   const prefetchCriticalResources = () => {
-    // Only prefetch actual routes that exist
+    // Only prefetch static files that actually exist in dist folder
+    // SPA routes like /privacy-policy are handled by React Router and don't need prefetching
     const baseUrl = import.meta.env.BASE_URL;
-    const criticalRoutes = [
-      `${baseUrl}privacy-policy`
+    const criticalRoutes: string[] = [
+      // Add only static files that exist in dist folder
+      // SPA routes are handled by React Router
     ];
 
     criticalRoutes.forEach(route => {
