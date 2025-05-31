@@ -4,6 +4,7 @@ import { Eye, EyeOff } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import OptimizedImage from '@/components/OptimizedImage';
 import { ensureStringArray } from '@/utils/translationHelpers';
+import { validateProjectImageUrl } from '@/utils/projectSecurity';
 import '@/styles/project-cards.css';
 
 interface ProjectDetails {
@@ -23,24 +24,33 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
     setActiveProject(activeProject === index ? null : index);
   };
 
+  // Validate and sanitize project image URLs
+  const secureProjects = projects.map(project => {
+    const validatedUrl = validateProjectImageUrl(project.imageUrl);
+    return {
+      ...project,
+      imageUrl: validatedUrl || '/images/placeholder-project.jpg' // Fallback to local placeholder
+    };
+  });
+
   return (
     <section className="w-full">
       {/* Header Section - Centralizado e Alinhado */}
-      <motion.div
+                  <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="mb-16 text-center"
-      >
+                  >
         <h2 className="text-center">
           {t('projects.title')}
         </h2>
         <div className="h-1 w-20 mb-6 rounded mx-auto" style={{ background: "var(--color-primary)" }}></div>
-      </motion.div>
+                  </motion.div>
 
       {/* Projects Grid - NOVO DESIGN LIMPO */}
       <div className="projects-grid">
-        {projects.map((project, index) => (
+        {secureProjects.map((project, index) => (
           <motion.article
             key={project.projectKey}
             initial={{ opacity: 0, y: 30 }}
@@ -110,7 +120,7 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects }) => {
                       t('projects.badges.communication'),
                       t('projects.badges.engagement')
                     ]
-                  };
+};
 
                   let badges = projectBadges[project.projectKey] || [];
 
