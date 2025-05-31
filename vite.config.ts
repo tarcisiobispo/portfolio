@@ -1,10 +1,23 @@
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import { resolve } from 'path';
 import sitemap from 'vite-plugin-sitemap';
 
-export default defineConfig({
-  base: '/portfolio/',
+// More robust way to determine if we're in preview mode and get the base path
+export default defineConfig(({ command, mode }) => {
+  // Check if we're in preview mode
+  const isPreview = command === 'serve' && process.argv.includes('preview');
+  
+  // Check if base is explicitly set via command line
+  const baseArgIndex = process.argv.findIndex(arg => arg.startsWith('--base='));
+  const explicitBase = baseArgIndex >= 0 ? process.argv[baseArgIndex].split('=')[1] : null;
+  
+  // Use different base paths for development and production
+  const base = explicitBase || (command === 'serve' && !isPreview ? '/' : '/portfolio/');
+  
+  return {
+  // Use determined base path
+  base,
   plugins: [
     react({
       // SWC optimizations for production
@@ -33,6 +46,8 @@ export default defineConfig({
       '@': resolve(__dirname, 'src'),
     },
   },
+  // Ensure public directory is properly served
+  publicDir: resolve(__dirname, 'public'),
   build: {
     // Otimizações de bundle - target moderno para evitar polyfills antigos
     target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14'],
@@ -59,33 +74,56 @@ export default defineConfig({
 
       output: {
         // Manual chunks mais conservador para evitar quebrar React
-        manualChunks: {
+        manualChunks: (id) => {
           // React core - manter junto para evitar problemas de contexto
-          'react-vendor': ['react', 'react-dom'],
-
+          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
+            return 'react-vendor';
+          }
+          
           // Roteamento
-          'router': ['react-router-dom'],
-
+          if (id.includes('node_modules/react-router-dom/')) {
+            return 'router';
+          }
+          
           // Animações - pode ser separado
-          'animation': ['framer-motion'],
-
+          if (id.includes('node_modules/framer-motion/')) {
+            return 'animation';
+          }
+          
           // UI Libraries
-          'ui': ['@headlessui/react', '@radix-ui/react-tooltip', '@floating-ui/react'],
-
+          if (id.includes('node_modules/@headlessui/') || 
+              id.includes('node_modules/@radix-ui/') || 
+              id.includes('node_modules/@floating-ui/')) {
+            return 'ui';
+          }
+          
           // Query
-          'query': ['@tanstack/react-query'],
-
+          if (id.includes('node_modules/@tanstack/react-query')) {
+            return 'query';
+          }
+          
           // i18n
-          'i18n': ['react-i18next', 'i18next', 'i18next-browser-languagedetector'],
-
+          if (id.includes('node_modules/react-i18next/') || 
+              id.includes('node_modules/i18next/') || 
+              id.includes('node_modules/i18next-browser-languagedetector/')) {
+            return 'i18n';
+          }
+          
           // Icons
-          'icons': ['lucide-react'],
-
+          if (id.includes('node_modules/lucide-react/')) {
+            return 'icons';
+          }
+          
           // Forms
-          'forms': ['react-hook-form'],
-
+          if (id.includes('node_modules/react-hook-form/')) {
+            return 'forms';
+          }
+          
           // Analytics
-          'analytics': ['@microsoft/clarity', 'logrocket']
+          if (id.includes('node_modules/@microsoft/clarity/') || 
+              id.includes('node_modules/logrocket/')) {
+            return 'analytics';
+          }
         },
 
         // Nomeação de chunks
@@ -188,9 +226,47 @@ export default defineConfig({
     fs: {
       strict: false
     },
-    // Headers de cache para desenvolvimento
-    headers: {
-      'Cache-Control': 'public, max-age=31536000' // 1 ano para assets com hash
+    // Clear console when starting the dev server
+    clearScreen: true,
+    // Configure HMR to work with the base path
+    hmr: true, // Let Vite automatically determine the correct WebSocket connection
+    // Configure headers using middleware to avoid ERR_INVALID_HTTP_TOKEN
+    setupMiddleware: (middlewares) => {
+      middlewares.use((req, res, next) => {
+        // Set cache headers for assets
+        res.setHeader('Cache-Control', 'public, max-age=31536000'); // 1 ano para assets com hash
+        
+        // Ensure correct MIME types for JavaScript files
+        if (req.url?.endsWith('.js')) {
+          res.setHeader('Content-Type', 'application/javascript');
+        }
+        // Ensure correct MIME type for favicon
+        if (req.url?.endsWith('.ico')) {
+          res.setHeader('Content-Type', 'image/x-icon');
+        }
+        next();
+      });
+      return middlewares;
+    }
+  },
+  
+  // Configurações específicas para o servidor de preview
+  preview: {
+    // Configure headers using middleware instead of direct header mapping
+    setupMiddleware: (middlewares) => {
+      middlewares.use((req, res, next) => {
+        // Set correct MIME types for JavaScript files
+        if (req.url?.endsWith('.js')) {
+          res.setHeader('Content-Type', 'application/javascript');
+        }
+        // Ensure correct MIME type for favicon
+        if (req.url?.endsWith('.ico')) {
+          res.setHeader('Content-Type', 'image/x-icon');
+        }
+        next();
+      });
+      return middlewares;
     }
   }
+  };
 });

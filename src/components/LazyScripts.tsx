@@ -70,11 +70,11 @@ const LazyScripts: React.FC<LazyScriptsProps> = ({
       script.onload = () => {
         // Initialize Google Analytics
         window.dataLayer = window.dataLayer || [];
-        function gtag(...args: any[]) {
-          window.dataLayer.push(args);
+        function gtag(command: string, action: string, params?: any) {
+          window.dataLayer.push(arguments);
         }
         window.gtag = gtag;
-        gtag('js', new Date());
+        gtag('js', new Date(), {});
         gtag('config', 'G-3QCW5SKK73', {
           page_title: document.title,
           page_location: window.location.href
@@ -136,11 +136,11 @@ const LazyScripts: React.FC<LazyScriptsProps> = ({
       script.src = 'https://www.clarity.ms/tag/rp64ayubme';
       script.onload = () => {
         // Initialize Clarity
-        (function(c: any, l: any, a: any, r: any, i: any, t: any, y: any) {
+        (function(c: any, l: any, a: any, r: any, i: any, t?: any, y?: any) {
           c[a] = c[a] || function() { (c[a].q = c[a].q || []).push(arguments) };
           t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
           y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
-        })(window, document, "clarity", "script", "rp64ayubme");
+        })(window, document, "clarity", "script", "rp64ayubme", undefined, undefined);
         resolve();
       };
       script.onerror = reject;
@@ -155,7 +155,7 @@ const LazyScripts: React.FC<LazyScriptsProps> = ({
 // Extend window interface for TypeScript
 declare global {
   interface Window {
-    gtag: (...args: any[]) => void;
+    gtag: (command: string, action: string, params?: any) => void;
     dataLayer: any[];
     google_tag_manager: any;
     clarity: (...args: any[]) => void;

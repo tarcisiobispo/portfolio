@@ -67,9 +67,7 @@ export const LanguageSwitcher: React.FC = () => {
 
     if (open) document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [open, focusedIndex]);
-
-  // Troca de idioma com feedback e animação
+  }, [open, focusedIndex]);  // Troca de idioma com feedback e animação
   function handleSelect(languageCode: string) {
     // Animação de seleção no botão principal
     if (buttonRef.current) {
@@ -96,7 +94,7 @@ export const LanguageSwitcher: React.FC = () => {
         message: selectedLang.nativeName,
         description: t('language.changed'),
         type: 'success',
-        duration: 1500, // Duração reduzida para maior proximidade
+        duration: 1500,
       });
     }
   }

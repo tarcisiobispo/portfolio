@@ -5,7 +5,7 @@ import { GTMHead, GTMBody } from './GoogleTagManager';
 import { ANALYTICS_CONFIG } from '@/config/analytics';
 
 interface AnalyticsProviderProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({ children }) => {
@@ -58,7 +58,7 @@ const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({ children }) => {
       {/* Microsoft Clarity */}
       <MicrosoftClarityInit />
 
-      {children}
+      {children && children}
     </>
   );
 };

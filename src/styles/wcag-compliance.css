@@ -216,15 +216,7 @@
   outline-offset: 2px !important;
 }
 
-/* Aplicar verificação em modo de desenvolvimento */
-@media (prefers-reduced-motion: no-preference) {
-  .text-gray-500:not(.wcag-text-secondary),
-  .text-gray-600:not(.wcag-text-secondary),
-  .text-blue-600:not(.wcag-link) {
-    /* Remover em produção - apenas para debug */
-    /* outline: 1px dashed orange; */
-  }
-}
+/* Nota: Bloco de verificação de desenvolvimento removido para evitar regras CSS vazias */
 
 /* ===== RESPONSIVIDADE PARA ACESSIBILIDADE ===== */
 

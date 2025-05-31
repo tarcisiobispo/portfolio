@@ -9,14 +9,23 @@
     "goToProjects": "Go to Projects section",
     "goToBacklog": "Go to Backlog section",
     "goToContact": "Go to Contact section"
-  },
-  "profile": {
+  },  "profile": {
     "title": "UX/Product Designer focused on strategy, impact and experience",
     "bio": "I am a UX/Product Designer with strong expertise in designing digital products focused on user experience, conversion and business impact. With a background in Digital Marketing, SEO and AI, I integrate strategy, design and usability in continuous improvement and innovation processes. I have worked in academic contexts, B2B e-commerce and institutional communication, always guided by data, empathy and product vision.",
     "exploreProjects": "Explore projects",
     "letsChat": "Let's Chat",
     "downloadCV": "Download CV",
     "linkedin": "LinkedIn",
+    "name": "Tarcisio Bispo de Araujo",
+    "jobTitle": "UX/Product Designer",
+    "location": "Campinas, São Paulo",
+    "phone": "+55 19 9 9013-7380",
+    "ixdf": "IxDF - Interaction Design Foundation",
+    "greeting": "Hello, I am",
+    "role1": "UX Designer",
+    "role2": "Product Designer",
+    "role3": "Design Strategist",
+    "role4": "Interaction Designer",
     "chatWhatsApp": "Chat on WhatsApp with Tarcisio Bispo de Araujo",
     "downloadResume": "Download Tarcisio Bispo de Araujo's resume",
     "accessLinkedIn": "Access Tarcisio Bispo de Araujo's LinkedIn"
@@ -183,7 +192,7 @@
       "emailRequired": "Please enter your email",
       "emailInvalid": "Please enter a valid email",
       "messageRequired": "Please enter your message",
-      "messageMinLength": "Message must be at least 10 characters"
+      "messageMinLength": "Your message must be at least {{count}} characters long."
     },
     "success": {
       "title": "Message sent!",
@@ -199,7 +208,7 @@
     "copyright": "© 2024 Tarcisio Bispo. All rights reserved."
   },
   "feedback": {
-    "send": "Send feedback",
+    "sendFeedback": "Send feedback",
     "typeQuestion": "What type of feedback would you like to send?",
     "problem": "Report a problem",
     "idea": "Share an idea",
@@ -220,7 +229,7 @@
     "includeEmail": "Include email to be contacted about your comments",
     "privacyPolicy": "Privacy policy",
     "sending": "Sending...",
-    "send": "Send",
+    "sendButton": "Send",
     "back": "Back",
     "close": "Close",
     "thankYou": "Thank you for your feedback!",

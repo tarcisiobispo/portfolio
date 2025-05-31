@@ -1,4 +1,4 @@
-import React, { useState, memo, useCallback, useMemo } from 'react';
+import React, { useState, memo, useCallback, useMemo, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
   Accordion,
@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/accordion';
 import { ChevronLeft, ChevronRight, CheckCircle2, Lightbulb, Target, TrendingUp } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import i18n from '@/i18n/config';
 import CTAButton from '@/components/ui/CTAButton';
 import { useTranslationArray } from '@/utils/translationHelpers';
 import { useProjectSounds, useNavigationSounds } from '@/hooks/useSound';
@@ -24,17 +25,54 @@ const ITEMS_PER_PAGE = 4;
 
 const BacklogCycle: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [forceUpdate, setForceUpdate] = useState(0);
   const { t } = useTranslation();
   const { playExpand, playCollapse } = useProjectSounds();
   const { playButtonClick, playButtonHover } = useNavigationSounds();
+  
+  // Forçar atualização quando o idioma mudar
+  useEffect(() => {
+    const handleLanguageChange = () => {
+      // Forçar re-renderização do componente
+      setForceUpdate(prev => prev + 1);
+      setCurrentPage(1); // Resetar para a primeira página
+    };
+    
+    i18n.on('languageChanged', handleLanguageChange);
+    
+    return () => {
+      i18n.off('languageChanged', handleLanguageChange);
+    };
+  }, []);
 
-  // Agora os itens vêm das traduções usando função utilitária segura
-  const backlogItems = useTranslationArray('backlog.items', t) as Array<{
+  // Tentar obter os itens do idioma atual, com fallback para pt-BR
+  const currentResource = i18n.getResourceBundle(i18n.language, 'translation');
+  const ptBRResource = i18n.getResourceBundle('pt-BR', 'translation');
+  
+  // Usar os itens do idioma atual se existirem, senão usar pt-BR como fallback
+  const backlogItems = (
+    (currentResource?.backlog?.items?.length > 0 
+      ? currentResource?.backlog?.items 
+      : ptBRResource?.backlog?.items) || []
+  ) as Array<{
     challenge: string;
     solution: string;
     result: string;
     note: string;
   }>;
+
+  // Log para depuração - verificar quantos itens estão sendo carregados
+  React.useEffect(() => {
+    if (import.meta.env.DEV) {
+      console.log(`Idioma atual: ${i18n.language}, Número de itens: ${backlogItems.length}`);
+      console.log(`Fonte dos itens: ${currentResource?.backlog?.items?.length > 0 ? 'Idioma atual' : 'Fallback pt-BR'}`);
+      
+      // Se não houver itens ou menos que o esperado, tentar buscar diretamente
+      if (backlogItems.length < 8) {
+        console.warn(`⚠️ Número de itens menor que o esperado (${backlogItems.length}/8)`);
+      }
+    }
+  }, [backlogItems.length, forceUpdate, i18n.language]);
 
   // Adicionar IDs aos itens para o Accordion
   const backlogItemsWithIds = backlogItems.map((item, index) => ({

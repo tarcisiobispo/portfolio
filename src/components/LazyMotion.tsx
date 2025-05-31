@@ -8,12 +8,12 @@ import React, { Suspense } from 'react';
 
 interface LazyMotionProps {
   children: React.ReactNode;
-  features?: 'domAnimation' | 'domMax' | 'layout';
+  features?: (() => Promise<any>) | 'domAnimation' | 'domMax' | 'layout';
 }
 
 // Lazy load Framer Motion features
-const domAnimationFeatures = () => import('framer-motion/dom').then(res => res.domAnimation);
-const domMaxFeatures = () => import('framer-motion/dom').then(res => res.domMax);
+const domAnimationFeatures = () => import('framer-motion').then(res => res.domAnimation);
+const domMaxFeatures = () => import('framer-motion').then(res => res.domMax);
 const layoutFeatures = () => import('framer-motion').then(res => res.LazyMotion);
 
 const LazyMotion: React.FC<LazyMotionProps> = ({ 
@@ -45,7 +45,7 @@ const LazyMotionWrapper: React.FC<LazyMotionProps> = ({ children, features }) =>
         
         switch (features) {
           case 'domMax':
-            motionFeatures = await domMaxFeatures();
+            motionFeatures = domMaxFeatures;
             break;
           case 'layout':
             const { LazyMotion: LazyMotionComponent } = await import('framer-motion');
@@ -54,7 +54,7 @@ const LazyMotionWrapper: React.FC<LazyMotionProps> = ({ children, features }) =>
             }
             return;
           default:
-            motionFeatures = await domAnimationFeatures();
+            motionFeatures = domAnimationFeatures;
         }
 
         if (isMounted) {
@@ -154,7 +154,7 @@ export const OptimizedMotion: React.FC<{
 
   // For non-critical animations, use lazy-loaded Framer Motion
   return (
-    <LazyMotion features="domAnimation">
+    <LazyMotion features={domAnimationFeatures}>
       {children}
     </LazyMotion>
   );

@@ -487,7 +487,10 @@ const Contact: React.FC = () => {
           {/* Botão de Envio */}
           <div>
             <CTAButton
-              onClick={handleSubmit}
+              onClick={() => {
+                const fakeEvent = { preventDefault: () => {} } as React.FormEvent;
+                handleSubmit(fakeEvent);
+              }}
               variant="primary"
               size="lg"
               icon={Send}

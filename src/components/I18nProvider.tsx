@@ -3,6 +3,16 @@ import { useTranslation } from 'react-i18next';
 import LoadingSpinner from './LoadingSpinner';
 import i18n from '../i18n/config';
 
+// List of critical translation keys that must be available
+const CRITICAL_KEYS = [
+  'profile.greeting',
+  'profile.jobTitle',
+  'profile.location',
+  'profile.phone',
+  'navigation.profile',
+  'projects.title'
+];
+
 interface I18nProviderProps {
   children: React.ReactNode;
 }

@@ -85,20 +85,26 @@ export class CSPSecurity {
   /**
    * Secure timeout/interval without string evaluation
    */
-  static secureSetTimeout(callback: Function, delay: number): number {
+  static secureSetTimeout(callback: Function, delay: number): ReturnType<typeof window.setTimeout> {
     if (typeof callback !== 'function') {
       console.error('CSPSecurity: setTimeout callback must be a function');
-      return 0;
+      // Create a dummy timeout and immediately clear it to get a valid Timeout object
+      const dummyTimeout = window.setTimeout(() => {}, 0);
+      window.clearTimeout(dummyTimeout);
+      return dummyTimeout;
     }
-    return window.setTimeout(callback, delay);
+    return window.setTimeout(callback as TimerHandler, delay);
   }
 
-  static secureSetInterval(callback: Function, delay: number): number {
+  static secureSetInterval(callback: Function, delay: number): ReturnType<typeof window.setInterval> {
     if (typeof callback !== 'function') {
       console.error('CSPSecurity: setInterval callback must be a function');
-      return 0;
+      // Create a dummy interval and immediately clear it to get a valid Interval object
+      const dummyInterval = window.setInterval(() => {}, 0);
+      window.clearInterval(dummyInterval);
+      return dummyInterval;
     }
-    return window.setInterval(callback, delay);
+    return window.setInterval(callback as TimerHandler, delay);
   }
 
   /**
@@ -195,7 +201,12 @@ export class CSPSecurity {
       const originalSetTimeout = window.setTimeout;
       const originalSetInterval = window.setInterval;
 
-      window.setTimeout = function(handler: any, timeout?: number, ...args: any[]): number {
+      // Create a new function that preserves the original setTimeout's properties
+      const secureSetTimeout = function(
+        handler: TimerHandler, 
+        timeout?: number, 
+        ...args: any[]
+      ) {
         if (typeof handler === 'string') {
           if (import.meta.env.DEV) {
             console.warn('CSPSecurity: setTimeout with string detected. Consider using function instead.');
@@ -206,9 +217,23 @@ export class CSPSecurity {
           }
         }
         return originalSetTimeout.call(this, handler, timeout, ...args);
-      };
+      } as typeof window.setTimeout;
 
-      window.setInterval = function(handler: any, timeout?: number, ...args: any[]): number {
+      // Copy all properties from the original setTimeout
+      Object.getOwnPropertyNames(originalSetTimeout).forEach(prop => {
+        if (prop !== 'name' && prop !== 'length') {
+          (secureSetTimeout as any)[prop] = (originalSetTimeout as any)[prop];
+        }
+      });
+
+      window.setTimeout = secureSetTimeout;
+
+      // Create a new function that preserves the original setInterval's properties
+      const secureSetInterval = function(
+        handler: TimerHandler, 
+        timeout?: number, 
+        ...args: any[]
+      ) {
         if (typeof handler === 'string') {
           if (import.meta.env.DEV) {
             console.warn('CSPSecurity: setInterval with string detected. Consider using function instead.');
@@ -219,7 +244,16 @@ export class CSPSecurity {
           }
         }
         return originalSetInterval.call(this, handler, timeout, ...args);
-      };
+      } as typeof window.setInterval;
+
+      // Copy all properties from the original setInterval
+      Object.getOwnPropertyNames(originalSetInterval).forEach(prop => {
+        if (prop !== 'name' && prop !== 'length') {
+          (secureSetInterval as any)[prop] = (originalSetInterval as any)[prop];
+        }
+      });
+
+      window.setInterval = secureSetInterval;
 
       console.log('CSPSecurity: Security interceptors installed successfully');
     }

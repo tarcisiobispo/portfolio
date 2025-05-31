@@ -2,7 +2,6 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-// Recursos inline para máxima compatibilidade
 const resources = {
   'pt-BR': {
     translation: {
@@ -25,7 +24,15 @@ const resources = {
         downloadCV: "Download CV",
         linkedin: "LinkedIn",
         name: "Tarcisio Bispo de Araujo",
-        ixdf: "IxDF | Interaction Design Foundation"
+        ixdf: "IxDF | Interaction Design Foundation",
+        greeting: "Olá, eu sou",
+        jobTitle: "UX/Product Designer",
+        location: "Campinas, São Paulo",
+        phone: "+55 (19) 9 9013-7380",
+        role1: "UX Designer",
+        role2: "Product Designer",
+        role3: "Design Strategist",
+        role4: "Interaction Designer"
       },
       projects: {
         title: "Projetos",
@@ -187,16 +194,20 @@ const resources = {
           messageHint: "Mínimo de 10 caracteres para uma mensagem clara",
           privacy: "Seus dados não serão compartilhados e serão usados apenas para responder sua mensagem.",
           send: "Enviar mensagem",
-          sending: "Enviando...",
-          success: "Mensagem enviada com sucesso!",
-          error: "Erro ao enviar mensagem. Tente novamente.",
+          sending: "Enviando..."
+        },
+        errors: {
           nameRequired: "Nome é obrigatório",
           nameMinLength: "Nome deve ter pelo menos 2 caracteres",
           emailRequired: "E-mail é obrigatório",
           emailInvalid: "E-mail inválido",
           subjectRequired: "Assunto é obrigatório",
           messageRequired: "Mensagem é obrigatória",
-          messageMinLength: "Mensagem deve ter pelo menos 10 caracteres"
+          messageMinLength: "Sua mensagem precisa ter pelo menos {{count}} caracteres.",
+          genericError: "Erro ao enviar mensagem. Tente novamente."
+        },
+        success: {
+          message: "Mensagem enviada com sucesso!"
         },
         info: {
           email: "tbisp0@hotmail.com",
@@ -287,6 +298,10 @@ const resources = {
           dark: "Alternar para modo escuro",
           system: "Usar preferência do sistema"
         },
+        sound: {
+          enable: "Ativar som",
+          disable: "Desativar som"
+        },
         language: {
           switch: "Trocar idioma",
           current: "Idioma atual",
@@ -360,7 +375,11 @@ const resources = {
           settingsSaved: "Configurações salvas",
           linkCopied: "Link copiado para área de transferência",
           themeChanged: "Tema alterado",
-          languageChanged: "Idioma alterado"
+          languageChanged: "Idioma alterado",
+          soundEnabled: "Som ativado",
+          soundDisabled: "Som desativado",
+          soundEnabledDesc: "Feedback sonoro está ativo agora",
+          soundDisabledDesc: "Feedback sonoro está desativado agora"
         },
         error: {
           title: "Erro",
@@ -639,22 +658,52 @@ const resources = {
         of: "of",
         items: [
           {
-            challenge: "FGV needed to increase visibility of courses, lectures and institutional updates.",
-            solution: "The solution was to implement a strategic digital panel in the institution's hall, with content curation and automated updates.",
-            result: "72% increase in face-to-face engagement and greater institutional perception.",
-            note: "I understood that to communicate efficiently in physical environments, content needs to be thought of as a living interface: visual rhythm, contextual relevance and immediate clarity make all the difference in attention and message retention."
+            "challenge": "FGV needed to increase visibility of courses, lectures and institutional updates.",
+            "solution": "The solution was to implement a strategic digital panel in the institution's hall, with content curation and automated updates.",
+            "result": "72% increase in face-to-face engagement and greater institutional perception.",
+            "note": "I understood that to communicate efficiently in physical environments, content needs to be thought of as a living interface: visual rhythm, contextual relevance and immediate clarity make all the difference in attention and message retention."
           },
           {
-            challenge: "At Taliparts, the titles and descriptions of ads on Mercado Livre were not optimized for SEO on Mercado Livre.",
-            solution: "I restructured titles based on SEO practices specific to marketplaces and tested descriptions with frequent keywords.",
-            result: "Significant improvement in offer positioning and more than 20% increase in organic traffic in 6 months.",
-            note: "In the marketplace, SEO is as important as price — it's what brings the click."
+            "challenge": "DIREITO FGV users had difficulty locating documents and relevant content within the academic portal.",
+            "solution": "Redesign of the navigation experience focusing on features valued by the corporate audience and simplification of the quotation process.",
+            "result": "27% increase in quotation conversions and 40% reduction in purchase journey abandonment.",
+            "note": "I realized that mapping user objectives has more value than following fixed institutional structures."
           },
           {
-            challenge: "At FGV some pages had dense institutional content that kept users from reading in full.",
-            solution: "I applied UX writing techniques (scannability, objective titles, visual lists) to key pages.",
-            result: "Average reading time increased and there was a drop in page abandonment.",
-            note: "Small decisions in text have great impact on reading experience and comprehension."
+            "challenge": "The FGV LAW course area had difficulty organizing content, making navigation difficult and impacting program visibility.",
+            "solution": "I structured a new panel with segmented filters and tab system, reorganizing information hierarchy with focus on scannability and user decision journey.",
+            "result": "There was a significant increase in course visibility and conversion of access to interactions with specific pages, plus greater clarity perceived by users.",
+            "note": "I understood that when dealing with a large volume of options, information design needs to facilitate decision-making — not just show content, but organize choice with logic and context."
+          },
+          {
+            "challenge": "Taliparts needed to validate which products would be most competitive on Mercado Livre.",
+            "solution": "I conducted detailed benchmarking with competition analysis, positioning and evaluations of similar products.",
+            "result": "The initial product curation had higher viewing and interest rates in the first week of publication.",
+            "note": "Analyzing the competitive terrain in depth is essential before any brand exposure in open channels."
+          },
+          {
+            "challenge": "There was a lack of clarity about who Taliparts' real target audience was.",
+            "solution": "I modeled personas based on interviews with shopkeepers, mechanics and autonomous buyers.",
+            "result": "We defined three strategic profiles that guided everything from product choice to communication tone.",
+            "note": "Persona is more than an archetype — it's the lens through which the entire business is interpreted."
+          },
+          {
+            "challenge": "At Taliparts, the titles and descriptions of ads on Mercado Livre were not optimized for SEO on Mercado Livre.",
+            "solution": "I restructured titles based on SEO practices specific to marketplaces and tested descriptions with frequent keywords.",
+            "result": "Significant improvement in offer positioning and more than 20% increase in organic traffic in 6 months.",
+            "note": "In the marketplace, SEO is as important as price — it's what brings the click."
+          },
+          {
+            "challenge": "At Taliparts it was necessary to validate whether the published products really had real demand.",
+            "solution": "I structured a validation plan based on click metrics, buyer questions and benchmark comparison.",
+            "result": "We refined the catalog based on performance, avoiding dead stock and redirecting efforts.",
+            "note": "Testing small and adjusting quickly is more efficient than launching 100 products in the dark."
+          },
+          {
+            "challenge": "At FGV some pages had dense institutional content that kept users from reading in full.",
+            "solution": "I applied UX writing techniques (scannability, objective titles, visual lists) to key pages.",
+            "result": "Average reading time increased and there was a drop in page abandonment.",
+            "note": "Small decisions in text have great impact on reading experience and comprehension."
           }
         ]
       },
@@ -773,6 +822,10 @@ const resources = {
           dark: "Switch to dark mode",
           system: "Use system preference"
         },
+        sound: {
+          enable: "Enable sound",
+          disable: "Disable sound"
+        },
         language: {
           switch: "Switch language",
           current: "Current language",
@@ -846,7 +899,11 @@ const resources = {
           settingsSaved: "Settings saved",
           linkCopied: "Link copied to clipboard",
           themeChanged: "Theme changed",
-          languageChanged: "Language changed"
+          languageChanged: "Language changed",
+          soundEnabled: "Sound enabled",
+          soundDisabled: "Sound disabled",
+          soundEnabledDesc: "Audio feedback is now active",
+          soundDisabledDesc: "Audio feedback is now muted"
         },
         error: {
           title: "Error",
@@ -1126,22 +1183,52 @@ const resources = {
         of: "de",
         items: [
           {
-            challenge: "FGV necesitaba aumentar la visibilidad de cursos, conferencias y actualizaciones institucionales.",
-            solution: "La solución fue implementar un panel digital estratégico en el hall de la institución, con curaduría de contenido y actualización automatizada.",
-            result: "Aumento del 72% en el engagement presencial y mayor percepción institucional.",
-            note: "Entendí que para comunicar eficientemente en ambientes físicos, el contenido necesita ser pensado como una interfaz viva: ritmo visual, relevancia contextual y claridad inmediata hacen toda la diferencia en la atención y retención del mensaje."
+            "challenge": "FGV necesitaba aumentar la visibilidad de cursos, conferencias y actualizaciones institucionales.",
+            "solution": "La solución fue implementar un panel digital estratégico en el hall de la institución, con curaduría de contenido y actualización automatizada.",
+            "result": "Aumento del 72% en el engagement presencial y mayor percepción institucional.",
+            "note": "Entendí que para comunicar con eficiencia en ambientes físicos, el contenido necesita ser pensado como una interfaz viva: ritmo visual, relevancia contextual y claridad inmediata hacen toda la diferencia en la atención y retención de mensajes."
           },
           {
-            challenge: "En Taliparts, los títulos y descripciones de anuncios en Mercado Libre no estaban optimizados para SEO en Mercado Libre.",
-            solution: "Reestructuré títulos basándome en prácticas de SEO específicas para marketplaces y probé descripciones con palabras clave frecuentes.",
-            result: "Mejora significativa en el posicionamiento de ofertas y más del 20% de aumento en tráfico orgánico en 6 meses.",
-            note: "En el marketplace, el SEO es tan importante como el precio — es lo que trae el clic."
+            "challenge": "Los usuarios de DIREITO FGV tenían dificultades para localizar documentos y contenido relevante dentro del portal académico.",
+            "solution": "Rediseño de la experiencia de navegación enfocándose en características valoradas por el público corporativo y simplificación del proceso de cotización.",
+            "result": "Aumento del 27% en conversiones de cotizaciones y reducción del 40% en el abandono del journey de compra.",
+            "note": "Me di cuenta de que mapear objetivos del usuario tiene más valor que seguir estructuras institucionales fijas."
           },
           {
-            challenge: "En FGV algunas páginas tenían contenido institucional denso que impedía a los usuarios leer completamente.",
-            solution: "Apliqué técnicas de UX writing (escaneabilidad, títulos objetivos, listas visuales) en páginas clave.",
-            result: "Aumentó el tiempo promedio de lectura y hubo una caída en el abandono de páginas.",
-            note: "Pequeñas decisiones en el texto tienen gran impacto en la experiencia de lectura y comprensión."
+            "challenge": "El área de cursos de FGV LAW presentaba dificultades en la organización de contenidos, dificultando la navegación e impactando la visibilidad de los programas.",
+            "solution": "Estructuré un nuevo panel con filtros segmentados y sistema de pestañas, reorganizando la jerarquía de información con enfoque en escaneabilidad y journey de decisión del usuario.",
+            "result": "Hubo un aumento significativo en la visibilidad de cursos y en la conversión de accesos a interacciones con páginas específicas, además de mayor claridad percibida por los usuarios.",
+            "note": "Comprendí que al lidiar con gran volumen de opciones, el diseño de información necesita facilitar la toma de decisiones — no solo mostrar contenido, sino organizar la elección con lógica y contexto."
+          },
+          {
+            "challenge": "Taliparts necesitaba validar qué productos serían más competitivos en Mercado Libre.",
+            "solution": "Conduje un benchmark detallado con análisis de competencia, posicionamiento y evaluaciones de productos similares.",
+            "result": "La curaduría inicial de productos tuvo mayor índice de visualización e interés ya en la primera semana de divulgación.",
+            "note": "Analizar el terreno competitivo con profundidad es esencial antes de cualquier exposición de marca en canal abierto."
+          },
+          {
+            "challenge": "Faltaba claridad sobre quién era el público objetivo real de Taliparts.",
+            "solution": "Modelé personas basándome en entrevistas con comerciantes, mecánicos y compradores autónomos.",
+            "result": "Definimos tres perfiles estratégicos que orientaron desde la elección de producto hasta el tono de comunicación.",
+            "note": "Persona es más que un arquetipo — es la lente a través de la cual se interpreta todo el negocio."
+          },
+          {
+            "challenge": "En Taliparts los títulos y descripciones de los anuncios en Mercado Libre no estaban optimizados para SEO en Mercado Libre.",
+            "solution": "Reestructuré los títulos basándome en prácticas de SEO específicas para marketplaces y probé descripciones con palabras clave frecuentes.",
+            "result": "Mejora significativa en el posicionamiento de ofertas y aumento de más del 20% en tráfico orgánico en 6 meses.",
+            "note": "En el marketplace, SEO es tan importante como el precio — es lo que trae el clic."
+          },
+          {
+            "challenge": "En Taliparts era necesario validar si los productos publicados realmente tenían demanda real.",
+            "solution": "Estructuré un plan de validación basado en métricas de clics, preguntas de compradores y comparación con benchmarks.",
+            "result": "Refinamos el catálogo basándose en performance, evitando stock parado y redirigiendo esfuerzos.",
+            "note": "Probar pequeño y ajustar rápido es más eficiente que lanzar 100 productos a ciegas."
+          },
+          {
+            "challenge": "En FGV algunas páginas tenían contenido institucional denso que alejaba a los usuarios de la lectura integral.",
+            "solution": "Apliqué técnicas de UX writing (escaneabilidad, títulos objetivos, listas visuales) en las páginas clave.",
+            "result": "El tiempo promedio de lectura aumentó y hubo caída en el abandono de página.",
+            "note": "Pequeñas decisiones en el texto tienen gran impacto en la experiencia de lectura y comprensión."
           }
         ]
       },
@@ -1260,6 +1347,10 @@ const resources = {
           dark: "Cambiar a modo oscuro",
           system: "Usar preferencia del sistema"
         },
+        sound: {
+          enable: "Activar sonido",
+          disable: "Desactivar sonido"
+        },
         language: {
           switch: "Cambiar idioma",
           current: "Idioma actual",
@@ -1333,7 +1424,11 @@ const resources = {
           settingsSaved: "Configuraciones guardadas",
           linkCopied: "Enlace copiado al portapapeles",
           themeChanged: "Tema cambiado",
-          languageChanged: "Idioma cambiado"
+          languageChanged: "Idioma cambiado",
+          soundEnabled: "Sonido activado",
+          soundDisabled: "Sonido desactivado",
+          soundEnabledDesc: "Retroalimentación de audio ahora activa",
+          soundDisabledDesc: "Retroalimentación de audio ahora silenciada"
         },
         error: {
           title: "Error",
@@ -1504,10 +1599,11 @@ i18n
     resources,
     lng: 'pt-BR',
     fallbackLng: 'pt-BR',
-
-    // DEBUG apenas em desenvolvimento
-    debug: false,
-
+    debug: import.meta.env.DEV,
+    
+    // Garantir que os objetos são retornados corretamente
+    returnObjects: true,
+    
     // Configurações React
     react: {
       useSuspense: false

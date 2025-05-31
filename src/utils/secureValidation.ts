@@ -155,14 +155,16 @@ export const parseQueryParams = (search: string): Record<string, string> => {
 
   try {
     const urlParams = new URLSearchParams(search);
-    for (const [key, value] of urlParams.entries()) {
+    
+    // Use forEach instead of for...of to avoid iterator compatibility issues
+    urlParams.forEach((value, key) => {
       // Sanitize both key and value
       const safeKey = sanitizeString(key);
       const safeValue = sanitizeString(value);
       if (safeKey) {
         params[safeKey] = safeValue;
       }
-    }
+    });
   } catch {
     // Return empty object on error
   }

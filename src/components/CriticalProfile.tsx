@@ -1,13 +1,16 @@
 import React from 'react';
 import { getProfileImagePaths } from '@/utils/assetPaths';
+import { useTranslation } from 'react-i18next';
 
 /**
  * Critical Profile Component - Optimized for LCP
  * This component contains only the essential above-the-fold content
  * to improve Largest Contentful Paint performance
+ * Now using i18next for all text content
  */
 const CriticalProfile: React.FC = () => {
   const profileImages = getProfileImagePaths();
+  const { t } = useTranslation();
 
   return (
     <section className="min-h-screen flex items-center justify-center py-16 px-4">
@@ -21,7 +24,7 @@ const CriticalProfile: React.FC = () => {
                 <source srcSet={profileImages.webp} type="image/webp" />
                 <img
                   src={profileImages.png}
-                  alt="Foto de perfil de Tarcísio Bispo"
+                  alt={t('alts.profile.photo')}
                   className="w-full h-full object-cover"
                   loading="eager"
                   fetchPriority="high"
@@ -41,13 +44,13 @@ const CriticalProfile: React.FC = () => {
         {/* Critical Text Content */}
         <div className="lg:col-span-8 text-center lg:text-left">
           <h1 className="text-4xl lg:text-5xl font-bold text-[var(--color-text)] mb-4">
-            <span className="text-[var(--color-primary)]">UX Designer</span>
+            <span className="text-[var(--color-primary)]">{t('profile.jobTitle')}</span>
           </h1>
 
           <div className="h-1.5 w-32 bg-[var(--color-secondary)] rounded mb-6 mx-auto lg:mx-0"></div>
 
           <p className="text-lg text-[var(--color-text)] max-w-2xl mb-8 leading-relaxed">
-            Sou UX/Product Designer com forte atuação no design de produtos digitais focados em experiência do usuário, conversão e impacto de negócio.
+            {t('profile.bio')}
           </p>
 
           {/* Critical CTA */}
@@ -58,7 +61,7 @@ const CriticalProfile: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Vamos Conversar
+              {t('profile.letsChat')}
             </a>
           </div>
         </div>

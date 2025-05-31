@@ -1,8 +1,6 @@
 /* ATENÇÃO: Use apenas tokens do design-system.css para cores, tipografia e espaçamento. */
 
-body {
-  /* O background e color já são definidos em design-system.css */
-}
+/* O background e color do body já são definidos em design-system.css */
 
 #root {
   max-width: 1280px;

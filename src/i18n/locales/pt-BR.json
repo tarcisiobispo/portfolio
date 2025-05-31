@@ -17,6 +17,16 @@
     "letsChat": "Vamos Conversar",
     "downloadCV": "Download CV",
     "linkedin": "LinkedIn",
+    "name": "Tarcisio Bispo de Araujo",
+    "jobTitle": "UX/Product Designer",
+    "location": "Campinas, São Paulo",
+    "phone": "+55 19 9 9013-7380",
+    "ixdf": "IxDF - Interaction Design Foundation",
+    "greeting": "Olá, eu sou",
+    "role1": "UX Designer",
+    "role2": "Product Designer",
+    "role3": "Design Strategist",
+    "role4": "Interaction Designer",
     "chatWhatsApp": "Conversar pelo WhatsApp com Tarcisio Bispo de Araujo",
     "downloadResume": "Baixar currículo de Tarcisio Bispo de Araujo",
     "accessLinkedIn": "Acessar LinkedIn de Tarcisio Bispo de Araujo"
@@ -151,9 +161,10 @@
         "result": "O tempo médio de leitura aumentou e houve queda no abandono de página.",
         "note": "Pequenas decisões no texto têm grande impacto na experiência de leitura e compreensão."
       }
-    ]
+    ],
+    "itemExpanded": "Item expandido",
+    "clickAgainToCollapse": "Clique novamente para recolher"
   },
-
   "feedback": {
     "send": "Enviar feedback",
     "close": "Fechar",
@@ -243,7 +254,7 @@
     "linkedin": "Vamos nos conectar no LinkedIn!",
     "github": "Confira meu código no GitHub",
     "behance": "Veja meus designs no Behance",
-    "email": "Envie-me um email",
+    "email": "Me envie um e-mail",
     "phone": "Vamos conversar por telefone",
     "download": "Baixar meu currículo",
     "share": "Compartilhar este projeto",
@@ -254,7 +265,15 @@
     "edit": "Editar informações",
     "delete": "Remover item",
     "copy": "Copiar link",
-    "external": "Abrir em nova aba"
+    "external": "Abrir em nova aba",
+    "sound": {
+      "enable": "Ativar efeitos sonoros",
+      "disable": "Desativar efeitos sonoros"
+    },
+    "theme": {
+      "light": "Mudar para tema claro",
+      "dark": "Mudar para tema escuro"
+    }
   },
   "contact": {
     "title": "Vamos conversar?",
@@ -286,7 +305,7 @@
       "emailRequired": "Por favor, digite seu e-mail",
       "emailInvalid": "Por favor, digite um e-mail válido",
       "messageRequired": "Por favor, digite sua mensagem",
-      "messageMinLength": "Mensagem deve ter pelo menos 10 caracteres"
+      "messageMinLength": "Sua mensagem precisa ter pelo menos {{count}} caracteres."
     },
     "success": {
       "title": "Mensagem enviada!",
@@ -310,30 +329,5 @@
     "disable": "Desativar som",
     "volume": "Volume",
     "volumeControl": "Ajustar volume do som"
-  },
-  "tooltips": {
-    "linkedin": "Vamos nos conectar no LinkedIn!",
-    "github": "Confira meu código no GitHub",
-    "behance": "Veja meus designs no Behance",
-    "email": "Me envie um e-mail",
-    "phone": "Vamos conversar por telefone",
-    "download": "Baixar meu currículo",
-    "share": "Compartilhar este projeto",
-    "like": "Curtir este projeto",
-    "bookmark": "Salvar para depois",
-    "expand": "Ver em tela cheia",
-    "collapse": "Minimizar",
-    "edit": "Editar informações",
-    "delete": "Remover item",
-    "copy": "Copiar link",
-    "external": "Abrir em nova aba",
-    "sound": {
-      "enable": "Ativar efeitos sonoros",
-      "disable": "Desativar efeitos sonoros"
-    },
-    "theme": {
-      "light": "Mudar para tema claro",
-      "dark": "Mudar para tema escuro"
-    }
   }
 }

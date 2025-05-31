@@ -7,13 +7,14 @@
     <title data-i18n="page-title">Tarcisio Bispo | UX/Product Designer</title>
     <meta name="description" content="Portfólio de Tarcisio Bispo de Araujo - UX/Product Designer com foco em estratégia, impacto e experiência." data-i18n-attr="page-description" data-i18n-target="content" />
     <meta name="author" content="Tarcisio Bispo de Araujo" />
+    
+    <!-- Favicon -->
+    <link rel="icon" href="./favicon.ico">
 
     <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="CzXKmRs9sEDs3Jqpsy5KtXmXUDt4t_vi4gTt9hjyHLk" />
 
     <!-- Analytics scripts moved to lazy loading for better performance -->
-
-
 
     <meta property="og:title" content="Tarcisio Bispo | UX/Product Designer" data-i18n-attr="page-title" data-i18n-target="content" />
     <meta property="og:description" content="Portfólio de Tarcisio Bispo de Araujo - UX/Product Designer com foco em estratégia, impacto e experiência." data-i18n-attr="page-description" data-i18n-target="content" />
@@ -22,15 +23,10 @@
     <!-- Preconnect para recursos externos -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://images.unsplash.com">
-
-    <!-- Preload critical resources for LCP -->
-    <link rel="preload" as="image" href="/images/tarcisio_bispo.webp" type="image/webp">
-    <link rel="preload" as="image" href="/images/tarcisio_bispo.png" type="image/png">
-
-
-
-    <!-- Fontes otimizadas para LCP - carregamento crítico -->
+    <link rel="preconnect" href="https://images.unsplash.com">    <!-- Critical resources are loaded by the application code -->
+    <!-- Removed preload tags to prevent browser warnings -->
+    <!-- These resources are handled by the CLSOptimizedImage component and cacheOptimization.ts -->
+<!-- Fontes otimizadas para LCP - carregamento crítico -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&subset=latin&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&subset=latin&display=swap" rel="stylesheet"></noscript>
 
@@ -59,9 +55,7 @@
 
     <div id="root"></div>
 
-
-
     <!-- GPT Engineer script removed for production optimization -->
-    <script type="module" src="/src/main.tsx"></script>
+    <script type="module" src="./src/main.tsx"></script>
   </body>
 </html>

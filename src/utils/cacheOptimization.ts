@@ -9,6 +9,15 @@ interface CacheConfig {
   cacheFirst?: boolean;
 }
 
+interface CriticalResource {
+  href: string;
+  rel: string;
+  as: string;
+  type: string;
+  fetchpriority?: string;
+  crossorigin?: string;
+}
+
 const CACHE_CONFIGS: Record<string, CacheConfig> = {
   // Images - Long cache with stale-while-revalidate
   images: {
@@ -65,21 +74,32 @@ export const getCacheHeaders = (resourceType: keyof typeof CACHE_CONFIGS): Recor
 
 /**
  * Preload critical resources with proper cache headers
+ * 
+ * Note: We're using prefetch instead of preload for resources that aren't needed immediately
+ * to avoid browser warnings about unused preloaded resources
  */
 export const preloadCriticalResources = () => {
   const baseUrl = import.meta.env.BASE_URL;
-  const criticalResources = [
+  // Ensure baseUrl ends with a slash
+  const normalizedBaseUrl = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+  const criticalResources: CriticalResource[] = [
     {
-      href: `${baseUrl}images/tarcisio_bispo.webp`,
+      href: `${normalizedBaseUrl}images/tarcisio_bispo.webp`,
+      rel: 'prefetch',
       as: 'image',
-      type: 'image/webp',
-      fetchpriority: 'high'
+      type: 'image/webp'
     },
     {
-      href: `${baseUrl}images/tarcisio_bispo.png`,
+      href: `${normalizedBaseUrl}images/tarcisio_bispo.png`,
+      rel: 'prefetch',
       as: 'image',
-      type: 'image/png',
-      fetchpriority: 'high'
+      type: 'image/png'
+    },
+    {
+      href: `${normalizedBaseUrl}favicon.ico`,
+      rel: 'prefetch',
+      as: 'image',
+      type: 'image/x-icon'
     }
     // Font CSS removed to avoid unused preload warnings
     // Fonts will be loaded naturally by the browser when needed
@@ -87,7 +107,7 @@ export const preloadCriticalResources = () => {
 
   criticalResources.forEach(resource => {
     const link = document.createElement('link');
-    link.rel = 'preload';
+    link.rel = resource.rel || 'prefetch'; // Use prefetch by default to avoid warnings
     link.href = resource.href;
     link.as = resource.as;
 
@@ -119,7 +139,10 @@ export const registerServiceWorker = async () => {
   if ('serviceWorker' in navigator) {
     try {
       // Use correct path for GitHub Pages
-      const swPath = import.meta.env.BASE_URL + 'sw.js';
+      const baseUrl = import.meta.env.BASE_URL;
+      // Ensure baseUrl ends with a slash
+      const normalizedBaseUrl = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+      const swPath = normalizedBaseUrl + 'sw.js';
       const registration = await navigator.serviceWorker.register(swPath);
       console.log('Service Worker registered successfully:', registration);
       return registration;
@@ -249,6 +272,8 @@ export const initializeCacheOptimizations = () => {
     // Only prefetch static resources that actually exist
     // SPA routes are handled by React Router and don't need prefetching
     const baseUrl = import.meta.env.BASE_URL;
+    // Ensure baseUrl ends with a slash
+    const normalizedBaseUrl = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
     const nextPageUrls: string[] = [
       // Add only static files that exist in dist folder
       // SPA routes like /privacy-policy are handled by React Router

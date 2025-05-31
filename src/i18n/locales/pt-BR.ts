@@ -18,6 +18,15 @@ export default {
     "downloadCV": "Download CV",
     "linkedin": "LinkedIn",
     "chatWhatsApp": "Conversar pelo WhatsApp com Tarcisio Bispo de Araujo",
+    "greeting": "Olá, eu sou",
+    "jobTitle": "UX/Product Designer",
+    "location": "Campinas, Snpm run bão Paulo",
+    "phone": "+55 (19) 9 9013-7380",
+    "role1": "UX Designer",
+    "role2": "Product Designer",
+    "role3": "Design Strategist",
+    "role4": "Interaction Designer",
+    // ... outras traduções existentes do profile ...
     "downloadResume": "Baixar currículo de Tarcisio Bispo de Araujo",
     "accessLinkedIn": "Acessar LinkedIn de Tarcisio Bispo de Araujo"
   },
@@ -103,23 +112,61 @@ export default {
     "of": "de",
     "items": [
       {
-        "challenge": "A FGV precisava aumentar a visibilidade de cursos, palestras e atualizações institucionais.",
-        "solution": "A solução foi implementar um painel digital estratégico no hall da instituição, com curadoria de conteúdo e atualização automatizada.",
-        "result": "Aumento do engajamento presencial em 72% e maior percepção institucional.",
-        "note": "Entendi que, para comunicar com eficiência em ambientes físicos, o conteúdo precisa ser pensado como uma interface viva: ritmo visual, relevância contextual e clareza imediata fazem toda a diferença na atenção e retenção das mensagens."
+        challenge: "A FGV precisava aumentar a visibilidade de cursos, palestras e atualizações institucionais.",
+        solution: "A solução foi implementar um painel digital estratégico no hall da instituição, com curadoria de conteúdo e atualização automatizada.",
+        result: "Aumento do engajamento presencial em 72% e maior percepção institucional.",
+        note: "Entendi que, para comunicar com eficiência em ambientes físicos, o conteúdo precisa ser pensado como uma interface viva: ritmo visual, relevância contextual e clareza imediata fazem toda a diferença na atenção e retenção das mensagens."
       },
       {
-        "challenge": "Usuários da DIREITO FGV tinham dificuldade em localizar documentos e conteúdos relevantes dentro do portal acadêmico.",
-        "solution": "Redesenho da experiência de navegação com foco em features valorizadas pelo público corporativo e simplificação do processo de cotação.",
-        "result": "Aumento de 27% nas conversões de cotações e redução de 40% no abandono da jornada de compra.",
-        "note": "Percebi que mapear objetivos do usuário tem mais valor do que seguir estruturas institucionais fixas."
+        challenge: "Usuários da DIREITO FGV tinham dificuldade em localizar documentos e conteúdos relevantes dentro do portal acadêmico.",
+        solution: "Redesenho da experiência de navegação com foco em features valorizadas pelo público corporativo e simplificação do processo de cotação.",
+        result: "Aumento de 27% nas conversões de cotações e redução de 40% no abandono da jornada de compra.",
+        note: "Percebi que mapear objetivos do usuário tem mais valor do que seguir estruturas institucionais fixas."
       },
       {
-        "challenge": "A área de cursos da FGV LAW apresentava dificuldade na organização dos conteúdos, dificultando a navegação e impactando a visibilidade dos programas.",
-        "solution": "Estruturei um novo painel com filtros segmentados e sistema de abas, reorganizando a hierarquia das informações com foco em escaneabilidade e jornada de decisão do usuário.",
-        "result": "Houve um aumento significativo na visibilidade dos cursos e na conversão de acessos em interações com páginas específicas, além de maior clareza percebida pelos usuários.",
-        "note": "Compreendi que, ao lidar com grande volume de opções, o design da informação precisa facilitar a tomada de decisão — não apenas mostrar conteúdo, mas organizar a escolha com lógica e contexto."
+        challenge: "A área de cursos da FGV LAW apresentava dificuldade na organização dos conteúdos, dificultando a navegação e impactando a visibilidade dos programas.",
+        solution: "Estruturei um novo painel com filtros segmentados e sistema de abas, reorganizando a hierarquia das informações com foco em escaneabilidade e jornada de decisão do usuário.",
+        result: "Houve um aumento significativo na visibilidade dos cursos e na conversão de acessos em interações com páginas específicas, além de maior clareza percebida pelos usuários.",
+        note: "Compreendi que, ao lidar com grande volume de opções, o design da informação precisa facilitar a tomada de decisão — não apenas mostrar conteúdo, mas organizar a escolha com lógica e contexto."
+      },
+      {
+        challenge: "A Taliparts precisava validar quais produtos seriam mais competitivos no Mercado Livre.",
+        solution: "Conduzi benchmark detalhado com análise de concorrência, posicionamento e avaliações de produtos similares.",
+        result: "A curadoria inicial de produtos teve maior índice de visualização e interesse já na primeira semana de divulgação.",
+        note: "Analisar o terreno competitivo com profundidade é essencial antes de qualquer exposição de marca em canal aberto."
+      },
+      {
+        challenge: "Faltava clareza sobre quem era o público-alvo real da Taliparts.",
+        solution: "Modelei personas com base em entrevistas com lojistas, mecânicos e compradores autônomos.",
+        result: "Definimos três perfis estratégicos que orientaram desde a escolha de produto até o tom da comunicação.",
+        note: "Persona é mais do que um arquétipo — é a lente pela qual se interpreta todo o negócio."
+      },
+      {
+        challenge: "Na Taliparts Os títulos e descrições dos anúncios no Mercado Livre não estavam otimizados para SEO no Mercado Livre.",
+        solution: "Reestruturei os títulos com base em práticas de SEO específicas para marketplaces e testei descrições com palavras-chave frequentes.",
+        result: "Melhoria significativa no posicionamento das ofertas e aumento em mais de 20% no tráfego orgânico em 6 meses.",
+        note: "No marketplace, SEO é tão importante quanto o preço — é ele quem traz o clique."
+      },
+      {
+        challenge: "Na Taliparts era necessário validar se os produtos publicados realmente tinham demanda real.",
+        solution: "Estruturei um plano de validação com base em métricas de cliques, perguntas de compradores e comparação com benchmarks.",
+        result: "Refinamos o catálogo com base em performance, evitando estoque parado e redirecionando esforços.",
+        note: "Testar pequeno e ajustar rápido é mais eficiente do que lançar 100 produtos no escuro."
+      },
+      {
+        challenge: "Na FGV algumas páginas possuiam conteúdo institucional denso afastava os usuários da leitura integral.",
+        solution: "Apliquei técnicas de UX writing (escaneabilidade, títulos objetivos, listas visuais) nas páginas-chave.",
+        result: "O tempo médio de leitura aumentou e houve queda no abandono de página.",
+        note: "Pequenas decisões no texto têm grande impacto na experiência de leitura e compreensão."
       }
     ]
+  },
+  "contact": {
+    "errors": {
+      "messageMinLength": "Sua mensagem precisa ter pelo menos {{count}} caracteres."
+    },
+    "success": {
+      "message": "Mensagem enviada com sucesso!"
+    }
   }
 } as const;

@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Accessibility, Type, Eye, BookOpen, MousePointer } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 type AccessibilityOption = {
   id: string;

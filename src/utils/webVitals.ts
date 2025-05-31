@@ -1,5 +1,12 @@
 import React from 'react';
-import { getCLS, getFID, getFCP, getLCP, getTTFB, Metric } from 'web-vitals';
+import { onCLS, onFCP, onLCP, onTTFB, onINP, type Metric } from 'web-vitals';
+
+// Declare global gtag function
+declare global {
+  interface Window {
+    // gtag is already declared in GoogleTagManager.tsx
+  }
+}
 
 interface VitalMetric {
   name: string;
@@ -12,7 +19,7 @@ interface VitalMetric {
 // Thresholds para classificação das métricas
 const THRESHOLDS = {
   CLS: { good: 0.1, poor: 0.25 },
-  FID: { good: 100, poor: 300 },
+  INP: { good: 200, poor: 500 },
   FCP: { good: 1800, poor: 3000 },
   LCP: { good: 2500, poor: 4000 },
   TTFB: { good: 800, poor: 1800 }
@@ -37,8 +44,8 @@ const sendToAnalytics = (metric: Metric) => {
   };
 
   // Enviar para Google Analytics 4 (se disponível)
-  if (typeof gtag !== 'undefined') {
-    gtag('event', metric.name, {
+  if (typeof window.gtag !== 'undefined') {
+    window.gtag('event', metric.name, {
       value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
       event_category: 'Web Vitals',
       event_label: vitalMetric.rating,
@@ -82,11 +89,11 @@ const sendToCustomAnalytics = (metric: VitalMetric) => {
 
 export const initWebVitals = () => {
   try {
-    getCLS(sendToAnalytics);
-    getFID(sendToAnalytics);
-    getFCP(sendToAnalytics);
-    getLCP(sendToAnalytics);
-    getTTFB(sendToAnalytics);
+    onCLS(sendToAnalytics);
+    onINP(sendToAnalytics);
+    onFCP(sendToAnalytics);
+    onLCP(sendToAnalytics);
+    onTTFB(sendToAnalytics);
 
     // Web Vitals monitoring initialized successfully
   } catch (error) {
@@ -111,11 +118,11 @@ export const useWebVitals = () => {
       setMetrics(prev => [...prev.filter(m => m.name !== metric.name), vitalMetric]);
     };
 
-    getCLS(handleMetric);
-    getFID(handleMetric);
-    getFCP(handleMetric);
-    getLCP(handleMetric);
-    getTTFB(handleMetric);
+    onCLS(handleMetric);
+    onINP(handleMetric);
+    onFCP(handleMetric);
+    onLCP(handleMetric);
+    onTTFB(handleMetric);
   }, []);
 
   return metrics;

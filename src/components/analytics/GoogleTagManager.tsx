@@ -8,7 +8,7 @@ interface GTMProps {
 declare global {
   interface Window {
     dataLayer: any[];
-    gtag: (...args: any[]) => void;
+    gtag: (command: string, action: string, params?: any) => void;
   }
 }
 
@@ -19,13 +19,13 @@ const GoogleTagManager: React.FC<GTMProps> = ({ gtmId }) => {
       window.dataLayer = window.dataLayer || [];
       
       // Função gtag para enviar eventos
-      window.gtag = function() {
+      window.gtag = function(command: string, action: string, params?: any) {
         window.dataLayer.push(arguments);
       };
       
       // Configurar GTM
-      window.gtag('js', new Date());
-      window.gtag('config', gtmId);
+      window.gtag('js', new Date(), {});
+      window.gtag('config', gtmId, {});
     }
   }, [gtmId]);
 

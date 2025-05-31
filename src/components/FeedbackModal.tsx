@@ -4,7 +4,6 @@ import CTAButton from './ui/CTAButton';
 import { Mail, Lightbulb, Smile, X, Send, ArrowLeft, CheckCircle, AlertCircle } from 'lucide-react';
 import emailjs from 'emailjs-com';
 import { useTranslation } from 'react-i18next';
-import i18n from '../i18n/config';
 import { motion } from 'framer-motion';
 import { useFormSounds, useNavigationSounds } from '@/hooks/useSound';
 
@@ -13,10 +12,6 @@ const feedbackTypes = [
   { type: 'idea', icon: Lightbulb },
   { type: 'praise', icon: Smile },
 ];
-
-// Removido - agora usamos traduções
-
-// Removido - agora usamos traduções
 
 export default function FeedbackModal({ open, onClose, section = 'default' }) {
   const [step, setStep] = useState(1);
@@ -27,13 +22,13 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [submitStatus, setSubmitStatus] = useState('idle'); // 'idle' | 'success' | 'error'
-  const [touched, setTouched] = useState(false); // Para mostrar validação visual
+  const [touched, setTouched] = useState(false); // For visual validation
   const initialFocusRef = useRef(null);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { playSubmitSuccess, playSubmitError, playFieldFocus } = useFormSounds();
   const { playButtonClick } = useNavigationSounds();
 
-  // Auto-hide da mensagem de sucesso após 4 segundos
+  // Auto-hide success message after 4 seconds
   useEffect(() => {
     if (submitStatus === 'success') {
       const timer = setTimeout(() => {
@@ -43,10 +38,10 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
     }
   }, [submitStatus]);
 
-  // Validação SIMPLES - só precisa ter mensagem
+  // SIMPLE validation - just needs to have a message
   const isMessageValid = message.trim().length >= 5;
 
-  // Validação de email (se fornecido)
+  // Email validation (if provided)
   const isEmailValid = !email || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const canSend = isMessageValid && !sending;
@@ -58,17 +53,17 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
 
     try {
       await emailjs.send(
-        'service_4z3a60b',    // Service ID do EmailJS
-        'template_nc73bg4',   // Template ID do EmailJS
+        'service_4z3a60b',    // EmailJS Service ID
+        'template_nc73bg4',   // EmailJS Template ID
         {
           from_name: `Feedback Portfolio - ${feedbackType}`,
           from_email: email || 'tbisp0@hotmail.com',
-          message: `Tipo: ${feedbackType}\nSeção: ${section}\n\nMensagem:\n${message}`,
+          message: `Type: ${feedbackType}\nSection: ${section}\n\nMessage:\n${message}`,
           to_email: 'tbisp0@hotmail.com',
-          subject: `Feedback do Portfolio - ${feedbackType} (${section})`,
+          subject: `Portfolio Feedback - ${feedbackType} (${section})`,
           reply_to: email || 'tbisp0@hotmail.com'
         },
-        'eRzZy4gTZ2NXGjFKz'  // User ID do EmailJS
+        'eRzZy4gTZ2NXGjFKz'  // EmailJS User ID
       );
       setSubmitStatus('success');
       setSent(true);
@@ -76,7 +71,7 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
       // Play success sound
       playSubmitSuccess();
     } catch (err) {
-      console.error('Erro ao enviar feedback:', err);
+      console.error('Error sending feedback:', err);
       setSubmitStatus('error');
 
       // Play error sound
@@ -92,7 +87,7 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
     handleSend(fakeEvent);
   };
 
-  // Fechamento completo (limpa tudo) - usado apenas no botão X ou após envio
+  // Complete closure (clears everything) - used only on X button or after sending
   const handleCompleteClose = () => {
     setStep(1);
     setFeedbackType(null);
@@ -105,14 +100,14 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
     onClose();
   };
 
-  // Fechamento suave (preserva conteúdo) - usado ao clicar fora
+  // Soft closure (preserves content) - used when clicking outside
   const handleSoftClose = () => {
-    // Só fecha se não tiver conteúdo digitado ou se estiver na primeira etapa
+    // Only closes if there's no content typed or if in the first step
     if (step === 1 || (message.trim() === '' && email.trim() === '')) {
       handleCompleteClose();
     } else {
-      // Se tiver conteúdo, apenas fecha mas preserva os dados
-      // Poderia adicionar um toast aqui: "Rascunho salvo"
+      // If there's content, just closes but preserves the data
+      // Could add a toast here: "Draft saved"
       onClose();
     }
   };
@@ -120,17 +115,17 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
   return (
     <Dialog open={open} onClose={handleSoftClose} initialFocus={initialFocusRef} className="fixed z-50 inset-0 overflow-y-auto">
       <div className="flex items-center justify-center min-h-screen px-2">
-        <div className="fixed inset-0 bg-black/30 backdrop-blur-sm" aria-hidden="true" />
-        <div className="relative bg-white rounded-2xl shadow-xl max-w-sm w-full mx-auto p-0 z-10 border border-slate-100">
-          <button onClick={handleCompleteClose} className="absolute top-3 right-3 p-2 rounded-full hover:bg-slate-100 focus-visible:ring-2 focus-visible:ring-blue-700" aria-label={t('feedback.close')}>
+        <div className="fixed inset-0 bg-black/30 backdrop-blur-sm dark:bg-black/50" aria-hidden="true" />
+        <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-xl max-w-sm w-full mx-auto p-0 z-10 border border-slate-100 dark:border-gray-700">
+          <button onClick={handleCompleteClose} className="absolute top-3 right-3 p-2 rounded-full hover:bg-slate-100 dark:hover:bg-gray-700 focus-visible:ring-2 focus-visible:ring-blue-700 text-gray-700 dark:text-gray-300" aria-label={t('feedback.close')}>
             <X className="w-5 h-5" />
           </button>
           <div className="p-6 sm:p-8 flex flex-col gap-4">
             {sent ? (
               <div className="flex flex-col items-center py-8">
-                <Smile className="w-12 h-12 text-green-600 mb-4" />
+                <Smile className="w-12 h-12 text-green-600 dark:text-green-400 mb-4" />
                 <div className="text-center max-w-xs">
-                  <p className="text-lg font-semibold text-green-700 mb-2">{t('feedback.form.success')}</p>
+                  <p className="text-lg font-semibold text-green-700 dark:text-green-300 mb-2">{t('feedback.thankYou')}</p>
                 </div>
                 <CTAButton
                   onClick={handleCompleteClose}
@@ -143,7 +138,7 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
               </div>
             ) : step === 1 ? (
               <>
-                <Dialog.Title className="text-lg sm:text-xl font-bold mb-4 text-blue-900 text-center">{t('feedback.typeQuestion')}</Dialog.Title>
+                <Dialog.Title className="text-lg sm:text-xl font-bold mb-4 text-gray-900 dark:text-white text-center">{t('feedback.typeQuestion')}</Dialog.Title>
                 <div className="flex flex-col gap-3">
                   {feedbackTypes.map(ft => (
                     <CTAButton
@@ -166,20 +161,20 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
               </>
             ) : (
               <form onSubmit={handleSend} className="flex flex-col gap-4 mt-2">
-                <Dialog.Title className="text-lg sm:text-xl font-bold text-blue-900 text-center mb-2">
+                <Dialog.Title className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white text-center mb-2">
                   {t(`feedback.${feedbackType}Title`) || t('feedback.defaultTitle')}
                 </Dialog.Title>
-                <div className="text-xs text-slate-600 text-center mb-1">
+                <div className="text-xs text-gray-600 dark:text-gray-300 text-center mb-1">
                   {t(`feedback.${feedbackType}Instruction`) || t('feedback.defaultInstruction')}
                 </div>
                 <div className="relative">
                   <textarea
-                    className={`w-full rounded-lg border-2 p-3 min-h-[90px] text-base transition-all focus-visible:ring-2 focus-visible:ring-blue-700 outline-none resize-none bg-slate-50 pr-10 ${
+                    className={`w-full rounded-lg border-2 p-3 min-h-[90px] text-base transition-all focus-visible:ring-2 focus-visible:ring-blue-700 outline-none resize-none bg-slate-50 dark:bg-gray-700 dark:text-white pr-10 ${
                       touched && !isMessageValid
                         ? 'border-red-500 focus:ring-red-500'
                         : touched && isMessageValid
                         ? 'border-green-500 focus:ring-green-500'
-                        : 'border-slate-300 hover:border-blue-400'
+                        : 'border-slate-300 dark:border-gray-600 hover:border-blue-400 dark:hover:border-blue-500'
                     }`}
                     placeholder={t(`feedback.${feedbackType}Placeholder`) || t('feedback.defaultPlaceholder')}
                     value={message}
@@ -192,26 +187,22 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
                     aria-invalid={touched && !isMessageValid}
                     aria-describedby="feedback-message-help"
                   />
-                  {/* Ícone de validação */}
+                  {/* Validation icon */}
                   {touched && !isMessageValid && (
-                    <X className="absolute right-3 top-3 w-5 h-5 text-red-500" aria-hidden="true" />
+                    <X className="absolute right-3 top-3 w-5 h-5 text-red-500 dark:text-red-400" aria-hidden="true" />
                   )}
                   {touched && isMessageValid && (
-                    <CheckCircle className="absolute right-3 top-3 w-5 h-5 text-green-500" aria-hidden="true" />
+                    <CheckCircle className="absolute right-3 top-3 w-5 h-5 text-green-500 dark:text-green-400" aria-hidden="true" />
                   )}
                 </div>
                 {touched && !isMessageValid ? (
-                  <div id="feedback-message-help" className="text-xs text-red-500 flex items-center gap-1 mb-1" role="alert">
+                  <div id="feedback-message-help" className="text-xs text-red-500 dark:text-red-400 flex items-center gap-1 mb-1" role="alert">
                     <AlertCircle className="w-3 h-3" aria-hidden="true" />
-                    {i18n.language === 'en-US' ? 'Message is required' :
-                     i18n.language === 'es-ES' ? 'El mensaje es obligatorio' :
-                     'Mensagem é obrigatória'}
+                    {t('contact.errors.messageRequired')}
                   </div>
                 ) : (
-                  <div id="feedback-message-help" className="text-xs text-slate-500 mb-1">
-                    {i18n.language === 'en-US' ? 'Minimum 5 characters' :
-                     i18n.language === 'es-ES' ? 'Mínimo 5 caracteres' :
-                     'Mínimo 5 caracteres'}
+                  <div id="feedback-message-help" className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+                    {t('feedback.minimumCharacters')}
                   </div>
                 )}
                 <div className="flex items-center gap-2">
@@ -222,15 +213,15 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
                     onChange={e => setShowEmail(e.target.checked)}
                     className="accent-blue-700"
                   />
-                  <label htmlFor="show-email" className="text-sm text-slate-700 cursor-pointer select-none">
+                  <label htmlFor="show-email" className="text-sm text-gray-700 dark:text-gray-300 cursor-pointer select-none">
                     {t('feedback.includeEmail')}
                   </label>
                 </div>
                 {showEmail && (
                   <div className="relative">
                     <input
-                      className={`rounded-lg border-2 p-2 text-base transition-all focus-visible:ring-2 focus-visible:ring-blue-700 outline-none bg-slate-50 w-full pr-10
-                        ${email.length > 0 ? (isEmailValid ? 'border-green-500' : 'border-red-500') : 'border-slate-300'}
+                      className={`rounded-lg border-2 p-2 text-base transition-all focus-visible:ring-2 focus-visible:ring-blue-700 outline-none bg-slate-50 dark:bg-gray-700 dark:text-white w-full pr-10
+                        ${email.length > 0 ? (isEmailValid ? 'border-green-500' : 'border-red-500') : 'border-slate-300 dark:border-gray-600'}
                       `}
                       type="email"
                       placeholder="E-mail"
@@ -239,16 +230,16 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
                       aria-invalid={email.length > 0 && !isEmailValid}
                       aria-describedby="feedback-email-help"
                     />
-                    {/* Ícone de validação */}
+                    {/* Validation icon */}
                     {email.length > 0 && !isEmailValid && (
-                      <X className="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-red-500" aria-hidden="true" />
+                      <X className="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-red-500 dark:text-red-400" aria-hidden="true" />
                     )}
                     {email.length > 0 && isEmailValid && (
-                      <CheckCircle className="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-green-500" aria-hidden="true" />
+                      <CheckCircle className="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-green-500 dark:text-green-400" aria-hidden="true" />
                     )}
                   </div>
                 )}
-                <a href="/portfolio/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-xs text-blue-700 underline mb-2">{t('feedback.privacyPolicy')}</a>
+                <a href="/portfolio/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-xs text-blue-700 dark:text-blue-400 underline mb-2">{t('feedback.privacyPolicy')}</a>
                 <div className="flex gap-2 mt-2">
                   <CTAButton
                     onClick={handleSendClick}
@@ -278,21 +269,19 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
                   </CTAButton>
                 </div>
 
-                {/* Mensagens de Status - Embaixo dos Botões */}
+                {/* Status Messages - Below Buttons */}
                 {submitStatus === 'success' && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="mt-4 flex items-center gap-3 p-3 bg-green-50 dark:bg-green-900/10 border border-green-200 dark:border-green-800 rounded-lg text-green-700 dark:text-green-400"
+                    className="mt-4 flex items-center gap-3 p-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg text-green-700 dark:text-green-300"
                     role="status"
                     aria-live="polite"
                   >
                     <CheckCircle className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
                     <span className="text-sm font-medium text-left">
-                      {i18n.language === 'en-US' ? 'Thank you for your feedback!' :
-                       i18n.language === 'es-ES' ? '¡Gracias por tu feedback!' :
-                       'Obrigado pelo seu feedback!'}
+                      {t('feedback.thankYou')}
                     </span>
                   </motion.div>
                 )}

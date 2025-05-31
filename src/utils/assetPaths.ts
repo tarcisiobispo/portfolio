@@ -11,7 +11,11 @@ export const getAssetPath = (path: string): string => {
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
 
   // Use import.meta.env.BASE_URL which Vite provides automatically
-  return `${import.meta.env.BASE_URL}${cleanPath}`;
+  // Ensure baseUrl ends with a slash
+  const baseUrl = import.meta.env.BASE_URL;
+  const normalizedBaseUrl = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+  
+  return `${normalizedBaseUrl}${cleanPath}`;
 };
 
 /**

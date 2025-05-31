@@ -3,7 +3,7 @@
  * Reduces initial bundle size by loading components on demand
  */
 
-import { lazy } from 'react';
+import React, { lazy, Suspense, Component, ReactNode, ComponentType } from 'react';
 
 // Lazy load heavy components that are not immediately visible
 export const LazyProjectShowcase = lazy(() => 
@@ -82,16 +82,43 @@ export const preloadComponents = () => {
   window.addEventListener('touchstart', handleInteraction, { passive: true });
 };
 
-// Component wrapper with error boundary for lazy components
-export const withLazyLoading = (Component: React.ComponentType) => {
-  return (props: any) => {
-    try {
-      return <Component {...props} />;
-    } catch (error) {
-      console.error('Error loading lazy component:', error);
-      return <div>Error loading component</div>;
+// Error boundary component for catching rendering errors
+class ErrorBoundary extends Component<{children: ReactNode}, {hasError: boolean}> {
+  constructor(props: {children: ReactNode}) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(): {hasError: boolean} {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error): void {
+    console.error('Error loading lazy component:', error);
+  }
+
+  render(): ReactNode {
+    if (this.state.hasError) {
+      return React.createElement('div', null, 'Error loading component');
     }
+    return this.props.children;
+  }
+}
+
+// Component wrapper with error boundary for lazy components
+export const withLazyLoading = (Component: ComponentType<any>) => {
+  const WrappedComponent = (props: any) => {
+    return React.createElement(
+      Suspense, 
+      { fallback: React.createElement('div', null, 'Loading...') },
+      React.createElement(
+        ErrorBoundary,
+        null,
+        React.createElement(Component, props)
+      )
+    );
   };
+  return WrappedComponent;
 };
 
 // Optimize imports for specific libraries

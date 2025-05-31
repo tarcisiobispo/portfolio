@@ -12,28 +12,28 @@ interface ToastPosition {
   left: number;
 }
 
-export const useContextualToast = () => {
+export const useContextualToast = () => {  
   const showToast = useCallback((element: HTMLElement | null, options: ToastOptions) => {
     if (!element) return;
 
-    // Remove toast anterior se existir
+    // Remove existing toast if present
     const existingToast = document.querySelector('[data-contextual-toast]');
     if (existingToast) {
       existingToast.remove();
     }
 
-    // Calcula posição do elemento
+    // Calculate element position
     const rect = element.getBoundingClientRect();
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 
-    // Posição abaixo do elemento com margem mínima para proximidade
+    // Position directly below the triggering button with consistent 8px margin
     const position: ToastPosition = {
-      top: rect.bottom + scrollTop + 4, // Margem reduzida para maior proximidade
+      top: rect.bottom + scrollTop + 8, // 8px margin for consistent spacing
       left: rect.left + scrollLeft + (rect.width / 2)
     };
 
-    // Cria o toast
+    // Create toast element
     const toast = document.createElement('div');
     toast.setAttribute('data-contextual-toast', 'true');
     toast.className = `
@@ -45,7 +45,7 @@ export const useContextualToast = () => {
       animate-in slide-in-from-top-2 duration-300
     `;
 
-    // Aplica cores baseadas no tipo
+    // Apply colors based on type
     const typeClasses = {
       success: 'border-green-200 bg-green-50 text-green-900 dark:border-green-800 dark:bg-green-900/20 dark:text-green-100',
       error: 'border-red-200 bg-red-50 text-red-900 dark:border-red-800 dark:bg-red-900/20 dark:text-red-100',
@@ -57,11 +57,11 @@ export const useContextualToast = () => {
       toast.className += ` ${typeClasses[options.type]}`;
     }
 
-    // Posiciona o toast
+    // Position the toast
     toast.style.top = `${position.top}px`;
     toast.style.left = `${position.left}px`;
 
-    // Conteúdo do toast mais compacto
+    // Compact toast content
     toast.innerHTML = `
       <div class="flex items-center gap-2">
         <div class="flex-1 min-w-0">
@@ -77,7 +77,7 @@ export const useContextualToast = () => {
         <button
           class="flex-shrink-0 w-4 h-4 flex items-center justify-center rounded hover:bg-black/10 dark:hover:bg-white/10 transition-colors ml-1"
           onclick="this.parentElement.parentElement.remove()"
-          aria-label="Fechar notificação"
+          aria-label="Close notification"
         >
           <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -86,15 +86,15 @@ export const useContextualToast = () => {
       </div>
     `;
 
-    // Adiciona ao DOM
+    // Add to DOM
     document.body.appendChild(toast);
 
-    // Ajusta posição se sair da tela
+    // Adjust position if outside viewport
     const toastRect = toast.getBoundingClientRect();
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
 
-    // Ajusta horizontalmente se necessário
+    // Adjust horizontally if needed
     if (toastRect.right > viewportWidth - 16) {
       toast.style.left = `${viewportWidth - toastRect.width - 16}px`;
       toast.style.transform = 'none';
@@ -103,12 +103,12 @@ export const useContextualToast = () => {
       toast.style.transform = 'none';
     }
 
-    // Ajusta verticalmente se necessário (mostra acima do elemento)
+    // Adjust vertically if needed (show above element with consistent 8px margin)
     if (toastRect.bottom > viewportHeight - 16) {
-      toast.style.top = `${rect.top + scrollTop - toastRect.height - 4}px`; // Margem reduzida para maior proximidade
+      toast.style.top = `${rect.top + scrollTop - toastRect.height - 8}px`; // 8px margin for consistency
     }
 
-    // Remove automaticamente após duração especificada (mais rápido para proximidade)
+    // Auto-remove after specified duration
     const duration = options.duration || 2000;
     setTimeout(() => {
       if (toast.parentElement) {
@@ -121,7 +121,7 @@ export const useContextualToast = () => {
       }
     }, duration);
 
-    // Remove ao clicar fora
+    // Remove on click outside
     const handleClickOutside = (event: MouseEvent) => {
       if (!toast.contains(event.target as Node)) {
         toast.remove();
@@ -129,7 +129,7 @@ export const useContextualToast = () => {
       }
     };
 
-    // Adiciona listener após um pequeno delay para não remover imediatamente
+    // Add listener after small delay to prevent immediate removal
     setTimeout(() => {
       document.addEventListener('click', handleClickOutside);
     }, 100);
@@ -140,7 +140,7 @@ export const useContextualToast = () => {
   return { showToast };
 };
 
-// CSS adicional para animações (será adicionado via JavaScript)
+// Additional CSS for animations (added via JavaScript)
 if (typeof document !== 'undefined') {
   const style = document.createElement('style');
   style.textContent = `

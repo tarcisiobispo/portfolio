@@ -1,5 +1,6 @@
 // Utilitários para lidar com traduções de forma segura
 import { logger } from './logger';
+import i18n from '@/i18n/config';
 
 /**
  * Garante que o resultado de uma tradução seja um array
@@ -19,6 +20,34 @@ export const ensureArray = <T = any>(value: any): T[] => {
 };
 
 /**
+ * Função para obter itens de fallback do idioma padrão (pt-BR)
+ * Útil quando um idioma não tem todos os itens necessários
+ */
+export const getFallbackItems = (key: string): any[] => {
+  try {
+    // Obter os itens do idioma padrão (pt-BR)
+    const defaultItems = i18n.getResourceBundle('pt-BR', 'translation');
+    
+    // Navegar pela estrutura de chaves (ex: 'backlog.items')
+    const keys = key.split('.');
+    let result = defaultItems;
+    
+    for (const k of keys) {
+      if (result && typeof result === 'object' && k in result) {
+        result = result[k];
+      } else {
+        return [];
+      }
+    }
+    
+    return ensureArray(result);
+  } catch (error) {
+    logger.warn(`Error getting fallback items for "${key}":`, error);
+    return [];
+  }
+};
+
+/**
  * Garante que o resultado de uma tradução seja um array de strings
  * Remove valores falsy (null, undefined, '')
  */
@@ -35,10 +64,11 @@ export const useTranslationArray = (key: string, t: (key: string, options?: any)
   try {
     const result = t(key, { returnObjects: true });
 
-    // Debug temporário para verificar o que está sendo retornado
+    // Debug detalhado para verificar o que está sendo retornado
     if (import.meta.env.DEV && key === 'backlog.items') {
       console.log('🔍 Debug backlog.items:', {
         key,
+        language: i18n.language,
         result,
         type: typeof result,
         isArray: Array.isArray(result),
@@ -46,9 +76,44 @@ export const useTranslationArray = (key: string, t: (key: string, options?: any)
       });
     }
 
-    return ensureArray(result);
+    // Garantir que sempre retornamos um array, mesmo que vazio
+    let arrayResult = ensureArray(result);
+    
+    // Se o array estiver vazio ou tiver menos itens que o esperado (para backlog.items)
+    if ((key === 'backlog.items' && arrayResult.length < 8) || arrayResult.length === 0) {
+      if (import.meta.env.DEV) {
+        console.warn(`⚠️ Poucos itens para "${key}" no idioma ${i18n.language}, usando fallback...`);
+      }
+      
+      // Obter itens do idioma padrão (pt-BR)
+      const fallbackItems = getFallbackItems(key);
+      
+      if (fallbackItems.length > 0) {
+        if (import.meta.env.DEV) {
+          console.log(`✅ Usando ${fallbackItems.length} itens de fallback para "${key}"`);
+        }
+        arrayResult = fallbackItems;
+      }
+    }
+    
+    // Log adicional para depuração
+    if (import.meta.env.DEV && key === 'backlog.items') {
+      console.log(`📊 Array final (${arrayResult.length} itens)`);
+    }
+    
+    return arrayResult;
   } catch (error) {
     logger.warn(`Translation error for key "${key}":`, error);
+    
+    // Em caso de erro, tentar usar o fallback
+    const fallbackItems = getFallbackItems(key);
+    if (fallbackItems.length > 0) {
+      if (import.meta.env.DEV) {
+        console.log(`🔄 Usando fallback após erro para "${key}"`);
+      }
+      return fallbackItems;
+    }
+    
     return [];
   }
 };

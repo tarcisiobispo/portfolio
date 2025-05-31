@@ -11,7 +11,7 @@ import { getProfileImagePaths } from '@/utils/assetPaths';
 import { useTypewriterLCPOptimization } from '@/hooks/useLCPOptimization';
 import '@/styles/profile-card.css';
 
-// Ícone do WhatsApp
+// WhatsApp Icon
 const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...props} viewBox="0 0 24 24" fill="none">
     <path
@@ -24,8 +24,6 @@ const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
     />
   </svg>
 );
-
-
 
 interface ProfileProps {
   name: string;
@@ -40,27 +38,27 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
     <section className="min-h-screen flex flex-col justify-center py-16 relative" aria-labelledby="profile-title">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center justify-center max-w-7xl mx-auto px-6">
 
-        {/* CARD DE PERFIL PREMIUM - Melhor que LinkedIn */}
+        {/* PREMIUM PROFILE CARD */}
         <div
           className="lg:col-span-4 flex justify-center relative z-10"
           style={{ overflow: 'visible' }}
         >
           <div className="relative group p-8">
-            {/* Card Container - ESPAÇAMENTOS HEURÍSTICOS PERFEITOS */}
+            {/* Card Container */}
             <div className="profile-card relative rounded-3xl px-6 py-10 max-w-sm w-full transition-all duration-500">
 
-              {/* Background Gradient Sutil */}
+              {/* Subtle Gradient Background */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-purple-50/50 dark:from-blue-900/20 dark:via-transparent dark:to-purple-900/20 rounded-3xl"></div>
 
-              {/* ESTRUTURA COMPLETA COM RESPIRO CORRETO */}
+              {/* COMPLETE STRUCTURE WITH CORRECT SPACING */}
               <div className="relative z-10 flex flex-col items-center space-y-6">
 
-                {/* SEÇÃO 1: Foto de Perfil */}
+                {/* SECTION 1: Profile Photo */}
                 <div className="relative">
-                  {/* Anel Animado */}
+                  {/* Animated Ring */}
                   <div className="profile-ring absolute -inset-1 rounded-full opacity-75 group-hover:opacity-100"></div>
 
-                  {/* Container da Foto */}
+                  {/* Photo Container */}
                   <div className="relative w-32 h-32 rounded-full overflow-hidden bg-white p-1 shadow-xl">
                     <CLSOptimizedImage
                       src={profileImages.png}
@@ -68,39 +66,39 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
                       alt={t('alts.profile.photo')}
                       width={128}
                       height={128}
-                      priority={true}
+                      priority={true} // Keep priority to ensure it loads quickly
                       className="profile-image-hover rounded-full"
                     />
                   </div>
 
-                  {/* Status Online */}
+                  {/* Online Status */}
                   <div className="status-online absolute bottom-2 right-2 w-4 h-4 bg-green-500 rounded-full border-2 border-white shadow-lg"></div>
                 </div>
 
-                {/* SEÇÃO 2: Informações Pessoais */}
+                {/* SECTION 2: Personal Information */}
                 <div className="text-center space-y-3 w-full">
-                  {/* Nome - FORÇAR UMA LINHA SÓ COM TAMANHO RESPONSIVO */}
+                  {/* Name */}
                   <h2 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white leading-tight whitespace-nowrap">
                     {t('profile.name')}
                   </h2>
 
-                  {/* Título Profissional - WCAG 2.2 AA Compliant */}
+                  {/* Professional Title - WCAG 2.2 AA Compliant */}
                   <p className="text-blue-700 dark:text-blue-300 font-medium text-sm leading-relaxed">
-                    UX/Product Designer
+                    {t('profile.jobTitle')}
                   </p>
 
-                  {/* Localização - WCAG 2.2 AA Compliant */}
+                  {/* Location - WCAG 2.2 AA Compliant */}
                   <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-                    Campinas, São Paulo
+                    {t('profile.location')}
                   </p>
 
-                  {/* Telefone - WCAG 2.2 AA Compliant */}
+                  {/* Phone - WCAG 2.2 AA Compliant */}
                   <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-                    +55 19 9 9013-7380
+                    {t('profile.phone')}
                   </p>
                 </div>
 
-                {/* SEÇÃO 3: IxDF Badge - WCAG 2.2 AA Compliant */}
+                {/* SECTION 3: IxDF Badge - WCAG 2.2 AA Compliant */}
                 <div className="flex items-center justify-center gap-3 text-xs text-gray-800 dark:text-gray-200 px-4 py-2 bg-gray-50/50 dark:bg-gray-800/30 rounded-lg border border-gray-200/50 dark:border-gray-700/50">
                   <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center">
                     <IxDFLogo
@@ -109,17 +107,17 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
                       className="w-full h-full object-contain"
                     />
                   </div>
-                  {/* Espaçamento heuristicamente correto entre ícone e texto */}
-                  <span className="whitespace-nowrap font-medium ml-1">IxDF - Interaction Design Foundation</span>
+                  {/* Correct spacing between icon and text */}
+                  <span className="whitespace-nowrap font-medium ml-1">{t('profile.ixdf')}</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bio Section Moderna - LCP Optimized */}
+        {/* Bio Section - LCP Optimized */}
         <div className="lg:col-span-8 flex flex-col justify-center">
-          {/* Título Principal - Renderização Imediata para LCP */}
+          {/* Main Title - Immediate Rendering for LCP */}
           <div className="mb-8">
             <h1
               id="profile-title"
@@ -132,20 +130,20 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
                 contain: 'layout style paint'
               }}
             >
-              <span className="text-gray-900 dark:text-white">Olá, eu sou </span>
+              <span className="text-gray-900 dark:text-white">{t('profile.greeting')}</span>
               <br />
               <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
                 {showTypewriter ? (
-                  <Suspense fallback="UX Designer">
+                  <Suspense fallback={t('profile.role1')}>
                     <TypewriterText
                       sequence={[
-                        'UX Designer',
+                        t('profile.role1'),
                         2000,
-                        'Product Designer',
+                        t('profile.role2'),
                         2000,
-                        'Design Strategist',
+                        t('profile.role3'),
                         2000,
-                        'Interaction Designer',
+                        t('profile.role4'),
                         2000
                       ]}
                       className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent"
@@ -155,21 +153,21 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
                     />
                   </Suspense>
                 ) : (
-                  'UX Designer'
+                  t('profile.role1')
                 )}
               </span>
             </h1>
 
-            {/* Linha Decorativa - Renderização Imediata */}
+            {/* Decorative Line - Immediate Rendering */}
             <div className="h-1 w-[120px] bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-6"></div>
           </div>
 
           {/* Bio Text - Critical for LCP */}
           <CriticalBio />
 
-          {/* CTAs Principais */}
+          {/* Main CTAs */}
           <div className="flex flex-col sm:flex-row gap-4">
-            {/* CTA Principal - Vamos Conversar */}
+            {/* Main CTA - Let's Chat */}
             <CTAButton
               href="https://wa.me/19990137380"
               target="_blank"
@@ -179,6 +177,7 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
               icon={MessageCircle}
               iconPosition="left"
               className="bg-gradient-to-r from-[#25D366] to-[#1ebe5d] hover:from-[#1ebe5d] hover:to-[#25D366] focus:ring-green-400"
+              aria-label={t('profile.chatWhatsApp')}
             >
               {t('profile.letsChat')}
             </CTAButton>
@@ -193,6 +192,7 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
               icon={Download}
               iconPosition="left"
               className="border-2 border-gray-300 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400"
+              aria-label={t('profile.downloadResume')}
             >
               {t('profile.downloadCV')}
             </CTAButton>
@@ -207,6 +207,7 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
               icon={Linkedin}
               iconPosition="left"
               className="border-2 border-gray-300 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400"
+              aria-label={t('profile.accessLinkedIn')}
             >
               {t('profile.linkedin')}
             </CTAButton>

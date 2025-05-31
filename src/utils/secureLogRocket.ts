@@ -64,8 +64,9 @@ class SecureAnalyticsInterceptor {
     const originalXHR = this.originalXMLHttpRequest;
     const secureValidation = SecureValidation;
 
-    window.XMLHttpRequest = function(...args: any[]) {
-      const xhr = new originalXHR(...args);
+    // Create a constructor function that matches XMLHttpRequest's signature
+    const SecureXMLHttpRequest = function(this: XMLHttpRequest) {
+      const xhr = new originalXHR();
       const originalOpen = xhr.open;
 
       xhr.open = function(method: string, url: string, ...rest: any[]) {
@@ -102,14 +103,23 @@ class SecureAnalyticsInterceptor {
       };
 
       return xhr;
-    };
+    } as unknown as typeof XMLHttpRequest;
 
-    // Copy static properties
-    Object.setPrototypeOf(window.XMLHttpRequest, originalXHR);
-    Object.defineProperty(window.XMLHttpRequest, 'prototype', {
-      value: originalXHR.prototype,
-      writable: false
-    });
+    // Copy prototype and static properties to maintain compatibility
+    SecureXMLHttpRequest.prototype = originalXHR.prototype;
+    
+    // Copy all static properties from the original constructor
+    for (const prop of Object.getOwnPropertyNames(originalXHR)) {
+      if (prop !== 'prototype' && prop !== 'length' && prop !== 'name') {
+        const descriptor = Object.getOwnPropertyDescriptor(originalXHR, prop);
+        if (descriptor) {
+          Object.defineProperty(SecureXMLHttpRequest, prop, descriptor);
+        }
+      }
+    }
+
+    // Replace the global XMLHttpRequest
+    window.XMLHttpRequest = SecureXMLHttpRequest;
   }
 
   /**
@@ -119,7 +129,8 @@ class SecureAnalyticsInterceptor {
     const originalFetch = this.originalFetch;
     const secureValidation = SecureValidation;
 
-    window.fetch = function(input: RequestInfo | URL, init?: RequestInit): Promise<Response> {
+    // Create a secure fetch function with the same signature
+    const secureFetch = function(input: RequestInfo | URL, init?: RequestInit): Promise<Response> {
       let url: string;
 
       try {
@@ -147,8 +158,11 @@ class SecureAnalyticsInterceptor {
         console.warn('SecureLogRocket: Error validating fetch URL:', error);
       }
 
-      return originalFetch.call(this, input, init);
+      return originalFetch.call(window, input, init);
     };
+
+    // Replace the global fetch function
+    window.fetch = secureFetch;
   }
 }
 
@@ -181,8 +195,21 @@ class SecureLogRocket {
       this.preventDeprecatedEventListeners();
 
       // Dynamically import LogRocket to ensure interceptors are in place
-      const LogRocket = await import('logrocket');
-      this.logRocket = LogRocket.default;
+      try {
+        // Try to import LogRocket and handle different module formats
+        const LogRocketModule = await import('logrocket');
+        
+        // Use type assertion to handle the module structure safely
+        this.logRocket = LogRocketModule as unknown as LogRocketInstance;
+        
+        // If LogRocket is exported as default (ESM), use that instead
+        if (typeof (this.logRocket as any).default === 'object') {
+          this.logRocket = (this.logRocket as any).default;
+        }
+      } catch (importError) {
+        console.error('SecureLogRocket: Error importing LogRocket:', importError);
+        throw importError;
+      }
 
       // Initialize with secure configuration
       const secureConfig: LogRocketConfig = {
@@ -320,14 +347,21 @@ class SecureLogRocket {
    */
   private preventDeprecatedEventListeners(): void {
     // Only apply in production to avoid interfering with development
-    if (!import.meta.env.PROD) {
+    // Check if we're in production using a more compatible approach
+    if (process.env.NODE_ENV !== 'production') {
       return;
     }
 
     // Override deprecated event listener methods to use modern alternatives
     const originalAddEventListener = window.addEventListener;
 
-    window.addEventListener = function(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions) {
+    // Create a properly typed replacement function
+    const secureAddEventListener: typeof window.addEventListener = function(
+      this: Window,
+      type: string, 
+      listener: EventListenerOrEventListenerObject, 
+      options?: boolean | AddEventListenerOptions
+    ) {
       // Replace deprecated unload events with modern alternatives
       if (type === 'unload') {
         console.warn('SecureLogRocket: Replacing deprecated "unload" event with "pagehide"');
@@ -340,6 +374,9 @@ class SecureLogRocket {
 
       return originalAddEventListener.call(this, type, listener, options);
     };
+
+    // Replace the global addEventListener method
+    window.addEventListener = secureAddEventListener;
   }
 
   /**

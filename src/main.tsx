@@ -12,6 +12,7 @@ import { ThemeProvider } from './components/providers/ThemeProvider'
 import { initializeCacheOptimizations } from './utils/cacheOptimization'
 import { initializeImageOptimizations } from './utils/imageOptimization'
 import { initializeCSPSecurity } from './utils/cspSecurity'
+import { initializeWeb3 } from './utils/web3'
 
 // Import i18n synchronously to avoid translation errors
 import './i18n/config';
@@ -34,6 +35,9 @@ if (typeof window !== 'undefined') {
   // Initialize immediately for critical resources
   initializeCacheOptimizations();
   initializeImageOptimizations();
+  
+  // Initialize Web3 functionality with graceful fallback
+  initializeWeb3();
 
   // Initialize security after React is loaded
   setTimeout(() => {

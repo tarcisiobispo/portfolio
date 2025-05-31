@@ -52,8 +52,8 @@ const SoundToggle: React.FC<SoundToggleProps> = ({
     // Show contextual toast
     if (buttonRef.current) {
       showToast(buttonRef.current, {
-        message: newEnabled ? t('sound.enabled') : t('sound.disabled'),
-        description: newEnabled ? t('sound.enabledDesc') : t('sound.disabledDesc'),
+        message: newEnabled ? t('toasts.success.soundEnabled') : t('toasts.success.soundDisabled'),
+        description: newEnabled ? t('toasts.success.soundEnabledDesc') : t('toasts.success.soundDisabledDesc'),
         type: 'success',
         duration: 1500,
       });
@@ -164,7 +164,7 @@ const SoundToggle: React.FC<SoundToggleProps> = ({
         )}
       </AnimatePresence>
 
-      <style jsx>{`
+      <style>{`
         .slider::-webkit-slider-thumb {
           appearance: none;
           height: 16px;

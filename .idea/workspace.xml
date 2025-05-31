@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="364f9de6-9de8-4858-a049-feb74175ed9e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/_headers" beforeDir="false" afterPath="$PROJECT_DIR$/dist/_headers" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/css/index-DXeMjW1D.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/AnalyticsProvider-DP89cfF3.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/AnalyticsProvider-DP89cfF3.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/BackToTop-DWF87coc.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/BackToTop-DWF87coc.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/BacklogCycle-CkK4Ldfr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/BacklogCycle-CkK4Ldfr.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/Contact-BIgi42Ti.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/Contact-BIgi42Ti.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/CookieConsent-D774TV1i.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/CookieConsent-D774TV1i.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/FluidGradientBackground-fz9tBY22.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/FluidGradientBackground-fz9tBY22.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/Footer-DTOx2xs2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/Footer-DTOx2xs2.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/Index-C8HovGlx.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/Index-C8HovGlx.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/LazyScripts-Chw9cytQ.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/LazyScripts-Chw9cytQ.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/NotFound-CqobSZSo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/NotFound-CqobSZSo.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/PrivacyPolicy-QAwK9Jl6.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/PrivacyPolicy-QAwK9Jl6.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/ProjectShowcase-LVdFz-H4.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/ProjectShowcase-LVdFz-H4.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/chunk-BQYJeaTK.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/chunk-BQYJeaTK.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/chunk-C9WIJbrP.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/chunk-C9WIJbrP.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/chunk-CS50z45r.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/chunk-CS50z45r.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/chunk-CvtE_YyI.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/chunk-CvtE_YyI.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/chunk-D3Ns84uO.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/chunk-D3Ns84uO.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/chunk-DC8gPN30.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/chunk-DC8gPN30.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/chunk-DJqUFuPP.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/chunk-DJqUFuPP.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/chunk-DylKGAq6.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/chunk-DylKGAq6.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/chunk-DzkTCSaD.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/chunk-DzkTCSaD.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/chunk-L3uak9dD.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/chunk-L3uak9dD.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/chunk-oy1jMaet.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/chunk-oy1jMaet.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/index-rHCp6ne9.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/js/index-rHCp6ne9.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/sw.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eslint.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/eslint.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/_headers" beforeDir="false" afterPath="$PROJECT_DIR$/public/_headers" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/sw.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BacklogCycle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BacklogCycle.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CLSOptimizedImage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CLSOptimizedImage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Contact.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Contact.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CriticalBio.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CriticalBio.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CriticalProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CriticalProfile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DebugTranslations.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DebugTranslations.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FeedbackModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FeedbackModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/I18nProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/I18nProvider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LazyMotion.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LazyMotion.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LazyScripts.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LazyScripts.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProjectCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProjectCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/VirtualizedList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/VirtualizedList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/analytics/AnalyticsProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/analytics/AnalyticsProvider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/analytics/GoogleTagManager.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/analytics/GoogleTagManager.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/AccessibilityButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/AccessibilityButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/LanguageSwitcher.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/LanguageSwitcher.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/SoundToggle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/SoundToggle.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/ThemeToggle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/ThemeToggle.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/toast.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/toast.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/tooltip.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/tooltip.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/useContextualToast.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useContextualToast.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/usePrefetch.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/usePrefetch.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/i18n/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/i18n/config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/i18n/locales/en-US.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/i18n/locales/en-US.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/i18n/locales/es-ES.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/i18n/locales/es-ES.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/i18n/locales/pt-BR.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/i18n/locales/pt-BR.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/i18n/locales/pt-BR.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/i18n/locales/pt-BR.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/theme-transitions.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/theme-transitions.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/wcag-compliance.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/wcag-compliance.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/assetPaths.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/assetPaths.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/cacheOptimization.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/cacheOptimization.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/cspSecurity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/cspSecurity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/imageOptimization.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/imageOptimization.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/lazyComponents.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/lazyComponents.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/secureLogRocket.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/secureLogRocket.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/secureValidation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/secureValidation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/translationHelpers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/translationHelpers.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/webVitals.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/webVitals.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vite.config.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="2xrXmp5R1auCSJ7QbZYCzLKMM8C" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-PY-251.25410.159" />
+        <option value="bundled-python-sdk-e0ed3721d81e-36ea0e71a18c-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.25410.159" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="364f9de6-9de8-4858-a049-feb74175ed9e" name="Changes" comment="" />
+      <created>1748697343278</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1748697343278</updated>
+      <workItem from="1748697347391" duration="1597000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

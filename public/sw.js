@@ -7,15 +7,26 @@ const CACHE_NAME = 'portfolio-v1';
 const STATIC_CACHE_NAME = 'portfolio-static-v1';
 const DYNAMIC_CACHE_NAME = 'portfolio-dynamic-v1';
 
-// Resources to cache immediately
+/**
+ * Determine the base path for assets
+ * This handles both local development and GitHub Pages deployment
+ */
+function getBasePath() {
+  // Default to '/portfolio/' for GitHub Pages
+  return self.location.pathname.includes('/portfolio/') ? '/portfolio/' : '/';
+}
+
+const BASE_PATH = getBasePath();
+
+// Resources to cache immediately - with correct paths
 const STATIC_ASSETS = [
-  '/',
-  '/index.html',
-  '/images/tarcisio_bispo.webp',
-  '/images/tarcisio_bispo.png',
-  '/images/ixdf-symbol-dark.png',
-  '/images/ixdf-symbol-white.png',
-  '/manifest.json'
+  BASE_PATH,
+  BASE_PATH + 'index.html',
+  BASE_PATH + 'images/tarcisio_bispo.webp',
+  BASE_PATH + 'images/tarcisio_bispo.png',
+  BASE_PATH + 'images/ixdf-symbol-dark.png',
+  BASE_PATH + 'images/ixdf-symbol-white.png'
+  // manifest.json removed as it doesn't exist in the build
 ];
 
 // Cache strategies for different resource types
@@ -47,23 +58,56 @@ const CACHE_STRATEGIES = {
 };
 
 /**
- * Install event - Cache static assets
+ * Cache a single asset with error handling
+ * @param {Cache} cache - The cache object
+ * @param {string} asset - The asset URL to cache
+ * @returns {Promise} - Resolves when asset is cached or error is handled
+ */
+async function cacheAsset(cache, asset) {
+  try {
+    // First check if the resource exists by doing a HEAD request
+    const response = await fetch(asset, { method: 'HEAD' });
+    
+    if (!response.ok) {
+      console.warn(`Asset not found (${response.status}): ${asset}`);
+      return false;
+    }
+    
+    // If the resource exists, cache it
+    await cache.add(asset);
+    console.log(`Successfully cached: ${asset}`);
+    return true;
+  } catch (error) {
+    console.warn(`Failed to cache asset: ${asset}`, error);
+    return false;
+  }
+}
+
+/**
+ * Install event - Cache static assets with graceful error handling
  */
 self.addEventListener('install', event => {
   console.log('Service Worker installing...');
   
   event.waitUntil(
     caches.open(STATIC_CACHE_NAME)
-      .then(cache => {
+      .then(async cache => {
         console.log('Caching static assets...');
-        return cache.addAll(STATIC_ASSETS);
-      })
-      .then(() => {
-        console.log('Static assets cached successfully');
+        
+        // Cache each asset individually to prevent one failure from breaking everything
+        const results = await Promise.all(
+          STATIC_ASSETS.map(asset => cacheAsset(cache, asset))
+        );
+        
+        const successCount = results.filter(result => result).length;
+        console.log(`Successfully cached ${successCount} of ${STATIC_ASSETS.length} assets`);
+        
         return self.skipWaiting();
       })
       .catch(error => {
-        console.error('Failed to cache static assets:', error);
+        console.error('Error during service worker installation:', error);
+        // Continue with installation even if caching fails
+        return self.skipWaiting();
       })
   );
 });
@@ -186,28 +230,46 @@ async function cacheFirst(request, cacheName, strategy) {
       }
     }
     
-    // Fetch from network and cache
-    const networkResponse = await fetch(request);
-    
-    if (networkResponse.ok) {
-      const responseClone = networkResponse.clone();
-      await cache.put(request, responseClone);
-      await cleanupCache(cache, strategy.maxEntries);
+    try {
+      // Fetch from network and cache
+      const networkResponse = await fetch(request);
+      
+      if (networkResponse.ok) {
+        const responseClone = networkResponse.clone();
+        await cache.put(request, responseClone);
+        await cleanupCache(cache, strategy.maxEntries);
+      }
+      
+      return networkResponse;
+    } catch (fetchError) {
+      console.warn('Network fetch failed in cacheFirst strategy:', fetchError);
+      
+      // Return cached version as fallback even if expired
+      if (cachedResponse) {
+        console.log('Returning expired cached response as fallback');
+        return cachedResponse;
+      }
+      
+      // If no cached version available, return a fallback response
+      return createFallbackResponse(request);
     }
-    
-    return networkResponse;
   } catch (error) {
     console.error('Cache first strategy failed:', error);
     
-    // Try to return cached version as fallback
-    const cache = await caches.open(cacheName);
-    const cachedResponse = await cache.match(request);
-    
-    if (cachedResponse) {
-      return cachedResponse;
+    try {
+      // Try to return cached version as fallback
+      const cache = await caches.open(cacheName);
+      const cachedResponse = await cache.match(request);
+      
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+    } catch (cacheError) {
+      console.error('Failed to access cache:', cacheError);
     }
     
-    throw error;
+    // Return a fallback response instead of throwing
+    return createFallbackResponse(request);
   }
 }
 
@@ -229,14 +291,19 @@ async function networkFirst(request, cacheName, strategy) {
   } catch (error) {
     console.warn('Network request failed, trying cache:', error);
     
-    const cache = await caches.open(cacheName);
-    const cachedResponse = await cache.match(request);
-    
-    if (cachedResponse) {
-      return cachedResponse;
+    try {
+      const cache = await caches.open(cacheName);
+      const cachedResponse = await cache.match(request);
+      
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+    } catch (cacheError) {
+      console.error('Failed to access cache:', cacheError);
     }
     
-    throw error;
+    // Return a fallback response instead of throwing
+    return createFallbackResponse(request);
   }
 }
 
@@ -259,6 +326,8 @@ async function staleWhileRevalidate(request, cacheName, strategy) {
     })
     .catch(error => {
       console.warn('Background fetch failed:', error);
+      // Return null to indicate network failure, will be handled below
+      return null;
     });
   
   // Return cached response immediately if available
@@ -267,7 +336,17 @@ async function staleWhileRevalidate(request, cacheName, strategy) {
   }
   
   // If no cache, wait for network
-  return networkPromise;
+  try {
+    const networkResponse = await networkPromise;
+    // If network request failed and returned null, create a fallback response
+    if (!networkResponse) {
+      return createFallbackResponse(request);
+    }
+    return networkResponse;
+  } catch (error) {
+    console.warn('Failed to fetch and no cache available:', error);
+    return createFallbackResponse(request);
+  }
 }
 
 /**
@@ -294,14 +373,69 @@ function getDynamicCacheName(request) {
 async function cleanupCache(cache, maxEntries) {
   if (!maxEntries) return;
   
-  const keys = await cache.keys();
-  
-  if (keys.length > maxEntries) {
-    const keysToDelete = keys.slice(0, keys.length - maxEntries);
-    await Promise.all(
-      keysToDelete.map(key => cache.delete(key))
-    );
+  try {
+    const keys = await cache.keys();
+    
+    if (keys.length > maxEntries) {
+      const keysToDelete = keys.slice(0, keys.length - maxEntries);
+      await Promise.all(
+        keysToDelete.map(key => cache.delete(key))
+      );
+    }
+  } catch (error) {
+    console.warn('Failed to clean up cache:', error);
+    // Continue execution, this is not critical
   }
+}
+
+/**
+ * Create a fallback response for failed requests
+ */
+function createFallbackResponse(request) {
+  const url = new URL(request.url);
+  const pathname = url.pathname;
+  
+  // For images, return a placeholder image
+  if (pathname.match(/\.(jpg|jpeg|png|gif|webp|svg|ico)$/i)) {
+    return caches.match('/placeholder.svg')
+      .then(response => response || new Response('Image not available', {
+        status: 200,
+        headers: { 'Content-Type': 'image/svg+xml' }
+      }))
+      .catch(() => new Response('Image not available', {
+        status: 200,
+        headers: { 'Content-Type': 'image/svg+xml' }
+      }));
+  }
+  
+  // For JavaScript or CSS, return an empty response with correct content type
+  if (pathname.match(/\.js$/i)) {
+    return new Response('// Empty fallback', {
+      status: 200,
+      headers: { 'Content-Type': 'application/javascript' }
+    });
+  }
+  
+  if (pathname.match(/\.css$/i)) {
+    return new Response('/* Empty fallback */', {
+      status: 200,
+      headers: { 'Content-Type': 'text/css' }
+    });
+  }
+  
+  // For HTML pages, return a simple offline page
+  if (pathname.match(/\.(html?)$/i) || pathname === '/' || !pathname.match(/\.[a-z]+$/i)) {
+    return new Response('<html><body><h1>Offline</h1><p>The content is not available offline.</p></body></html>', {
+      status: 200,
+      headers: { 'Content-Type': 'text/html' }
+    });
+  }
+  
+  // Default fallback for other types
+  return new Response('Content not available', {
+    status: 200,
+    headers: { 'Content-Type': 'text/plain' }
+  });
 }
 
 /**

@@ -5,6 +5,7 @@ interface VirtualizedListProps {
   items: any[];
   itemHeight: number;
   height: number;
+  width: number;
   renderItem: (props: { index: number; style: React.CSSProperties; data: any[] }) => React.ReactElement;
   className?: string;
 }
@@ -13,6 +14,7 @@ const VirtualizedList = memo<VirtualizedListProps>(({
   items, 
   itemHeight, 
   height, 
+  width,
   renderItem, 
   className 
 }) => {
@@ -23,6 +25,7 @@ const VirtualizedList = memo<VirtualizedListProps>(({
     <div className={className}>
       <List
         height={height}
+        width={width}
         itemCount={memoizedItems.length}
         itemSize={itemHeight}
         itemData={memoizedItems}

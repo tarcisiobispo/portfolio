@@ -9,14 +9,23 @@
     "goToProjects": "Ir a la sección Proyectos",
     "goToBacklog": "Ir a la sección Backlog",
     "goToContact": "Ir a la sección Contacto"
-  },
-  "profile": {
+  },  "profile": {
     "title": "UX/Product Designer enfocado en estrategia, impacto y experiencia",
     "bio": "Soy UX/Product Designer con fuerte experiencia en el diseño de productos digitales enfocados en experiencia del usuario, conversión e impacto de negocio. Con experiencia en Marketing Digital, SEO e IA, integro estrategia, diseño y usabilidad en procesos continuos de mejora e innovación. He trabajado en contextos académicos, e-commerce B2B y comunicación institucional, siempre guiado por datos, empatía y visión de producto.",
     "exploreProjects": "Explorar proyectos",
     "letsChat": "Conversemos",
     "downloadCV": "Descargar CV",
     "linkedin": "LinkedIn",
+    "name": "Tarcisio Bispo de Araujo",
+    "jobTitle": "UX/Product Designer",
+    "location": "Campinas, São Paulo",
+    "phone": "+55 19 9 9013-7380",
+    "ixdf": "IxDF - Interaction Design Foundation",
+    "greeting": "Hola, soy",
+    "role1": "UX Designer",
+    "role2": "Product Designer",
+    "role3": "Design Strategist",
+    "role4": "Interaction Designer",
     "chatWhatsApp": "Conversar por WhatsApp con Tarcisio Bispo de Araujo",
     "downloadResume": "Descargar currículum de Tarcisio Bispo de Araujo",
     "accessLinkedIn": "Acceder al LinkedIn de Tarcisio Bispo de Araujo"
@@ -182,7 +191,7 @@
       "emailRequired": "Por favor, ingresa tu email",
       "emailInvalid": "Por favor, ingresa un email válido",
       "messageRequired": "Por favor, ingresa tu mensaje",
-      "messageMinLength": "El mensaje debe tener al menos 10 caracteres"
+      "messageMinLength": "Tu mensaje debe tener al menos {{count}} caracteres."
     },
     "success": {
       "title": "¡Mensaje enviado!",

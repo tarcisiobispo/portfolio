@@ -112,6 +112,20 @@ const CLSOptimizedImage: React.FC<CLSOptimizedImageProps> = ({
     transition: 'opacity 0.3s ease'
   };
 
+  // Create an object for custom attributes
+  const getImageAttributes = () => {
+    const attrs: Record<string, any> = {};
+    
+    // Add fetchpriority attribute with lowercase (for DOM)
+    if (priority) {
+      attrs['fetchpriority'] = 'high';
+    } else {
+      attrs['fetchpriority'] = 'auto';
+    }
+    
+    return attrs;
+  };
+
   return (
     <div
       ref={containerRef}
@@ -159,12 +173,12 @@ const CLSOptimizedImage: React.FC<CLSOptimizedImageProps> = ({
             height={height}
             loading={priority ? 'eager' : loading}
             decoding={priority ? 'sync' : 'async'}
-            fetchPriority={priority ? 'high' : 'auto'}
             style={imageStyle}
             onLoad={handleImageLoad}
             onError={handleImageError}
             // Prevent layout shift with explicit dimensions
             sizes={`(max-width: ${width}px) 100vw, ${width}px`}
+            {...getImageAttributes()} // Apply custom attributes
           />
         </picture>
       )}

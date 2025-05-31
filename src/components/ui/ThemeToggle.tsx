@@ -84,9 +84,7 @@ export const ThemeToggle: React.FC = () => {
 
     if (open) document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [open, focusedIndex]);
-
-  // Função para selecionar tema
+  }, [open, focusedIndex]);  // Função para selecionar tema
   const handleThemeSelect = (newTheme: ThemeOption) => {
     try {
       setTheme(newTheme);
@@ -103,7 +101,7 @@ export const ThemeToggle: React.FC = () => {
           message: t(selectedOption.labelKey),
           description: t('theme.changed'),
           type: 'success',
-          duration: 1500, // Duração reduzida para maior proximidade
+          duration: 1500,
         });
       }
     } catch (error) {

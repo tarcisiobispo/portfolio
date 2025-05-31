@@ -3,16 +3,16 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://tbisp0.github.io/portfolio",
+  "homepage": "https://tarcisiobispo.github.io/portfolio",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "dev": "vite",
-    "build": "vite build",
-    "build:dev": "vite build --mode development",
+    "dev": "npx vite",
+    "reset-cache": "node scripts/reset-cache.js",
+    "build": "npx vite build",
+    "build:dev": "npx vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "homepage": "https://tarcisiobispo.github.io/portfolio"
+    "preview": "npx vite preview --base=/portfolio/"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -93,8 +93,8 @@
     "@types/node": "^22.15.17",
     "@types/react": "^18.3.21",
     "@types/react-dom": "^18.3.7",
-    "@typescript-eslint/eslint-plugin": "^8.32.0",
-    "@typescript-eslint/parser": "^8.32.0",
+    "@typescript-eslint/eslint-plugin": "^8.33.0",
+    "@typescript-eslint/parser": "^8.33.0",
     "@vitejs/plugin-react-swc": "^3.9.0",
     "autoprefixer": "^10.4.21",
     "cssnano": "^7.0.7",

@@ -12,26 +12,47 @@ interface ImageLoadOptions {
 }
 
 /**
- * Preload critical images to improve LCP
+ * Prefetch critical images to improve performance without causing preload warnings
+ * 
+ * Note: We're using prefetch instead of preload for images that aren't needed immediately
+ * to avoid browser warnings about unused preloaded resources
  */
 export const preloadCriticalImages = () => {
   const baseUrl = import.meta.env.BASE_URL;
+  // Ensure baseUrl ends with a slash
+  const normalizedBaseUrl = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
   const criticalImages = [
-    `${baseUrl}images/tarcisio_bispo.webp`,
-    `${baseUrl}images/tarcisio_bispo.png`,
-    `${baseUrl}images/ixdf-symbol-dark.png`,
-    `${baseUrl}images/ixdf-symbol-white.png`
+    {
+      src: `${normalizedBaseUrl}images/tarcisio_bispo.webp`,
+      type: 'image/webp'
+    },
+    {
+      src: `${normalizedBaseUrl}images/tarcisio_bispo.png`,
+      type: 'image/png'
+    },
+    {
+      src: `${normalizedBaseUrl}images/ixdf-symbol-dark.png`,
+      type: 'image/png'
+    },
+    {
+      src: `${normalizedBaseUrl}images/ixdf-symbol-white.png`,
+      type: 'image/png'
+    }
   ];
 
-  criticalImages.forEach(src => {
+  criticalImages.forEach(image => {
     const link = document.createElement('link');
-    link.rel = 'preload';
+    link.rel = 'prefetch'; // Use prefetch instead of preload to avoid warnings
     link.as = 'image';
-    link.href = src;
+    link.href = image.src;
+    
+    if (image.type) {
+      link.type = image.type;
+    }
 
     // Add error handling for missing images
     link.onerror = () => {
-      console.warn(`Failed to preload image: ${src}`);
+      console.warn(`Failed to prefetch image: ${image.src}`);
     };
 
     document.head.appendChild(link);
@@ -123,7 +144,9 @@ export const getOptimizedImagePath = (imageName: string): {
   fallback: string;
 } => {
   const baseUrl = import.meta.env.BASE_URL;
-  const basePath = `${baseUrl}images/`;
+  // Ensure baseUrl ends with a slash
+  const normalizedBaseUrl = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+  const basePath = `${normalizedBaseUrl}images/`;
   const name = imageName.replace(/\.(webp|png|jpg|jpeg)$/i, '');
 
   return {
