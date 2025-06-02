@@ -1,4 +1,4 @@
-import { execSync } from 'child_process';
+import { execSync, execFileSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -23,7 +23,30 @@ try {
   console.log('\nCopiando arquivos para pasta temporária...');
   // Use path.join for safe path construction
   const distPath = path.join(__dirname, 'dist');
-  execSync(`xcopy /E /I /Y "${distPath}\\*" "${tempDir}"`, { stdio: 'inherit' });
+  
+  // Use fs methods for copying instead of shell commands
+  const copyRecursiveSync = (src, dest) => {
+    const exists = fs.existsSync(src);
+    if (!exists) return;
+    
+    const stats = fs.statSync(src);
+    if (stats.isDirectory()) {
+      if (!fs.existsSync(dest)) {
+        fs.mkdirSync(dest);
+      }
+      fs.readdirSync(src).forEach(childItemName => {
+        copyRecursiveSync(
+          path.join(src, childItemName),
+          path.join(dest, childItemName)
+        );
+      });
+    } else {
+      fs.copyFileSync(src, dest);
+    }
+  };
+  
+  // Copy files using Node.js native methods
+  copyRecursiveSync(distPath, tempDir);
 
   // Criar arquivo .nojekyll para evitar processamento Jekyll no GitHub Pages
   fs.writeFileSync(path.join(tempDir, '.nojekyll'), '');

@@ -1,4 +1,4 @@
-import { execSync } from 'child_process';
+import { execSync, execFileSync } from 'child_process';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -18,8 +18,20 @@ try {
 
   // Agora podemos fazer o deploy com a opção --no-history para forçar a criação da branch
   console.log('\nFazendo deploy para gh-pages...');
-  // Use string literals with proper escaping for security
-  execSync(`npx gh-pages -d "${distFolder}" -b "${branch}" -m "${message.replace(/"/g, '\\"')}" --no-history`, { stdio: 'inherit' });
+  
+  // Sanitize inputs to prevent command injection
+  const sanitizedDistFolder = distFolder.replace(/[^\w\s\/\\.-]/g, '');
+  const sanitizedBranch = branch.replace(/[^\w\s-]/g, '');
+  const sanitizedMessage = message.replace(/["'`$&|;<>(){}[\]]/g, '');
+  
+  // Use execFileSync for better security (separates command from arguments)
+  execFileSync('npx', [
+    'gh-pages',
+    '-d', sanitizedDistFolder,
+    '-b', sanitizedBranch,
+    '-m', sanitizedMessage,
+    '--no-history'
+  ], { stdio: 'inherit' });
 
   console.log('\nDeploy concluído com sucesso!');
 } catch (error) {
