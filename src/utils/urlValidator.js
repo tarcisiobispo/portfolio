@@ -58,7 +58,44 @@ export function isValidHostname(hostname) {
   // - Não pode começar ou terminar com hífen
   // - Comprimento máximo de 63 caracteres por segmento
   // - Último segmento deve ter pelo menos 2 caracteres (TLD)
-  const hostnameRegex = /^(?!-)[A-Za-z0-9-]{1,63}(?<!-)(\.[A-Za-z0-9-]{1,63}(?<!-))*(\.[A-Za-z]{2,})$/;
+  // - Implementação segura sem lookbehind para compatibilidade
   
-  return hostnameRegex.test(hostname) && hostname.length <= 253;
+  // Verificar comprimento total
+  if (hostname.length > 253) {
+    return false;
+  }
+  
+  // Dividir o hostname em segmentos
+  const segments = hostname.split('.');
+  if (segments.length < 2) {
+    return false;
+  }
+  
+  // Verificar cada segmento
+  for (let i = 0; i < segments.length; i++) {
+    const segment = segments[i];
+    
+    // Verificar comprimento do segmento
+    if (segment.length > 63 || segment.length === 0) {
+      return false;
+    }
+    
+    // Verificar se o segmento começa ou termina com hífen
+    if (segment.startsWith('-') || segment.endsWith('-')) {
+      return false;
+    }
+    
+    // Verificar caracteres válidos
+    if (!/^[a-zA-Z0-9-]+$/.test(segment)) {
+      return false;
+    }
+  }
+  
+  // Verificar o TLD (último segmento)
+  const tld = segments[segments.length - 1];
+  if (!/^[a-zA-Z]{2,}$/.test(tld)) {
+    return false;
+  }
+  
+  return true;
 }

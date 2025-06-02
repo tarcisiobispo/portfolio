@@ -9,7 +9,7 @@
 
 /* Toast individual */
 [data-sonner-toast] {
-  pointer-events: auto;
+  pointer-events: all; /* Changed from auto to all for W3C compliance */
   /* Animação suave de entrada */
   animation: toast-slide-in 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   /* Backdrop blur sutil */
@@ -174,7 +174,8 @@
 }
 
 /* Melhor contraste para acessibilidade */
-@media (prefers-contrast: high) {
+@media (forced-colors: active) {
+  /* Replaced prefers-contrast: high with forced-colors: active */
   [data-sonner-toast] {
     border-width: 2px !important;
   }

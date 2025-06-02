@@ -35,7 +35,12 @@ export function validateHostname(hostname) {
     // Verificar caracteres válidos e restrições
     // - Deve começar e terminar com letra ou número
     // - Pode conter hífens no meio
-    if (!/^[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$/.test(segment)) {
+    if (segment.startsWith('-') || segment.endsWith('-')) {
+      return false;
+    }
+    
+    // Verificar se contém apenas caracteres válidos
+    if (!/^[a-zA-Z0-9-]+$/.test(segment)) {
       return false;
     }
   }

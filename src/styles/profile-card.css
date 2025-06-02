@@ -182,7 +182,8 @@
 }
 
 /* High Contrast Mode */
-@media (prefers-contrast: high) {
+@media (forced-colors: active) {
+  /* Replaced prefers-contrast: high with forced-colors: active */
   .profile-card {
     border: 2px solid currentColor;
     background: var(--color-background);

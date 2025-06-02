@@ -1,10 +1,12 @@
 /* ===== DESIGN SYSTEM IMPORTS ===== */
+@import './styles/font-faces.css'; /* Font face declarations with proper font-display */
 @import './styles/design-system.css';
 @import './styles/toast-optimizations.css';
 @import './styles/visual-enhancements.css';
 @import './styles/wcag-compliance.css';
 @import './styles/fluid-gradients.css';
 @import './styles/css-fixes.css';
+@import './styles/w3c-fixes.css'; /* W3C validation fixes */
 
 /* ===== TAILWIND CSS ===== */
 @import './styles/tailwind-directives.css';

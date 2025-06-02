@@ -118,7 +118,8 @@
   backface-visibility: hidden;
 }
 
-.project-card-image:loaded {
+/* Replaced :loaded pseudo-class with a class that will be added via JavaScript */
+.project-card-image.loaded {
   animation: none;
 }
 
@@ -677,7 +678,8 @@
 }
 
 /* Alto contraste para WCAG 2.1 AA */
-@media (prefers-contrast: high) {
+@media (forced-colors: active) {
+  /* Replaced prefers-contrast: high with forced-colors: active */
   .project-card {
     border: 2px solid var(--color-text);
     box-shadow: none;

@@ -29,9 +29,8 @@ export function buildSafeCommand(command, args) {
     }
     
     // Remover caracteres perigosos e escapar aspas
-    return arg.replace(/[;&|`$()\\]/g, '')
-              .replace(/"/g, '\\"')
-              .replace(/'/g, "\\'");
+    return arg.replace(/[;&|`$()]/g, '') // Remove dangerous characters except backslash
+          .replace(/\\/g, '\\\\')   // Escape backslashes
   });
   
   // Retorna o comando com argumentos escapados

@@ -31,6 +31,7 @@ export function createSecureHostnameRegex() {
   // - Não pode começar ou terminar com hífen
   // - Comprimento máximo de 63 caracteres por segmento
   // - Último segmento deve ter pelo menos 2 caracteres (TLD)
+  // - Implementação segura sem lookbehind para compatibilidade
   const segmentRegex = '(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)';
   const tldRegex = '(?:[a-zA-Z]{2,})';
   
