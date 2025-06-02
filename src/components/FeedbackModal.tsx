@@ -113,13 +113,20 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
   };
 
   return (
-    <Dialog open={open} onClose={handleSoftClose} initialFocus={initialFocusRef} className="fixed z-50 inset-0 overflow-y-auto">
+    <Dialog 
+      open={open} 
+      onClose={handleSoftClose} 
+      initialFocus={initialFocusRef} 
+      className="fixed z-50 inset-0 overflow-y-auto"
+      aria-describedby="feedback-dialog-description"
+    >
       <div className="flex items-center justify-center min-h-screen px-2">
-        <div className="fixed inset-0 bg-black/30 backdrop-blur-sm dark:bg-black/50" aria-hidden="true" />
+        <div className="fixed inset-0 bg-black/30 backdrop-blur-sm dark:bg-black/50" />
         <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-xl max-w-sm w-full mx-auto p-0 z-10 border border-slate-100 dark:border-gray-700">
           <button onClick={handleCompleteClose} className="absolute top-3 right-3 p-2 rounded-full hover:bg-slate-100 dark:hover:bg-gray-700 focus-visible:ring-2 focus-visible:ring-blue-700 text-gray-700 dark:text-gray-300" aria-label={t('feedback.close')}>
             <X className="w-5 h-5" />
           </button>
+          <div id="feedback-dialog-description" className="sr-only">Feedback form dialog</div>
           <div className="p-6 sm:p-8 flex flex-col gap-4">
             {sent ? (
               <div className="flex flex-col items-center py-8">

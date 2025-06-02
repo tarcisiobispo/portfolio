@@ -1,39 +1,13 @@
-import { execSync, spawn } from 'child_process';
+import { spawn } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { validateUrl } from './src/utils/validateHostname.js';
+import { escapeShellArg } from './src/utils/secureCommand.js';
 
 // Obter o diretório atual em ESM
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-/**
- * Executa um comando de forma segura
- * @param {string} command - Comando a ser executado
- * @param {string[]} args - Argumentos do comando
- * @param {object} options - Opções para execução
- * @returns {Promise<void>}
- */
-function execCommand(command, args, options = {}) {
-  return new Promise((resolve, reject) => {
-    const proc = spawn(command, args, { 
-      ...options, 
-      shell: process.platform === 'win32' // Use shell apenas no Windows quando necessário
-    });
-    
-    proc.on('close', (code) => {
-      if (code === 0) {
-        resolve();
-      } else {
-        reject(new Error(`Command failed with code ${code}`));
-      }
-    });
-    
-    proc.on('error', (err) => {
-      reject(err);
-    });
-  });
-}
 
 /**
  * Valida um caminho para evitar injeção de comandos
@@ -60,18 +34,46 @@ function validatePath(inputPath) {
 }
 
 /**
- * Valida uma URL de repositório Git
- * @param {string} url - URL a ser validada
- * @returns {boolean} - Verdadeiro se a URL for válida
+ * Executa um comando de forma segura
+ * @param {string} command - Comando a ser executado
+ * @param {string[]} args - Argumentos do comando
+ * @param {object} options - Opções para execução
+ * @returns {Promise<void>}
  */
-function validateRepoUrl(url) {
-  if (!url || typeof url !== 'string') {
-    return false;
-  }
-  
-  // Expressão regular para validar URLs do GitHub
-  const githubRegex = /^https:\/\/github\.com\/[\w-]+\/[\w-]+\.git$/;
-  return githubRegex.test(url);
+function execCommand(command, args, options = {}) {
+  return new Promise((resolve, reject) => {
+    // Validar comando
+    const allowedCommands = ['git', 'npm', 'xcopy', 'cp'];
+    if (!allowedCommands.includes(command)) {
+      reject(new Error(`Command not allowed: ${command}`));
+      return;
+    }
+    
+    // Sanitizar argumentos
+    const sanitizedArgs = args.map(arg => {
+      if (typeof arg !== 'string') {
+        return String(arg);
+      }
+      return arg.replace(/[;&|`$()\\]/g, '');
+    });
+    
+    const proc = spawn(command, sanitizedArgs, { 
+      ...options, 
+      shell: process.platform === 'win32' // Use shell apenas no Windows quando necessário
+    });
+    
+    proc.on('close', (code) => {
+      if (code === 0) {
+        resolve();
+      } else {
+        reject(new Error(`Command failed with code ${code}`));
+      }
+    });
+    
+    proc.on('error', (err) => {
+      reject(err);
+    });
+  });
 }
 
 async function deploy() {
@@ -122,7 +124,7 @@ async function deploy() {
     // Adicionar remote
     console.log('\nAdicionando remote...');
     const repoUrl = 'https://github.com/tarcisiobispo/portfolio.git';
-    if (!validateRepoUrl(repoUrl)) {
+    if (!validateUrl(repoUrl)) {
       throw new Error('Invalid repository URL format');
     }
     await execCommand('git', ['remote', 'add', 'origin', repoUrl], { stdio: 'inherit' });

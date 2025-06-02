@@ -34,6 +34,29 @@ export function isAllowedCommand(command) {
 }
 
 /**
+ * Escapa um argumento para uso seguro em linha de comando
+ * @param {string} arg - O argumento a ser escapado
+ * @returns {string} - O argumento escapado
+ */
+export function escapeShellArg(arg) {
+  if (typeof arg !== 'string') {
+    arg = String(arg);
+  }
+  
+  // Remover caracteres perigosos
+  const cleaned = arg.replace(/[;&|`$()]/g, '');
+  
+  // Escapar aspas e caracteres especiais
+  if (process.platform === 'win32') {
+    // Windows: usar aspas duplas e escapar aspas duplas internas
+    return `"${cleaned.replace(/"/g, '""')}"`;
+  } else {
+    // Unix: usar aspas simples e escapar aspas simples internas
+    return `'${cleaned.replace(/'/g, "'\\''")}'`;
+  }
+}
+
+/**
  * Executa um comando de forma segura
  * @param {string} command - O comando a ser executado
  * @param {string[]} args - Lista de argumentos para o comando

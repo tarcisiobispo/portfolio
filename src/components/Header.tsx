@@ -113,6 +113,7 @@ export default function Header() {
         `}
         role="banner"
         style={{ height: '64px' }}
+        data-inert-for-modals="true"
       >
         <nav
           id="navigation"

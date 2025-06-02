@@ -315,7 +315,7 @@ h1 {
   letter-spacing: -0.025em !important;
   /* LCP Performance Optimizations */
   content-visibility: visible !important;
-  min-height: 200px !important; /* Substituindo contain-intrinsic-size */
+  min-height: 200px !important;
   will-change: auto !important;
   transform: translateZ(0) !important; /* Force GPU acceleration */
   contain: layout style paint !important; /* Optimize rendering */

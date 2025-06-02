@@ -24,13 +24,14 @@ export function buildSafeCommand(command, args) {
   
   // Escapa argumentos para evitar injeção de comandos
   const escapedArgs = args.map(arg => {
-    // Remove caracteres perigosos e escapa aspas
-    const cleaned = String(arg)
-      .replace(/[;&|`$()\\]/g, '')
-      .replace(/"/g, '\\"');
+    if (typeof arg !== 'string') {
+      return String(arg);
+    }
     
-    // Envolve em aspas para lidar com espaços
-    return `"${cleaned}"`;
+    // Remover caracteres perigosos e escapar aspas
+    return arg.replace(/[;&|`$()\\]/g, '')
+              .replace(/"/g, '\\"')
+              .replace(/'/g, "\\'");
   });
   
   // Retorna o comando com argumentos escapados
