@@ -51,17 +51,19 @@ html.dark {
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
-  line-clamp: 2;
+  /* Removendo propriedade não padrão line-clamp */
   -webkit-box-orient: vertical;
   overflow: hidden;
+  max-height: 2.8em; /* Fallback para navegadores que não suportam line-clamp */
 }
 
 .line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;
-  line-clamp: 3;
+  /* Removendo propriedade não padrão line-clamp */
   -webkit-box-orient: vertical;
   overflow: hidden;
+  max-height: 4.2em; /* Fallback para navegadores que não suportam line-clamp */
 }
 
 /* Borda esquerda para seções */
