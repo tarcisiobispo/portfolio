@@ -679,7 +679,10 @@
 
 /* Alto contraste para WCAG 2.1 AA */
 @media (forced-colors: active) {
+<<<<<<< HEAD
   /* Replaced prefers-contrast: high with forced-colors: active */
+=======
+>>>>>>> w3c-fixes-final
   .project-card {
     border: 2px solid var(--color-text);
     box-shadow: none;

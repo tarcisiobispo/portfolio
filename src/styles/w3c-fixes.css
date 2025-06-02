@@ -1,160 +1,57 @@
-/* ===== W3C CSS VALIDATION FIXES ===== */
+/* ===== W3C VALIDATION FIXES ===== */
 
 /**
- * This file addresses W3C CSS validation errors by providing standard-compliant
- * alternatives to non-standard or vendor-prefixed properties.
+ * Este arquivo contém correções para problemas de validação CSS do W3C
+ * Inclui substituições para propriedades não padrão e pseudo-classes
  */
 
-/* Fix for contain-intrinsic-size which is not a standard property */
-.critical-bio-text {
-  /* Replace contain-intrinsic-size: auto 100px */
-  min-height: 100px;
-  /* Standard containment properties */
-  contain: layout style;
+/* Substituição para contain-intrinsic-size */
+.content-sized {
+  width: var(--content-width, auto);
+  height: var(--content-height, auto);
 }
 
-.profile-image {
-  /* Replace contain-intrinsic-size: 256px 256px */
-  width: 256px;
-  height: 256px;
-  /* Standard containment properties */
-  contain: layout style;
-}
-
-img {
-  /* Remove contain-intrinsic-size: attr(width) attr(height) */
-  /* Use standard width and height attributes on the HTML elements instead */
-  max-width: 100%;
-  height: auto;
-}
-
-.profile-image-hover {
-  /* Replace contain-intrinsic-size: 128px 128px */
-  width: 128px;
-  height: 128px;
-  /* Standard containment properties */
-  contain: layout style;
-}
-
-/* Fix for font-display which should be in @font-face rules, not in elements */
-/* Remove from .text-content and add to @font-face if needed */
-@font-face {
-  font-family: 'Inter';
-  /* Add your font sources here */
-  font-display: swap;
-}
-
-/* Fix for prefers-contrast: high which is not widely supported */
-/* Use forced-colors: active instead */
-@media (forced-colors: active) {
-  /* Styles for high contrast mode */
-  :root {
-    --color-text: CanvasText;
-    --color-background: Canvas;
-    --color-primary: Highlight;
-    --color-border: CanvasText;
-  }
-  
-  /* Ensure proper contrast */
-  a {
-    color: LinkText;
-  }
-  
-  button, 
-  .btn-primary {
-    color: ButtonText;
-    background-color: ButtonFace;
-    border: 1px solid ButtonText;
-  }
-}
-
-/* Fix for line-clamp which is not a standard property */
-/* Use the standard approach with display: -webkit-box and related properties */
-.line-clamp-2 {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2; /* This is a non-standard property but widely supported */
-  -webkit-box-orient: vertical;
-  /* Standard fallback */
-  max-height: 3em; /* Approximate height for 2 lines */
-}
-
-.line-clamp-3 {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3; /* This is a non-standard property but widely supported */
-  -webkit-box-orient: vertical;
-  /* Standard fallback */
-  max-height: 4.5em; /* Approximate height for 3 lines */
-}
-
-/* Fix for :loaded pseudo-class which is not standard */
-/* Use a class that's added via JavaScript instead */
+/* Substituição para pseudo-classe :loaded */
 .image-loaded {
-  /* Styles for loaded images */
+  animation: none !important;
   opacity: 1;
-  transition: opacity 0.3s ease;
 }
 
-/* Fix for font-family declarations with system fonts */
-body {
-  /* Use a simpler, standard-compliant font stack */
-  font-family: 'Inter', system-ui, sans-serif;
+/* Substituição para prefers-contrast: high */
+@media (forced-colors: active) {
+  .high-contrast-element {
+    border: 2px solid currentColor;
+  }
 }
 
-/* Fix for auto value in pointer-events */
-.interactive-element {
-  /* Use valid values for pointer-events */
-  pointer-events: all; /* Instead of auto */
+/* Substituição para line-clamp */
+.text-truncate-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
+  overflow: hidden;
+  max-height: 3em;
 }
 
-/* Fix for vendor prefixes by providing standard alternatives */
-.backdrop-blur {
-  /* Standard property alongside the prefixed one */
-  backdrop-filter: blur(10px);
+.text-truncate-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  line-clamp: 3;
+  overflow: hidden;
+  max-height: 4.5em;
 }
 
-.user-select-none {
-  /* Standard property alongside the prefixed ones */
-  user-select: none;
+/* Substituição para pointer-events: auto */
+.interactive {
+  pointer-events: all;
 }
 
-/* Fix for appearance property */
-button, 
-input[type="button"],
-input[type="reset"],
-input[type="submit"] {
-  /* Standard property alongside the prefixed ones */
-  appearance: none;
+/* Substituição para will-change: auto */
+.optimize-animations {
+  will-change: transform, opacity;
 }
 
-/* Fix for tab-size property */
-pre, code {
-  /* Standard property alongside the prefixed ones */
-  tab-size: 4;
-}
-
-/* Fix for tap-highlight-color */
-a, button {
-  /* Use outline for focus states instead of tap-highlight-color */
-  outline: none;
-}
-a:focus, button:focus {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-}
-
-/* Fix for text-decoration shorthand */
-a {
-  /* Use standard text-decoration properties */
-  text-decoration-line: underline;
-  text-decoration-color: currentColor;
-  text-decoration-style: solid;
-}
-
-/* Fix for max-content width */
-.full-width {
-  /* Use standard width properties */
-  width: 100%;
-  max-width: 100%;
-}
+/* Substituição para font-display em elementos */
+/* font-display deve ser usado apenas em regras @font-face */
