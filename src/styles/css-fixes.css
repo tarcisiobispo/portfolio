@@ -1,0 +1,42 @@
+/* ===== CSS FIXES FOR W3C VALIDATION ===== */
+
+/* Correções para propriedades não padrão */
+
+/* Substituição para contain-intrinsic-size */
+.critical-bio-text {
+  min-height: 100px;
+}
+
+.profile-image {
+  width: 256px;
+  height: 256px;
+}
+
+.profile-image-hover {
+  width: 128px;
+  height: 128px;
+}
+
+#profile-title {
+  min-height: 200px;
+}
+
+/* Correções para line-clamp */
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+/* Correção para pseudo-classe :loaded */
+.loaded {
+  /* Classe para substituir a pseudo-classe :loaded */
+}

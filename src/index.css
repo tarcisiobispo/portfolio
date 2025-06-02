@@ -4,6 +4,7 @@
 @import './styles/visual-enhancements.css';
 @import './styles/wcag-compliance.css';
 @import './styles/fluid-gradients.css';
+@import './styles/css-fixes.css';
 
 /* ===== TAILWIND CSS ===== */
 @import './styles/tailwind-directives.css';
