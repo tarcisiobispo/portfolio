@@ -30,7 +30,7 @@
 
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   background-color: var(--color-background);
   color: var(--color-text);
   line-height: 1.6;
@@ -66,8 +66,8 @@ body {
   max-width: 48rem; /* max-w-3xl */
   margin-bottom: 2rem;
   content-visibility: visible;
-  contain-intrinsic-size: auto 100px;
-  will-change: auto;
+  min-height: 100px; /* Standard alternative to contain-intrinsic-size */
+  will-change: transform; /* Specific property instead of auto */
 }
 
 @media (min-width: 1024px) {
@@ -90,8 +90,9 @@ body {
 /* LCP Optimizations */
 .profile-image {
   content-visibility: visible;
-  contain-intrinsic-size: 256px 256px;
-  will-change: auto;
+  width: 256px; /* Standard alternative to contain-intrinsic-size */
+  height: 256px; /* Standard alternative to contain-intrinsic-size */
+  will-change: transform; /* Specific property instead of auto */
   contain: layout style paint;
 }
 
@@ -106,8 +107,7 @@ img {
   /* Prevent layout shifts by ensuring images have dimensions */
   max-width: 100%;
   height: auto;
-  /* Ensure images don't cause layout shifts */
-  contain-intrinsic-size: attr(width) attr(height);
+  /* Use width and height attributes in HTML instead of contain-intrinsic-size */
 }
 
 /* Specific optimizations for logo images */
@@ -122,7 +122,8 @@ img[alt*="Logo"], img[alt*="logo"] {
   /* Prevent layout shifts for profile images */
   contain: layout style paint;
   content-visibility: visible;
-  contain-intrinsic-size: 128px 128px;
+  width: 128px; /* Standard alternative to contain-intrinsic-size */
+  height: 128px; /* Standard alternative to contain-intrinsic-size */
 }
 
 /* Reduce layout thrashing */
@@ -145,7 +146,7 @@ img[alt*="Logo"], img[alt*="logo"] {
 /* Optimize text rendering */
 .text-content {
   text-rendering: optimizeSpeed;
-  font-display: swap;
+  /* font-display should be in @font-face rules, not in elements */
 }
 
 /* Reduce reflow/repaint */

@@ -1,0 +1,16 @@
+/* ===== FONT FACE DECLARATIONS ===== */
+
+/**
+ * Proper @font-face declarations with font-display property
+ * This is the correct place to use font-display, not in element styles
+ * 
+ * Using Google Fonts CDN for Inter font
+ */
+
+/* Import Inter font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* 
+ * Note: The Google Fonts CSS already includes proper font-display: swap
+ * No need for additional @font-face declarations
+ */
