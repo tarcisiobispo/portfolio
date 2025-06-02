@@ -32,41 +32,76 @@ export default function Header() {
   const { playButtonHover, playButtonClick, playPageTransition } = useNavigationSounds();
   const { theme } = useTheme();
 
+  // Função para detectar a seção ativa com base na posição de scroll
+  const detectActiveSection = useCallback(() => {
+    let found = 'perfil';
+    let minDistance = Infinity;
+    
+    for (const item of navItems) {
+      const el = document.getElementById(item.sectionId);
+      if (el) {
+        const rect = el.getBoundingClientRect();
+        const distance = Math.abs(rect.top - 64);
+        
+        // Encontra a seção mais próxima do topo da viewport
+        if (distance < minDistance) {
+          minDistance = distance;
+          found = item.sectionId;
+        }
+        
+        // Prioriza seções que já estão visíveis na viewport
+        if (rect.top <= 64 && rect.bottom > 64) {
+          found = item.sectionId;
+          break;
+        }
+      }
+    }
+    
+    return found;
+  }, []);
+
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 10);
-      // Detecta a seção ativa com base no scroll
-      let found = 'perfil';
-      for (const item of navItems) {
-        const el = document.getElementById(item.sectionId);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 64 && rect.bottom > 64) { // Ajustado para o novo tamanho do header
-            found = item.sectionId;
-            break;
-          }
-        }
+      
+      // Atualiza a seção ativa apenas durante o scroll natural
+      // (não durante o scroll programático de cliques no menu)
+      if (!window.isScrollingProgrammatically) {
+        const newActiveSection = detectActiveSection();
+        setActiveSection(newActiveSection);
       }
-      setActiveSection(found);
     };
+    
     window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    onScroll(); // Detecta a seção inicial
+    
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [detectActiveSection]);
 
   // Scroll suave para a seção
   const handleNavClick = useCallback((e: React.MouseEvent, sectionId: string) => {
     e.preventDefault();
     const el = document.getElementById(sectionId);
     if (el) {
+      // Define flag para evitar detecção durante scroll programático
+      window.isScrollingProgrammatically = true;
+      
+      // Atualiza imediatamente a seção ativa
+      setActiveSection(sectionId);
+      
+      // Scroll para a seção
       window.scrollTo({
-        top: el.offsetTop - 64, // Ajustado para o novo tamanho do header
+        top: el.offsetTop - 64,
         behavior: 'smooth',
       });
-      setActiveSection(sectionId);
-
+      
       // Track navigation event
       trackNavigation(sectionId);
+      
+      // Remove a flag após o scroll terminar
+      setTimeout(() => {
+        window.isScrollingProgrammatically = false;
+      }, 1000); // Tempo estimado para o scroll suave completar
     }
   }, [trackNavigation]);
 
@@ -92,12 +127,23 @@ export default function Header() {
               e.preventDefault();
               const el = document.getElementById('perfil');
               if (el) {
+                // Define flag para evitar detecção durante scroll programático
+                window.isScrollingProgrammatically = true;
+                
+                // Atualiza imediatamente a seção ativa
+                setActiveSection('perfil');
+                
                 window.scrollTo({
                   top: el.offsetTop - 64,
                   behavior: 'smooth',
                 });
-                setActiveSection('perfil');
+                
                 playPageTransition();
+                
+                // Remove a flag após o scroll terminar
+                setTimeout(() => {
+                  window.isScrollingProgrammatically = false;
+                }, 1000);
               }
             }}
             onMouseEnter={() => playButtonHover()}

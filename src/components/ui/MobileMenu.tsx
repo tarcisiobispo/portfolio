@@ -71,15 +71,25 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
     setTimeout(() => {
       const el = document.getElementById(sectionId);
       if (el) {
+        // Define flag para evitar detecção durante scroll programático
+        window.isScrollingProgrammatically = true;
+        
+        // Atualiza imediatamente a seção ativa
+        setActiveSection(sectionId);
+        
         window.scrollTo({
           top: el.offsetTop - 50, // Ajustado para o header ainda menor
           behavior: 'smooth',
         });
-        setActiveSection(sectionId);
         
         // Track navigation event
         trackNavigation(sectionId);
         playPageTransition();
+        
+        // Remove a flag após o scroll terminar
+        setTimeout(() => {
+          window.isScrollingProgrammatically = false;
+        }, 1000);
       }
     }, 100); // Pequeno delay para garantir que o menu fechou antes de rolar
   };

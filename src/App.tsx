@@ -41,12 +41,9 @@ const App = () => {
           <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><LoadingSpinner /></div>}>
             <AnalyticsProvider>
 
-            {/* Skip Links para Navegação por Teclado */}
-            <a href="#main-content" className="skip-link">
+            {/* Skip Link para Navegação por Teclado - Visível apenas com foco */}
+            <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--color-primary)] focus:text-white focus:rounded-md focus:shadow-lg">
               {t('accessibility.features.skipToContent')}
-            </a>
-            <a href="#navigation" className="skip-link">
-              {t('accessibility.features.skipToNavigation')}
             </a>
 
             <Toaster />

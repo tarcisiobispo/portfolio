@@ -1,13 +1,11 @@
 import { useCallback } from 'react';
-import Clarity from '@microsoft/clarity';
 
 export const useClarity = () => {
   // Função para registrar eventos personalizados
   const trackEvent = useCallback((eventName: string) => {
-    if (import.meta.env.PROD) {
+    if (import.meta.env.PROD && typeof window !== 'undefined' && window.clarity) {
       try {
-        Clarity.event(eventName);
-        // Clarity event tracked successfully
+        window.clarity("event", eventName);
       } catch (error) {
         console.error('Failed to track Clarity event:', error);
       }
@@ -16,10 +14,9 @@ export const useClarity = () => {
 
   // Função para adicionar tags personalizadas
   const setTag = useCallback((key: string, value: string | string[]) => {
-    if (import.meta.env.PROD) {
+    if (import.meta.env.PROD && typeof window !== 'undefined' && window.clarity) {
       try {
-        Clarity.setTag(key, value);
-        // Clarity tag set successfully
+        window.clarity("set", key, value);
       } catch (error) {
         console.error('Failed to set Clarity tag:', error);
       }
@@ -29,14 +26,11 @@ export const useClarity = () => {
   // Função para identificar usuário/sessão
   const identify = useCallback((
     customId: string,
-    customSessionId?: string,
-    customPageId?: string,
     friendlyName?: string
   ) => {
-    if (import.meta.env.PROD) {
+    if (import.meta.env.PROD && typeof window !== 'undefined' && window.clarity) {
       try {
-        Clarity.identify(customId, customSessionId, customPageId, friendlyName);
-        // Clarity user identified successfully
+        window.clarity("identify", customId, friendlyName);
       } catch (error) {
         console.error('Failed to identify Clarity user:', error);
       }
@@ -45,10 +39,9 @@ export const useClarity = () => {
 
   // Função para upgrade de sessão (priorizar gravação)
   const upgradeSession = useCallback((reason: string) => {
-    if (import.meta.env.PROD) {
+    if (import.meta.env.PROD && typeof window !== 'undefined' && window.clarity) {
       try {
-        Clarity.upgrade(reason);
-        // Clarity session upgraded successfully
+        window.clarity("upgrade", reason);
       } catch (error) {
         console.error('Failed to upgrade Clarity session:', error);
       }
@@ -62,3 +55,10 @@ export const useClarity = () => {
     upgradeSession
   };
 };
+
+// Adicionar tipos para o objeto clarity global
+declare global {
+  interface Window {
+    clarity: (command: string, ...args: any[]) => void;
+  }
+}

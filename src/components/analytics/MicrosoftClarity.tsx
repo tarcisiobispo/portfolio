@@ -1,35 +1,35 @@
 import { useEffect } from 'react';
-import Clarity from '@microsoft/clarity';
 
 const MicrosoftClarityInit: React.FC = () => {
   useEffect(() => {
     // Inicializar Microsoft Clarity apenas em produção
     if (import.meta.env.PROD) {
       try {
-        // Inicializar Clarity com o Project ID
-        const projectId = "rp64ayubme";
-        Clarity.init(projectId);
+        // Usar script inline em vez da biblioteca para evitar problemas de CORS
+        const clarityScript = document.createElement('script');
+        clarityScript.type = 'text/javascript';
+        clarityScript.innerHTML = `
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "rp64ayubme");
 
-        // Identificar o usuário/portfolio
-        Clarity.identify(
-          "tarcisio-portfolio", // custom-id (obrigatório)
-          undefined, // custom-session-id (opcional)
-          undefined, // custom-page-id (opcional)
-          "Tarcísio Bispo Portfolio" // friendly-name (opcional)
-        );
-
-        // Adicionar tags personalizadas para contexto
-        Clarity.setTag("portfolio_owner", "Tarcisio Bispo de Araujo");
-        Clarity.setTag("portfolio_type", "UX/Product Designer");
-        Clarity.setTag("contact_email", "tbisp0@hotmail.com");
-        Clarity.setTag("portfolio_version", "2024");
-        Clarity.setTag("site_language", "multi"); // pt, en, es
-
-        // Registrar evento de inicialização do portfolio
-        Clarity.event("portfolio_initialized");
-
+          // Identificar o usuário/portfolio
+          clarity("identify", "tarcisio-portfolio", "Tarcísio Bispo Portfolio");
+          
+          // Adicionar tags personalizadas para contexto
+          clarity("set", "portfolio_owner", "Tarcisio Bispo de Araujo");
+          clarity("set", "portfolio_type", "UX/Product Designer");
+          clarity("set", "portfolio_version", "2024");
+          clarity("set", "site_language", "multi");
+          
+          // Registrar evento de inicialização do portfolio
+          clarity("event", "portfolio_initialized");
+        `;
+        
+        document.head.appendChild(clarityScript);
         console.log('Microsoft Clarity initialized successfully');
-
       } catch (error) {
         console.error('Failed to initialize Microsoft Clarity:', error);
       }
