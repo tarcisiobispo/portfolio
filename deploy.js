@@ -18,7 +18,8 @@ try {
 
   // Agora podemos fazer o deploy com a opção --no-history para forçar a criação da branch
   console.log('\nFazendo deploy para gh-pages...');
-  execSync(`npx gh-pages -d ${distFolder} -b ${branch} -m "${message}" --no-history`, { stdio: 'inherit' });
+  // Use string literals with proper escaping for security
+  execSync(`npx gh-pages -d "${distFolder}" -b "${branch}" -m "${message.replace(/"/g, '\\"')}" --no-history`, { stdio: 'inherit' });
 
   console.log('\nDeploy concluído com sucesso!');
 } catch (error) {

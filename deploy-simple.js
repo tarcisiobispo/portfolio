@@ -21,38 +21,43 @@ try {
 
   // Copiar arquivos da pasta dist para a pasta temporária
   console.log('\nCopiando arquivos para pasta temporária...');
-  execSync(`xcopy /E /I /Y dist\\* ${tempDir}`, { stdio: 'inherit' });
+  // Use path.join for safe path construction
+  const distPath = path.join(__dirname, 'dist');
+  execSync(`xcopy /E /I /Y "${distPath}\\*" "${tempDir}"`, { stdio: 'inherit' });
 
   // Criar arquivo .nojekyll para evitar processamento Jekyll no GitHub Pages
   fs.writeFileSync(path.join(tempDir, '.nojekyll'), '');
 
   // Inicializar git na pasta temporária
   console.log('\nInicializando git na pasta temporária...');
-  execSync(`cd ${tempDir} && git init && git checkout -b gh-pages`, { stdio: 'inherit' });
+  // Use separate commands with proper directory context
+  execSync('git init', { stdio: 'inherit', cwd: tempDir });
+  execSync('git checkout -b gh-pages', { stdio: 'inherit', cwd: tempDir });
 
   // Adicionar arquivos ao git
   console.log('\nAdicionando arquivos ao git...');
-  execSync(`cd ${tempDir} && git add .`, { stdio: 'inherit' });
+  execSync('git add .', { stdio: 'inherit', cwd: tempDir });
 
   // Configurar usuário git temporário se necessário
   try {
     execSync('git config user.email', { stdio: 'pipe' });
   } catch (e) {
     console.log('\nConfigurando usuário git temporário...');
-    execSync(`cd ${tempDir} && git config user.name "GitHub Pages Deploy" && git config user.email "deploy@example.com"`, { stdio: 'inherit' });
+    execSync('git config user.name "GitHub Pages Deploy"', { stdio: 'inherit', cwd: tempDir });
+    execSync('git config user.email "deploy@example.com"', { stdio: 'inherit', cwd: tempDir });
   }
 
   // Commit
   console.log('\nCriando commit...');
-  execSync(`cd ${tempDir} && git commit -m "Deploy para GitHub Pages"`, { stdio: 'inherit' });
+  execSync('git commit -m "Deploy para GitHub Pages"', { stdio: 'inherit', cwd: tempDir });
 
   // Adicionar remote
   console.log('\nAdicionando remote...');
-  execSync(`cd ${tempDir} && git remote add origin https://github.com/tarcisiobispo/portfolio.git`, { stdio: 'inherit' });
+  execSync('git remote add origin https://github.com/tarcisiobispo/portfolio.git', { stdio: 'inherit', cwd: tempDir });
 
   // Push forçado para a branch gh-pages
   console.log('\nEnviando para o GitHub...');
-  execSync(`cd ${tempDir} && git push -f origin gh-pages`, { stdio: 'inherit' });
+  execSync('git push -f origin gh-pages', { stdio: 'inherit', cwd: tempDir });
 
   // Limpar pasta temporária
   console.log('\nLimpando pasta temporária...');
