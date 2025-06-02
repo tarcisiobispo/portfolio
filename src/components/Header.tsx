@@ -66,7 +66,7 @@ export default function Header() {
       
       // Atualiza a seção ativa apenas durante o scroll natural
       // (não durante o scroll programático de cliques no menu)
-      if (!window.isScrollingProgrammatically) {
+      if (window.isScrollingProgrammatically !== true) {
         const newActiveSection = detectActiveSection();
         setActiveSection(newActiveSection);
       }
@@ -113,6 +113,7 @@ export default function Header() {
         `}
         role="banner"
         style={{ height: '64px' }}
+        // Removendo o atributo aria-hidden que estava causando problemas de acessibilidade
       >
         <nav
           id="navigation"

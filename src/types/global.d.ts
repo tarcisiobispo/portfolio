@@ -1,6 +1,8 @@
 // Extensão do objeto Window global
-interface Window {
-  isScrollingProgrammatically?: boolean;
+declare global {
+  interface Window {
+    isScrollingProgrammatically: boolean;
+  }
 }
 
 export {};

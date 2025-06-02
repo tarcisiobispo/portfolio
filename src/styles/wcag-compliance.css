@@ -172,7 +172,7 @@
 /* ===== MODO ALTO CONTRASTE ===== */
 
 /* Quando o usuário ativa alto contraste no sistema */
-@media (prefers-contrast: high) {
+@media (prefers-contrast: more) {
   :root {
     --wcag-text-primary: #000000;
     --wcag-text-secondary: #000000;
