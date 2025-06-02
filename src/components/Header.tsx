@@ -73,7 +73,7 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 border-b border-[var(--color-border)]
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-[var(--color-border)]
           ${scrolled ? 'bg-[var(--color-surface)] shadow-md' : 'bg-[var(--color-surface)]/80 backdrop-blur'}
         `}
         role="banner"
@@ -83,6 +83,7 @@ export default function Header() {
           id="navigation"
           className="max-w-7xl mx-auto flex items-center justify-between px-6 h-full"
           aria-label={t('navigation.mainMenu')}
+          
         >
           {/* Logo - Sempre à esquerda */}
           <a 

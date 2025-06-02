@@ -7,6 +7,10 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
+    "deploy:force": "node deploy.js",
+    "deploy:main": "node deploy-main.js",
+    "deploy:direct": "node deploy-direct.js",
+    "deploy:simple": "node deploy-simple.js",
     "dev": "npx vite",
     "reset-cache": "node scripts/reset-cache.js",
     "build": "npx vite build",

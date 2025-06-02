@@ -35,7 +35,7 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
   const { showTypewriter, isLCPComplete } = useTypewriterLCPOptimization();
 
   return (
-    <section className="min-h-screen flex flex-col justify-center py-16 relative" aria-labelledby="profile-title">
+    <section className="min-h-screen flex flex-col justify-center py-8 relative" aria-labelledby="profile-title">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center justify-center max-w-7xl mx-auto px-6">
 
         {/* PREMIUM PROFILE CARD */}

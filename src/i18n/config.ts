@@ -560,7 +560,8 @@ const resources = {
         downloadCV: "Download CV",
         linkedin: "LinkedIn",
         name: "Tarcisio Bispo de Araujo",
-        ixdf: "IxDF | Interaction Design Foundation"
+        ixdf: "IxDF | Interaction Design Foundation",
+        greeting: "Hello, I am"
       },
       projects: {
         title: "Projects",
@@ -1085,7 +1086,8 @@ const resources = {
         downloadCV: "Descargar CV",
         linkedin: "LinkedIn",
         name: "Tarcisio Bispo de Araujo",
-        ixdf: "IxDF | Interaction Design Foundation"
+        ixdf: "IxDF | Interaction Design Foundation",
+        greeting: "Hola, soy"
       },
       projects: {
         title: "Proyectos",
