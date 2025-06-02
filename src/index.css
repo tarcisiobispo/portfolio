@@ -1,0 +1,69 @@
+/* ===== DESIGN SYSTEM IMPORTS ===== */
+@import './styles/design-system.css';
+@import './styles/toast-optimizations.css';
+@import './styles/visual-enhancements.css';
+@import './styles/wcag-compliance.css';
+@import './styles/fluid-gradients.css';
+
+/* ===== TAILWIND CSS ===== */
+@import './styles/tailwind-directives.css';
+
+/* ===== ESTILOS BASE ===== */
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  transition: background var(--transition), color var(--transition);
+  /* Ajuste para compensar o header menor */
+  padding-top: 60px;
+}
+
+.section-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-md);
+  position: relative;
+  color: var(--color-primary);
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 4rem;
+  height: 0.25rem;
+  background: var(--color-primary-light);
+}
+
+/* ===== NAVEGAÇÃO ===== */
+nav a,
+header a {
+  text-decoration: none !important;
+}
+
+/* ===== MOBILE MENU STYLES ===== */
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+/* Esconder a seta de voltar ao topo em mobile */
+@media (max-width: 768px) {
+  .back-to-top {
+    right: 2px !important;
+    bottom: 2px !important;
+    padding: 6px !important;
+  }
+  
+  .back-to-top svg {
+    width: 16px !important;
+    height: 16px !important;
+  }
+  
+  /* Ajuste para compensar o header menor em mobile */
+  body {
+    padding-top: 50px;
+  }
+}
