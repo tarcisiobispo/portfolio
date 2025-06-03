@@ -5,38 +5,40 @@
 
 /**
  * Secure hostname validation using allowlist approach
- * Prevents regex bypass attacks by using exact string matching
+ * Uses proper regex pattern for hostname validation
  */
 export const validateHostname = (hostname: string): boolean => {
   if (typeof hostname !== 'string' || !hostname) {
     return false;
   }
 
-  // Allowlist of permitted hostnames - exact match only
-  const ALLOWED_HOSTNAMES = [
-    'tarcisiobispo.github.io',
-    'localhost',
-    '127.0.0.1',
-    '::1', // IPv6 localhost
-    'images.unsplash.com',
-    'unsplash.com',
-    'plus.unsplash.com',
-    // Analytics and tracking domains (secure validation)
-    'production.wootric.com',
-    'web.delighted.com',
-    'e.logrocket.com',
-    'api.logrocket.com',
-    'app.logrocket.com',
-    'app.logrocket.io',
-    'api.logrocket.io',
-    'e.logrocket.io'
-  ];
-
   // Normalize hostname (lowercase, trim)
   const normalizedHostname = hostname.toLowerCase().trim();
 
-  // Exact match validation - no regex needed
-  return ALLOWED_HOSTNAMES.includes(normalizedHostname);
+  // Allowlist of permitted hostnames with proper regex pattern
+  // This pattern validates the entire hostname string from start to end
+  // to prevent partial matches and other bypass techniques
+  const ALLOWED_HOSTNAME_PATTERNS = [
+    /^tarcisiobispo\.github\.io$/,
+    /^localhost$/,
+    /^127\.0\.0\.1$/,
+    /^::1$/,  // IPv6 localhost
+    /^images\.unsplash\.com$/,
+    /^unsplash\.com$/,
+    /^plus\.unsplash\.com$/,
+    // Analytics and tracking domains (secure validation)
+    /^production\.wootric\.com$/,
+    /^web\.delighted\.com$/,
+    /^e\.logrocket\.com$/,
+    /^api\.logrocket\.com$/,
+    /^app\.logrocket\.com$/,
+    /^app\.logrocket\.io$/,
+    /^api\.logrocket\.io$/,
+    /^e\.logrocket\.io$/
+  ];
+
+  // Test against each pattern
+  return ALLOWED_HOSTNAME_PATTERNS.some(pattern => pattern.test(normalizedHostname));
 };
 
 /**
@@ -227,77 +229,80 @@ export const validateFileExtension = (filename: string): boolean => {
 
 /**
  * Secure validation for analytics and tracking domains
- * Prevents regex bypass attacks on third-party analytics services
+ * Uses proper regex patterns to prevent bypass attacks
  */
 export const validateAnalyticsDomain = (hostname: string): boolean => {
   if (typeof hostname !== 'string' || !hostname) {
     return false;
   }
 
-  // Specific allowlist for analytics domains
-  const ANALYTICS_DOMAINS = [
-    'production.wootric.com',
-    'web.delighted.com',
-    'e.logrocket.com',
-    'api.logrocket.com',
-    'app.logrocket.com',
-    'app.logrocket.io',
-    'api.logrocket.io',
-    'e.logrocket.io',
-    'cdn.logrocket.com',
-    'cdn.logrocket.io',
-    'cdn.lr-ingest.io',
-    'cdn.lr-in.com',
-    'cdn.lr-in-prod.com',
-    'cdn.lr-ingest.com',
-    'cdn.ingest-lr.com',
-    'cdn.lr-intake.com',
-    'cdn.intake-lr.com',
-    'cdn.logr-ingest.com',
-    'cdn.lrkt-in.com',
-    'cdn.lgrckt-in.com',
-    'cdn-staging.logrocket.io',
-    'cdn-staging.lr-ingest.io',
-    'cdn-staging.lr-in.com',
-    'cdn-staging.lr-in-prod.com',
-    'cdn-staging.lr-ingest.com',
-    'cdn-staging.ingest-lr.com',
-    'cdn-staging.lr-intake.com',
-    'cdn-staging.intake-lr.com',
-    'cdn-staging.logr-ingest.com',
-    'cdn-staging.lrkt-in.com',
-    'cdn-staging.lgrckt-in.com',
-    'r.logrocket.io',
-    'r.lr-ingest.io',
-    'r.lr-in.com',
-    'r.lr-in-prod.com',
-    'r.lr-ingest.com',
-    'r.ingest-lr.com',
-    'r.lr-intake.com',
-    'r.intake-lr.com',
-    'r.logr-ingest.com',
-    'r.lrkt-in.com',
-    'r.lgrckt-in.com',
-    'staging-i.logrocket.io',
-    'staging-i.lr-ingest.io',
-    'staging-i.lr-in.com',
-    'staging-i.lr-in-prod.com',
-    'staging-i.lr-ingest.com',
-    'staging-i.ingest-lr.com',
-    'staging-i.lr-intake.com',
-    'staging-i.intake-lr.com',
-    'staging-i.logr-ingest.com',
-    'staging-i.lrkt-in.com',
-    'staging-i.lgrckt-in.com',
-    'www.google-analytics.com',
-    'analytics.google.com',
-    'www.clarity.ms',
-    'clarity.microsoft.com',
-    'www.googletagmanager.com'
+  const normalizedHostname = hostname.toLowerCase().trim();
+
+  // Specific allowlist for analytics domains using proper regex patterns
+  // Each pattern validates the entire hostname string from start to end
+  const ANALYTICS_DOMAIN_PATTERNS = [
+    /^production\.wootric\.com$/,
+    /^web\.delighted\.com$/,
+    /^e\.logrocket\.com$/,
+    /^api\.logrocket\.com$/,
+    /^app\.logrocket\.com$/,
+    /^app\.logrocket\.io$/,
+    /^api\.logrocket\.io$/,
+    /^e\.logrocket\.io$/,
+    /^cdn\.logrocket\.com$/,
+    /^cdn\.logrocket\.io$/,
+    /^cdn\.lr-ingest\.io$/,
+    /^cdn\.lr-in\.com$/,
+    /^cdn\.lr-in-prod\.com$/,
+    /^cdn\.lr-ingest\.com$/,
+    /^cdn\.ingest-lr\.com$/,
+    /^cdn\.lr-intake\.com$/,
+    /^cdn\.intake-lr\.com$/,
+    /^cdn\.logr-ingest\.com$/,
+    /^cdn\.lrkt-in\.com$/,
+    /^cdn\.lgrckt-in\.com$/,
+    /^cdn-staging\.logrocket\.io$/,
+    /^cdn-staging\.lr-ingest\.io$/,
+    /^cdn-staging\.lr-in\.com$/,
+    /^cdn-staging\.lr-in-prod\.com$/,
+    /^cdn-staging\.lr-ingest\.com$/,
+    /^cdn-staging\.ingest-lr\.com$/,
+    /^cdn-staging\.lr-intake\.com$/,
+    /^cdn-staging\.intake-lr\.com$/,
+    /^cdn-staging\.logr-ingest\.com$/,
+    /^cdn-staging\.lrkt-in\.com$/,
+    /^cdn-staging\.lgrckt-in\.com$/,
+    /^r\.logrocket\.io$/,
+    /^r\.lr-ingest\.io$/,
+    /^r\.lr-in\.com$/,
+    /^r\.lr-in-prod\.com$/,
+    /^r\.lr-ingest\.com$/,
+    /^r\.ingest-lr\.com$/,
+    /^r\.lr-intake\.com$/,
+    /^r\.intake-lr\.com$/,
+    /^r\.logr-ingest\.com$/,
+    /^r\.lrkt-in\.com$/,
+    /^r\.lgrckt-in\.com$/,
+    /^staging-i\.logrocket\.io$/,
+    /^staging-i\.lr-ingest\.io$/,
+    /^staging-i\.lr-in\.com$/,
+    /^staging-i\.lr-in-prod\.com$/,
+    /^staging-i\.lr-ingest\.com$/,
+    /^staging-i\.ingest-lr\.com$/,
+    /^staging-i\.lr-intake\.com$/,
+    /^staging-i\.intake-lr\.com$/,
+    /^staging-i\.logr-ingest\.com$/,
+    /^staging-i\.lrkt-in\.com$/,
+    /^staging-i\.lgrckt-in\.com$/,
+    /^www\.google-analytics\.com$/,
+    /^analytics\.google\.com$/,
+    /^www\.clarity\.ms$/,
+    /^clarity\.microsoft\.com$/,
+    /^www\.googletagmanager\.com$/
   ];
 
-  const normalizedHostname = hostname.toLowerCase().trim();
-  return ANALYTICS_DOMAINS.includes(normalizedHostname);
+  // Test against each pattern
+  return ANALYTICS_DOMAIN_PATTERNS.some(pattern => pattern.test(normalizedHostname));
 };
 
 /**
@@ -326,7 +331,7 @@ export const validateAnalyticsUrl = (url: string): boolean => {
 
 /**
  * Secure pattern matching for analytics endpoints
- * Replaces vulnerable regex patterns with safe string operations
+ * Uses proper regex patterns for secure hostname validation
  */
 export const matchesAnalyticsPattern = (url: string, pattern: 'wootric' | 'delighted' | 'logrocket'): boolean => {
   if (typeof url !== 'string' || !url) {
@@ -335,11 +340,12 @@ export const matchesAnalyticsPattern = (url: string, pattern: 'wootric' | 'delig
 
   try {
     const parsedUrl = new URL(url);
+    const hostname = parsedUrl.hostname.toLowerCase().trim();
 
     switch (pattern) {
       case 'wootric':
-        // Exact hostname match and secure path validation
-        if (parsedUrl.hostname !== 'production.wootric.com') {
+        // Exact hostname match with regex and secure path validation
+        if (!/^production\.wootric\.com$/.test(hostname)) {
           return false;
         }
         
@@ -348,8 +354,8 @@ export const matchesAnalyticsPattern = (url: string, pattern: 'wootric' | 'delig
         return wootricPathSegments.length > 0 && wootricPathSegments[0] === 'responses';
 
       case 'delighted':
-        // Exact hostname match and secure path validation
-        if (parsedUrl.hostname !== 'web.delighted.com') {
+        // Exact hostname match with regex and secure path validation
+        if (!/^web\.delighted\.com$/.test(hostname)) {
           return false;
         }
         
@@ -360,61 +366,61 @@ export const matchesAnalyticsPattern = (url: string, pattern: 'wootric' | 'delig
                delightedPathSegments.includes('c');
 
       case 'logrocket':
-        // Exact hostname match using allowlist
-        const validLogRocketDomains = [
-          'e.logrocket.com', 
-          'api.logrocket.com',
-          'app.logrocket.com',
-          'app.logrocket.io',
-          'api.logrocket.io',
-          'e.logrocket.io',
-          'cdn.logrocket.com',
-          'cdn.logrocket.io',
-          'cdn.lr-ingest.io',
-          'cdn.lr-in.com',
-          'cdn.lr-in-prod.com',
-          'cdn.lr-ingest.com',
-          'cdn.ingest-lr.com',
-          'cdn.lr-intake.com',
-          'cdn.intake-lr.com',
-          'cdn.logr-ingest.com',
-          'cdn.lrkt-in.com',
-          'cdn.lgrckt-in.com',
-          'cdn-staging.logrocket.io',
-          'cdn-staging.lr-ingest.io',
-          'cdn-staging.lr-in.com',
-          'cdn-staging.lr-in-prod.com',
-          'cdn-staging.lr-ingest.com',
-          'cdn-staging.ingest-lr.com',
-          'cdn-staging.lr-intake.com',
-          'cdn-staging.intake-lr.com',
-          'cdn-staging.logr-ingest.com',
-          'cdn-staging.lrkt-in.com',
-          'cdn-staging.lgrckt-in.com',
-          'r.logrocket.io',
-          'r.lr-ingest.io',
-          'r.lr-in.com',
-          'r.lr-in-prod.com',
-          'r.lr-ingest.com',
-          'r.ingest-lr.com',
-          'r.lr-intake.com',
-          'r.intake-lr.com',
-          'r.logr-ingest.com',
-          'r.lrkt-in.com',
-          'r.lgrckt-in.com',
-          'staging-i.logrocket.io',
-          'staging-i.lr-ingest.io',
-          'staging-i.lr-in.com',
-          'staging-i.lr-in-prod.com',
-          'staging-i.lr-ingest.com',
-          'staging-i.ingest-lr.com',
-          'staging-i.lr-intake.com',
-          'staging-i.intake-lr.com',
-          'staging-i.logr-ingest.com',
-          'staging-i.lrkt-in.com',
-          'staging-i.lgrckt-in.com'
+        // Exact hostname match using regex patterns
+        const validLogRocketDomainPatterns = [
+          /^e\.logrocket\.com$/,
+          /^api\.logrocket\.com$/,
+          /^app\.logrocket\.com$/,
+          /^app\.logrocket\.io$/,
+          /^api\.logrocket\.io$/,
+          /^e\.logrocket\.io$/,
+          /^cdn\.logrocket\.com$/,
+          /^cdn\.logrocket\.io$/,
+          /^cdn\.lr-ingest\.io$/,
+          /^cdn\.lr-in\.com$/,
+          /^cdn\.lr-in-prod\.com$/,
+          /^cdn\.lr-ingest\.com$/,
+          /^cdn\.ingest-lr\.com$/,
+          /^cdn\.lr-intake\.com$/,
+          /^cdn\.intake-lr\.com$/,
+          /^cdn\.logr-ingest\.com$/,
+          /^cdn\.lrkt-in\.com$/,
+          /^cdn\.lgrckt-in\.com$/,
+          /^cdn-staging\.logrocket\.io$/,
+          /^cdn-staging\.lr-ingest\.io$/,
+          /^cdn-staging\.lr-in\.com$/,
+          /^cdn-staging\.lr-in-prod\.com$/,
+          /^cdn-staging\.lr-ingest\.com$/,
+          /^cdn-staging\.ingest-lr\.com$/,
+          /^cdn-staging\.lr-intake\.com$/,
+          /^cdn-staging\.intake-lr\.com$/,
+          /^cdn-staging\.logr-ingest\.com$/,
+          /^cdn-staging\.lrkt-in\.com$/,
+          /^cdn-staging\.lgrckt-in\.com$/,
+          /^r\.logrocket\.io$/,
+          /^r\.lr-ingest\.io$/,
+          /^r\.lr-in\.com$/,
+          /^r\.lr-in-prod\.com$/,
+          /^r\.lr-ingest\.com$/,
+          /^r\.ingest-lr\.com$/,
+          /^r\.lr-intake\.com$/,
+          /^r\.intake-lr\.com$/,
+          /^r\.logr-ingest\.com$/,
+          /^r\.lrkt-in\.com$/,
+          /^r\.lgrckt-in\.com$/,
+          /^staging-i\.logrocket\.io$/,
+          /^staging-i\.lr-ingest\.io$/,
+          /^staging-i\.lr-in\.com$/,
+          /^staging-i\.lr-in-prod\.com$/,
+          /^staging-i\.lr-ingest\.com$/,
+          /^staging-i\.ingest-lr\.com$/,
+          /^staging-i\.lr-intake\.com$/,
+          /^staging-i\.intake-lr\.com$/,
+          /^staging-i\.logr-ingest\.com$/,
+          /^staging-i\.lrkt-in\.com$/,
+          /^staging-i\.lgrckt-in\.com$/
         ];
-        return validLogRocketDomains.includes(parsedUrl.hostname);
+        return validLogRocketDomainPatterns.some(pattern => pattern.test(hostname));
 
       default:
         return false;
