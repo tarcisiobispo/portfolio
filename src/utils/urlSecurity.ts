@@ -7,7 +7,7 @@ import {
 } from '@/config/security';
 
 /**
- * Validates if a hostname is in the allowed list using exact matching
+ * Validates if a hostname is in the allowed list using proper regex patterns
  * to prevent subdomain bypass attacks
  */
 export const isAllowedHostname = (hostname: string): boolean => {
@@ -17,13 +17,17 @@ export const isAllowedHostname = (hostname: string): boolean => {
   
   const normalizedHostname = hostname.toLowerCase().trim();
   
-  // Use exact matching for hostnames - most secure approach
-  if (ALLOWED_IMAGE_HOSTNAMES.includes(normalizedHostname as any)) {
+  // Convert allowed hostnames to regex patterns for secure matching
+  const allowedHostnamePatterns = ALLOWED_IMAGE_HOSTNAMES.map(
+    domain => new RegExp(`^${domain.replace(/\./g, '\\.')}$`)
+  );
+  
+  // Check for exact match using regex patterns
+  if (allowedHostnamePatterns.some(pattern => pattern.test(normalizedHostname))) {
     return true;
   }
   
-  // For subdomains, use a more secure approach
-  // Split the hostname into parts and validate the domain portion
+  // For subdomains, use a more secure approach with regex
   const hostnameParts = normalizedHostname.split('.');
   
   // A valid hostname must have at least 2 parts
@@ -40,17 +44,12 @@ export const isAllowedHostname = (hostname: string): boolean => {
       continue;
     }
     
-    // Check if the domain parts match exactly from the end
-    let isMatch = true;
-    for (let i = 0; i < allowedParts.length; i++) {
-      const hostnameIndex = hostnameParts.length - allowedParts.length + i;
-      if (hostnameParts[hostnameIndex] !== allowedParts[i]) {
-        isMatch = false;
-        break;
-      }
-    }
+    // Create a regex pattern for the domain parts
+    const domainPattern = new RegExp(
+      `^.*\\.${allowedParts.join('\\.').replace(/\./g, '\\.')}$`
+    );
     
-    if (isMatch) {
+    if (domainPattern.test(normalizedHostname)) {
       return true;
     }
   }
