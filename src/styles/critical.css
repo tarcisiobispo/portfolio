@@ -1,42 +1,118 @@
-/* Critical CSS - Above the fold styles */
+/* ===== CRITICAL CSS OTIMIZADO ===== */
+/* Arquivo combinado e otimizado de critical.css, critical-optimized.css e critical-fixes.css */
 
-/* CSS Variables - WCAG 2.2 Compliant Colors */
+/* ===== RESET E CONFIGURAÇÕES BÁSICAS ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ===== VARIÁVEIS CSS - DESIGN SYSTEM ===== */
 :root {
+  /* Cores primárias - WCAG 2.2 Compliant */
   --color-primary: #1d4ed8; /* Blue 700 - 4.5:1 contrast on white */
   --color-primary-rgb: 29, 78, 216;
   --color-secondary: #059669; /* Emerald 600 - 4.5:1 contrast */
   --color-text: #111827; /* Gray 900 - 15.3:1 contrast */
-  --color-muted: #374151; /* Gray 700 - 9.6:1 contrast (was 6b7280) */
+  --color-muted: #374151; /* Gray 700 - 9.6:1 contrast */
   --color-background: #ffffff;
   --color-surface: #f9fafb;
   --color-border: #d1d5db; /* Gray 300 - better contrast */
+  
+  /* Tipografia */
+  --font-family: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-size-base: 1rem;
+  --line-height: 1.6;
+  
+  /* Espaçamento e layout */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 3rem;
+  
+  /* Bordas e efeitos */
+  --radius: 12px;
+  --radius-sm: 6px;
+  --shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+  --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-[data-theme="dark"] {
+/* Dark mode */
+[data-theme="dark"],
+.dark {
   --color-primary: #60a5fa; /* Blue 400 - 4.5:1 on dark */
   --color-primary-rgb: 96, 165, 250;
   --color-secondary: #10b981; /* Emerald 500 - 4.5:1 on dark */
   --color-text: #f9fafb; /* Gray 50 - 15.3:1 on dark */
-  --color-muted: #d1d5db; /* Gray 300 - 9.6:1 on dark (was 9ca3af) */
+  --color-muted: #d1d5db; /* Gray 300 - 9.6:1 on dark */
   --color-background: #111827;
   --color-surface: #1f2937;
   --color-border: #4b5563; /* Gray 600 - better contrast */
 }
 
-/* Base styles */
-* {
-  box-sizing: border-box;
+/* ===== ESTILOS BASE ===== */
+html {
+  font-family: var(--font-family);
+  line-height: var(--line-height);
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background-color: var(--color-background);
   color: var(--color-text);
-  line-height: 1.6;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Ajuste para compensar o header fixo */
+  padding-top: 60px;
 }
 
-/* Header styles */
+/* ===== TIPOGRAFIA ESSENCIAL ===== */
+h1, h2, h3 {
+  margin: 0 0 1rem 0;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+h3 {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+p {
+  margin: 0 0 1rem 0;
+}
+
+/* ===== LAYOUT CRÍTICO ===== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  contain: layout style;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.flex {
+  display: flex;
+}
+
+/* ===== HEADER CRÍTICO ===== */
 .header {
   position: fixed;
   top: 0;
@@ -48,7 +124,7 @@ body {
   border-bottom: 1px solid var(--color-border);
 }
 
-/* Profile section - Critical for LCP */
+/* ===== PROFILE SECTION - CRÍTICO PARA LCP ===== */
 .profile-section {
   min-height: 100vh;
   display: flex;
@@ -58,41 +134,32 @@ body {
   contain: layout style paint;
 }
 
-/* Critical Bio Text - LCP Optimization */
+.profile-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+
 .critical-bio-text {
-  font-size: 1.125rem; /* text-lg */
-  line-height: 1.75; /* leading-relaxed */
-  color: #374151; /* text-gray-700 */
-  max-width: 48rem; /* max-w-3xl */
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: var(--color-muted);
+  max-width: 48rem;
   margin-bottom: 2rem;
   content-visibility: visible;
-  /* Removendo propriedade não suportada */
-  /* contain-intrinsic-size: auto 100px; */
   will-change: auto;
 }
 
-@media (min-width: 1024px) {
-  .critical-bio-text {
-    font-size: 1.25rem; /* lg:text-xl */
-  }
+/* ===== OTIMIZAÇÕES DE IMAGEM ===== */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
-/* Dark mode for critical bio */
-@media (prefers-color-scheme: dark) {
-  .critical-bio-text {
-    color: #e5e7eb; /* dark:text-gray-200 */
-  }
-}
-
-[data-theme="dark"] .critical-bio-text {
-  color: #e5e7eb; /* dark:text-gray-200 */
-}
-
-/* LCP Optimizations */
 .profile-image {
   content-visibility: visible;
-  /* Removendo propriedade não suportada */
-  /* contain-intrinsic-size: 256px 256px; */
   will-change: auto;
   contain: layout style paint;
 }
@@ -101,15 +168,6 @@ body {
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   transform: translateZ(0); /* Force GPU acceleration */
-}
-
-/* CLS Prevention - Explicit Image Dimensions */
-img {
-  /* Prevent layout shifts by ensuring images have dimensions */
-  max-width: 100%;
-  height: auto;
-  /* Removendo propriedade não suportada */
-  /* contain-intrinsic-size: attr(width) attr(height); */
 }
 
 /* Specific optimizations for logo images */
@@ -124,54 +182,29 @@ img[alt*="Logo"], img[alt*="logo"] {
   /* Prevent layout shifts for profile images */
   contain: layout style paint;
   content-visibility: visible;
-  /* Removendo propriedade não suportada */
-  /* contain-intrinsic-size: 128px 128px; */
 }
 
-/* Reduce layout thrashing */
-.container {
-  contain: layout style;
-}
-
-/* Optimize animations for compositor */
-.animate-element {
-  will-change: transform, opacity;
-  transform: translateZ(0);
-}
-
-/* Reduce paint complexity */
-.card {
-  contain: layout style paint;
-  isolation: isolate;
-}
-
-/* Optimize text rendering */
-.text-content {
-  text-rendering: optimizeSpeed;
-  /* Removendo propriedade não suportada em elementos não-font */
-  /* font-display: swap; */
-}
-
-/* Reduce reflow/repaint */
-.fixed-dimensions {
-  contain: size layout style;
-}
-
-.profile-name {
-  font-size: 1.125rem;
+/* ===== BOTÕES CRÍTICOS ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
   font-weight: 600;
-  color: var(--color-text);
-  margin: 0;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition);
+  background: var(--color-primary);
+  color: white;
 }
 
-.text-lead {
-  font-size: 1.125rem;
-  line-height: 1.7;
-  color: var(--color-text);
-  max-width: 48rem;
+.btn:hover {
+  transform: translateY(-1px);
 }
 
-/* Button styles - Critical */
 .btn-primary {
   background-color: var(--color-primary);
   color: white;
@@ -187,7 +220,46 @@ img[alt*="Logo"], img[alt*="logo"] {
   transform: translateY(-1px);
 }
 
-/* Loading states */
+/* ===== CARDS CRÍTICOS ===== */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: var(--transition);
+  contain: layout style paint;
+  isolation: isolate;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== ACESSIBILIDADE CRÍTICA ===== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.focus-visible:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ===== ESTADOS DE CARREGAMENTO ===== */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
 .loading-placeholder {
   background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
   background-size: 200% 100%;
@@ -199,13 +271,106 @@ img[alt*="Logo"], img[alt*="logo"] {
   100% { background-position: -200% 0; }
 }
 
-/* Responsive */
+/* ===== CORREÇÕES CRÍTICAS ===== */
+/* 1. Forçar a imagem a preencher completamente o topo do card */
+.project-card {
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+
+.project-card-image-container {
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  line-height: 0 !important;
+  font-size: 0 !important;
+}
+
+.project-card-image {
+  width: calc(100% + 2px) !important;
+  height: auto !important;
+  object-fit: cover !important;
+  display: block !important;
+  margin: 0 !important;
+}
+
+/* 2. Garantir que o botão de voltar ao topo não apareça no mobile */
+.back-to-top {
+  display: none !important;
+}
+
+@media (min-width: 768px) {
+  .back-to-top {
+    display: block !important;
+  }
+}
+
+/* 3. Forçar o uso da logo correta no modo escuro */
+.dark header img {
+  content: url('/images/logo_uxproduct_white.webp') !important;
+}
+
+/* ===== RESPONSIVIDADE CRÍTICA ===== */
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2rem;
+  }
+  
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .critical-bio-text {
+    font-size: 1.25rem;
+  }
+}
+
 @media (max-width: 768px) {
   .profile-section {
     padding: 2rem 1rem;
   }
-
+  
+  body {
+    padding-top: 50px; /* Ajuste para compensar o header menor em mobile */
+  }
+  
   .text-lead {
     font-size: 1rem;
+  }
+}
+
+/* ===== OTIMIZAÇÕES DE PERFORMANCE ===== */
+.animate-element {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* Optimize text rendering */
+.text-content {
+  text-rendering: optimizeSpeed;
+}
+
+/* Reduce reflow/repaint */
+.fixed-dimensions {
+  contain: size layout style;
+}
+
+.text-lead {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--color-text);
+  max-width: 48rem;
+}
+
+/* ===== REDUÇÃO DE MOVIMENTO ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

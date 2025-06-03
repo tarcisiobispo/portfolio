@@ -2,7 +2,7 @@ import './react-fix'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom/client'
 import App from './App.tsx'
-import './styles/critical.css' // Critical CSS first for LCP
+import './styles/critical.css' // Critical CSS otimizado para LCP (combinado)
 import './index.css'
 import './styles/theme-transitions.css'
 import './styles/buttons.css'
@@ -10,7 +10,6 @@ import './styles/cards.css'
 import './styles/accessibility.css'
 import './styles/image-fixes.css' // Correções para as imagens do project showcase
 import './styles/animation-fixes.css' // Correções para animações
-import './styles/critical-fixes.css' // Correções críticas para problemas específicos
 import { ThemeProvider } from './components/providers/ThemeProvider'
 import { initializeCacheOptimizations } from './utils/cacheOptimization'
 import { initializeImageOptimizations } from './utils/imageOptimization'
