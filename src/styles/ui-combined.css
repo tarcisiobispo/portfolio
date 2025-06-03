@@ -1,0 +1,98 @@
+/* ===== UI COMBINADO ===== */
+/* Arquivo combinado de image-fixes.css, animation-fixes.css e accessibility.css */
+
+/* ===== CORREÇÕES DE IMAGEM ===== */
+/* Forçar a imagem a preencher completamente o topo do card */
+.project-card {
+  padding-top: 0 !important;
+  overflow: hidden !important;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-font-smoothing: subpixel-antialiased;
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out !important;
+}
+
+.project-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+}
+
+.project-card-image-container {
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border-top-left-radius: 12px !important;
+  border-top-right-radius: 12px !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+}
+
+.project-card-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ===== CORREÇÕES DE ANIMAÇÃO ===== */
+/* Corrigir grid responsivo */
+.projects-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+  gap: 24px !important;
+  width: 100% !important;
+}
+
+/* ===== ACESSIBILIDADE ===== */
+/* Garantir que todos os elementos interativos tenham tamanho mínimo adequado para toque */
+.touch-target {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* Ajustes específicos para breakpoints menores */
+@media (max-width: 320px) {
+  .xs-text-sm {
+    font-size: 0.875rem;
+  }
+  
+  .xs-p-2 {
+    padding: 0.5rem;
+  }
+  
+  .xs-gap-2 {
+    gap: 0.5rem;
+  }
+}
+
+@media (min-width: 321px) and (max-width: 480px) {
+  .sm-text-base {
+    font-size: 1rem;
+  }
+  
+  .sm-p-3 {
+    padding: 0.75rem;
+  }
+  
+  .sm-gap-3 {
+    gap: 0.75rem;
+  }
+}
+
+/* ===== REDUÇÃO DE MOVIMENTO ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

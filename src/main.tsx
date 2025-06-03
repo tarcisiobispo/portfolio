@@ -7,9 +7,7 @@ import './index.css'
 import './styles/theme-transitions.css'
 import './styles/buttons.css'
 import './styles/cards.css'
-import './styles/accessibility.css'
-import './styles/image-fixes.css' // Correções para as imagens do project showcase
-import './styles/animation-fixes.css' // Correções para animações
+import './styles/ui-combined.css' // UI combinado (accessibility, image-fixes, animation-fixes)
 import { ThemeProvider } from './components/providers/ThemeProvider'
 import { initializeCacheOptimizations } from './utils/cacheOptimization'
 import { initializeImageOptimizations } from './utils/imageOptimization'
