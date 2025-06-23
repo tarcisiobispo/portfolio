@@ -1,45 +1,28 @@
-import { defineConfig, type ConfigEnv, type PluginOption } from 'vite';
+import { defineConfig, type ConfigEnv } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import { resolve } from 'path';
+import type { PluginOption } from 'vite';
+import sitemap from 'vite-plugin-sitemap';
 
-// More robust way to determine if we're in preview mode and get the base path
+// Configuração base do Vite
 export default defineConfig(({ command, mode }: ConfigEnv) => {
-  // Check if we're in preview mode
   const isPreview = command === 'serve' && process.argv.includes('preview');
-  
-  // Check if base is explicitly set via command line
   const baseArgIndex = process.argv.findIndex(arg => arg.startsWith('--base='));
   const explicitBase = baseArgIndex >= 0 ? process.argv[baseArgIndex].split('=')[1] : null;
-  
-  // Use different base paths for development and production
   const base = explicitBase || (command === 'serve' && !isPreview ? '/' : '/portfolio/');
   
-  return {
-  // Use determined base path
-  base,
-  plugins: [
+  const plugins: PluginOption[] = [
     react({
-      // SWC optimizations for production
       plugins: process.env.NODE_ENV === 'production' ? [
         ['@swc/plugin-remove-console', { exclude: ['error', 'warn'] }]
       ] : []
-    }),
-    // sitemap({
-    //   hostname: 'https://tarcisiobispo.github.io',
-    //   basePath: '/portfolio',
-    //   routes: [
-    //     '/',
-    //     '/privacy-policy',
-    //     '/#projetos',
-    //     '/#backlog',
-    //     '/#contato'
-    //   ],
-    //   changefreq: 'weekly',
-    //   priority: 0.8,
-    //   lastmod: '2025-01-15'
-    // }),
+    })
+  ];
 
-  ],
+  return {
+  // Use determined base path
+  base,
+  plugins,
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
@@ -55,10 +38,15 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
 
     // Configurações de chunk
     chunkSizeWarningLimit: 1000,
-
+    reportCompressedSize: false, // Desativa o relatório de tamanho comprimido para builds mais rápidos
+    
     // CSS otimizado para performance
     cssCodeSplit: true,
     cssMinify: true,
+    cssTarget: ['chrome61', 'safari11', 'firefox60', 'edge18'],
+    
+    // Geração de manifest para melhor cache
+    manifest: true,
 
     rollupOptions: {
       // Evitar polyfills desnecessários - mais agressivo
@@ -193,6 +181,41 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
   },
 
   // Otimizações de desenvolvimento
+  server: {
+    // Configurações para melhorar o HMR
+    hmr: {
+      protocol: 'ws',
+      host: 'localhost',
+      port: 3000,
+      clientPort: 443,
+      path: '/hmr',
+      timeout: 30000,
+      overlay: false
+    },
+    // Middleware para adicionar headers de cache
+    headers: {
+      'Cache-Control': 'public, max-age=31536000, immutable'
+    }
+  },
+  // Configurações do servidor de desenvolvimento
+  server: {
+    // Configurações para melhorar o HMR
+    hmr: {
+      protocol: 'ws',
+      host: 'localhost',
+      port: 3000,
+      clientPort: 443,
+      path: '/hmr',
+      timeout: 30000,
+      overlay: false
+    },
+    // Middleware para adicionar headers de cache
+    headers: {
+      'Cache-Control': 'public, max-age=31536000, immutable'
+    }
+  },
+  
+  // Otimizações de desenvolvimento
   optimizeDeps: {
     include: [
       'react',
@@ -220,38 +243,32 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
     global: 'globalThis',
   },
 
-  // Configuração do servidor de desenvolvimento
+  // Configurações de servidor para desenvolvimento
   server: {
     fs: {
       strict: false
     },
-    // Configurações para melhorar o HMR
-    hmr: {
-      protocol: 'ws',
-      host: 'localhost',
-      port: 3000,
-      clientPort: 443,
-      path: '/hmr',
-      timeout: 30000,
-      overlay: false
-    },
-    // Headers de cache para desenvolvimento
-    headers: {
-      'Cache-Control': 'public, max-age=31536000, immutable',
-      'X-Content-Type-Options': 'nosniff',
-      'X-Frame-Options': 'DENY'
-    }
-  },
-  
-  // Configuração do servidor de preview
-  preview: {
-    headers: {
-      'Cache-Control': 'public, max-age=31536000, immutable',
-      'X-Content-Type-Options': 'nosniff',
-      'X-Frame-Options': 'DENY',
-      'X-XSS-Protection': '1; mode=block',
-      'Referrer-Policy': 'strict-origin-when-cross-origin'
+    // Clear console when starting the dev server
+    clearScreen: true,
+    // Configure HMR to work with the base path
+    hmr: true, 
+    // Configure headers using middleware to avoid ERR_INVALID_HTTP_TOKEN
+    setupMiddleware: (middlewares) => {
+      middlewares.use((req, res, next) => {
+        // Set cache headers for assets
+        res.setHeader('Cache-Control', 'public, max-age=31536000'); // 1 ano para assets com hash
+        
+        // Ensure correct MIME types for JavaScript files
+        if (req.url?.endsWith('.js')) {
+          res.setHeader('Content-Type', 'application/javascript');
+        }
+        // Ensure correct MIME type for favicon
+        if (req.url?.endsWith('.ico')) {
+          res.setHeader('Content-Type', 'image/x-icon');
+        }
+        next();
+      });
+      return middlewares;
     }
   }
-  };
 });

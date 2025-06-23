@@ -1,9 +1,11 @@
-import { defineConfig, type ConfigEnv, type PluginOption } from 'vite';
+// Backup do arquivo original
+import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import { resolve } from 'path';
+import sitemap from 'vite-plugin-sitemap';
 
 // More robust way to determine if we're in preview mode and get the base path
-export default defineConfig(({ command, mode }: ConfigEnv) => {
+export default defineConfig(({ command, mode }) => {
   // Check if we're in preview mode
   const isPreview = command === 'serve' && process.argv.includes('preview');
   
@@ -23,22 +25,7 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
       plugins: process.env.NODE_ENV === 'production' ? [
         ['@swc/plugin-remove-console', { exclude: ['error', 'warn'] }]
       ] : []
-    }),
-    // sitemap({
-    //   hostname: 'https://tarcisiobispo.github.io',
-    //   basePath: '/portfolio',
-    //   routes: [
-    //     '/',
-    //     '/privacy-policy',
-    //     '/#projetos',
-    //     '/#backlog',
-    //     '/#contato'
-    //   ],
-    //   changefreq: 'weekly',
-    //   priority: 0.8,
-    //   lastmod: '2025-01-15'
-    // }),
-
+    })
   ],
   resolve: {
     alias: {
@@ -59,6 +46,7 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
     // CSS otimizado para performance
     cssCodeSplit: true,
     cssMinify: true,
+
 
     rollupOptions: {
       // Evitar polyfills desnecessários - mais agressivo
@@ -193,6 +181,54 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
   },
 
   // Otimizações de desenvolvimento
+  server: {
+    fs: {
+      strict: false
+    },
+    // Clear console when starting the dev server
+    clearScreen: true,
+    // Configure HMR to work with the base path
+    hmr: true, // Let Vite automatically determine the correct WebSocket connection
+    // Configure headers using middleware to avoid ERR_INVALID_HTTP_TOKEN
+    setupMiddleware: (middlewares) => {
+      middlewares.use((req, res, next) => {
+        // Set cache headers for assets
+        res.setHeader('Cache-Control', 'public, max-age=31536000'); // 1 ano para assets com hash
+        
+        // Ensure correct MIME types for JavaScript files
+        if (req.url?.endsWith('.js')) {
+          res.setHeader('Content-Type', 'application/javascript');
+        }
+        // Ensure correct MIME type for favicon
+        if (req.url?.endsWith('.ico')) {
+          res.setHeader('Content-Type', 'image/x-icon');
+        }
+        next();
+      });
+      return middlewares;
+    }
+  },
+  
+  // Configurações específicas para o servidor de preview
+  preview: {
+    // Configure headers using middleware instead of direct header mapping
+    setupMiddleware: (middlewares) => {
+      middlewares.use((req, res, next) => {
+        // Set correct MIME types for JavaScript files
+        if (req.url?.endsWith('.js')) {
+          res.setHeader('Content-Type', 'application/javascript');
+        }
+        // Ensure correct MIME type for favicon
+        if (req.url?.endsWith('.ico')) {
+          res.setHeader('Content-Type', 'image/x-icon');
+        }
+        next();
+      });
+      return middlewares;
+    }
+  },
+  
+  // Otimizações de desenvolvimento
   optimizeDeps: {
     include: [
       'react',
@@ -218,40 +254,6 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
   define: {
     // Garantir que o React está disponível globalmente
     global: 'globalThis',
-  },
-
-  // Configuração do servidor de desenvolvimento
-  server: {
-    fs: {
-      strict: false
-    },
-    // Configurações para melhorar o HMR
-    hmr: {
-      protocol: 'ws',
-      host: 'localhost',
-      port: 3000,
-      clientPort: 443,
-      path: '/hmr',
-      timeout: 30000,
-      overlay: false
-    },
-    // Headers de cache para desenvolvimento
-    headers: {
-      'Cache-Control': 'public, max-age=31536000, immutable',
-      'X-Content-Type-Options': 'nosniff',
-      'X-Frame-Options': 'DENY'
-    }
-  },
-  
-  // Configuração do servidor de preview
-  preview: {
-    headers: {
-      'Cache-Control': 'public, max-age=31536000, immutable',
-      'X-Content-Type-Options': 'nosniff',
-      'X-Frame-Options': 'DENY',
-      'X-XSS-Protection': '1; mode=block',
-      'Referrer-Policy': 'strict-origin-when-cross-origin'
-    }
   }
   };
 });
