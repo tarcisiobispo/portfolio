@@ -53,16 +53,17 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
     minify: 'terser',
     sourcemap: true, // Habilitar source maps para debugging
 
-    // Configurações de chunk
+    // Configurações de chunk otimizadas para carregamento crítico
     chunkSizeWarningLimit: 1000,
-
+    reportCompressedSize: false,
+    
     // CSS otimizado para performance
-    cssCodeSplit: true,
+    cssCodeSplit: true, // Usando valor booleano para compatibilidade
     cssMinify: true,
 
     rollupOptions: {
       // Evitar polyfills desnecessários - mais agressivo
-      external: (id) => {
+      external: (id: string) => {
         // Excluir todos os tipos de core-js
         if (id.includes('core-js')) return true;
         if (id.includes('core-js-pure')) return true;
@@ -72,8 +73,18 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
       },
 
       output: {
-        // Manual chunks mais conservador para evitar quebrar React
-        manualChunks: (id) => {
+        // Estratégia de chunking otimizada para carregamento crítico
+        manualChunks: (id: string) => {
+          // Identificar módulos críticos que devem ser carregados primeiro
+          if (id.includes('src/main') || id.includes('src/App')) {
+            return 'critical';
+          }
+          
+          // Separar o CSS crítico
+          if (id.includes('index.css') || id.includes('global.css')) {
+            return 'critical-css';
+          }
+          
           // React core - manter junto para evitar problemas de contexto
           if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
             return 'react-vendor';
@@ -84,19 +95,19 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
             return 'router';
           }
           
-          // Animações - pode ser separado
+          // Animações - pode ser separado e carregado depois
           if (id.includes('node_modules/framer-motion/')) {
             return 'animation';
           }
           
-          // UI Libraries
+          // UI Libraries - carregar depois do conteúdo crítico
           if (id.includes('node_modules/@headlessui/') || 
               id.includes('node_modules/@radix-ui/') || 
               id.includes('node_modules/@floating-ui/')) {
             return 'ui';
           }
           
-          // Query
+          // Query - pode ser carregado depois
           if (id.includes('node_modules/@tanstack/react-query')) {
             return 'query';
           }
@@ -192,33 +203,8 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
     }
   },
 
-  // Otimizações de desenvolvimento
-  optimizeDeps: {
-    include: [
-      'react',
-      'react-dom',
-      'react-router-dom',
-      'framer-motion',
-      'lucide-react',
-      'react-i18next',
-      'i18next'
-    ],
-    exclude: [
-      '@vite/client',
-      '@vite/env',
-      'core-js',
-      'core-js-pure',
-      'core-js-global',
-      '@babel/runtime',
-      '@babel/runtime-corejs3'
-    ]
-  },
-
   // Configurações específicas para resolver problemas de React em produção
-  define: {
-    // Garantir que o React está disponível globalmente
-    global: 'globalThis',
-  },
+  // As otimizações de desenvolvimento foram movidas para baixo no arquivo
 
   // Configuração do servidor de desenvolvimento
   server: {
@@ -239,7 +225,21 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
     headers: {
       'Cache-Control': 'public, max-age=31536000, immutable',
       'X-Content-Type-Options': 'nosniff',
-      'X-Frame-Options': 'DENY'
+      'X-Frame-Options': 'DENY',
+      // Otimizações de carregamento
+      'Link': '</assets/css/critical.css>; rel=preload; as=style',
+      'X-XSS-Protection': '1; mode=block',
+      'Referrer-Policy': 'strict-origin-when-cross-origin'
+    },
+    // Pré-carregamento de módulos críticos
+    open: true,
+    cors: true,
+    // Habilita compressão para melhor performance
+    proxy: {},
+    // Otimizações de desempenho
+    watch: {
+      usePolling: true,
+      interval: 100
     }
   },
   
@@ -250,8 +250,46 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
       'X-Content-Type-Options': 'nosniff',
       'X-Frame-Options': 'DENY',
       'X-XSS-Protection': '1; mode=block',
-      'Referrer-Policy': 'strict-origin-when-cross-origin'
-    }
+      'Referrer-Policy': 'strict-origin-when-cross-origin',
+      // Otimizações de carregamento
+      'Link': [
+        '</assets/css/critical.css>; rel=preload; as=style',
+        '</js/critical.js>; rel=preload; as=script'
+      ]
+    },
+    // Configurações de desempenho
+    open: true,
+    cors: true,
+    // Habilita compressão para melhor performance
+    proxy: {}
+  },
+  
+  // Otimizações adicionais
+  optimizeDeps: {
+    include: [
+      'react',
+      'react-dom',
+      'react-router-dom',
+      'framer-motion',
+      'lucide-react',
+      'react-i18next',
+      'i18next'
+    ],
+    exclude: [
+      '@vite/client',
+      '@vite/env',
+      'core-js',
+      'core-js-pure',
+      'core-js-global',
+      '@babel/runtime',
+      '@babel/runtime-corejs3'
+    ]
+  },
+  
+  // Configurações globais
+  define: {
+    global: 'globalThis',
+    __APP_VERSION__: JSON.stringify(process.env.npm_package_version)
   }
-  };
+};
 });
