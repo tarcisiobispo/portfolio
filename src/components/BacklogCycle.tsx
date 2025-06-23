@@ -12,6 +12,7 @@ import i18n from '@/i18n/config';
 import CTAButton from '@/components/ui/CTAButton';
 import { useTranslationArray } from '@/utils/translationHelpers';
 import { useProjectSounds, useNavigationSounds } from '@/hooks/useSound';
+import { BacklogSkeleton } from '@/components/ui/ProjectSkeleton';
 
 interface BacklogItem {
   id: string;
@@ -23,9 +24,14 @@ interface BacklogItem {
 
 const ITEMS_PER_PAGE = 4;
 
-const BacklogCycle: React.FC = () => {
+interface BacklogCycleProps {
+  loading?: boolean;
+}
+
+const BacklogCycle: React.FC<BacklogCycleProps> = ({ loading: externalLoading = false }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [forceUpdate, setForceUpdate] = useState(0);
+  const [loading, setLoading] = useState(externalLoading);
   const { t } = useTranslation();
   const { playExpand, playCollapse } = useProjectSounds();
   const { playButtonClick, playButtonHover } = useNavigationSounds();
@@ -60,6 +66,17 @@ const BacklogCycle: React.FC = () => {
     result: string;
     note: string;
   }>;
+  
+  // Simular carregamento se necessário
+  useEffect(() => {
+    if (externalLoading || backlogItems.length === 0) {
+      setLoading(true);
+      const timer = setTimeout(() => setLoading(false), 1500);
+      return () => clearTimeout(timer);
+    } else {
+      setLoading(false);
+    }
+  }, [externalLoading, backlogItems.length]);
 
   // Log para depuração - verificar quantos itens estão sendo carregados
   React.useEffect(() => {
@@ -98,7 +115,7 @@ const BacklogCycle: React.FC = () => {
   };
 
   return (
-    <section className="w-full">
+    <section className="w-full py-16">
       {/* Header Section - Alinhado com Cards */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -106,11 +123,11 @@ const BacklogCycle: React.FC = () => {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="mb-16"
       >
-        <div className="max-w-4xl mx-auto text-left px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] mb-4">
+        <div className="text-left">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] mb-8">
             {t('backlog.title')}
           </h1>
-          <p className="text-[var(--color-muted)] text-lg mb-4">
+          <p className="text-lg md:text-xl text-[var(--color-text-secondary)] leading-relaxed mb-8">
             {t('backlog.description')}
           </p>
           {/* Linha Azul Animada - Similar ao Hero */}
@@ -125,14 +142,17 @@ const BacklogCycle: React.FC = () => {
 
       {/* Content Section - Alinhado com Header */}
       <motion.div
-        className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="grid grid-cols-1 gap-4 md:gap-6 lg:gap-8 justify-start max-w-[1200px] mx-auto"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
       >
         <Accordion type="single" collapsible className="w-full space-y-4">
-          {paginatedItems.length === 0 ? (
+          {loading ? (
+            // Mostrar skeleton enquanto carrega
+            <BacklogSkeleton />
+          ) : paginatedItems.length === 0 ? (
             <div className="text-center py-12 text-[var(--color-muted)]">
               {t('backlog.noItems')}
             </div>

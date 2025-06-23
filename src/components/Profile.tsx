@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useState, useEffect } from 'react';
 import { OptimizedMotion } from '@/components/LazyMotion';
 import CTAButton from '@/components/ui/CTAButton';
 import IxDFLogo from '@/components/ui/IxDFLogo';
@@ -9,6 +9,7 @@ import { Download, Linkedin, ArrowRight, MapPin, Mail, Phone, MessageCircle } fr
 import { useTranslation } from 'react-i18next';
 import { getProfileImagePaths } from '@/utils/assetPaths';
 import { useTypewriterLCPOptimization } from '@/hooks/useLCPOptimization';
+import { ProfileSkeleton } from '@/components/ui/ProjectSkeleton';
 import '@/styles/profile-card.css';
 
 // WhatsApp Icon
@@ -27,16 +28,39 @@ const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 interface ProfileProps {
   name: string;
+  loading?: boolean;
 }
 
-const Profile: React.FC<ProfileProps> = ({ name }) => {
+const Profile: React.FC<ProfileProps> = ({ name, loading: externalLoading = false }) => {
   const { t } = useTranslation();
   const profileImages = getProfileImagePaths();
   const { showTypewriter, isLCPComplete } = useTypewriterLCPOptimization();
+  const [loading, setLoading] = useState(externalLoading);
+  
+  // Simular carregamento se necessário
+  useEffect(() => {
+    if (externalLoading) {
+      setLoading(true);
+      const timer = setTimeout(() => setLoading(false), 1500);
+      return () => clearTimeout(timer);
+    } else {
+      setLoading(false);
+    }
+  }, [externalLoading]);
 
+  if (loading) {
+    return (
+      <section className="min-h-screen flex flex-col justify-center py-8 relative" aria-labelledby="profile-title">
+        <div className="max-w-7xl mx-auto px-6">
+          <ProfileSkeleton />
+        </div>
+      </section>
+    );
+  }
+  
   return (
-    <section className="min-h-screen flex flex-col justify-center py-8 relative" aria-labelledby="profile-title">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center justify-center max-w-7xl mx-auto px-6">
+    <section className="min-h-screen flex flex-col justify-center py-16 relative" aria-labelledby="profile-title">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center justify-center max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* PREMIUM PROFILE CARD */}
         <div
@@ -51,7 +75,7 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-purple-50/50 dark:from-blue-900/20 dark:via-transparent dark:to-purple-900/20 rounded-3xl"></div>
 
               {/* COMPLETE STRUCTURE WITH CORRECT SPACING */}
-              <div className="relative z-10 flex flex-col items-center space-y-6">
+              <div className="relative z-10 flex flex-col items-center space-y-8">
 
                 {/* SECTION 1: Profile Photo */}
                 <div className="relative">
@@ -76,7 +100,7 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
                 </div>
 
                 {/* SECTION 2: Personal Information */}
-                <div className="text-center space-y-3 w-full">
+                <div className="text-center space-y-4 w-full">
                   {/* Name */}
                   <h2 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white leading-tight whitespace-nowrap">
                     {t('profile.name')}
@@ -121,7 +145,7 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
           <div className="mb-8">
             <h1
               id="profile-title"
-              className="text-4xl lg:text-6xl font-bold mb-4 leading-tight"
+              className="text-4xl lg:text-6xl font-bold mb-8 leading-tight text-left"
               style={{
                 contentVisibility: 'visible',
                 containIntrinsicSize: 'auto 200px',
@@ -159,14 +183,14 @@ const Profile: React.FC<ProfileProps> = ({ name }) => {
             </h1>
 
             {/* Decorative Line - Immediate Rendering */}
-            <div className="h-1 w-[120px] bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-6"></div>
+            <div className="h-1 w-[120px] bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-8"></div>
           </div>
 
           {/* Bio Text - Critical for LCP */}
           <CriticalBio />
 
           {/* Main CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 mt-8">
             {/* Main CTA - Let's Chat */}
             <CTAButton
               href="https://wa.me/19990137380"

@@ -244,26 +244,7 @@ select:focus-visible {
   --color-subtitle: hsl(var(--muted));
 }
 
-/* Alto contraste (ativado via .high-contrast no html) */
-.high-contrast {
-  --color-bg: #ffffff;
-  --color-surface: #ffffff;
-  --color-primary: #000000;
-  --color-primary-light: #000000;
-  --color-primary-dark: #000000;
-  --color-accent: #000000;
-  --color-accent-light: #000000;
-  --color-neutral: #000000;
-  --color-neutral-dark: #000000;
-  --color-text: #000000;
-  --color-muted: #000000;
-  --color-border: #000000;
-  --color-card-bg: #ffffff;
-  --color-link: #000000;
-  --color-link-hover: #000000;
-  --shadow: 0 0 0 2px #000000;
-  --shadow-lg: 0 0 0 3px #000000;
-}
+/* Alto contraste removido - implementação completa em high-contrast-complete.css */
 
 /* Texto grande (ativado via .large-text no html) */
 .large-text {

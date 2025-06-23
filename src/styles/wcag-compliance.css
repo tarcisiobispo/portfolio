@@ -170,43 +170,7 @@
 }
 
 /* ===== MODO ALTO CONTRASTE ===== */
-
-/* Quando o usuário ativa alto contraste no sistema */
-@media (prefers-contrast: more) {
-  :root {
-    --wcag-text-primary: #000000;
-    --wcag-text-secondary: #000000;
-    --wcag-text-muted: #000000;
-    --wcag-blue-primary: #000000;
-    --wcag-blue-secondary: #000000;
-    --wcag-bg-primary: #ffffff;
-    --wcag-bg-secondary: #ffffff;
-    --wcag-bg-tertiary: #ffffff;
-  }
-  
-  [data-theme="dark"] {
-    --wcag-text-primary: #ffffff;
-    --wcag-text-secondary: #ffffff;
-    --wcag-text-muted: #ffffff;
-    --wcag-blue-primary: #ffffff;
-    --wcag-blue-secondary: #ffffff;
-    --wcag-bg-primary: #000000;
-    --wcag-bg-secondary: #000000;
-    --wcag-bg-tertiary: #000000;
-  }
-  
-  /* Forçar contraste máximo */
-  * {
-    color: var(--wcag-text-primary) !important;
-    background-color: var(--wcag-bg-primary) !important;
-    border-color: var(--wcag-text-primary) !important;
-  }
-  
-  /* Exceções para imagens e ícones */
-  img, svg, video {
-    filter: contrast(200%) !important;
-  }
-}
+/* Implementação completa movida para high-contrast-complete.css */
 
 /* ===== VERIFICAÇÃO DE CONTRASTE ===== */
 

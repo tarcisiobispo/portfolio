@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Project Showcase</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        .project-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .button {
+            background: #3b82f6;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        .button:hover {
+            background: #2563eb;
+        }
+        .expanded-content {
+            margin-top: 16px;
+            padding: 16px;
+            background: #f9f9f9;
+            border: 1px solid #e5e5e5;
+            border-radius: 4px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Debug Project Showcase - Problema do Botão</h1>
+    
+    <div class="project-card" data-card="0">
+        <h3>Projeto 1</h3>
+        <p>Descrição do primeiro projeto</p>
+        <button class="button" onclick="toggleProject(0, event)">Ver detalhes</button>
+        <div class="expanded-content hidden" id="content-0">
+            <h4>Conteúdo expandido do Projeto 1</h4>
+            <p>Detalhes específicos do primeiro projeto...</p>
+        </div>
+    </div>
+
+    <div class="project-card" data-card="1">
+        <h3>Projeto 2</h3>
+        <p>Descrição do segundo projeto</p>
+        <button class="button" onclick="toggleProject(1, event)">Ver detalhes</button>
+        <div class="expanded-content hidden" id="content-1">
+            <h4>Conteúdo expandido do Projeto 2</h4>
+            <p>Detalhes específicos do segundo projeto...</p>
+        </div>
+    </div>
+
+    <div class="project-card" data-card="2">
+        <h3>Projeto 3</h3>
+        <p>Descrição do terceiro projeto</p>
+        <button class="button" onclick="toggleProject(2, event)">Ver detalhes</button>
+        <div class="expanded-content hidden" id="content-2">
+            <h4>Conteúdo expandido do Projeto 3</h4>
+            <p>Detalhes específicos do terceiro projeto...</p>
+        </div>
+    </div>
+
+    <script>
+        let activeIndex = null;
+
+        function toggleProject(index, event) {
+            console.log('toggleProject called with index:', index);
+            console.log('Event target:', event.target);
+            console.log('Current activeIndex:', activeIndex);
+            
+            // Prevent event propagation
+            if (event) {
+                event.stopPropagation();
+                event.preventDefault();
+            }
+
+            // Close current active if it's the same
+            if (activeIndex === index) {
+                document.getElementById('content-' + activeIndex).classList.add('hidden');
+                activeIndex = null;
+                return;
+            }
+
+            // Close previous active
+            if (activeIndex !== null) {
+                document.getElementById('content-' + activeIndex).classList.add('hidden');
+            }
+
+            // Open new one
+            document.getElementById('content-' + index).classList.remove('hidden');
+            activeIndex = index;
+            
+            console.log('New activeIndex:', activeIndex);
+        }
+    </script>
+</body>
+</html>

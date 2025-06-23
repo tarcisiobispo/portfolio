@@ -9,7 +9,11 @@ const LANGUAGES = [
   { code: 'es-ES', label: 'Español', nativeName: 'Español' },
 ];
 
-export const LanguageSwitcher: React.FC = () => {
+interface LanguageSwitcherProps {
+  className?: string;
+}
+
+export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className = '' }) => {
   const [open, setOpen] = useState(false);
   const [focusedIndex, setFocusedIndex] = useState(-1);
   const { i18n, t } = useTranslation();

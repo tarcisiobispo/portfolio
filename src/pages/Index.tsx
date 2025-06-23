@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Profile from '../components/Profile';
 import SkipLink from '@/components/SkipLink';
@@ -7,6 +7,8 @@ import LoadingSpinner from '@/components/LoadingSpinner';
 import { mainPageSchema } from '@/utils/structuredData';
 import { usePrefetch, useImagePrefetch } from '@/hooks/usePrefetch';
 import { usePageTracking } from '@/hooks/useAnalytics';
+import { ProjectSkeleton, ProfileSkeleton, BacklogSkeleton, ContactSkeleton } from '@/components/ui/ProjectSkeleton';
+import Container from '@/components/Layout/Container';
 
 // Lazy loading dos componentes pesados para melhor performance
 const ProjectShowcase = React.lazy(() => import('../components/ProjectShowcase'));
@@ -16,11 +18,22 @@ const Footer = React.lazy(() => import('@/components/Footer'));
 
 const Index = () => {
   const { trackPageView } = usePageTracking();
+  const [isLoading, setIsLoading] = useState(true);
 
   // Track page view on component mount
   useEffect(() => {
     trackPageView();
   }, [trackPageView]);
+  
+  // Simular carregamento inicial
+  useEffect(() => {
+    // Definir um tempo mínimo de carregamento para evitar flash de conteúdo
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 800);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   const profileData = {
     name: "Tarcisio Bispo de Araujo"
@@ -67,19 +80,16 @@ const Index = () => {
     <SkipLink />
     <main id="main-content" className="flex-1 w-full relative transition-colors duration-300">
       {/* Hero Section */}
-      <div id="perfil" className="relative overflow-hidden">
-
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <section id="perfil" className="relative overflow-hidden">
+        <Container>
           {/* Profile Section */}
-          <Profile {...profileData} />
-
-
-        </div>
-      </div>
+          <Profile {...profileData} loading={isLoading} />
+        </Container>
+      </section>
 
       {/* Projects Section */}
-      <section id="projetos" className="py-12 relative" aria-labelledby="projects-heading">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="projetos" className="relative" aria-labelledby="projects-heading">
+        <Container>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -87,16 +97,22 @@ const Index = () => {
             transition={{ duration: 0.8 }}
           >
             <h2 id="projects-heading" className="sr-only">Projetos de UX Design</h2>
-            <Suspense fallback={<LoadingSpinner />}>
-              <ProjectShowcase projects={projects} />
+            <Suspense fallback={
+              <div className="projects-grid">
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <ProjectSkeleton key={i} />
+                ))}
+              </div>
+            }>
+              <ProjectShowcase projects={projects} loading={isLoading} />
             </Suspense>
           </motion.div>
-        </div>
+        </Container>
       </section>
 
       {/* Backlog Cycle Section */}
-      <section id="backlog" className="py-12 relative transition-colors duration-300" aria-labelledby="backlog-heading">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <section id="backlog" className="relative transition-colors duration-300" aria-labelledby="backlog-heading">
+        <Container>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -104,16 +120,16 @@ const Index = () => {
             transition={{ duration: 0.8 }}
           >
             <h2 id="backlog-heading" className="sr-only">Backlog Estratégico</h2>
-            <Suspense fallback={<LoadingSpinner />}>
-              <BacklogCycle />
+            <Suspense fallback={<BacklogSkeleton />}>
+              <BacklogCycle loading={isLoading} />
             </Suspense>
           </motion.div>
-        </div>
+        </Container>
       </section>
 
       {/* Contact Section */}
-      <section id="contato" className="py-12 relative" aria-labelledby="contact-heading">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="contato" className="relative" aria-labelledby="contact-heading">
+        <Container>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -121,17 +137,19 @@ const Index = () => {
             transition={{ duration: 0.8 }}
           >
             <h2 id="contact-heading" className="sr-only">Contato</h2>
-            <Suspense fallback={<LoadingSpinner />}>
+            <Suspense fallback={<ContactSkeleton />}>
               <Contact />
             </Suspense>
           </motion.div>
-        </div>
+        </Container>
       </section>
 
     </main>
 
     <Suspense fallback={<LoadingSpinner />}>
-      <Footer />
+      <div className="w-full flex justify-center">
+        <Footer />
+      </div>
     </Suspense>
     </div>
   );

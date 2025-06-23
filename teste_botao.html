@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste - Problema do Botão Ver Detalhes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f0f0f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .project-card.active {
+            border-color: #3b82f6;
+            box-shadow: 0 4px 16px rgba(59, 130, 246, 0.2);
+        }
+        .project-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #1f2937;
+        }
+        .project-overview {
+            color: #6b7280;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .view-details-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            position: relative;
+            z-index: 10;
+        }
+        .view-details-btn:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+        .view-details-btn.active {
+            background: #6b7280;
+        }
+        .expanded-content {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f9fafb;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .expanded-content.hidden {
+            max-height: 0;
+            padding: 0 20px;
+            margin-top: 0;
+            opacity: 0;
+        }
+        .expanded-content.visible {
+            max-height: 1000px;
+            opacity: 1;
+        }
+        .section {
+            margin-bottom: 15px;
+        }
+        .section-title {
+            font-weight: bold;
+            color: #3b82f6;
+            margin-bottom: 5px;
+            border-left: 3px solid #3b82f6;
+            padding-left: 10px;
+        }
+        .section-content {
+            color: #6b7280;
+            line-height: 1.6;
+            padding-left: 13px;
+        }
+        .debug-info {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #1f2937;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 12px;
+            max-width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="debug-info" id="debug">
+        <div>Debug Info:</div>
+        <div id="debug-content">Aguardando interação...</div>
+    </div>
+
+    <h1>Teste: Problema do Botão "Ver detalhes"</h1>
+    <p>Clique nos botões "Ver detalhes" abaixo e observe se o comportamento está correto:</p>
+
+    <div class="container">
+        <!-- Projeto 1 -->
+        <div class="project-card" data-card-index="0" id="card-0">
+            <h2 class="project-title">Projeto FGV LAW</h2>
+            <p class="project-overview">
+                Este projeto envolveu uma reformulação completa da experiência digital para estudantes e professores.
+            </p>
+            <button 
+                class="view-details-btn" 
+                data-card-index="0"
+                onclick="toggleProject(0, event)"
+                id="btn-0"
+            >
+                Ver detalhes
+            </button>
+            <div class="expanded-content hidden" id="content-0">
+                <div class="section">
+                    <div class="section-title">Descoberta</div>
+                    <div class="section-content">Identificamos os principais pontos de atrito na navegação...</div>
+                </div>
+                <div class="section">
+                    <div class="section-title">Solução</div>
+                    <div class="section-content">Implementamos uma nova arquitetura de informação...</div>
+                </div>
+                <div class="section">
+                    <div class="section-title">Resultados</div>
+                    <div class="section-content">• Aumento de 45% no engajamento<br>• Redução de 30% no tempo de busca</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projeto 2 -->
+        <div class="project-card" data-card-index="1" id="card-1">
+            <h2 class="project-title">Projeto DireitoGV</h2>
+            <p class="project-overview">
+                Desenvolvimento de uma plataforma de pesquisa jurídica com funcionalidades avançadas.
+            </p>
+            <button 
+                class="view-details-btn" 
+                data-card-index="1"
+                onclick="toggleProject(1, event)"
+                id="btn-1"
+            >
+                Ver detalhes
+            </button>
+            <div class="expanded-content hidden" id="content-1">
+                <div class="section">
+                    <div class="section-title">Descoberta</div>
+                    <div class="section-content">Mapeamos o processo de pesquisa jurídica dos usuários...</div>
+                </div>
+                <div class="section">
+                    <div class="section-title">Solução</div>
+                    <div class="section-content">Criamos filtros inteligentes e busca semântica...</div>
+                </div>
+                <div class="section">
+                    <div class="section-title">Resultados</div>
+                    <div class="section-content">• Precisão de busca de 92%<br>• Economia de 60% no tempo de pesquisa</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projeto 3 -->
+        <div class="project-card" data-card-index="2" id="card-2">
+            <h2 class="project-title">Projeto Taliparts</h2>
+            <p class="project-overview">
+                Otimização de marketplace B2B com foco em validação digital e SEO.
+            </p>
+            <button 
+                class="view-details-btn" 
+                data-card-index="2"
+                onclick="toggleProject(2, event)"
+                id="btn-2"
+            >
+                Ver detalhes
+            </button>
+            <div class="expanded-content hidden" id="content-2">
+                <div class="section">
+                    <div class="section-title">Descoberta</div>
+                    <div class="section-content">Analisamos o comportamento de compra B2B...</div>
+                </div>
+                <div class="section">
+                    <div class="section-title">Solução</div>
+                    <div class="section-content">Implementamos validação em tempo real e otimização SEO...</div>
+                </div>
+                <div class="section">
+                    <div class="section-title">Resultados</div>
+                    <div class="section-content">• Conversão aumentou 38%<br>• Tráfego orgânico cresceu 125%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projeto 4 -->
+        <div class="project-card" data-card-index="3" id="card-3">
+            <h2 class="project-title">TV Institucional</h2>
+            <p class="project-overview">
+                Sistema de comunicação visual para ambientes corporativos com automação de conteúdo.
+            </p>
+            <button 
+                class="view-details-btn" 
+                data-card-index="3"
+                onclick="toggleProject(3, event)"
+                id="btn-3"
+            >
+                Ver detalhes
+            </button>
+            <div class="expanded-content hidden" id="content-3">
+                <div class="section">
+                    <div class="section-title">Descoberta</div>
+                    <div class="section-content">Identificamos a necessidade de comunicação visual eficaz...</div>
+                </div>
+                <div class="section">
+                    <div class="section-title">Solução</div>
+                    <div class="section-content">Desenvolvemos um sistema automatizado de gestão de conteúdo...</div>
+                </div>
+                <div class="section">
+                    <div class="section-title">Resultados</div>
+                    <div class="section-content">• Engajamento interno subiu 85%<br>• Redução de 70% no tempo de gestão</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let activeIndex = null;
+        
+        function updateDebug(message) {
+            const debugContent = document.getElementById('debug-content');
+            const timestamp = new Date().toLocaleTimeString();
+            debugContent.innerHTML = `[${timestamp}] ${message}`;
+        }
+
+        function toggleProject(index, event) {
+            updateDebug(`toggleProject chamado - Index: ${index}, ActiveIndex: ${activeIndex}`);
+            
+            // Prevenir propagação do evento
+            if (event) {
+                event.stopPropagation();
+                event.preventDefault();
+                updateDebug(`Evento propagado interrompido - Target: ${event.target.id}`);
+            }
+
+            const card = document.getElementById(`card-${index}`);
+            const content = document.getElementById(`content-${index}`);
+            const button = document.getElementById(`btn-${index}`);
+            
+            // Verificar se elementos existem
+            if (!card || !content || !button) {
+                updateDebug(`ERRO: Elementos não encontrados para index ${index}`);
+                return;
+            }
+
+            // Se o mesmo projeto já está ativo, feche-o
+            if (activeIndex === index) {
+                // Fechar projeto atual
+                content.classList.remove('visible');
+                content.classList.add('hidden');
+                card.classList.remove('active');
+                button.classList.remove('active');
+                button.textContent = 'Ver detalhes';
+                activeIndex = null;
+                updateDebug(`Projeto ${index} FECHADO`);
+                return;
+            }
+
+            // Fechar projeto anteriormente ativo (se houver)
+            if (activeIndex !== null) {
+                const prevCard = document.getElementById(`card-${activeIndex}`);
+                const prevContent = document.getElementById(`content-${activeIndex}`);
+                const prevButton = document.getElementById(`btn-${activeIndex}`);
+                
+                if (prevCard && prevContent && prevButton) {
+                    prevContent.classList.remove('visible');
+                    prevContent.classList.add('hidden');
+                    prevCard.classList.remove('active');
+                    prevButton.classList.remove('active');
+                    prevButton.textContent = 'Ver detalhes';
+                    updateDebug(`Projeto anterior ${activeIndex} fechado`);
+                }
+            }
+
+            // Abrir novo projeto
+            content.classList.remove('hidden');
+            content.classList.add('visible');
+            card.classList.add('active');
+            button.classList.add('active');
+            button.textContent = 'Ocultar detalhes';
+            activeIndex = index;
+            updateDebug(`Projeto ${index} ABERTO`);
+        }
+
+        // Adicionar listeners para detectar cliques nos cards
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('project-card')) {
+                updateDebug(`CLIQUE NO CARD: ${e.target.id}`);
+            } else if (e.target.classList.contains('view-details-btn')) {
+                updateDebug(`CLIQUE NO BOTÃO: ${e.target.id}`);
+            } else {
+                updateDebug(`CLIQUE EM: ${e.target.tagName} - ${e.target.className}`);
+            }
+        });
+    </script>
+</body>
+</html>

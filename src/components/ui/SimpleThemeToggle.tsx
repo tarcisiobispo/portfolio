@@ -4,7 +4,11 @@ import { useTheme } from '../providers/ThemeProvider';
 import { useTranslation } from 'react-i18next';
 import { useContextualToast } from '@/hooks/useContextualToast';
 
-export const SimpleThemeToggle: React.FC = () => {
+interface SimpleThemeToggleProps {
+  className?: string;
+}
+
+export const SimpleThemeToggle: React.FC<SimpleThemeToggleProps> = ({ className = '' }) => {
   const { theme, setTheme, resolvedTheme, isLoading } = useTheme();
   const { t } = useTranslation();
   const { showToast } = useContextualToast();
@@ -71,6 +75,7 @@ export const SimpleThemeToggle: React.FC = () => {
         }`}
         aria-hidden="true"
       />
+
 
       {/* Partículas de estrelas para modo escuro */}
       {resolvedTheme === 'light' && (

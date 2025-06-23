@@ -246,13 +246,6 @@ const resources = {
           enabled: "Alto contraste ativado",
           disabled: "Alto contraste desativado"
         },
-        readingMode: {
-          label: "Modo leitura",
-          enable: "Ativar modo leitura",
-          disable: "Desativar modo leitura",
-          enabled: "Modo leitura ativado",
-          disabled: "Modo leitura desativado"
-        },
         screenReader: {
           label: "Leitor de tela",
           enable: "Ativar leitor de tela",
@@ -271,7 +264,6 @@ const resources = {
           fontSizeDecrease: "Diminuir fonte",
           fontSizeReset: "Resetar fonte",
           highContrast: "Alto contraste",
-          readingMode: "Modo leitura",
           keyboardNavigation: "Navegação por teclado",
           screenReader: "Leitor de tela",
           readPage: "Ler página inteira",
@@ -771,13 +763,6 @@ const resources = {
           enabled: "High contrast enabled",
           disabled: "High contrast disabled"
         },
-        readingMode: {
-          label: "Reading mode",
-          enable: "Enable reading mode",
-          disable: "Disable reading mode",
-          enabled: "Reading mode enabled",
-          disabled: "Reading mode disabled"
-        },
         screenReader: {
           label: "Screen reader",
           enable: "Enable screen reader",
@@ -796,7 +781,6 @@ const resources = {
           fontSizeDecrease: "Decrease font",
           fontSizeReset: "Reset font",
           highContrast: "High contrast",
-          readingMode: "Reading mode",
           keyboardNavigation: "Keyboard navigation",
           screenReader: "Screen reader",
           readPage: "Read entire page",
@@ -1297,13 +1281,6 @@ const resources = {
           enabled: "Alto contraste activado",
           disabled: "Alto contraste desactivado"
         },
-        readingMode: {
-          label: "Modo lectura",
-          enable: "Activar modo lectura",
-          disable: "Desactivar modo lectura",
-          enabled: "Modo lectura activado",
-          disabled: "Modo lectura desactivado"
-        },
         screenReader: {
           label: "Lector de pantalla",
           enable: "Activar lector de pantalla",
@@ -1322,7 +1299,6 @@ const resources = {
           fontSizeDecrease: "Disminuir fuente",
           fontSizeReset: "Resetear fuente",
           highContrast: "Alto contraste",
-          readingMode: "Modo lectura",
           keyboardNavigation: "Navegación por teclado",
           screenReader: "Lector de pantalla",
           readPage: "Leer página completa",

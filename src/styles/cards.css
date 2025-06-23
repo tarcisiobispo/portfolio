@@ -10,6 +10,8 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   position: relative;
+  isolation: isolate; /* Isolar cada card para evitar que eventos se propaguem entre eles */
+  z-index: 1;
 }
 
 .project-card:hover {
@@ -215,6 +217,58 @@
 /* ===== CONTEÚDO DOS CARDS - CORRIGINDO TODOS OS PROBLEMAS ===== */
 .project-card-content {
   padding: 24px 32px; /* Espaçamento lateral correto */
+}
+
+/* Estilos para o conteúdo expandido dos cards */
+.expanded-content {
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+  position: relative !important;
+  z-index: 10 !important;
+  contain: layout !important; /* Isola o layout do card */
+}
+
+/* Garantir que o conteúdo interno preencha toda a largura */
+.expanded-content-inner {
+  width: calc(100% + 48px) !important; /* Compensar o padding do card */
+  box-sizing: border-box !important;
+  margin-left: -24px !important;
+  margin-right: -24px !important;
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+  border-left: none !important;
+  border-right: none !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* Ajustes específicos para o conteúdo expandido */
+.project-card .expanded-content-inner > div {
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Correção para grid layout - previne cards adjacentes expandirem */
+.project-card {
+  align-self: start !important;
+  height: fit-content !important;
+  contain: layout style !important;
+}
+
+/* Ajustes para telas maiores */
+@media (min-width: 1024px) {
+  .expanded-content-inner {
+    width: calc(100% + 64px) !important; /* Compensar o padding maior em telas grandes */
+    margin-left: -32px !important;
+    margin-right: -32px !important;
+    padding-left: 32px !important;
+    padding-right: 32px !important;
+  }
 }
 
 /* 🔹 1. TÍTULO - RESPIRO DA IMAGEM + TAMANHO MAIOR */

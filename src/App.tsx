@@ -1,3 +1,16 @@
+/**
+ * App.tsx - Componente principal da aplicação
+ * 
+ * Utiliza a nova estrutura de lazy loading que agrupa componentes relacionados
+ * para melhorar a organização do código e facilitar a manutenção.
+ * 
+ * Os componentes são agrupados em:
+ * - PageComponents: Páginas completas da aplicação
+ * - UIComponents: Componentes de interface do usuário
+ * - AnalyticsComponents: Componentes de análise e rastreamento
+ * - ContentComponents: Seções principais do site
+ */
+
 import * as React from 'react';
 import { Suspense, useEffect } from 'react';
 import { Toaster } from "@/components/ui/toaster";
@@ -8,28 +21,83 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 
+// Import lazy loading utilities and component groups
+import { 
+  PageComponents, 
+  UIComponents, 
+  AnalyticsComponents,
+  withLazyLoading
+} from '@/utils/lazyComponents';
+
 import LoadingSpinner from "@/components/LoadingSpinner";
 
 // Critical components loaded immediately
 import Header from "@/components/Header";
 
-// Lazy loading dos componentes de página para code splitting
-const Index = React.lazy(() => import("./pages/Index"));
-const NotFound = React.lazy(() => import("./pages/NotFound"));
-const PrivacyPolicy = React.lazy(() => import("./pages/PrivacyPolicy"));
+// Use the grouped lazy components
+const { Index, NotFound, PrivacyPolicy } = PageComponents;
+const { FluidGradientBackground, BackToTop, CookieConsent } = UIComponents;
+const { AnalyticsProvider, LazyScripts } = AnalyticsComponents;
 
-// Lazy loading de componentes pesados para reduzir bundle inicial
-const AnalyticsProvider = React.lazy(() => import("@/components/analytics/AnalyticsProvider"));
-const BackToTop = React.lazy(() => import("@/components/ui/BackToTop"));
-const FluidGradientBackground = React.lazy(() => import("@/components/FluidGradientBackground").then(module => ({ default: module.default })));
-const GradientSectionIndicator = React.lazy(() => import("@/components/FluidGradientBackground").then(module => ({ default: module.GradientSectionIndicator })));
-const FluidGradientDemo = React.lazy(() => import("@/components/examples/FluidGradientDemo"));
-const DebugTranslations = React.lazy(() => import("@/components/DebugTranslations"));
-const SoundDemo = React.lazy(() => import("@/components/ui/SoundDemo"));
-const LazyScripts = React.lazy(() => import("@/components/LazyScripts"));
-const CookieConsent = React.lazy(() => import("@/components/CookieConsent"));
+// Função para carregar componentes com tratamento de erro
+const lazyWithRetry = (componentImport) =>
+  React.lazy(async () => {
+    try {
+      return await componentImport();
+    } catch (error) {
+      console.error('Erro ao carregar componente:', error);
+      // Retorna um componente vazio em caso de erro
+      return { default: () => null };
+    }
+  });
+
+// Components not yet moved to the grouped structure
+const GradientSectionIndicator = lazyWithRetry(() => 
+  import("@/components/FluidGradientBackground")
+    .then(module => ({ default: module.GradientSectionIndicator }))
+    .catch(() => ({ default: () => null }))
+);
+
+const FluidGradientDemo = lazyWithRetry(() => import("@/components/examples/FluidGradientDemo"));
+const DebugTranslations = lazyWithRetry(() => import("@/components/DebugTranslations"));
+const SoundDemo = lazyWithRetry(() => import("@/components/ui/SoundDemo"));
+const ProjectShowcaseDebug = lazyWithRetry(() => import("@/components/ProjectShowcaseDebug"));
 
 const queryClient = new QueryClient();
+
+// Componente de fallback para erros
+class ErrorBoundary extends React.Component<{children: React.ReactNode, fallback?: React.ReactNode}> {
+  state = { hasError: false, error: null };
+
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.error('ErrorBoundary caught an error:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback || (
+        <div className="min-h-screen flex items-center justify-center p-4">
+          <div className="text-center">
+            <h2 className="text-xl font-bold mb-2">Algo deu errado</h2>
+            <p className="mb-4">Por favor, recarregue a página ou tente novamente mais tarde.</p>
+            <button 
+              onClick={() => window.location.reload()}
+              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            >
+              Recarregar Página
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    return this.props.children;
+  }
+}
 
 const App = () => {
   const { t } = useTranslation();
@@ -38,8 +106,14 @@ const App = () => {
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
-          <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><LoadingSpinner /></div>}>
-            <AnalyticsProvider>
+          <ErrorBoundary fallback={<div className="min-h-screen flex items-center justify-center">
+            <div className="text-center p-4">
+              <h2 className="text-xl font-bold mb-2">Ocorreu um erro</h2>
+              <p>Por favor, recarregue a página ou tente novamente mais tarde.</p>
+            </div>
+          </div>}>
+            <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><LoadingSpinner /></div>}>
+              <AnalyticsProvider>
 
             {/* Skip Link para Navegação por Teclado - Visível apenas com foco */}
             <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--color-primary)] focus:text-white focus:rounded-md focus:shadow-lg">
@@ -109,6 +183,7 @@ const App = () => {
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                {import.meta.env.DEV && <Route path="/debug-projects" element={<ProjectShowcaseDebug />} />}
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
@@ -116,9 +191,10 @@ const App = () => {
           </HashRouter>
           </AnalyticsProvider>
           </Suspense>
-        </TooltipProvider>
-      </QueryClientProvider>
-    </HelmetProvider>
+        </ErrorBoundary>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </HelmetProvider>
   );
 };
 

@@ -301,19 +301,19 @@ const Contact: React.FC = () => {
   }, [fieldValidationStates]);
 
   return (
-    <section id="contact" className="py-8">
+    <section id="contact" className="py-16">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="mb-12"
+        className="mb-16"
       >
-        <div className="max-w-2xl mx-auto text-left px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] mb-4">
+        <div className="text-left">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] mb-8">
             {t('contact.title')}
           </h1>
-          <p className="text-[var(--color-muted)] text-lg mb-4">
+          <p className="text-lg md:text-xl text-[var(--color-text-secondary)] leading-relaxed mb-8">
             {t('contact.description')}
           </p>
           {/* Linha Azul Animada - Similar ao Hero */}
@@ -331,7 +331,7 @@ const Contact: React.FC = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-        className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="max-w-[1200px] mx-auto"
       >
         <form onSubmit={handleSubmit} className="space-y-6" noValidate>
 

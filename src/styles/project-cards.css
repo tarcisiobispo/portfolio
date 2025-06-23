@@ -147,23 +147,23 @@
 /* ===== GRID RESPONSIVA ===== */
 .projects-grid {
   display: grid;
-  gap: 24px;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  max-width: 1200px;
+  gap: 32px; /* 8px system: 32px (gap-8) */
+  grid-template-columns: repeat(1, 1fr);
+  width: 100%;
+  /* Forçar 2 colunas em telas maiores */
+  max-width: 1100px; /* Aumentado de 900px para 1100px */
   margin: 0 auto;
-  padding: 0 32px; /* Mesmo padding do header */
 }
 
 /* ===== RESPONSIVIDADE ===== */
 @media (max-width: 768px) {
   .projects-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 0 16px; /* Consistente com header mobile */
+    gap: 32px; /* Mantendo consistência com gap-8 */
   }
 
   .project-card-content {
-    padding: 10px 20px 20px;
+    padding: 16px 24px 24px; /* p-6 */
   }
 
   .project-card-title {
@@ -171,21 +171,21 @@
   }
 
   .project-card-description {
-    font-size: 13px;
+    font-size: 14px;
   }
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 769px) {
   .projects-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 32px; /* Mantendo consistência com gap-8 */
+    max-width: 1100px; /* Aumentado de 900px para 1100px */
+    margin: 0 auto; /* Centralizar o grid */
   }
-}
-
-@media (min-width: 1025px) {
-  .projects-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+  
+  /* Aumentar o tamanho dos cards */
+  .project-card {
+    max-width: 100%;
   }
 }
 
@@ -208,14 +208,49 @@
   border-top: 1px solid #e5e7eb;
   margin-top: 20px;
   padding-top: 20px;
+  width: 100%; /* Garantir que ocupe toda a largura */
+  margin-left: 0; /* Remover qualquer margem lateral */
+  margin-right: 0;
+  box-sizing: border-box; /* Garantir que padding não aumente a largura */
 }
 
 .dark .project-expanded-content {
   border-color: #374151;
 }
 
+/* Garantir que o conteúdo expandido preencha todo o card */
+.expanded-content {
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+}
+
+/* Garantir que o conteúdo interno preencha toda a largura */
+.expanded-content-inner {
+  width: calc(100% + 48px) !important; /* Compensar o padding do card */
+  box-sizing: border-box !important;
+  margin-left: -24px !important;
+  margin-right: -24px !important;
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+}
+
+@media (min-width: 1024px) {
+  .expanded-content-inner {
+    width: calc(100% + 64px) !important; /* Compensar o padding maior em telas grandes */
+    margin-left: -32px !important;
+    margin-right: -32px !important;
+    padding-left: 32px !important;
+    padding-right: 32px !important;
+  }
+}
+
 .project-section {
   margin-bottom: 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .project-section-title {
@@ -237,6 +272,8 @@
   color: #6b7280;
   line-height: 1.6;
   padding-left: 15px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .dark .project-section-content {
@@ -248,6 +285,8 @@
   padding: 0;
   margin: 0;
   padding-left: 15px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .project-outcome-item {
@@ -258,6 +297,8 @@
   font-size: 13px;
   color: #6b7280;
   line-height: 1.6;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .dark .project-outcome-item {

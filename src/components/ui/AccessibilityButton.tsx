@@ -12,7 +12,6 @@ type AccessibilityOption = {
 
 export const AccessibilityButton: React.FC = () => {
   const [open, setOpen] = useState(false);
-  const [highContrast, setHighContrast] = useState(false);
   const [largeText, setLargeText] = useState(false);
   const [voiceOver, setVoiceOver] = useState(false);
   const [dyslexiaMode, setDyslexiaMode] = useState(false);
@@ -52,14 +51,7 @@ export const AccessibilityButton: React.FC = () => {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [open]);
 
-  // Aplicar alto contraste
-  useEffect(() => {
-    if (highContrast) {
-      document.documentElement.classList.add('high-contrast');
-    } else {
-      document.documentElement.classList.remove('high-contrast');
-    }
-  }, [highContrast]);
+
 
   // Aplicar texto grande
   useEffect(() => {
@@ -224,13 +216,6 @@ export const AccessibilityButton: React.FC = () => {
 
   const accessibilityOptions: AccessibilityOption[] = [
     {
-      id: 'contrast',
-      label: 'Alto Contraste',
-      icon: Eye,
-      i18nKey: 'alto-contraste',
-      action: () => setHighContrast(prev => !prev)
-    },
-    {
       id: 'text-size',
       label: 'Aumentar Fonte',
       icon: Type,
@@ -280,7 +265,7 @@ export const AccessibilityButton: React.FC = () => {
           {accessibilityOptions.map(option => (
             <button
               key={option.id}
-              className={`w-full flex items-center gap-2 px-4 py-2 text-left rounded-md transition-colors duration-200 focus:outline-none focus:bg-[var(--color-primary)]/10 focus:text-[var(--color-primary)] hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] ${option.id === 'contrast' && highContrast ? 'font-bold text-[var(--color-primary)]' : ''} ${option.id === 'text-size' && largeText ? 'font-bold text-[var(--color-primary)]' : ''} ${option.id === 'voice-over' && voiceOver ? 'font-bold text-[var(--color-primary)]' : ''} ${option.id === 'dyslexia' && dyslexiaMode ? 'font-bold text-[var(--color-primary)]' : ''}`}
+              className={`w-full flex items-center gap-2 px-4 py-2 text-left rounded-md transition-colors duration-200 focus:outline-none focus:bg-[var(--color-primary)]/10 focus:text-[var(--color-primary)] hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] ${option.id === 'text-size' && largeText ? 'font-bold text-[var(--color-primary)]' : ''} ${option.id === 'voice-over' && voiceOver ? 'font-bold text-[var(--color-primary)]' : ''} ${option.id === 'dyslexia' && dyslexiaMode ? 'font-bold text-[var(--color-primary)]' : ''}`}
               onClick={() => {
                 option.action();
                 // Mantém o menu aberto para permitir múltiplas seleções
@@ -291,8 +276,7 @@ export const AccessibilityButton: React.FC = () => {
                 {React.createElement(option.icon, { className: "w-4 h-4" })}
                 <span className="text-sm" data-i18n={option.i18nKey}>{option.label}</span>
               </span>
-              {((option.id === 'contrast' && highContrast) ||
-                (option.id === 'text-size' && largeText) ||
+              {((option.id === 'text-size' && largeText) ||
                 (option.id === 'voice-over' && voiceOver) ||
                 (option.id === 'dyslexia' && dyslexiaMode)) && (
                 <span className="ml-auto text-xs bg-[var(--color-primary)] text-white px-2 py-0.5 rounded-full" data-i18n="ativo">

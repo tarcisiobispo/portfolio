@@ -115,6 +115,7 @@ const SoundToggle: React.FC<SoundToggleProps> = ({
             }`}
             aria-hidden="true"
           />
+
         </motion.div>
 
         {/* Anel pulsante para indicar interatividade */}

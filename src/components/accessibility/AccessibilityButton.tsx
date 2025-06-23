@@ -3,8 +3,6 @@ import {
   Accessibility,
   X,
   Type,
-  Eye,
-  Focus,
   Volume2,
   Settings,
 } from 'lucide-react';
@@ -14,18 +12,18 @@ import { useTranslation } from 'react-i18next';
 
 interface AccessibilitySettings {
   fontSize: number;
-  highContrast: boolean;
-  focusMode: boolean;
   screenReader: boolean;
 }
 
-const AccessibilityButton: React.FC = () => {
+interface AccessibilityButtonProps {
+  className?: string;
+}
+
+const AccessibilityButton: React.FC<AccessibilityButtonProps> = ({ className = '' }) => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [settings, setSettings] = useState<AccessibilitySettings>({
     fontSize: 100,
-    highContrast: false,
-    focusMode: false,
     screenReader: false,
   });
   const [isMobile, setIsMobile] = useState(false);
@@ -68,20 +66,9 @@ const AccessibilityButton: React.FC = () => {
 
     // Tamanho da fonte - aplicar apenas ao elemento html para preservar proporções
     root.style.fontSize = `${newSettings.fontSize}%`;
-
-    // Alto contraste
-    if (newSettings.highContrast) {
-      root.classList.add('high-contrast');
-    } else {
-      root.classList.remove('high-contrast');
-    }
-
-    // Modo foco - não aplicar em mobile
-    if (newSettings.focusMode && !isMobile) {
-      root.classList.add('focus-mode');
-    } else {
-      root.classList.remove('focus-mode');
-    }
+    
+    // Remover classe focus-mode se existir
+    root.classList.remove('focus-mode');
   };
 
   // Navegação por teclado
@@ -248,8 +235,6 @@ const AccessibilityButton: React.FC = () => {
   const resetSettings = () => {
     const defaultSettings: AccessibilitySettings = {
       fontSize: 100,
-      highContrast: false,
-      focusMode: false,
       screenReader: false,
     };
 
@@ -278,6 +263,7 @@ const AccessibilityButton: React.FC = () => {
           className="w-5 h-5 transition-all duration-300 relative z-10 group-hover:text-purple-500"
           aria-hidden="true"
         />
+
       </button>
 
       {/* Menu de Acessibilidade */}
@@ -335,55 +321,7 @@ const AccessibilityButton: React.FC = () => {
                 </div>
               </div>
 
-              {/* Alto Contraste */}
-              <div className="flex items-center justify-between">
-                <label className="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
-                  <Eye size={16} />
-                  {t('accessibility.contrast.label')}
-                </label>
-                <button
-                  onClick={() => updateSetting('highContrast', !settings.highContrast,
-                    settings.highContrast ? t('accessibility.contrast.disabled') : t('accessibility.contrast.enabled'))}
-                  className={`
-                    relative w-12 h-6 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500
-                    ${settings.highContrast ? 'bg-blue-600' : 'bg-gray-300 dark:bg-gray-600'}
-                  `}
-                  aria-label={`${settings.highContrast ? t('accessibility.contrast.disable') : t('accessibility.contrast.enable')}`}
-                  aria-pressed={settings.highContrast}
-                >
-                  <div
-                    className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-200 ${
-                      settings.highContrast ? 'translate-x-6' : 'translate-x-0.5'
-                    }`}
-                  />
-                </button>
-              </div>
-
-              {/* Modo Foco - esconder em mobile */}
-              {!isMobile && (
-                <div className="flex items-center justify-between">
-                  <label className="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
-                    <Focus size={16} />
-                    {t('accessibility.readingMode.label')}
-                  </label>
-                  <button
-                    onClick={() => updateSetting('focusMode', !settings.focusMode,
-                      settings.focusMode ? t('accessibility.readingMode.disabled') : t('accessibility.readingMode.enabled'))}
-                    className={`
-                      relative w-12 h-6 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500
-                      ${settings.focusMode ? 'bg-blue-600' : 'bg-gray-300 dark:bg-gray-600'}
-                    `}
-                    aria-label={`${settings.focusMode ? t('accessibility.readingMode.disable') : t('accessibility.readingMode.enable')}`}
-                    aria-pressed={settings.focusMode}
-                  >
-                    <div
-                      className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-200 ${
-                        settings.focusMode ? 'translate-x-6' : 'translate-x-0.5'
-                      }`}
-                    />
-                  </button>
-                </div>
-              )}
+              {/* Modo de leitura removido */}
 
               {/* Leitor de Tela */}
               <div className="flex items-center justify-between">

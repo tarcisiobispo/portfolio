@@ -68,6 +68,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={isDisabled}
         aria-disabled={isDisabled}
+        data-shadcn-button
         {...props}
       >
         {loading && (

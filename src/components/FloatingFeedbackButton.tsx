@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MessageCircle } from 'lucide-react';
-import FeedbackModal from './FeedbackModal';
+import { LazyFeedbackModal } from '../utils/lazyComponents';
 import { useTranslation } from 'react-i18next';
 
 export const FloatingFeedbackButton: React.FC = () => {
@@ -45,7 +45,7 @@ export const FloatingFeedbackButton: React.FC = () => {
         <MessageCircle className="w-6 h-6" aria-hidden="true" />
       </button>
 
-      <FeedbackModal
+      <LazyFeedbackModal
         open={feedbackOpen}
         onClose={() => setFeedbackOpen(false)}
         section={activeSection}

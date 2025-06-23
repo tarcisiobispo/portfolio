@@ -54,7 +54,10 @@ export default {
         "Melhora na taxa de conversão de acessos em inscrições ou leads",
         "Redução do tempo de navegação até a escolha do curso desejado"
       ],
-      "insights": "A estrutura de navegação precisa guiar, não apenas mostrar. Clareza e agrupamento relevante influenciam diretamente a percepção de valor de um curso."
+      "insights": "A estrutura de navegação precisa guiar, não apenas mostrar. Clareza e agrupamento relevante influenciam diretamente a percepção de valor de um curso.",
+      "badges": [
+        "Navegação", "Usabilidade", "Arquitetura da Informação", "Testes com Usuários"
+      ]
     },
     "direitoGV": {
       "title": "Direito GV",
@@ -68,7 +71,10 @@ export default {
         "Aumento no número de visitas às páginas de pesquisadores",
         "Valorização institucional da produção acadêmica"
       ],
-      "insights": "Áreas institucionais ganham relevância quando são navegáveis, atualizadas e refletidas de forma estratégica na arquitetura da informação."
+      "insights": "Áreas institucionais ganham relevância quando são navegáveis, atualizadas e refletidas de forma estratégica na arquitetura da informação.",
+      "badges": [
+        "Mapas de Pesquisa", "Arquitetura da Informação", "Busca Avançada", "Gestão de Stakeholders"
+      ]
     },
     "taliparts": {
       "title": "Taliparts",
@@ -82,7 +88,10 @@ export default {
         "Redução de dúvidas dos compradores por melhorias nas descrições",
         "Criação de processo replicável de publicação + análise + reposicionamento"
       ],
-      "insights": "Validar digitalmente com baixo custo é possível — e necessário. A lógica de produto precisa considerar contexto físico, vocabulário técnico e diferenciais percebidos pelo cliente."
+      "insights": "Validar digitalmente com baixo custo é possível — e necessário. A lógica de produto precisa considerar contexto físico, vocabulário técnico e diferenciais percebidos pelo cliente.",
+      "badges": [
+        "Validação Digital", "SEO para Marketplace", "Padronização Visual", "Gestão de KPIs"
+      ]
     },
     "tvInstitucional": {
       "title": "FGV TV Institucional",
@@ -96,7 +105,10 @@ export default {
         "Retenção de mensagens em painéis muito superior a e-mails anteriores",
         "Reaproveitamento da solução por outros setores da escola"
       ],
-      "insights": "Ambientes físicos também são interfaces. Quando bem projetados, informam, engajam e conectam — sem precisar de login."
+      "insights": "Ambientes físicos também são interfaces. Quando bem projetados, informam, engajam e conectam — sem precisar de login.",
+      "badges": [
+        "Comunicação Visual", "Engajamento", "Automação de Conteúdo", "Design para Ambientes Físicos"
+      ]
     }
   },
   "backlog": {

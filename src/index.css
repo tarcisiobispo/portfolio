@@ -49,22 +49,20 @@ header a {
   to { transform: translateX(0); }
 }
 
-/* Esconder a seta de voltar ao topo em mobile */
+/* Ajustes para dispositivos móveis */
 @media (max-width: 768px) {
-  .back-to-top {
-    right: 2px !important;
-    bottom: 2px !important;
-    padding: 6px !important;
-  }
-  
-  .back-to-top svg {
-    width: 16px !important;
-    height: 16px !important;
-  }
-  
   /* Ajuste para compensar o header menor em mobile */
   body {
     padding-top: 50px;
+  }
+  
+  /* Estilos de fallback para o botão de voltar ao topo (caso o JS não carregue) */
+  .back-to-top {
+    transform: scale(0.85);
+    right: 12px !important;
+    bottom: 12px !important;
+    padding: 8px !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
   }
 }
 

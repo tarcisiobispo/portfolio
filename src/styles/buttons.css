@@ -188,6 +188,14 @@ LOCALIZAÇÃO: Profile.tsx, Contact.tsx, ProjectShowcase.tsx, BacklogCycle.tsx
 PADRÃO: Fluent Design + Nielsen Norman + W3C ARIA
 */
 
+/* Botões específicos para os cards de projeto */
+.project-card button {
+  pointer-events: auto !important;
+  position: relative !important;
+  z-index: 50 !important; /* Valor alto para garantir que esteja acima de outros elementos */
+  isolation: isolate !important; /* Isolar o botão do resto do card */
+}
+
 /* PRIMARY: Ação mais importante - CTA principal */
 .btn-primary,
 .cta-button.variant-primary {
