@@ -106,95 +106,115 @@ const App = () => {
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
-          <ErrorBoundary fallback={<div className="min-h-screen flex items-center justify-center">
-            <div className="text-center p-4">
-              <h2 className="text-xl font-bold mb-2">Ocorreu um erro</h2>
-              <p>Por favor, recarregue a página ou tente novamente mais tarde.</p>
-            </div>
-          </div>}>
-            <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><LoadingSpinner /></div>}>
-              <AnalyticsProvider>
-
-            {/* Skip Link para Navegação por Teclado - Visível apenas com foco */}
-            <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--color-primary)] focus:text-white focus:rounded-md focus:shadow-lg">
-              {t('accessibility.features.skipToContent')}
-            </a>
-
-            <Toaster />
-            <Sonner />
-
-            {/* Debug Translations - apenas em desenvolvimento */}
-            {import.meta.env.DEV && (
-              <Suspense fallback={null}>
-                <DebugTranslations />
-              </Suspense>
-            )}
-
-            {/* Sistema de Gradientes Fluidos */}
-            <Suspense fallback={null}>
-              <FluidGradientBackground />
-            </Suspense>
-
-            {/* Indicador de Seção (apenas em desenvolvimento) */}
-            {import.meta.env.DEV && (
-              <Suspense fallback={null}>
-                <GradientSectionIndicator />
-              </Suspense>
-            )}
-            {import.meta.env.DEV && (
-              <Suspense fallback={null}>
-                <FluidGradientDemo />
-              </Suspense>
-            )}
-
-            {/* Sound Demo - apenas em desenvolvimento */}
-            {import.meta.env.DEV && (
-              <div className="fixed bottom-4 right-4 z-50">
-                <Suspense fallback={null}>
-                  <SoundDemo />
-                </Suspense>
-              </div>
-            )}
-
-            {/* UX Premium Components */}
-            <Suspense fallback={null}>
-              <BackToTop />
-            </Suspense>
-
-            {/* Lazy load third-party scripts */}
-            <Suspense fallback={null}>
-              <LazyScripts delay={2000} />
-            </Suspense>
-
-            {/* Cookie Consent Banner */}
-            <Suspense fallback={null}>
-              <CookieConsent />
-            </Suspense>          <Header />          <HashRouter
-            future={{
-              v7_startTransition: true,
-              v7_relativeSplatPath: true
-            }}
-          >
-            <Suspense fallback={
+          <ErrorBoundary 
+            fallback={
               <div className="min-h-screen flex items-center justify-center">
-                <LoadingSpinner />
+                <div className="text-center p-4">
+                  <h2 className="text-xl font-bold mb-2">Ocorreu um erro</h2>
+                  <p>Por favor, recarregue a página ou tente novamente mais tarde.</p>
+                </div>
               </div>
-            }>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                {import.meta.env.DEV && <Route path="/debug-projects" element={<ProjectShowcaseDebug />} />}
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
+            }
+          >
+            <Suspense 
+              fallback={
+                <div className="min-h-screen flex items-center justify-center">
+                  <LoadingSpinner />
+                </div>
+              }
+            >
+              <AnalyticsProvider>
+                {/* Skip Link para Navegação por Teclado - Visível apenas com foco */}
+                <a 
+                  href="#main-content" 
+                  className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--color-primary)] focus:text-white focus:rounded-md focus:shadow-lg"
+                >
+                  {t('accessibility.features.skipToContent')}
+                </a>
+
+                <Toaster />
+                <Sonner />
+
+                {/* Debug Translations - apenas em desenvolvimento */}
+                {import.meta.env.DEV && (
+                  <Suspense fallback={null}>
+                    <DebugTranslations />
+                  </Suspense>
+                )}
+
+                {/* Sistema de Gradientes Fluidos */}
+                <Suspense fallback={null}>
+                  <FluidGradientBackground />
+                </Suspense>
+
+                {/* Indicador de Seção (apenas em desenvolvimento) */}
+                {import.meta.env.DEV && (
+                  <Suspense fallback={null}>
+                    <GradientSectionIndicator />
+                  </Suspense>
+                )}
+                {import.meta.env.DEV && (
+                  <Suspense fallback={null}>
+                    <FluidGradientDemo />
+                  </Suspense>
+                )}
+
+                {/* Sound Demo - apenas em desenvolvimento */}
+                {import.meta.env.DEV && (
+                  <div className="fixed bottom-4 right-4 z-50">
+                    <Suspense fallback={null}>
+                      <SoundDemo />
+                    </Suspense>
+                  </div>
+                )}
+
+                {/* UX Premium Components */}
+                <Suspense fallback={null}>
+                  <BackToTop />
+                </Suspense>
+
+                {/* Lazy load third-party scripts */}
+                <Suspense fallback={null}>
+                  <LazyScripts delay={2000} />
+                </Suspense>
+
+                {/* Cookie Consent Banner */}
+                <Suspense fallback={null}>
+                  <CookieConsent />
+                </Suspense>
+                
+                <Header />
+                
+                <HashRouter
+                  future={{
+                    v7_startTransition: true,
+                    v7_relativeSplatPath: true
+                  }}
+                >
+                  <Suspense 
+                    fallback={
+                      <div className="min-h-screen flex items-center justify-center">
+                        <LoadingSpinner />
+                      </div>
+                    }
+                  >
+                    <Routes>
+                      <Route path="/" element={<Index />} />
+                      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                      {import.meta.env.DEV && (
+                        <Route path="/debug-projects" element={<ProjectShowcaseDebug />} />
+                      )}
+                      {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                      <Route path="*" element={<NotFound />} />
+                    </Routes>
+                  </Suspense>
+                </HashRouter>
+              </AnalyticsProvider>
             </Suspense>
-          </HashRouter>
-          </AnalyticsProvider>
-          </Suspense>
-        </ErrorBoundary>
-      </TooltipProvider>
-    </QueryClientProvider>
-  </HelmetProvider>
+          </ErrorBoundary>
+        </TooltipProvider>
+      </QueryClientProvider>
+    </HelmetProvider>
   );
 };
 

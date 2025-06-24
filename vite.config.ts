@@ -243,7 +243,7 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
       'X-Content-Type-Options': 'nosniff',
       'X-Frame-Options': 'DENY',
       // Otimizações de carregamento
-      'Link': '</assets/css/critical.css>; rel=preload; as=style',
+      // Removendo referência direta ao critical.css pois já é importado no main.tsx
       'X-XSS-Protection': '1; mode=block',
       'Referrer-Policy': 'strict-origin-when-cross-origin'
     },
@@ -268,10 +268,8 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
       'X-XSS-Protection': '1; mode=block',
       'Referrer-Policy': 'strict-origin-when-cross-origin',
       // Otimizações de carregamento
-      'Link': [
-        '</assets/css/critical.css>; rel=preload; as=style',
-        '</js/critical.js>; rel=preload; as=script'
-      ]
+      // Removidas referências diretas a arquivos críticos que já são gerenciados pelo Vite
+      'Link': ''
     },
     // Configurações de desempenho
     open: true,
