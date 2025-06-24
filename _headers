@@ -1,32 +1,62 @@
-# Cache headers for GitHub Pages
-# Assets with hash in filename - cache for 1 year
-/js/*
+# Otimização de Cache para GitHub Pages
+
+# JavaScript - 1 ano para arquivos com hash (imutáveis)
+/assets/*.js
   Cache-Control: public, max-age=31536000, immutable
 
-/css/*
+# CSS - 1 ano para arquivos com hash (imutáveis)
+/assets/*.css
   Cache-Control: public, max-age=31536000, immutable
 
-/images/*
+# Imagens e fontes - 1 ano (imutáveis)
+/assets/images/*
   Cache-Control: public, max-age=31536000, immutable
 
-/fonts/*
+/assets/fonts/*
   Cache-Control: public, max-age=31536000, immutable
 
-# HTML files - cache for 1 hour
+# Assets estáticos (sem hash) - 1 semana
+/assets/*.woff2
+/assets/*.woff
+/assets/*.ttf
+  Cache-Control: public, max-age=604800
+
+# Páginas HTML - 1 hora (para atualizações frequentes)
 /*.html
-  Cache-Control: public, max-age=3600
+  Cache-Control: public, max-age=3600, must-revalidate
 
-# Root HTML
+# Página inicial - 1 hora
 /
-  Cache-Control: public, max-age=3600
+  Cache-Control: public, max-age=3600, must-revalidate
 
-# Service worker - no cache
+# Service Worker - Sem cache
 /sw.js
-  Cache-Control: no-cache
+  Cache-Control: no-cache, no-store, must-revalidate
+  Service-Worker-Allowed: /
 
-# Manifest
+# Manifest e Web App Manifest - 1 dia
 /manifest.json
-  Cache-Control: public, max-age=86400
+/site.webmanifest
+  Cache-Control: public, max-age=86400, must-revalidate
+
+# Arquivos de dados estáticos - 1 mês
+/*.json
+  Cache-Control: public, max-age=2592000, must-revalidate
+
+# Arquivos de mídia - 1 mês
+/*.webp
+/*.png
+/*.jpg
+/*.jpeg
+/*.gif
+/*.svg
+  Cache-Control: public, max-age=2592000, must-revalidate
+
+# Fontes - 1 ano (otimizado para fontes com hash no nome)
+/*.woff2
+/*.woff
+/*.ttf
+  Cache-Control: public, max-age=31536000, immutable
 
 # Security headers
 /*
