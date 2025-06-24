@@ -144,11 +144,18 @@ p {
 .critical-bio-text {
   font-size: 1.125rem;
   line-height: 1.75;
-  color: var(--color-muted);
+  color: var(--color-text);
+  opacity: 0.9;
   max-width: 48rem;
   margin-bottom: 2rem;
   content-visibility: visible;
   will-change: auto;
+}
+
+/* Ajuste para dark mode */
+[data-theme="dark"] .critical-bio-text,
+.dark .critical-bio-text {
+  opacity: 0.95;
 }
 
 /* ===== OTIMIZAÇÕES DE IMAGEM ===== */

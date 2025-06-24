@@ -144,24 +144,40 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
           return `js/${facadeModuleId}-[hash].js`;
         },
 
-        // Nomeação de assets
+        // Nomeação de assets com hash para cache eficiente
         assetFileNames: (assetInfo) => {
-          const info = assetInfo.name?.split('.') || [];
-          const ext = info[info.length - 1];
-
-          if (/\.(png|jpe?g|svg|gif|tiff|bmp|ico)$/i.test(assetInfo.name || '')) {
-            return `images/[name]-[hash][extname]`;
-          }
-
-          if (/\.(css)$/i.test(assetInfo.name || '')) {
-            return `css/[name]-[hash][extname]`;
-          }
-
-          if (/\.(woff2?|eot|ttf|otf)$/i.test(assetInfo.name || '')) {
-            return `fonts/[name]-[hash][extname]`;
-          }
-
-          return `assets/[name]-[hash][extname]`;
+          if (!assetInfo.name) return 'assets/[name]-[hash][extname]';
+          
+          const info = assetInfo.name.split('.');
+          const ext = info[info.length - 1]?.toLowerCase() || '';
+          
+          // Mapeamento de extensões para pastas
+          const assetDirs: Record<string, string> = {
+            'css': 'assets/css',
+            'js': 'assets/js',
+            'jpg': 'assets/images',
+            'jpeg': 'assets/images',
+            'png': 'assets/images',
+            'svg': 'assets/images',
+            'webp': 'assets/images',
+            'gif': 'assets/images',
+            'woff': 'assets/fonts',
+            'woff2': 'assets/fonts',
+            'ttf': 'assets/fonts',
+            'eot': 'assets/fonts',
+            'json': 'assets/data'
+          };
+          
+          const assetDir = assetDirs[ext] || 'assets';
+          
+          // Para arquivos com hash, usar [hash] no nome para cache de longo prazo
+          const includeHash = [
+            'js', 'css', 'woff', 'woff2', 'ttf', 'eot',
+            'jpg', 'jpeg', 'png', 'webp', 'svg', 'gif'
+          ].includes(ext);
+          
+          const hash = includeHash ? '.[hash]' : '';
+          return `${assetDir}/[name]${hash}[extname]`;
         },
 
         // Entry file naming
