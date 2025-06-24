@@ -1,7 +1,7 @@
-/* ===== SISTEMA DE GRADIENTES FLUIDOS MODERNOS ===== */
-/* Gradientes que mudam conforme o scroll para diferenciar seções */
+/* ===== SISTEMA DE GRADIENTES FLUIDOS OTIMIZADOS ===== */
+/* Gradientes com desempenho otimizado e redução de repaints */
 
-/* Container principal com gradiente base */
+/* Container principal com otimizações de performance */
 .fluid-gradient-container {
   position: fixed;
   top: 0;
@@ -9,17 +9,33 @@
   width: 100%;
   height: 100vh;
   z-index: -1;
+  /* Gradiente base simplificado para melhor performance */
   background: linear-gradient(
     135deg,
-    rgba(59, 130, 246, 0.03) 0%,    /* Blue suave */
-    rgba(147, 51, 234, 0.02) 25%,   /* Purple suave */
-    rgba(16, 185, 129, 0.03) 50%,   /* Emerald suave */
-    rgba(236, 72, 153, 0.02) 75%,   /* Pink suave */
-    rgba(59, 130, 246, 0.03) 100%   /* Blue suave */
+    rgba(59, 130, 246, 0.03) 0%,
+    rgba(16, 185, 129, 0.03) 100%
   );
-  background-size: 400% 400%;
-  animation: fluidGradientBase 20s ease-in-out infinite;
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  background-size: 200% 200%;
+  /* Otimizações de performance */
+  will-change: transform, background-position;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  /* Suavização de animação */
+  transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Forçar aceleração por hardware */
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+}
+
+/* Animações otimizadas com preferências de redução de movimento */
+@media (prefers-reduced-motion: no-preference) {
+  .fluid-gradient-container {
+    animation: fluidGradientBase 30s ease-in-out infinite;
+  }
 }
 
 /* Animação base do gradiente */
@@ -41,8 +57,12 @@
     rgba(219, 234, 254, 0.03) 60%,  /* Very light blue */
     rgba(59, 130, 246, 0.06) 100%   /* Blue médio */
   );
-  background-size: 300% 300%;
-  animation: fluidProfile 15s ease-in-out infinite;
+  background-size: 200% 200%;
+  will-change: background-position;
+  animation: fluidProfile 25s ease-in-out infinite;
+  animation-play-state: running;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 @keyframes fluidProfile {
@@ -59,8 +79,12 @@
     rgba(167, 243, 208, 0.03) 60%,  /* Very light emerald */
     rgba(16, 185, 129, 0.06) 100%   /* Emerald médio */
   );
-  background-size: 350% 350%;
-  animation: fluidProjects 18s ease-in-out infinite;
+  background-size: 200% 200%;
+  will-change: background-position;
+  animation: fluidProjects 25s ease-in-out infinite;
+  animation-play-state: running;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 @keyframes fluidProjects {
@@ -78,8 +102,12 @@
     rgba(221, 214, 254, 0.03) 60%,  /* Very light purple */
     rgba(147, 51, 234, 0.06) 100%   /* Purple médio */
   );
-  background-size: 320% 320%;
-  animation: fluidBacklog 16s ease-in-out infinite;
+  background-size: 200% 200%;
+  will-change: background-position;
+  animation: fluidBacklog 25s ease-in-out infinite;
+  animation-play-state: running;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 @keyframes fluidBacklog {
@@ -96,8 +124,12 @@
     rgba(254, 205, 211, 0.03) 60%,  /* Very light pink */
     rgba(236, 72, 153, 0.06) 100%   /* Pink médio */
   );
-  background-size: 280% 280%;
-  animation: fluidContact 14s ease-in-out infinite;
+  background-size: 200% 200%;
+  will-change: background-position;
+  animation: fluidContact 25s ease-in-out infinite;
+  animation-play-state: running;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 @keyframes fluidContact {
@@ -105,9 +137,10 @@
   50% { background-position: 0% 50%; }
 }
 
-/* ===== OVERLAY PATTERNS MODERNOS ===== */
+/* ===== OVERLAY PATTERNS OTIMIZADOS ===== */
+/* Padrões visuais otimizados para melhor desempenho */
 
-/* Padrão de pontos sutis */
+/* Padrão de pontos sutis - otimizado */
 .fluid-gradient-container::before {
   content: '';
   position: absolute;
@@ -115,22 +148,18 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: radial-gradient(
-    circle at 1px 1px,
-    rgba(255, 255, 255, 0.15) 1px,
-    transparent 0
-  );
+  /* Usar um SVG para o padrão de pontos (melhor performance) */
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='rgba(255, 255, 255, 0.15)' fill-opacity='0.3'/%3E%3C/svg%3E");
   background-size: 20px 20px;
-  opacity: 0.3;
-  animation: patternMove 25s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  pointer-events: none;
+  /* Reduzir a opacidade para melhor desempenho */
+  opacity: 0.2;
 }
 
-@keyframes patternMove {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(20px, 20px); }
-}
-
-/* Efeito de brilho sutil */
+/* Efeito de brilho sutil - otimizado */
 .fluid-gradient-container::after {
   content: '';
   position: absolute;
@@ -138,21 +167,48 @@
   left: -50%;
   width: 200%;
   height: 200%;
+  /* Gradiente radial otimizado */
   background: radial-gradient(
     circle at center,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0.05) 30%,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.03) 40%,
     transparent 70%
   );
-  animation: glowMove 30s ease-in-out infinite;
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
   pointer-events: none;
+  /* Reduzir a opacidade para melhor desempenho */
+  opacity: 0.15;
+}
+
+/* Animações apenas quando não houver preferência por redução de movimento */
+@media (prefers-reduced-motion: no-preference) {
+  .fluid-gradient-container::before {
+    animation: patternMove 40s linear infinite;
+  }
+  
+  .fluid-gradient-container::after {
+    animation: glowMove 50s ease-in-out infinite;
+  }
+}
+
+/* Animações otimizadas com will-change e transform */
+@keyframes patternMove {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(20px, 20px, 0); }
 }
 
 @keyframes glowMove {
-  0%, 100% { transform: translate(-25%, -25%) rotate(0deg); }
-  25% { transform: translate(-15%, -35%) rotate(90deg); }
-  50% { transform: translate(-35%, -15%) rotate(180deg); }
-  75% { transform: translate(-25%, -25%) rotate(270deg); }
+  0%, 100% { 
+    transform: translate3d(-25%, -25%, 0) rotate(0deg);
+  }
+  33% { 
+    transform: translate3d(-15%, -35%, 0) rotate(120deg);
+  }
+  66% { 
+    transform: translate3d(-35%, -15%, 0) rotate(240deg);
+  }
 }
 
 /* ===== MODO ESCURO ===== */
