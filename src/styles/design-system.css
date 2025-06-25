@@ -66,10 +66,10 @@ select:focus-visible {
 
   /* Neutral Color System */
   --background: 210 40% 98%;
-  --foreground: 222 84% 5%;
+  --foreground: 220 15% 12%; /* Preto quase puro para texto principal */
   --surface: 0 0% 100%;
-  --muted: 215 9% 24%; /* Gray 700 - ~8:1 contrast on white */
-  --muted-foreground: 215 15% 50%;
+  --muted: 220 10% 40%; /* Cinza escuro para texto secundário */
+  --muted-foreground: 220 8% 60%; /* Cinza médio para texto leve */
   --border: 214 32% 91%;
   --input: 214 32% 91%;
   --ring: 217 91% 60%;
@@ -77,7 +77,7 @@ select:focus-visible {
   /* Semantic Colors */
   --success: 142 71% 45%;
   --success-foreground: 138 76% 97%;
-  --error: 0 72% 45%; /* Red 700 - AA contrast */
+  --error: 0 80% 35%; /* Vermelho escuro para erros */
   --error-foreground: 0 100% 98%;
   --warning: 45 93% 47%;
   --warning-foreground: 48 100% 96%;

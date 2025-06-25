@@ -135,7 +135,7 @@ export default function Header() {
             <img 
               src={theme === 'dark' ? logoDark : logoLight} 
               alt="Logo" 
-              className="h-[48px] w-auto object-contain" /* Aumentado para 48px */
+              className="h-[64px] md:h-[72px] w-auto object-contain" // Logo maior e responsiva
             />
           </a>
           
