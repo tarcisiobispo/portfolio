@@ -29,13 +29,13 @@ import LoadingSpinner from "@/components/LoadingSpinner";
 import Header from "@/components/Header";
 
 // Use the grouped lazy components
-const Index = lazyWithRetry(() => import('@/pages/Index'));
-const NotFound = lazyWithRetry(() => import('@/pages/NotFound'));
-const PrivacyPolicy = lazyWithRetry(() => import('@/pages/PrivacyPolicy'));
-const FluidGradientBackground = lazyWithRetry(() => import('@/components/FluidGradientBackground'));
-const CookieConsent = lazyWithRetry(() => import('@/components/CookieConsent'));
-const AnalyticsProvider = lazyWithRetry(() => import('@/components/analytics/AnalyticsProvider'));
-const LazyScripts = lazyWithRetry(() => import('@/components/LazyScripts'));
+const Index = lazyWithRetry(() => import('@/pages/Index').then(m => ({ default: m.default })));
+const NotFound = lazyWithRetry(() => import('@/pages/NotFound').then(m => ({ default: m.default })));
+const PrivacyPolicy = lazyWithRetry(() => import('@/pages/PrivacyPolicy').then(m => ({ default: m.default })));
+const FluidGradientBackground = lazyWithRetry(() => import('@/components/FluidGradientBackground').then(m => ({ default: m.default })));
+const CookieConsent = lazyWithRetry(() => import('@/components/CookieConsent').then(m => ({ default: m.default })));
+const AnalyticsProvider = lazyWithRetry(() => import('@/components/analytics/AnalyticsProvider').then(m => ({ default: m.default })));
+const LazyScripts = lazyWithRetry(() => import('@/components/LazyScripts').then(m => ({ default: m.default })));
 
 // Components not yet moved to the grouped structure
 const GradientSectionIndicator = lazyWithRetry(
@@ -59,7 +59,7 @@ const SoundDemo = withSuspense(
 );
 
 const ProjectShowcaseDebug = withSuspense(
-  lazyWithRetry(() => import("@/components/ProjectShowcaseDebug")),
+  lazyWithRetry(() => import("@/components/ProjectShowcaseDebug").then(m => ({ default: m.default }))),
   <div>Loading project showcase debugger...</div>
 );
 
