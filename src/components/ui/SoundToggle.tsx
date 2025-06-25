@@ -136,7 +136,7 @@ const SoundToggle: React.FC<SoundToggleProps> = ({
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex flex-col gap-2">
-              <label className="text-xs font-medium text-[var(--color-muted)] text-center">
+              <label htmlFor="volume-slider" className="text-xs font-medium text-[var(--color-muted)] text-center">
                 {t('sound.volume')}
               </label>
 
@@ -144,7 +144,7 @@ const SoundToggle: React.FC<SoundToggleProps> = ({
                 <Volume1 className="w-3 h-3 text-[var(--color-muted)]" />
 
                 <input
-                  type="range"
+                  id="volume-slider" type="range"
                   min="0"
                   max="1"
                   step="0.1"

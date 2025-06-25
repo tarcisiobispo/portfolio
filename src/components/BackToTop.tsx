@@ -1,45 +1,55 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowUp } from 'lucide-react';
-import { useNavigationSounds } from '@/hooks/useSound';
-import { useTranslation } from 'react-i18next';
 
-const BackToTop: React.FC = () => {
+const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const { playButtonHover, playButtonClick } = useNavigationSounds();
-  const { t } = useTranslation();
 
-  useEffect(() => {
-    const toggleVisibility = () => {
-      if (window.scrollY > 500) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-    };
+  // Mostra o botão quando o usuário rolar a página para baixo
+  const toggleVisibility = () => {
+    if (window.pageYOffset > 300) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  };
 
-    window.addEventListener('scroll', toggleVisibility);
-    return () => window.removeEventListener('scroll', toggleVisibility);
-  }, []);
-
+  // Rola a página suavemente para o topo
   const scrollToTop = () => {
-    playButtonClick();
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
   };
 
+  useEffect(() => {
+    window.addEventListener('scroll', toggleVisibility);
+    return () => {
+      window.removeEventListener('scroll', toggleVisibility);
+    };
+  }, []);
+
   return (
     <button
+      type="button"
       onClick={scrollToTop}
-      onMouseEnter={() => playButtonHover()}
-      className={`back-to-top fixed bottom-6 right-0 p-2 rounded-full bg-[var(--color-primary)] text-white shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-offset-2 md:right-6 md:p-3 hidden md:block ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
-      }`}
-      aria-label={t('tooltips.actions.backToTop')}
-      title={t('tooltips.actions.backToTop')}
+      className={`
+        fixed bottom-5 right-5 
+        md:bottom-8 md:right-8
+        w-12 h-12 md:w-14 md:h-14
+        bg-[var(--color-primary)] text-white 
+        rounded-full shadow-lg 
+        flex items-center justify-center 
+        transition-all duration-300 ease-in-out
+        hover:bg-[var(--color-primary-dark)] hover:scale-110
+        focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-primary)]
+        ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
+      `}
+      aria-label="Voltar ao topo"
+      style={{ visibility: isVisible ? 'visible' : 'hidden' }}
     >
-      <ArrowUp className="w-4 h-4 md:w-5 md:h-5" />
+      {/* Ícone de seta para cima */}
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
+      </svg>
     </button>
   );
 };

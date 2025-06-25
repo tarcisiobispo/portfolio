@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { MessageCircle } from 'lucide-react';
-import { LazyFeedbackModal } from '../utils/lazyComponents';
+import { lazyWithRetry } from '../utils/lazyWithRetry';
 import { useTranslation } from 'react-i18next';
+
+const LazyFeedbackModal = lazyWithRetry(() => import('./FeedbackModal'));
 
 export const FloatingFeedbackButton: React.FC = () => {
   const [feedbackOpen, setFeedbackOpen] = useState(false);

@@ -189,6 +189,12 @@ class SecureLogRocket {
       return;
     }
 
+    if (!appId) {
+      const error = new Error('SecureLogRocket: appId is required');
+      console.error(error);
+      throw error;
+    }
+
     try {
       // Install security interceptors before LogRocket initialization
       this.interceptor.install();
@@ -196,42 +202,103 @@ class SecureLogRocket {
       // Prevent deprecated unload event listeners
       this.preventDeprecatedEventListeners();
 
-      // Dynamically import LogRocket to ensure interceptors are in place
+      let LogRocketModule;
       try {
-        // Try to import LogRocket and handle different module formats
-        const LogRocketModule = await import('logrocket');
+        // Dynamically import LogRocket
+        LogRocketModule = await import('logrocket');
         
-        // Use type assertion to handle the module structure safely
-        this.logRocket = LogRocketModule as unknown as LogRocketInstance;
-        
-        // If LogRocket is exported as default (ESM), use that instead
-        if (typeof (this.logRocket as any).default === 'object') {
-          this.logRocket = (this.logRocket as any).default;
+        if (!LogRocketModule) {
+          throw new Error('Failed to import LogRocket module');
+        }
+
+        // Handle different module formats (CJS/ESM)
+        if (typeof LogRocketModule === 'object') {
+          // If it's an ESM module with default export
+          if ('default' in LogRocketModule) {
+            this.logRocket = LogRocketModule.default as unknown as LogRocketInstance;
+          } else {
+            // If it's a CJS module
+            this.logRocket = LogRocketModule as unknown as LogRocketInstance;
+          }
+        }
+
+        if (!this.logRocket || typeof this.logRocket.init !== 'function') {
+          throw new Error('LogRocket module is not properly exported');
         }
       } catch (importError) {
         console.error('SecureLogRocket: Error importing LogRocket:', importError);
-        throw importError;
+        // Don't throw here, we'll handle it below
       }
 
-      // Initialize with secure configuration
-      const secureConfig: LogRocketConfig = {
-        shouldAugmentNPS: false, // Disable NPS augmentation to prevent regex issues
-        shouldParseXHRBlob: false, // Disable blob parsing for security
-        network: {
-          isEnabled: true
-        },
-        ...config
-      };
+      if (!this.logRocket) {
+        // If we couldn't load LogRocket, create a mock implementation
+        console.warn('SecureLogRocket: LogRocket not available, using mock implementation');
+        this.logRocket = this.createMockImplementation();
+      }
 
-      this.logRocket.init(appId, secureConfig);
-      this.isInitialized = true;
+      try {
+        // Initialize with secure configuration
+        const secureConfig: LogRocketConfig = {
+          shouldAugmentNPS: false, // Disable NPS augmentation to prevent regex issues
+          shouldParseXHRBlob: false, // Disable blob parsing for security
+          network: {
+            isEnabled: true,
+            ...(config.network || {})
+          },
+          ...config
+        };
 
-      console.log('SecureLogRocket: Initialized successfully with security enhancements');
+        // Call the init method safely
+        if (typeof this.logRocket.init === 'function') {
+          this.logRocket.init(appId, secureConfig);
+          this.isInitialized = true;
+          console.log('SecureLogRocket: Initialized successfully with security enhancements');
+        } else {
+          console.warn('SecureLogRocket: init method not available');
+        }
+      } catch (initError) {
+        console.error('SecureLogRocket: Error during initialization:', initError);
+        // Continue with mock implementation
+        this.logRocket = this.createMockImplementation();
+        this.isInitialized = true;
+      }
     } catch (error) {
       console.error('SecureLogRocket: Failed to initialize:', error);
       this.interceptor.uninstall();
-      throw error;
+      // Continue with mock implementation
+      this.logRocket = this.createMockImplementation();
+      this.isInitialized = true;
     }
+  }
+
+  /**
+   * Create a mock implementation of LogRocket for when the real one fails to load
+   */
+  private createMockImplementation(): LogRocketInstance {
+    console.warn('SecureLogRocket: Using mock implementation');
+    
+    const noop = () => {};
+    const mockImplementation: LogRocketInstance = {
+      init: noop,
+      identify: (userId: string, userInfo?: Record<string, any>) => {
+        console.log(`[Mock] identify: ${userId}`, userInfo);
+      },
+      track: (eventName: string, properties?: Record<string, any>) => {
+        console.log(`[Mock] track: ${eventName}`, properties);
+      },
+      getSessionURL: (callback: (url: string) => void) => {
+        console.log('[Mock] getSessionURL');
+        callback('#');
+      },
+      captureMessage: (message: string, extra?: Record<string, any>) => {
+        console.log(`[Mock] captureMessage: ${message}`, extra);
+      },
+      captureException: (error: Error, extra?: Record<string, any>) => {
+        console.error('[Mock] captureException:', error, extra);
+      }
+    };
+    
+    return mockImplementation;
   }
 
   /**
@@ -239,14 +306,20 @@ class SecureLogRocket {
    */
   identify(userId: string, userInfo?: Record<string, any>): void {
     if (!this.logRocket) {
-      console.warn('SecureLogRocket: Not initialized');
-      return;
+      // If not initialized, create a mock implementation
+      this.logRocket = this.createMockImplementation();
+      this.isInitialized = true;
     }
 
     try {
       // Sanitize user info to prevent injection
       const sanitizedUserInfo = userInfo ? this.sanitizeUserInfo(userInfo) : undefined;
-      this.logRocket.identify(userId, sanitizedUserInfo);
+      
+      if (typeof this.logRocket.identify === 'function') {
+        this.logRocket.identify(userId, sanitizedUserInfo);
+      } else {
+        console.warn('SecureLogRocket: identify method not available');
+      }
     } catch (error) {
       console.error('SecureLogRocket: Error identifying user:', error);
     }

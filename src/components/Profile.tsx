@@ -69,7 +69,7 @@ const Profile: React.FC<ProfileProps> = ({ name, loading: externalLoading = fals
         >
           <div className="relative group p-8">
             {/* Card Container */}
-            <div className="profile-card relative rounded-3xl px-6 py-10 max-w-sm w-full transition-all duration-500">
+            <div className="profile-card relative rounded-3xl px-6 py-10 max-w-sm w-full overflow-hidden transition-all duration-500">
 
               {/* Subtle Gradient Background */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-purple-50/50 dark:from-blue-900/20 dark:via-transparent dark:to-purple-900/20 rounded-3xl"></div>

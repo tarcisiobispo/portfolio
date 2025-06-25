@@ -1,7 +1,8 @@
-import { lazy, Suspense } from 'react';
+import { Suspense } from 'react';
+import { lazyWithRetry } from '@/utils/lazyWithRetry';
 
 // Lazy load analytics components to reduce main thread work
-const AnalyticsProvider = lazy(() => import('./analytics/AnalyticsProvider'));
+const AnalyticsProvider = lazyWithRetry(() => import('./analytics/AnalyticsProvider'));
 
 /**
  * Lazy Analytics Loader

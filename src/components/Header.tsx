@@ -4,7 +4,9 @@ import SimpleThemeToggle from './ui/SimpleThemeToggle';
 import SoundToggle from './ui/SoundToggle';
 import { LanguageSwitcher } from './ui/LanguageSwitcher';
 import AccessibilityButton from './accessibility/AccessibilityButton';
-import { LazyFeedbackModal } from '../utils/lazyComponents';
+import { lazyWithRetry } from '../utils/lazyWithRetry';
+
+const LazyFeedbackModal = lazyWithRetry(() => import('./FeedbackModal'));
 import MobileMenu from './ui/MobileMenu';
 import MobileControls from './MobileControls';
 import { useTranslation } from 'react-i18next';

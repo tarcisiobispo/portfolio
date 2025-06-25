@@ -109,9 +109,3 @@
   }
 }
 
-/* Esconder a seta de voltar ao topo em mobile */
-@media (max-width: 768px) {
-  .back-to-top {
-    display: none !important;
-  }
-}

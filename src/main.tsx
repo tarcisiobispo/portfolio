@@ -15,7 +15,8 @@ import { initializeCSPSecurity } from './utils/cspSecurity'
 import { initializeWeb3 } from './utils/web3'
 
 // Import i18n synchronously to avoid translation errors
-import './i18n/config';
+import i18n from './i18n/config';
+import { I18nextProvider } from 'react-i18next';
 
 // Garantir que React está disponível globalmente
 if (typeof window !== 'undefined') {
@@ -48,8 +49,10 @@ if (typeof window !== 'undefined') {
 // Render immediately with critical content
 root.render(
   <React.StrictMode>
-    <ThemeProvider defaultTheme="system" storageKey="portfolio-theme">
-      <App />
-    </ThemeProvider>
+    <I18nextProvider i18n={i18n}>
+      <ThemeProvider defaultTheme="system" storageKey="portfolio-theme">
+        <App />
+      </ThemeProvider>
+    </I18nextProvider>
   </React.StrictMode>
 );

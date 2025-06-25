@@ -43,11 +43,11 @@ select:focus-visible {
   /* ===== DESIGN TOKENS - LIGHT MODE ===== */
 
   /* Primary Color System - Professional Blue */
-  --primary: 217 91% 60%;
+  --primary: 221 83% 53%;
   --primary-foreground: 210 40% 98%;
   --primary-50: 214 100% 97%;
   --primary-100: 214 95% 93%;
-  --primary-500: 217 91% 60%;
+  --primary-500: 221 83% 53%;
   --primary-600: 221 83% 53%;
   --primary-900: 224 64% 33%;
 
@@ -68,8 +68,8 @@ select:focus-visible {
   --background: 210 40% 98%;
   --foreground: 222 84% 5%;
   --surface: 0 0% 100%;
-  --muted: 215 16% 47%;
-  --muted-foreground: 215 20% 65%;
+  --muted: 215 9% 24%; /* Gray 700 - ~8:1 contrast on white */
+  --muted-foreground: 215 15% 50%;
   --border: 214 32% 91%;
   --input: 214 32% 91%;
   --ring: 217 91% 60%;
@@ -77,8 +77,8 @@ select:focus-visible {
   /* Semantic Colors */
   --success: 142 71% 45%;
   --success-foreground: 138 76% 97%;
-  --error: 0 84% 60%;
-  --error-foreground: 0 86% 97%;
+  --error: 0 72% 45%; /* Red 700 - AA contrast */
+  --error-foreground: 0 100% 98%;
   --warning: 45 93% 47%;
   --warning-foreground: 48 100% 96%;
 
@@ -101,6 +101,7 @@ select:focus-visible {
   --color-neutral-dark: hsl(var(--muted));
   --color-text: hsl(var(--foreground));
   --color-text-light: hsl(var(--muted-foreground));
+  --color-text-secondary: hsl(var(--muted));
   --color-muted: hsl(var(--muted));
   --color-success: hsl(var(--success));
   --color-error: hsl(var(--error));
@@ -205,7 +206,7 @@ select:focus-visible {
   /* Semantic Colors - Dark Mode */
   --success: 142 71% 45%;
   --success-foreground: 222 84% 5%;
-  --error: 0 84% 60%;
+  --error: 0 72% 45%; /* Red 700 - AA contrast */
   --error-foreground: 222 84% 5%;
   --warning: 45 93% 47%;
   --warning-foreground: 222 84% 5%;
@@ -229,6 +230,7 @@ select:focus-visible {
   --color-neutral-dark: hsl(var(--muted));
   --color-text: hsl(var(--foreground));
   --color-text-light: hsl(var(--muted-foreground));
+  --color-text-secondary: hsl(var(--muted));
   --color-muted: hsl(var(--muted));
   --color-success: hsl(var(--success));
   --color-error: hsl(var(--error));

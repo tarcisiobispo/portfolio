@@ -42,7 +42,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   
   return (
     <article 
-      className={`w-full bg-[var(--color-surface)] dark:bg-[var(--color-surface-dark)] rounded-2xl shadow-lg relative overflow-visible transition-all duration-300 ${
+      className={`w-full bg-[var(--color-surface)] dark:bg-[var(--color-surface-dark)] rounded-2xl shadow-lg relative overflow-hidden transition-all duration-300 ${
         isExpanded ? 'shadow-xl ring-1 ring-blue-500/20' : ''
       }`}
       aria-labelledby={`project-title-${title.replace(/\s+/g, '-').toLowerCase()}`}
@@ -50,7 +50,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     >
       {/* Imagem do projeto (se fornecida) */}
       {imageUrl && (
-        <div className="relative w-full h-48 sm:h-56 md:h-64 rounded-t-2xl overflow-hidden group/image">
+        <div className="relative w-full aspect-video overflow-hidden group/image">
           <img
             src={imageUrl}
             alt={`${title} - ${t('projects.projectImage')}`}
@@ -68,7 +68,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           <h2 id={`project-title-${title.replace(/\s+/g, '-').toLowerCase()}`} className="text-2xl font-semibold text-[var(--color-text)] w-full mb-3">
             {title}
           </h2>
-          <p id={`project-overview-${title.replace(/\s+/g, '-').toLowerCase()}`} className="text-base text-[var(--color-text-secondary)] w-full line-clamp-3 min-h-[4.5rem]">
+          <p id={`project-overview-${title.replace(/\s+/g, '-').toLowerCase()}`} className="text-base text-[var(--color-text-secondary)] w-full line-clamp-3">
             {overview}
           </p>
         </div>
@@ -98,7 +98,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           {isExpanded && (
             <motion.div
               initial={{ opacity: 0, height: 0, marginTop: 0 }}
-              animate={{ opacity: 1, height: 'auto', marginTop: 16 }}
+              animate={{ opacity: 1, height: 'auto', marginTop: '1rem' }}
               exit={{ opacity: 0, height: 0, marginTop: 0 }}
               transition={{
                 duration: 0.4,
@@ -107,7 +107,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               }}
               className="w-full overflow-hidden expanded-content"
             >
-              <div className="flex flex-col gap-4 sm:gap-6 w-full border-t border-gray-200 dark:border-gray-700 pt-4 sm:pt-6 mt-2 sm:mt-4 bg-gray-50 dark:bg-gray-800/30 shadow-inner expanded-content-inner" style={{ marginLeft: '-24px', marginRight: '-24px', width: 'calc(100% + 48px)', paddingLeft: '24px', paddingRight: '24px' }}>
+              <div className="flex flex-col gap-4 sm:gap-6 w-full border-t border-gray-200 dark:border-gray-700 pt-4 sm:pt-6 mt-2 sm:mt-4 bg-gray-50 dark:bg-gray-800/30 shadow-inner expanded-content-inner -mx-6 px-6">
                 
                 {/* Overview expandida */}
                 <div className="w-full">

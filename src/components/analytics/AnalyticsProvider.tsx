@@ -36,52 +36,70 @@ const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({ children }) => {
         return;
       }
 
+      // Verificar se o secureLogRocket está disponível
+      if (!secureLogRocket) {
+        console.warn('secureLogRocket não está disponível');
+        return;
+      }
+
       try {
         // Inicializar LogRocket com tratamento de erros
-        if (typeof secureLogRocket?.init === 'function') {
-          try {
-            secureLogRocket.init('fatqpp/portfolio-kbfin', {
-              shouldAugmentNPS: false,
-              shouldParseXHRBlob: false,
-              network: {
-                isEnabled: true,
-                requestSanitizer: (request: any) => {
-                  if (!request?.url) return request;
-                  
+        try {
+          // Usar o método init de forma segura
+          await secureLogRocket.init('fatqpp/portfolio-kbfin', {
+            shouldAugmentNPS: false,
+            shouldParseXHRBlob: false,
+            network: {
+              isEnabled: true,
+              requestSanitizer: (request: any) => {
+                if (!request?.url) return request;
+                
+                try {
+                  // Accept absolute or relative URLs
+                  let url: URL;
                   try {
-                    const url = new URL(request.url);
-                    const allowedDomains = [
-                      'tarcisiobispo.github.io',
-                      'logrocket.com',
-                      'logrocket.io',
-                      'clarity.ms',
-                      'clarity.microsoft.com',
-                      'google-analytics.com',
-                      'googletagmanager.com'
-                    ];
-                    
-                    const isAllowed = allowedDomains.some(domain => 
-                      url.hostname === domain || url.hostname.endsWith(`.${domain}`)
-                    );
-                    
-                    return isAllowed ? request : null;
-                  } catch (e) {
-                    return null;
+                    url = new URL(request.url);
+                  } catch {
+                    // Fallback to relative URL resolution against current origin
+                    url = new URL(request.url, window.location.origin);
                   }
+                  const allowedDomains = [
+                    'tarcisiobispo.github.io',
+                    'logrocket.com',
+                    'logrocket.io',
+                    'clarity.ms',
+                    'clarity.microsoft.com',
+                    'google-analytics.com',
+                    'googletagmanager.com'
+                  ];
+                  
+                  const isAllowed = allowedDomains.some(domain => 
+                    url.hostname === domain || url.hostname.endsWith(`.${domain}`)
+                  );
+                  
+                  return isAllowed ? request : null;
+                } catch (e) {
+                  console.warn('Erro ao processar URL:', e);
+                  return null;
                 }
               }
-            });
-            
-            // Identificar o usuário de forma segura
+            }
+          });
+          
+          // Se chegou até aqui, a inicialização foi bem-sucedida
+          // Identificar o usuário de forma segura
+          try {
             secureLogRocket.identify('portfolio-visitor', {
               type: 'portfolio-visitor',
               firstVisit: !localStorage.getItem('hasVisitedBefore')
             });
             
             localStorage.setItem('hasVisitedBefore', 'true');
-          } catch (error) {
-            console.error('Falha ao inicializar LogRocket:', error);
+          } catch (identifyError) {
+            console.warn('Erro ao identificar usuário no LogRocket:', identifyError);
           }
+        } catch (initError) {
+          console.error('Falha ao inicializar LogRocket:', initError);
         }
       } catch (error) {
         console.error('Erro na inicialização dos serviços de analytics:', error);
@@ -89,6 +107,11 @@ const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({ children }) => {
     };
 
     initializeAnalytics();
+    
+    // Cleanup function
+    return () => {
+      // Adicionar lógica de limpeza se necessário
+    };
   }, []);
 
   // Renderizar os componentes de analytics dentro de ErrorBoundary

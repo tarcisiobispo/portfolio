@@ -223,7 +223,7 @@ const AccessibilityButton: React.FC<AccessibilityButtonProps> = ({ className = '
   }, [settings.screenReader]);
 
   const increaseFontSize = () => {
-    const newSize = Math.min(settings.fontSize + 10, 150);
+    const newSize = Math.min(settings.fontSize + 10, 130);
     updateSetting('fontSize', newSize, `${t('accessibility.fontSize.label')}: ${newSize}%`);
   };
 
@@ -312,7 +312,7 @@ const AccessibilityButton: React.FC<AccessibilityButtonProps> = ({ className = '
                   </button>
                   <button
                     onClick={increaseFontSize}
-                    disabled={settings.fontSize >= 150}
+                    disabled={settings.fontSize >= 130}
                     className="px-3 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-200 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
                     aria-label={t('accessibility.fontSize.increaseLabel')}
                   >

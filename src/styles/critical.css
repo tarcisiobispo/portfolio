@@ -301,14 +301,14 @@ img[alt*="Logo"], img[alt*="logo"] {
   margin: 0 !important;
 }
 
-/* 2. Garantir que o botão de voltar ao topo não apareça no mobile */
+/* 2. Garantir que o botão de voltar ao topo apareça corretamente */
 .back-to-top {
-  display: none !important;
+  display: block !important;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 767px) {
   .back-to-top {
-    display: block !important;
+    display: none !important;
   }
 }
 

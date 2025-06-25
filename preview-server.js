@@ -45,10 +45,19 @@ const server = createServer(async (req, res) => {
   
   try {
     // Get the file path from the URL and sanitize it
-    const requestPath = req.url.split('?')[0];
+    let requestPath = req.url.split('?')[0];
+
+    // If the build was generated with base '/portfolio/', strip that prefix when serving locally
+    if (requestPath.startsWith('/portfolio/')) {
+      requestPath = requestPath.replace('/portfolio/', '/');
+    }
     
     // Prevent path traversal attacks by normalizing and validating the path
-    const normalizedPath = requestPath.replace(/^(\.\.(\/|\\|$))+/, '');
+    let normalizedPath = requestPath.replace(/^(\.\.(\/|\\|$))+/, '');
+    // Remove any leading slash so that path.join resolves relative to DIST_DIR
+    if (normalizedPath.startsWith('/')) {
+      normalizedPath = normalizedPath.slice(1);
+    }
     
     // Ensure the path doesn't contain any directory traversal sequences
     if (normalizedPath.includes('../') || normalizedPath.includes('..\\')) {
@@ -66,8 +75,8 @@ const server = createServer(async (req, res) => {
       return;
     }
     
-    // Default to index.html for root path
-    if (filePath === join(DIST_DIR, '/')) {
+    // Default to index.html for root path or '/portfolio/' path
+    if (filePath === join(DIST_DIR, '/') || filePath === join(DIST_DIR, 'portfolio')) {
       filePath = join(DIST_DIR, 'index.html');
     }
     

@@ -22,46 +22,47 @@ import { HelmetProvider } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 
 // Import lazy loading utilities and component groups
-import { 
-  PageComponents, 
-  UIComponents, 
-  AnalyticsComponents,
-  withLazyLoading
-} from '@/utils/lazyComponents';
-
+import { lazyWithRetry, withSuspense } from '@/utils/lazyWithRetry';
 import LoadingSpinner from "@/components/LoadingSpinner";
 
 // Critical components loaded immediately
 import Header from "@/components/Header";
 
 // Use the grouped lazy components
-const { Index, NotFound, PrivacyPolicy } = PageComponents;
-const { FluidGradientBackground, BackToTop, CookieConsent } = UIComponents;
-const { AnalyticsProvider, LazyScripts } = AnalyticsComponents;
-
-// Função para carregar componentes com tratamento de erro
-const lazyWithRetry = (componentImport) =>
-  React.lazy(async () => {
-    try {
-      return await componentImport();
-    } catch (error) {
-      console.error('Erro ao carregar componente:', error);
-      // Retorna um componente vazio em caso de erro
-      return { default: () => null };
-    }
-  });
+const Index = lazyWithRetry(() => import('@/pages/Index'));
+const NotFound = lazyWithRetry(() => import('@/pages/NotFound'));
+const PrivacyPolicy = lazyWithRetry(() => import('@/pages/PrivacyPolicy'));
+const FluidGradientBackground = lazyWithRetry(() => import('@/components/FluidGradientBackground'));
+const BackToTop = lazyWithRetry(() => import('@/components/BackToTop'));
+const CookieConsent = lazyWithRetry(() => import('@/components/CookieConsent'));
+const AnalyticsProvider = lazyWithRetry(() => import('@/components/analytics/AnalyticsProvider'));
+const LazyScripts = lazyWithRetry(() => import('@/components/LazyScripts'));
 
 // Components not yet moved to the grouped structure
-const GradientSectionIndicator = lazyWithRetry(() => 
-  import("@/components/FluidGradientBackground")
+const GradientSectionIndicator = lazyWithRetry(
+  () => import("@/components/FluidGradientBackground")
     .then(module => ({ default: module.GradientSectionIndicator }))
-    .catch(() => ({ default: () => null }))
 );
 
-const FluidGradientDemo = lazyWithRetry(() => import("@/components/examples/FluidGradientDemo"));
-const DebugTranslations = lazyWithRetry(() => import("@/components/DebugTranslations"));
-const SoundDemo = lazyWithRetry(() => import("@/components/ui/SoundDemo"));
-const ProjectShowcaseDebug = lazyWithRetry(() => import("@/components/ProjectShowcaseDebug"));
+const FluidGradientDemo = withSuspense(
+  lazyWithRetry(() => import("@/components/examples/FluidGradientDemo")),
+  <div>Loading demo...</div>
+);
+
+const DebugTranslations = withSuspense(
+  lazyWithRetry(() => import("@/components/DebugTranslations")),
+  <div>Loading translations...</div>
+);
+
+const SoundDemo = withSuspense(
+  lazyWithRetry(() => import("@/components/ui/SoundDemo")),
+  <div>Loading sound demo...</div>
+);
+
+const ProjectShowcaseDebug = withSuspense(
+  lazyWithRetry(() => import("@/components/ProjectShowcaseDebug")),
+  <div>Loading project showcase debugger...</div>
+);
 
 const queryClient = new QueryClient();
 

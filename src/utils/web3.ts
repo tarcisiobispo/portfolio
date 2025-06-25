@@ -15,7 +15,9 @@ export const isMetaMaskAvailable = (): boolean => {
  */
 export const getCurrentAddress = async (): Promise<string | null> => {
   if (!isMetaMaskAvailable()) {
-    console.warn('MetaMask not found. Web3 functionality will be disabled.');
+    if (process.env.NODE_ENV === 'development') {
+      console.warn('MetaMask not found. Web3 functionality will be disabled.');
+    }
     return null;
   }
 
@@ -33,7 +35,9 @@ export const getCurrentAddress = async (): Promise<string | null> => {
  */
 export const connectToMetaMask = async (): Promise<string | null> => {
   if (!isMetaMaskAvailable()) {
-    console.warn('MetaMask not found. Web3 functionality will be disabled.');
+    if (process.env.NODE_ENV === 'development') {
+      console.warn('MetaMask not found. Web3 functionality will be disabled.');
+    }
     return null;
   }
 
@@ -51,7 +55,9 @@ export const connectToMetaMask = async (): Promise<string | null> => {
  */
 export const getNetworkId = async (): Promise<string | null> => {
   if (!isMetaMaskAvailable()) {
-    console.warn('MetaMask not found. Web3 functionality will be disabled.');
+    if (process.env.NODE_ENV === 'development') {
+      console.warn('MetaMask not found. Web3 functionality will be disabled.');
+    }
     return null;
   }
 
@@ -84,7 +90,9 @@ export const initializeWeb3 = (): void => {
       window.dispatchEvent(new CustomEvent('web3ChainChanged', { detail: chainId }));
     });
   } else {
-    console.warn('MetaMask not found. Web3 functionality will be disabled.');
+    if (process.env.NODE_ENV === 'development') {
+      console.warn('MetaMask not found. Web3 functionality will be disabled.');
+    }
   }
 };
 

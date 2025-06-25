@@ -9,12 +9,13 @@ import { usePrefetch, useImagePrefetch } from '@/hooks/usePrefetch';
 import { usePageTracking } from '@/hooks/useAnalytics';
 import { ProjectSkeleton, ProfileSkeleton, BacklogSkeleton, ContactSkeleton } from '@/components/ui/ProjectSkeleton';
 import Container from '@/components/Layout/Container';
+import { lazyWithRetry } from '../utils/lazyWithRetry'; // Using relative path to avoid module resolution issues
 
 // Lazy loading dos componentes pesados para melhor performance
-const ProjectShowcase = React.lazy(() => import('../components/ProjectShowcase'));
-const BacklogCycle = React.lazy(() => import('../components/BacklogCycle'));
-const Contact = React.lazy(() => import('../components/Contact'));
-const Footer = React.lazy(() => import('@/components/Footer'));
+const ProjectShowcase = lazyWithRetry(() => import('../components/ProjectShowcase'));
+const BacklogCycle = lazyWithRetry(() => import('../components/BacklogCycle'));
+const Contact = lazyWithRetry(() => import('../components/Contact'));
+const Footer = lazyWithRetry(() => import('@/components/Footer'));
 
 const Index = () => {
   const { trackPageView } = usePageTracking();

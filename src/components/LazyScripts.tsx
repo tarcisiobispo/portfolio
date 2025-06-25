@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import type { GtagFunction } from '../types/global';
 
 /**
  * LazyScripts Component
@@ -56,9 +57,20 @@ const LazyScripts: React.FC<LazyScriptsProps> = ({
     }
   };
 
+  const ensureGtagStub = () => {
+    if (!('gtag' in window)) {
+      // Lightweight stub so calls won't error even if GA script is blocked by an ad-blocker
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).gtag = function(){
+        (window as any).dataLayer.push(arguments);
+      } as GtagFunction;
+    }
+  };
+
   const loadGoogleAnalytics = (): Promise<void> => {
     return new Promise((resolve, reject) => {
       // Check if already loaded
+      ensureGtagStub();
       if (window.gtag) {
         resolve();
         return;
@@ -70,12 +82,11 @@ const LazyScripts: React.FC<LazyScriptsProps> = ({
       script.onload = () => {
         // Initialize Google Analytics
         window.dataLayer = window.dataLayer || [];
-        function gtag(command: string, action: string, params?: any) {
+        const gtag: GtagFunction = function(command: string, action: string, params?: any) {
           window.dataLayer.push(arguments);
-        }
-        window.gtag = gtag;
-        gtag('js', new Date(), {});
-        gtag('config', 'G-3QCW5SKK73', {
+        };
+        window.gtag('js', new Date().toISOString());
+        window.gtag('config', 'G-3QCW5SKK73', {
           page_title: document.title,
           page_location: window.location.href
         });
@@ -124,26 +135,60 @@ const LazyScripts: React.FC<LazyScriptsProps> = ({
   };
 
   const loadMicrosoftClarity = (): Promise<void> => {
-    return new Promise((resolve, reject) => {
-      // Check if already loaded
-      if (window.clarity) {
+    return new Promise((resolve) => {
+      // Only load in production
+      if (!import.meta.env.PROD) {
+        console.log('Microsoft Clarity loading skipped in development');
         resolve();
         return;
       }
 
+      // Check if already loaded
+      if (window.clarity) {
+        console.log('Microsoft Clarity already loaded');
+        resolve();
+        return;
+      }
+
+      // Create script element with error handling
       const script = document.createElement('script');
       script.async = true;
-      script.src = 'https://www.clarity.ms/tag/rp64ayubme';
+      script.crossOrigin = 'anonymous';
+      
+      // Use a more reliable initialization method
+      script.innerHTML = `
+        (function(c,l,a,r,i,t,y){
+          try {
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            
+            // Set a flag to track if Clarity is ready
+            c['clarityReady'] = true;
+            
+            // Queue initialization
+            c[a]('identify', 'tarcisio-portfolio', 'Tarcísio Bispo Portfolio');
+            c[a]('set', 'portfolio_owner', 'Tarcisio Bispo de Araujo');
+            c[a]('set', 'portfolio_type', 'UX/Product Designer');
+            c[a]('set', 'portfolio_version', '2024');
+            c[a]('set', 'site_language', 'multi');
+            c[a]('event', 'portfolio_initialized');
+          } catch(e) {
+            console.error('Error initializing Clarity:', e);
+          }
+        })(window, document, 'clarity', 'script', 'rp64ayubme');
+      `;
+      
       script.onload = () => {
-        // Initialize Clarity
-        (function(c: any, l: any, a: any, r: any, i: any, t?: any, y?: any) {
-          c[a] = c[a] || function() { (c[a].q = c[a].q || []).push(arguments) };
-          t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
-          y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
-        })(window, document, "clarity", "script", "rp64ayubme", undefined, undefined);
+        console.log('Microsoft Clarity script loaded successfully');
         resolve();
       };
-      script.onerror = reject;
+      
+      script.onerror = (error) => {
+        console.error('Failed to load Microsoft Clarity script:', error);
+        resolve(); // Resolve instead of reject to prevent blocking other scripts
+      };
+      
       document.head.appendChild(script);
     });
   };
@@ -152,14 +197,6 @@ const LazyScripts: React.FC<LazyScriptsProps> = ({
   return null;
 };
 
-// Extend window interface for TypeScript
-declare global {
-  interface Window {
-    gtag: (command: string, action: string, params?: any) => void;
-    dataLayer: any[];
-    google_tag_manager: any;
-    clarity: (...args: any[]) => void;
-  }
-}
+// Window interface is now extended in src/types/global.d.ts
 
 export default LazyScripts;

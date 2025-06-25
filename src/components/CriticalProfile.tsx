@@ -19,7 +19,7 @@ const CriticalProfile: React.FC = () => {
         {/* Profile Image - LCP Element */}
         <div className="lg:col-span-4 flex justify-center">
           <div className="relative">
-            <div className="w-64 h-64 rounded-full border-4 border-white shadow-2xl bg-white overflow-hidden">
+            <div className="w-full max-w-xs aspect-square rounded-full border-4 border-white shadow-2xl bg-white overflow-hidden">
               <picture>
                 <source srcSet={profileImages.webp} type="image/webp" />
                 <img
