@@ -33,7 +33,6 @@ const Index = lazyWithRetry(() => import('@/pages/Index'));
 const NotFound = lazyWithRetry(() => import('@/pages/NotFound'));
 const PrivacyPolicy = lazyWithRetry(() => import('@/pages/PrivacyPolicy'));
 const FluidGradientBackground = lazyWithRetry(() => import('@/components/FluidGradientBackground'));
-const BackToTop = lazyWithRetry(() => import('@/components/BackToTop'));
 const CookieConsent = lazyWithRetry(() => import('@/components/CookieConsent'));
 const AnalyticsProvider = lazyWithRetry(() => import('@/components/analytics/AnalyticsProvider'));
 const LazyScripts = lazyWithRetry(() => import('@/components/LazyScripts'));
@@ -63,6 +62,9 @@ const ProjectShowcaseDebug = withSuspense(
   lazyWithRetry(() => import("@/components/ProjectShowcaseDebug")),
   <div>Loading project showcase debugger...</div>
 );
+
+// Importar o BackToTop correto (novo, responsivo, acessível)
+const BackToTop = lazyWithRetry(() => import('@/components/ui/BackToTop').then(m => ({ default: m.default })));
 
 const queryClient = new QueryClient();
 
