@@ -7,6 +7,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="manifest" href="/manifest.json" />
     <title>Portfólio | Tarcisio Bispo de Araujo</title>
+    <!-- O Vite irá injetar o CSS correto automaticamente no build final -->
+    <style>
+      /* Critical CSS para grid principal e título acima da dobra */
+      .grid {
+        display: grid;
+        gap: 16px;
+        min-height: 400px;
+      }
+      .main-title {
+        font-size: 2.25rem;
+        font-weight: bold;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 4/3;
+      }
+      /* Evita jumps de layout em fontes web */
+      html { font-family: system-ui, sans-serif; }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
