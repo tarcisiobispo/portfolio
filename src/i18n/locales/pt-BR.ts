@@ -101,7 +101,7 @@ export default {
       "solution": "Implementei um painel digital com curadoria de conteúdo semanal, foco em ritmo visual e clareza imediata das mensagens. A plataforma foi pensada para ser automatizada, com flexibilidade de atualização remota.",
       "iteration": "Testamos tipos de animações, tempo de exibição e contraste. Ajustamos o calendário visual e otimizamos o layout com base em feedback de alunos e coordenação.",
       "outcomes": [
-        "Aumento de 72% no engajamento com eventos",
+        "Aumento significativo no engajamento com eventos",
         "Retenção de mensagens em painéis muito superior a e-mails anteriores",
         "Reaproveitamento da solução por outros setores da escola"
       ],

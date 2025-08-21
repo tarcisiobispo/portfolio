@@ -68,9 +68,9 @@ const resources = {
           solution: "Projetei um novo painel com sistema de abas e filtros temáticos específicos para o contexto jurídico.",
           iteration: "Após testes com usuários, simplificamos a terminologia dos filtros e ajustamos a hierarquia de informações.",
           outcomes: [
-            "Melhora de 25% na visibilidade dos cursos e 35% mais interações com páginas específicas em 3 meses",
-            "Aumento de 18% na taxa de conversão de acessos em inscrições, passando de aproximadamente 8% para 10%",
-            "Redução de 30% no tempo médio de navegação, de cerca de 4 minutos para 3 minutos até a escolha do curso"
+            "Melhora significativa na visibilidade dos cursos e aumento nas interações com páginas específicas",
+            "Aumento na taxa de conversão de acessos em inscrições",
+            "Redução no tempo médio de navegação até a escolha do curso"
           ],
           insights: "A estrutura de navegação precisa guiar, não apenas mostrar. Clareza e agrupamento relevante influenciam diretamente a percepção de valor de um curso."
         },
@@ -82,9 +82,9 @@ const resources = {
           solution: "Desenvolvi uma nova arquitetura de informação com categorização por áreas temáticas, perfis de pesquisadores e linha do tempo de projetos. Criei também um sistema de busca avançada.",
           iteration: "Realizamos testes com alunos, professores e pesquisadores. A navegação foi ajustada com base em feedback sobre nomenclatura e ordem de prioridades. Validei cada alteração com os stakeholders envolvidos.",
           outcomes: [
-            "Redução de 65% no tempo de navegação para encontrar projetos específicos, de aproximadamente 6 minutos para 2 minutos",
-            "Aumento de 85% nas visitas às páginas de pesquisadores, passando de cerca de 150 para mais de 280 acessos mensais",
-            "Crescimento de 40% na consulta de publicações acadêmicas e 25% mais solicitações de parcerias em 5 meses"
+            "Redução significativa no tempo de navegação para encontrar projetos específicos",
+            "Aumento expressivo nas visitas às páginas de pesquisadores",
+            "Crescimento na consulta de publicações acadêmicas e mais solicitações de parcerias"
           ],
           insights: "Áreas institucionais ganham relevância quando são navegáveis, atualizadas e refletidas de forma estratégica na arquitetura da informação."
         },
@@ -96,9 +96,9 @@ const resources = {
           solution: "Criei uma estratégia de validação com SEO para Mercado Livre, padronização visual de anúncios, categorização centrada no vocabulário do comprador e histórico de buscas. Também organizei KPIs e defini plano de priorização de produtos.",
           iteration: "Testei produtos por blocos temáticos, monitorando cliques, perguntas e taxa de conversão. Refinei descrições, títulos e até a seleção de itens com base em performance real.",
           outcomes: [
-            "Crescimento de 45% nas vendas dos produtos priorizados, gerando aproximadamente R$ 6.500 em receita adicional em 4 meses",
-            "Redução de 40% nas dúvidas dos compradores, diminuindo de cerca de 20 para 12 perguntas por produto publicado",
-            "Criação de processo que aumentou a eficiência de publicação em 50%, permitindo análise de mais de 80 produtos em 2 meses"
+            "Crescimento significativo nas vendas dos produtos priorizados estrategicamente",
+            "Redução expressiva nas dúvidas dos compradores por melhorias nas descrições",
+            "Criação de processo replicável que aumentou a eficiência de publicação e análise de produtos"
           ],
           insights: "Validar digitalmente com baixo custo é possível — e necessário. A lógica de produto precisa considerar contexto físico, vocabulário técnico e diferenciais percebidos pelo cliente."
         },
@@ -110,9 +110,9 @@ const resources = {
           solution: "Implementei um painel digital com curadoria de conteúdo semanal, foco em ritmo visual e clareza imediata das mensagens. A plataforma foi pensada para ser automatizada, com flexibilidade de atualização remota.",
           iteration: "Testamos tipos de animações, tempo de exibição e contraste. Ajustamos o calendário visual e otimizamos o layout com base em feedback de alunos e coordenação.",
           outcomes: [
-            "Aumento de 35% na visibilidade de eventos institucionais, melhorando o conhecimento dos alunos sobre atividades do campus",
-            "Crescimento de 20% na participação em eventos, com maior engajamento da comunidade acadêmica",
-            "Melhora de 40% na retenção de informações institucionais comparado aos métodos anteriores de comunicação"
+            "Aumento significativo na visibilidade de eventos institucionais e conhecimento dos alunos sobre atividades do campus",
+            "Crescimento expressivo na participação em eventos com maior engajamento da comunidade acadêmica",
+            "Melhora substancial na retenção de informações institucionais comparado aos métodos anteriores"
           ],
           insights: "Ambientes físicos também são interfaces. Quando bem projetados, informam, engajam e conectam — sem precisar de login."
         }
@@ -132,13 +132,13 @@ const resources = {
           {
             challenge: "A FGV precisava aumentar a visibilidade de cursos, palestras e atualizações institucionais.",
             solution: "A solução foi implementar um painel digital estratégico no hall da instituição, com curadoria de conteúdo e atualização automatizada.",
-            result: "Aumento do engajamento presencial em 72% e maior percepção institucional.",
+            result: "Aumento significativo do engajamento presencial e maior percepção institucional.",
             note: "Entendi que, para comunicar com eficiência em ambientes físicos, o conteúdo precisa ser pensado como uma interface viva: ritmo visual, relevância contextual e clareza imediata fazem toda a diferença na atenção e retenção das mensagens."
           },
           {
             challenge: "Usuários da DIREITO FGV tinham dificuldade em localizar documentos e conteúdos relevantes dentro do portal acadêmico.",
             solution: "Redesenho da experiência de navegação com foco em features valorizadas pelo público corporativo e simplificação do processo de cotação.",
-            result: "Aumento de 27% nas conversões de cotações e redução de 40% no abandono da jornada de compra.",
+            result: "Aumento significativo nas conversões de cotações e redução expressiva no abandono da jornada de compra.",
             note: "Percebi que mapear objetivos do usuário tem mais valor do que seguir estruturas institucionais fixas."
           },
           {
@@ -162,14 +162,14 @@ const resources = {
           {
             challenge: "Na Taliparts Os títulos e descrições dos anúncios no Mercado Livre não estavam otimizados para SEO no Mercado Livre.",
             solution: "Reestruturei os títulos com base em práticas de SEO específicas para marketplaces e testei descrições com palavras-chave frequentes.",
-            result: "Melhoria significativa no posicionamento das ofertas e aumento em mais de 20% no tráfego orgânico em 6 meses.",
+            result: "Melhoria significativa no posicionamento das ofertas e aumento expressivo no tráfego orgânico.",
             note: "No marketplace, SEO é tão importante quanto o preço — é ele quem traz o clique."
           },
           {
             challenge: "Na Taliparts era necessário validar se os produtos publicados realmente tinham demanda real.",
             solution: "Estruturei um plano de validação com base em métricas de cliques, perguntas de compradores e comparação com benchmarks.",
             result: "Refinamos o catálogo com base em performance, evitando estoque parado e redirecionando esforços.",
-            note: "Testar pequeno e ajustar rápido é mais eficiente do que lançar 100 produtos no escuro."
+            note: "Testar pequeno e ajustar rápido é mais eficiente do que lançar muitos produtos no escuro."
           },
           {
             challenge: "Na FGV algumas páginas possuiam conteúdo institucional denso afastava os usuários da leitura integral.",
@@ -589,9 +589,9 @@ const resources = {
           solution: "I designed a new panel with tab system and thematic filters specific to the legal context.",
           iteration: "After user testing, we simplified the filter terminology and adjusted information hierarchy.",
           outcomes: [
-            "25% improvement in course visibility and 35% more interactions with specific pages in 3 months",
-            "18% increase in conversion rate from visits to enrollments, from approximately 8% to 10%",
-            "30% reduction in average navigation time, from about 4 minutes to 3 minutes until course selection"
+            "Significant improvement in course visibility and increased interactions with specific pages",
+            "Increase in conversion rate from visits to enrollments",
+            "Reduction in average navigation time until course selection"
           ],
           insights: "Navigation structure needs to guide, not just show. Clarity and relevant grouping directly influence the perception of a course's value."
         },
@@ -603,9 +603,9 @@ const resources = {
           solution: "I developed a new information architecture with categorization by thematic areas, researcher profiles and project timeline. I also created an advanced search system.",
           iteration: "We conducted tests with students, professors and researchers. Navigation was adjusted based on feedback about nomenclature and priority order. I validated each change with involved stakeholders.",
           outcomes: [
-            "65% reduction in navigation time to find specific projects, from approximately 6 minutes to 2 minutes",
-            "85% increase in visits to researcher pages, from about 150 to more than 280 monthly visits",
-            "40% growth in academic publication consultations and 25% more partnership requests in 5 months"
+            "Significant reduction in navigation time to find specific projects",
+            "Substantial increase in visits to researcher pages",
+            "Growth in academic publication consultations and more partnership requests"
           ],
           insights: "Institutional areas gain relevance when they are navigable, updated and strategically reflected in information architecture."
         },
@@ -617,9 +617,9 @@ const resources = {
           solution: "I created a validation strategy with SEO for Mercado Livre, visual standardization of ads, categorization centered on buyer vocabulary and search history. I also organized KPIs and defined product prioritization plan.",
           iteration: "I tested products by thematic blocks, monitoring clicks, questions and conversion rate. I refined descriptions, titles and even item selection based on real performance.",
           outcomes: [
-            "45% growth in sales of prioritized products, generating approximately R$ 6,500 in additional revenue in 4 months",
-            "40% reduction in buyer doubts, decreasing from about 20 to 12 questions per published product",
-            "Process creation that increased publication efficiency by 50%, enabling analysis of more than 80 products in 2 months"
+            "Significant growth in sales of strategically prioritized products",
+            "Substantial reduction in buyer doubts through improved descriptions",
+            "Creation of replicable process that increased publication and analysis efficiency"
           ],
           insights: "Digital validation at low cost is possible — and necessary. Product logic needs to consider physical context, technical vocabulary and differentials perceived by the customer."
         },
@@ -631,9 +631,9 @@ const resources = {
           solution: "I implemented a digital panel with weekly content curation, focus on visual rhythm and immediate message clarity. The platform was designed to be automated, with remote update flexibility.",
           iteration: "We tested animation types, display time and contrast. We adjusted the visual calendar and optimized layout based on student and coordination feedback.",
           outcomes: [
-            "35% increase in institutional event visibility, improving students' knowledge about campus activities",
-            "20% growth in event participation, with greater academic community engagement",
-            "40% improvement in institutional information retention compared to previous communication methods"
+            "Significant increase in institutional event visibility and improved students' knowledge about campus activities",
+            "Substantial growth in event participation with greater academic community engagement",
+            "Notable improvement in institutional information retention compared to previous communication methods"
           ],
           insights: "Physical environments are also interfaces. When well designed, they inform, engage and connect — without needing login."
         }
