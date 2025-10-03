@@ -208,7 +208,7 @@ const Profile: React.FC<ProfileProps> = ({ name, loading: externalLoading = fals
 
             {/* Download CV */}
             <CTAButton
-              href="https://drive.google.com/file/d/1NgQorqxUXbGKUaDruLfflxB4_6GhJyo8/view?usp=drive_link"
+              href="https://drive.google.com/file/d/1ccNWG60LVQNfHf-l07k8U_38nuzpD5b3/view?usp=drive_link"
               target="_blank"
               rel="noopener noreferrer"
               variant="ghost"
