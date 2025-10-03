@@ -3,6 +3,10 @@
  * Provides subtle audio feedback for user interactions
  */
 
+const SOUND_CONFIG_STORAGE_KEY = 'portfolio-sound-config';
+const SOUND_CONFIG_VERSION_KEY = 'portfolio-sound-config-version';
+const SOUND_CONFIG_VERSION = '2';
+
 export interface SoundConfig {
   volume: number;
   enabled: boolean;
@@ -21,7 +25,7 @@ class SoundManager {
   private sounds: Map<string, HTMLAudioElement> = new Map();
   private config: SoundConfig = {
     volume: 0.3,
-    enabled: true,
+    enabled: false,
     preload: true
   };
   private initialized = false;
@@ -36,10 +40,31 @@ class SoundManager {
    */
   private loadConfig(): void {
     try {
-      const saved = localStorage.getItem('portfolio-sound-config');
-      if (saved) {
-        this.config = { ...this.config, ...JSON.parse(saved) };
+      const savedVersion = localStorage.getItem(SOUND_CONFIG_VERSION_KEY);
+      const savedConfigRaw = localStorage.getItem(SOUND_CONFIG_STORAGE_KEY);
+
+      if (savedConfigRaw) {
+        const parsedConfig = JSON.parse(savedConfigRaw);
+
+        if (savedVersion === SOUND_CONFIG_VERSION) {
+          // Same version: respect saved preferences
+          this.config = { ...this.config, ...parsedConfig };
+        } else {
+          // New version: keep volume but default to muted
+          this.config = {
+            ...this.config,
+            volume: typeof parsedConfig.volume === 'number' ? parsedConfig.volume : this.config.volume,
+            enabled: false
+          };
+          this.saveConfig();
+        }
+      } else {
+        // No previous config: ensure stored version reflects current defaults
+        this.saveConfig();
       }
+
+      // Always update version after loading
+      localStorage.setItem(SOUND_CONFIG_VERSION_KEY, SOUND_CONFIG_VERSION);
     } catch (error) {
       console.warn('Failed to load sound config:', error);
     }
@@ -50,7 +75,8 @@ class SoundManager {
    */
   private saveConfig(): void {
     try {
-      localStorage.setItem('portfolio-sound-config', JSON.stringify(this.config));
+      localStorage.setItem(SOUND_CONFIG_STORAGE_KEY, JSON.stringify(this.config));
+      localStorage.setItem(SOUND_CONFIG_VERSION_KEY, SOUND_CONFIG_VERSION);
     } catch (error) {
       console.warn('Failed to save sound config:', error);
     }
