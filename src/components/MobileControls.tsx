@@ -5,6 +5,7 @@ import SoundToggle from './ui/SoundToggle';
 import AccessibilityButton from './accessibility/AccessibilityButton';
 import { useTranslation } from 'react-i18next';
 import { useNavigationSounds } from '@/hooks/useSound';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface MobileControlsProps {
   setFeedbackOpen: (open: boolean) => void;
@@ -38,47 +39,52 @@ const MobileControls: React.FC<MobileControlsProps> = ({ setFeedbackOpen }) => {
             <Globe className="w-5 h-5" />
           </button>
           
-          {langMenuOpen && (
-            <div 
-              className="absolute right-12 top-0 w-40 rounded-lg shadow-lg z-50 bg-[var(--color-surface)] border border-[var(--color-border)]"
-              style={{ animation: 'fadeIn 0.2s ease-out' }}
-            >
-              <div className="flex items-center justify-between p-3 border-b border-[var(--color-border)]">
-                <span>
-                  {i18n.language === 'pt-BR' && 'Idioma'}
-                  {i18n.language === 'en-US' && 'Language'}
-                  {i18n.language === 'es-ES' && 'Idioma'}
-                </span>
-                <button 
-                  onClick={() => setLangMenuOpen(false)}
-                  className="p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
-                  aria-label={t('common.close')}
-                >
-                  <X size={16} />
-                </button>
-              </div>
-              <div className="p-2 flex flex-col">
-                <button 
-                  onClick={() => changeLanguage('pt-BR')}
-                  className={`py-2 px-3 text-left rounded-md transition-colors ${i18n.language === 'pt-BR' ? 'bg-[var(--color-primary)] text-white font-medium' : 'text-[var(--color-text)] hover:bg-[var(--color-primary-light)]'}`}
-                >
-                  {t('language.portuguese')}
-                </button>
-                <button 
-                  onClick={() => changeLanguage('en-US')}
-                  className={`py-2 px-3 text-left rounded-md transition-colors ${i18n.language === 'en-US' ? 'bg-[var(--color-primary)] text-white font-medium' : 'text-[var(--color-text)] hover:bg-[var(--color-primary-light)]'}`}
-                >
-                  {t('language.english')}
-                </button>
-                <button 
-                  onClick={() => changeLanguage('es-ES')}
-                  className={`py-2 px-3 text-left rounded-md transition-colors ${i18n.language === 'es-ES' ? 'bg-[var(--color-primary)] text-white font-medium' : 'text-[var(--color-text)] hover:bg-[var(--color-primary-light)]'}`}
-                >
-                  {t('language.spanish')}
-                </button>
-              </div>
-            </div>
-          )}
+          <AnimatePresence>
+            {langMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, x: 10 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 10 }}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
+                className="absolute right-12 top-0 w-40 rounded-lg shadow-lg z-50 bg-[var(--color-surface)] border border-[var(--color-border)]"
+              >
+                <div className="flex items-center justify-between p-3 border-b border-[var(--color-border)]">
+                  <span>
+                    {i18n.language === 'pt-BR' && 'Idioma'}
+                    {i18n.language === 'en-US' && 'Language'}
+                    {i18n.language === 'es-ES' && 'Idioma'}
+                  </span>
+                  <button 
+                    onClick={() => setLangMenuOpen(false)}
+                    className="p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
+                    aria-label={t('common.close')}
+                  >
+                    <X size={16} />
+                  </button>
+                </div>
+                <div className="p-2 flex flex-col">
+                  <button 
+                    onClick={() => changeLanguage('pt-BR')}
+                    className={`py-2 px-3 text-left rounded-md transition-colors ${i18n.language === 'pt-BR' ? 'bg-[var(--color-primary)] text-white font-medium' : 'text-[var(--color-text)] hover:bg-[var(--color-primary-light)]'}`}
+                  >
+                    {t('language.portuguese')}
+                  </button>
+                  <button 
+                    onClick={() => changeLanguage('en-US')}
+                    className={`py-2 px-3 text-left rounded-md transition-colors ${i18n.language === 'en-US' ? 'bg-[var(--color-primary)] text-white font-medium' : 'text-[var(--color-text)] hover:bg-[var(--color-primary-light)]'}`}
+                  >
+                    {t('language.english')}
+                  </button>
+                  <button 
+                    onClick={() => changeLanguage('es-ES')}
+                    className={`py-2 px-3 text-left rounded-md transition-colors ${i18n.language === 'es-ES' ? 'bg-[var(--color-primary)] text-white font-medium' : 'text-[var(--color-text)] hover:bg-[var(--color-primary-light)]'}`}
+                  >
+                    {t('language.spanish')}
+                  </button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
         
         <SimpleThemeToggle />
@@ -98,18 +104,6 @@ const MobileControls: React.FC<MobileControlsProps> = ({ setFeedbackOpen }) => {
           <MessageCircle className="w-5 h-5" />
         </button>
       </div>
-      <style jsx>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateX(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-      `}</style>
     </div>
   );
 };

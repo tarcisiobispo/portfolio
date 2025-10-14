@@ -17,8 +17,8 @@ const Footer: React.FC = () => {
           className="w-full flex items-center justify-center"
         >
           <div className="space-y-4 text-sm text-gray-700 dark:text-gray-300 text-center">
-            <p>© 2024 Tarcisio Bispo. Todos os direitos reservados.</p>
-            <p className="font-medium">UX/Product Designer</p>
+            <p>{t('footer.copyright')}</p>
+            <p className="font-medium">{t('footer.title')}</p>
           </div>
         </motion.div>
       </Container>

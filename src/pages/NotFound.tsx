@@ -2,10 +2,12 @@ import { useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Home, ArrowLeft, RefreshCw } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import CTAButton from '@/components/ui/CTAButton';
 
 const NotFound = () => {
   const location = useLocation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     console.error(
@@ -68,10 +70,10 @@ const NotFound = () => {
         {/* Content */}
         <motion.div variants={itemVariants}>
           <h1 className="text-3xl md:text-4xl font-bold mb-4 text-[var(--color-text)]">
-            Página não encontrada
+            {t('notFound.title')}
           </h1>
           <p className="text-[var(--color-muted)] mb-8 max-w-md mx-auto text-lg">
-            Ops! A página que você está procurando não existe ou foi movida para outro local.
+            {t('notFound.message')}
           </p>
         </motion.div>
 
@@ -82,7 +84,7 @@ const NotFound = () => {
         >
           <div className="text-6xl mb-4">🔍</div>
           <p className="text-sm text-[var(--color-muted)]">
-            Caminho tentado: <code className="bg-[var(--color-surface)] px-2 py-1 rounded text-xs">{location.pathname}</code>
+            {t('notFound.pathAttempted')} <code className="bg-[var(--color-surface)] px-2 py-1 rounded text-xs">{location.pathname}</code>
           </p>
         </motion.div>
 
@@ -98,7 +100,7 @@ const NotFound = () => {
               iconPosition="left"
               className="min-w-[160px]"
             >
-              Voltar ao Início
+              {t('notFound.backToHome')}
             </CTAButton>
           </Link>
 
@@ -109,7 +111,7 @@ const NotFound = () => {
             iconPosition="left"
             className="min-w-[160px]"
           >
-            Página Anterior
+            {t('notFound.goBack')}
           </CTAButton>
 
           <CTAButton
@@ -119,7 +121,7 @@ const NotFound = () => {
             iconPosition="left"
             className="min-w-[160px]"
           >
-            Recarregar
+            {t('notFound.reload')}
           </CTAButton>
         </motion.div>
 
@@ -129,32 +131,32 @@ const NotFound = () => {
           className="mt-12 pt-8 border-t border-[var(--color-border)]"
         >
           <p className="text-sm text-[var(--color-muted)] mb-4">
-            Talvez você esteja procurando por:
+            {t('notFound.lookingFor')}
           </p>
           <div className="flex flex-wrap gap-2 justify-center">
             <Link
               to="/#projetos"
               className="text-sm text-[var(--color-primary)] hover:underline px-3 py-1 rounded-full bg-[var(--color-surface)] hover:bg-[var(--color-border)] transition-colors"
             >
-              Projetos
+              {t('notFound.projects')}
             </Link>
             <Link
               to="/#backlog"
               className="text-sm text-[var(--color-primary)] hover:underline px-3 py-1 rounded-full bg-[var(--color-surface)] hover:bg-[var(--color-border)] transition-colors"
             >
-              Backlogs Estratégicos
+              {t('notFound.backlog')}
             </Link>
             <Link
               to="/#contato"
               className="text-sm text-[var(--color-primary)] hover:underline px-3 py-1 rounded-full bg-[var(--color-surface)] hover:bg-[var(--color-border)] transition-colors"
             >
-              Contato
+              {t('notFound.contact')}
             </Link>
             <Link
               to="/privacy-policy"
               className="text-sm text-[var(--color-primary)] hover:underline px-3 py-1 rounded-full bg-[var(--color-surface)] hover:bg-[var(--color-border)] transition-colors"
             >
-              Política de Privacidade
+              {t('notFound.privacyPolicy')}
             </Link>
           </div>
         </motion.div>

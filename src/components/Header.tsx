@@ -1,23 +1,20 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import { User, Folder, Repeat, Mail, MessageCircle } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import SimpleThemeToggle from './ui/SimpleThemeToggle';
 import SoundToggle from './ui/SoundToggle';
 import { LanguageSwitcher } from './ui/LanguageSwitcher';
-import AccessibilityButton from './accessibility/AccessibilityButton';
+import AccessibilityButton from './ui/AccessibilityButton';
 import { lazyWithRetry } from '../utils/lazyWithRetry';
 
 const LazyFeedbackModal = lazyWithRetry(() => import('./FeedbackModal'));
-import MobileMenu from './ui/MobileMenu';
-import MobileControls from './MobileControls';
 import { useTranslation } from 'react-i18next';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { useNavigationSounds } from '@/hooks/useSound';
-import { useTheme } from 'next-themes';
+import { useTheme } from '@/components/providers/ThemeProvider';
 import Container from './Layout/Container'; // Importando o Container
-
-// Importar as imagens diretamente
-import logoLight from '../../public/images/logo_uxproduct.webp';
-import logoDark from '../../public/images/logo_uxproduct_white.webp'; // Logo para modo escuro
+import { useActiveSection } from '@/hooks/useActiveSection';
+import { getImagePath } from '@/utils/assetPaths';
 
 // Itens de navegação principal
 const navItems = [
@@ -27,87 +24,74 @@ const navItems = [
   { href: '#contato', icon: Mail, sectionId: 'contato', i18nKey: 'navigation.contact' },
 ];
 
-export default function Header() {
+interface HeaderProps {
+  activeSection?: string;
+  setActiveSection?: (section: string) => void;
+}
+
+export default function Header({ activeSection: propActiveSection, setActiveSection: propSetActiveSection }: HeaderProps = {}) {
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('perfil');
   const [feedbackOpen, setFeedbackOpen] = useState(false);
+
+  // Use props if provided, otherwise use the hook
+  const hookResult = useActiveSection();
+  const activeSection = propActiveSection || hookResult.activeSection;
+  const setActiveSection = propSetActiveSection || hookResult.setActiveSection;
   const { t } = useTranslation();
   const { trackNavigation } = useAnalytics();
   const { playButtonHover, playButtonClick, playPageTransition } = useNavigationSounds();
   const { theme } = useTheme();
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  // Função para detectar a seção ativa com base na posição de scroll
-  const detectActiveSection = useCallback(() => {
-    let found = 'perfil';
-    let minDistance = Infinity;
-    
-    for (const item of navItems) {
-      const el = document.getElementById(item.sectionId);
-      if (el) {
-        const rect = el.getBoundingClientRect();
-        const distance = Math.abs(rect.top - 64);
-        
-        // Encontra a seção mais próxima do topo da viewport
-        if (distance < minDistance) {
-          minDistance = distance;
-          found = item.sectionId;
-        }
-        
-        // Prioriza seções que já estão visíveis na viewport
-        if (rect.top <= 64 && rect.bottom > 64) {
-          found = item.sectionId;
-          break;
-        }
-      }
-    }
-    
-    return found;
-  }, []);
+  // Detectar se estamos em uma página de projeto
+  const isProjectPage = location.pathname.startsWith('/projetos/');
 
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 10);
-      
-      // Atualiza a seção ativa apenas durante o scroll natural
-      // (não durante o scroll programático de cliques no menu)
-      if (window.isScrollingProgrammatically !== true) {
-        const newActiveSection = detectActiveSection();
-        setActiveSection(newActiveSection);
-      }
     };
-    
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll(); // Detecta a seção inicial
-    
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [detectActiveSection]);
 
-  // Scroll suave para a seção
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // Detecta o scroll inicial
+
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Scroll suave para a seção ou navegação para página principal
   const handleNavClick = useCallback((e: React.MouseEvent, sectionId: string) => {
     e.preventDefault();
+
+    // Se estamos em uma página de projeto, navegar para a página principal + âncora
+    if (isProjectPage) {
+      navigate(`/#${sectionId}`);
+      return;
+    }
+
+    // Se estamos na página principal, fazer scroll normal
     const el = document.getElementById(sectionId);
     if (el) {
       // Define flag para evitar detecção durante scroll programático
       window.isScrollingProgrammatically = true;
-      
+
       // Atualiza imediatamente a seção ativa
       setActiveSection(sectionId);
-      
+
       // Scroll para a seção
       window.scrollTo({
         top: el.offsetTop - 64,
         behavior: 'smooth',
       });
-      
+
       // Track navigation event
       trackNavigation(sectionId);
-      
+
       // Remove a flag após o scroll terminar
       setTimeout(() => {
         window.isScrollingProgrammatically = false;
       }, 1000); // Tempo estimado para o scroll suave completar
     }
-  }, [trackNavigation]);
+  }, [trackNavigation, isProjectPage, navigate]);
 
 
 
@@ -121,20 +105,25 @@ export default function Header() {
         role="banner"
       >
         <Container className="flex items-center h-full">
-          {/* Logo à esquerda - Aumentada e alinhada */}
-          <a 
-            href="#perfil" 
+          {/* Logo à esquerda - Sempre vai para página inicial */}
+          <a
+            href="/"
             onClick={(e) => {
-              handleNavClick(e, 'perfil');
+              e.preventDefault();
+              if (isProjectPage) {
+                navigate('/');
+              } else {
+                handleNavClick(e, 'perfil');
+              }
               playPageTransition();
             }}
             onMouseEnter={() => playButtonHover()}
-            className="flex items-center h-full mr-8" 
+            className="flex items-center h-full mr-8"
             aria-label={t('navigation.home')}
           >
-            <img 
-              src={theme === 'dark' ? logoDark : logoLight} 
-              alt="Logo" 
+            <img
+              src={theme === 'dark' ? getImagePath('logo_uxproduct_white.webp') : getImagePath('logo_uxproduct.webp')}
+              alt="Logo"
               className="h-[64px] md:h-[72px] w-auto object-contain" // Logo maior e responsiva
             />
           </a>
@@ -223,21 +212,16 @@ export default function Header() {
             </button>
           </div>
           
-          {/* Menu mobile (sempre renderizado, mas visível apenas abaixo de md) */}
+          {/* Theme toggle mobile (sempre renderizado, mas visível apenas abaixo de md) */}
           <div className="md:hidden ml-auto">
-            <MobileMenu 
-              activeSection={activeSection} 
-              setActiveSection={setActiveSection} 
-              resolvedTheme={theme} 
-            />
+            <SimpleThemeToggle />
           </div>
         </Container>
       </header>
 
 
 
-      {/* Controles móveis flutuantes */}
-      <MobileControls setFeedbackOpen={setFeedbackOpen} />
+
 
       {/* Modal de Feedback */}
       <LazyFeedbackModal

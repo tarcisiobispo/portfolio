@@ -1,5 +1,7 @@
 import React, { Suspense, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Profile from '../components/Profile';
 import SkipLink from '@/components/SkipLink';
 import SEO from '@/components/SEO';
@@ -20,21 +22,36 @@ const Footer = lazyWithRetry(() => import('@/components/Footer'));
 const Index = () => {
   const { trackPageView } = usePageTracking();
   const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
+  const { t } = useTranslation();
 
   // Track page view on component mount
   useEffect(() => {
     trackPageView();
   }, [trackPageView]);
-  
+
   // Simular carregamento inicial
   useEffect(() => {
     // Definir um tempo mínimo de carregamento para evitar flash de conteúdo
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 800);
-    
+
     return () => clearTimeout(timer);
   }, []);
+
+  // Lidar com âncoras quando a página carrega (vindas de páginas de projeto)
+  useEffect(() => {
+    if (!isLoading && location.hash) {
+      const sectionId = location.hash.substring(1); // Remove o #
+      const element = document.getElementById(sectionId);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100); // Pequeno delay para garantir que o conteúdo foi renderizado
+      }
+    }
+  }, [isLoading, location.hash]);
 
   const profileData = {
     name: "Tarcisio Bispo de Araujo"
@@ -81,7 +98,7 @@ const Index = () => {
     <SkipLink />
     <main id="main-content" className="flex-1 w-full relative transition-colors duration-300">
       {/* Hero Section */}
-      <section id="perfil" className="relative overflow-hidden">
+      <section id="perfil" className="relative overflow-hidden" data-section="perfil">
         <Container>
           {/* Profile Section */}
           <Profile {...profileData} loading={isLoading} />
@@ -89,7 +106,7 @@ const Index = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projetos" className="relative" aria-labelledby="projects-heading">
+      <section id="projetos" className="relative" aria-labelledby="projects-heading" data-section="projetos">
         <Container>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -97,7 +114,7 @@ const Index = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 id="projects-heading" className="sr-only">Projetos de UX Design</h2>
+            <h2 id="projects-heading" className="sr-only">{t('index.projectsHeading')}</h2>
             <Suspense fallback={
               <div className="projects-grid">
                 {Array.from({ length: 4 }).map((_, i) => (
@@ -112,7 +129,7 @@ const Index = () => {
       </section>
 
       {/* Backlog Cycle Section */}
-      <section id="backlog" className="relative transition-colors duration-300" aria-labelledby="backlog-heading">
+      <section id="backlog" className="relative transition-colors duration-300" aria-labelledby="backlog-heading" data-section="backlog">
         <Container>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -120,7 +137,7 @@ const Index = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 id="backlog-heading" className="sr-only">Backlog Estratégico</h2>
+            <h2 id="backlog-heading" className="sr-only">{t('index.backlogHeading')}</h2>
             <Suspense fallback={<BacklogSkeleton />}>
               <BacklogCycle loading={isLoading} />
             </Suspense>
@@ -129,7 +146,7 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contato" className="relative" aria-labelledby="contact-heading">
+      <section id="contato" className="relative" aria-labelledby="contact-heading" data-section="contato">
         <Container>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -137,7 +154,7 @@ const Index = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 id="contact-heading" className="sr-only">Contato</h2>
+            <h2 id="contact-heading" className="sr-only">{t('index.contactHeading')}</h2>
             <Suspense fallback={<ContactSkeleton />}>
               <Contact />
             </Suspense>

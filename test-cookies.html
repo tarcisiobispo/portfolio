@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Cookie Banner</title>
+</head>
+<body>
+    <h1>Test Cookie Banner</h1>
+    <p>Abra o console do navegador e execute:</p>
+    <pre>
+localStorage.removeItem('cookie-consent');
+location.reload();
+    </pre>
+    
+    <script>
+        // Função para limpar cookies e recarregar
+        function testCookieBanner() {
+            localStorage.removeItem('cookie-consent');
+            localStorage.removeItem('cookie-consent-date');
+            location.reload();
+        }
+        
+        console.log('Para testar o banner de cookies, execute: testCookieBanner()');
+    </script>
+</body>
+</html>

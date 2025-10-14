@@ -50,7 +50,7 @@ const Profile: React.FC<ProfileProps> = ({ name, loading: externalLoading = fals
 
   if (loading) {
     return (
-      <section className="min-h-screen flex flex-col justify-center py-8 relative" aria-labelledby="profile-title">
+      <section className="min-h-[80vh] flex flex-col justify-center py-8 relative" aria-labelledby="profile-title">
         <div className="max-w-7xl mx-auto px-6">
           <ProfileSkeleton />
         </div>
@@ -59,23 +59,23 @@ const Profile: React.FC<ProfileProps> = ({ name, loading: externalLoading = fals
   }
   
   return (
-    <section className="min-h-screen flex flex-col justify-center py-16 relative" aria-labelledby="profile-title">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center justify-center max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="min-h-[80vh] flex flex-col justify-center py-8 relative" aria-labelledby="profile-title">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center justify-center max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* PREMIUM PROFILE CARD */}
         <div
           className="lg:col-span-4 flex justify-center relative z-10"
           style={{ overflow: 'visible' }}
         >
-          <div className="relative group p-8">
+          <div className="relative group p-6">
             {/* Card Container */}
-            <div className="profile-card relative rounded-3xl px-6 py-10 max-w-sm w-full overflow-hidden transition-all duration-500">
+            <div className="profile-card relative rounded-3xl px-6 py-8 max-w-sm w-full overflow-hidden transition-all duration-500">
 
               {/* Subtle Gradient Background */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-purple-50/50 dark:from-blue-900/20 dark:via-transparent dark:to-purple-900/20 rounded-3xl"></div>
 
               {/* COMPLETE STRUCTURE WITH CORRECT SPACING */}
-              <div className="relative z-10 flex flex-col items-center space-y-8">
+              <div className="relative z-10 flex flex-col items-center space-y-6">
 
                 {/* SECTION 1: Profile Photo */}
                 <div className="relative">

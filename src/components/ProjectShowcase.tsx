@@ -1,7 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import OptimizedImage from '@/components/OptimizedImage';
 import { ensureStringArray } from '@/utils/translationHelpers';
 import { ProjectSkeleton } from '@/components/ui/ProjectSkeleton';
@@ -35,7 +36,7 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects, loading = f
   };
 
   return (
-    <section className="w-full py-16">
+    <section className="w-full py-12">
       <div className="mb-16 text-left">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] mb-8">
           {t('projects.title')}
@@ -60,12 +61,12 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects, loading = f
             return (
               <article
                 key={project.projectKey}
-                className={`w-full bg-[var(--color-surface)] dark:bg-[var(--color-surface-dark)] rounded-2xl shadow-lg relative overflow-visible project-card focus-visible:outline-2 focus-visible:outline-[var(--color-primary)] focus-visible:outline-offset-2 transition-all duration-300 self-start ${isActive ? 'shadow-xl ring-1 ring-blue-500/20' : ''
+                className={`w-full bg-[var(--color-surface)] dark:bg-[var(--color-surface-dark)] rounded-2xl shadow-lg relative project-card focus-visible:outline-2 focus-visible:outline-[var(--color-primary)] focus-visible:outline-offset-2 transition-all duration-300 self-start ${isActive ? 'shadow-xl ring-1 ring-blue-500/20' : ''
                   }`}
                 aria-labelledby={`project-title-${project.projectKey}`}
                 aria-describedby={`project-overview-${project.projectKey}`}
               >
-                <div className="relative w-full h-48 sm:h-56 md:h-64 rounded-t-2xl overflow-hidden group/image">
+                <div className="relative w-full h-48 sm:h-56 md:h-64 overflow-hidden group/image">
                   <OptimizedImage
                     src={project.imageUrl}
                     alt={`${t(`projects.${project.projectKey}.title`)} - ${t('projects.projectImage')}`}
@@ -77,7 +78,7 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects, loading = f
                   <div className="absolute inset-0 pointer-events-none transition-all duration-500 group-hover/image:bg-black/10 z-[2]" />
                 </div>
                 <div className="flex flex-col w-full p-6 lg:p-8 relative bg-transparent">
-                  <div className="mb-6 mt-4">
+                  <div className="mb-6">
                     <h2 id={`project-title-${project.projectKey}`} className="text-2xl font-semibold text-[var(--color-text)] w-full mb-3">
                       {t(`projects.${project.projectKey}.title`)}
                     </h2>
@@ -98,7 +99,7 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects, loading = f
                       ));
                     })()}
                   </div>
-                  <div className="w-full flex justify-center sm:justify-start">
+                  <div className="w-full flex justify-start items-center gap-4">
                     <button
                       type="button"
                       onClick={(e) => toggleProject(project.projectKey, e)}
@@ -114,6 +115,14 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects, loading = f
                         : <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                       }
                     </button>
+                    <Link
+                      to={`/projetos/${project.projectKey}`}
+                      className="flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base text-white bg-green-600 hover:bg-green-700 transition-all duration-300 rounded-lg w-fit shadow-sm hover:shadow-md focus-visible:outline-2 focus-visible:outline-green-500 focus-visible:outline-offset-2"
+                      aria-label={`${t('projects.seeResults')} ${t(`projects.${project.projectKey}.title`)}`}
+                    >
+                      {t('projects.seeResults')}
+                      <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    </Link>
                   </div>
 
                   {/* Conteúdo expandido */}

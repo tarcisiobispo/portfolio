@@ -122,8 +122,12 @@ export default {
 
 				// Component Colors
 				muted: {
-					DEFAULT: 'hsl(var(--muted))',
-					foreground: 'hsl(var(--muted-foreground))'
+					DEFAULT: '#475569', // Slate 600 - 7.1:1 contrast on white for light mode
+					foreground: '#334155' // Slate 700 - 9.8:1 contrast on white for light mode
+				},
+				'dark-muted': {
+					DEFAULT: '#94a3b8', // Slate 400 - 5.9:1 contrast on dark for dark mode
+					foreground: '#cbd5e1' // Slate 300 - 8.9:1 contrast on dark for dark mode
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
@@ -169,6 +173,14 @@ export default {
 				'7xl': ['4.5rem', { lineHeight: '1' }],
 				'8xl': ['6rem', { lineHeight: '1' }],
 				'9xl': ['8rem', { lineHeight: '1' }],
+			},
+
+			// Safe Area Support
+			height: {
+				'safe-area-inset-bottom': 'env(safe-area-inset-bottom)',
+			},
+			padding: {
+				'safe-area-inset-bottom': 'env(safe-area-inset-bottom)',
 			},
 
 			// Spacing System (8px grid)

@@ -10,37 +10,16 @@ interface FluidGradientBackgroundProps {
  * Componente otimizado que gerencia o sistema de gradientes fluidos
  * Utiliza técnicas de otimização para reduzir repaints e melhorar performance
  */
-// Objeto de estilos estáticos para evitar recriação
-const gradientContainerStyles: CSSProperties = {
-  // Forçar aceleração por hardware
-  transform: 'translate3d(0, 0, 0)',
-  backfaceVisibility: 'hidden',
-  perspective: '1000px',
-  willChange: 'transform, opacity',
-  // Otimizações adicionais
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  width: '100%',
-  height: '100%',
-  zIndex: -1,
-  pointerEvents: 'none',
-  // Otimização para dispositivos móveis
-  WebkitBackfaceVisibility: 'hidden',
-  WebkitPerspective: '1000px',
-  WebkitTransform: 'translate3d(0, 0, 0)'
-};
-
 const FluidGradientBackground: React.FC<FluidGradientBackgroundProps> = React.memo(({ 
   children, 
   className = '' 
 }) => {
   // Usar refs para armazenar valores que não devem causar re-renderizações
   const lastLogRef = useRef<string>('');
-  const containerRef = useRef<HTMLDivElement>(null);
-  
+
   // Inicializar sistema de gradientes
   const { currentSection, getCurrentSectionInfo, setSection } = useFluidGradientSystem();
+  console.log('🎨 FluidGradientBackground: Hook initialized, currentSection:', currentSection);
   
   // Usar useMemo para valores derivados que não mudam frequentemente
   const sectionInfo = useMemo(() => getCurrentSectionInfo(), [getCurrentSectionInfo]);
@@ -78,42 +57,10 @@ const FluidGradientBackground: React.FC<FluidGradientBackgroundProps> = React.me
       </div>
     );
   }, [children, className]);
-  
-  // Efeito para gerenciar a classe do container de gradiente
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-    
-    // Adiciona a classe da seção atual
-    container.className = `fluid-gradient-container ${currentSection}`;
-    
-    // Força um reflow para garantir que a animação seja suave
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    container.offsetHeight;
-    
-    // Adiciona classe de transição após um pequeno atraso
-    const timer = setTimeout(() => {
-      container.classList.add('gradient-transition');
-    }, 50);
-    
-    return () => {
-      clearTimeout(timer);
-      container.classList.remove('gradient-transition');
-    };
-  }, [currentSection]);
 
   return (
     <>
-      {/* Container otimizado para gradientes */}
-      <div 
-        ref={containerRef}
-        className={`fluid-gradient-container ${currentSection}`}
-        style={gradientContainerStyles}
-        aria-hidden="true"
-        // Adiciona atributos para melhor acessibilidade
-        role="presentation"
-        aria-label={`Fundo gradiente da seção ${sectionInfo.displayName}`}
-      />
+      {/* O container é criado pelo hook useGradientContainer */}
       {childrenContainer}
     </>
   );

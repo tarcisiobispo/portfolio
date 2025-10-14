@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { X, Cookie, Shield, BarChart3, Eye } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useIsMobile } from '@/hooks/useMediaQuery';
 
 interface CookiePreferences {
   necessary: boolean;
@@ -11,6 +12,7 @@ interface CookiePreferences {
 
 const CookieConsent: React.FC = () => {
   const { t } = useTranslation();
+  const isMobile = useIsMobile();
   const [showBanner, setShowBanner] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [preferences, setPreferences] = useState<CookiePreferences>({
@@ -114,7 +116,9 @@ const CookieConsent: React.FC = () => {
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 100, opacity: 0 }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 shadow-lg"
+        className={`fixed left-0 right-0 z-[60] bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 shadow-lg ${
+          isMobile ? 'bottom-[90px]' : 'bottom-0'
+        }`}
         role="dialog"
         aria-labelledby="cookie-consent-title"
         aria-describedby="cookie-consent-description"
@@ -208,6 +212,7 @@ const CookieConsent: React.FC = () => {
                       <label className="relative inline-flex items-center cursor-pointer">
                         <input
                           type="checkbox"
+                          id="analytics-cookies"
                           checked={preferences.analytics}
                           onChange={() => handlePreferenceChange('analytics')} aria-label={t('cookies.types.analytics.title')}
                           className="sr-only peer"
@@ -235,6 +240,7 @@ const CookieConsent: React.FC = () => {
                       <label className="relative inline-flex items-center cursor-pointer">
                         <input
                           type="checkbox"
+                          id="marketing-cookies"
                           checked={preferences.marketing}
                           onChange={() => handlePreferenceChange('marketing')} aria-label={t('cookies.types.marketing.title')}
                           className="sr-only peer"

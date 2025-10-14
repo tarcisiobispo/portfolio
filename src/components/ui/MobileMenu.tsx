@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, User, Folder, Repeat, Mail } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { useNavigationSounds } from '@/hooks/useSound';
 import { 
@@ -26,16 +27,21 @@ interface MobileMenuProps {
   resolvedTheme: string | undefined;
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({ 
-  activeSection, 
+const MobileMenu: React.FC<MobileMenuProps> = ({
+  activeSection,
   setActiveSection
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { t } = useTranslation();
   const { trackNavigation } = useAnalytics();
   const { playButtonHover, playButtonClick, playPageTransition } = useNavigationSounds();
+  const location = useLocation();
+  const navigate = useNavigate();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const firstItemRef = useRef<HTMLAnchorElement>(null);
+
+  // Detectar se estamos em uma página de projeto
+  const isProjectPage = location.pathname.startsWith('/projetos/');
 
   // Fechar o menu ao pressionar Escape
   useEffect(() => {
@@ -63,29 +69,36 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
     }
   }, [isMenuOpen]);
 
-  // Scroll suave para a seção e fechar o menu
+  // Scroll suave para a seção ou navegação para página principal
   const handleNavClick = (e: React.MouseEvent, sectionId: string) => {
     e.preventDefault();
     setIsMenuOpen(false); // Fechar o menu primeiro
-    
+
+    // Se estamos em uma página de projeto, navegar para a página principal + âncora
+    if (isProjectPage) {
+      navigate(`/#${sectionId}`);
+      return;
+    }
+
+    // Se estamos na página principal, fazer scroll normal
     setTimeout(() => {
       const el = document.getElementById(sectionId);
       if (el) {
         // Define flag para evitar detecção durante scroll programático
         window.isScrollingProgrammatically = true;
-        
+
         // Atualiza imediatamente a seção ativa
         setActiveSection(sectionId);
-        
+
         window.scrollTo({
           top: el.offsetTop - 50, // Ajustado para o header ainda menor
           behavior: 'smooth',
         });
-        
+
         // Track navigation event
         trackNavigation(sectionId);
         playPageTransition();
-        
+
         // Remove a flag após o scroll terminar
         setTimeout(() => {
           window.isScrollingProgrammatically = false;
@@ -188,12 +201,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
           </div>
         </DrawerContent>
       </Drawer>
-      <style jsx>{`
-        @keyframes slideInRight {
-          from { transform: translateX(100%); }
-          to { transform: translateX(0); }
-        }
-      `}</style>
     </div>
   );
 };

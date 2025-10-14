@@ -104,7 +104,7 @@ const CLSOptimizedImage: React.FC<CLSOptimizedImageProps> = ({
     left: 0,
     width: '100%',
     height: '100%',
-    backgroundColor: '#f3f4f6',
+    backgroundColor: '#ffffff', // Full white for better contrast as requested
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -151,7 +151,7 @@ const CLSOptimizedImage: React.FC<CLSOptimizedImageProps> = ({
             style={{
               width: '40px',
               height: '40px',
-              backgroundColor: '#e5e7eb',
+              backgroundColor: '#334155', // Darker gray for better contrast in dark mode
               borderRadius: '4px',
               animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
             }}

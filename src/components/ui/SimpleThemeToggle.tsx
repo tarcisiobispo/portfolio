@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Sun, Moon } from 'lucide-react';
-import { useTheme } from '../providers/ThemeProvider';
+import { useTheme } from '@/components/providers/ThemeProvider';
 import { useTranslation } from 'react-i18next';
 import { useContextualToast } from '@/hooks/useContextualToast';
 
@@ -22,21 +22,19 @@ export const SimpleThemeToggle: React.FC<SimpleThemeToggleProps> = ({ className 
   }
 
   // Função para alternar entre claro e escuro
-  const toggleTheme = () => {
+  const toggleTheme = (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    console.log('Theme toggle clicked, current theme:', resolvedTheme);
     try {
       const newTheme = resolvedTheme === 'dark' ? 'light' : 'dark';
+      console.log('Changing theme to:', newTheme);
       setTheme(newTheme);
 
-      // Feedback visual com toast contextual abaixo do botão
-      const themeLabel = newTheme === 'dark' ? t('theme.dark') : t('theme.light');
-      if (buttonRef.current) {
-        showToast(buttonRef.current, {
-          message: themeLabel,
-          description: t('theme.changed'),
-          type: 'success',
-          duration: 1500, // Duração reduzida para maior proximidade
-        });
-      }
+      // Feedback visual simples (removido toast temporariamente para debug)
+      console.log('Theme changed to:', newTheme);
     } catch (error) {
       console.error('Erro ao alterar tema:', error);
     }

@@ -33,6 +33,24 @@ const root = ReactDOM.createRoot(rootElement);
 
 // Initialize optimizations after DOM is ready
 if (typeof window !== 'undefined') {
+  // Disable/Unregister any service workers in dev and ensure fresh assets
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((regs) => {
+      regs.forEach((reg) => {
+        try { reg.unregister(); } catch {}
+      });
+    }).catch(() => {});
+
+    // Also clear caches created by service workers
+    if (window.caches && typeof window.caches.keys === 'function') {
+      window.caches.keys().then((keys) => {
+        keys.forEach((key) => {
+          try { window.caches.delete(key); } catch {}
+        });
+      }).catch(() => {});
+    }
+  }
+
   // Initialize immediately for critical resources
   initializeCacheOptimizations();
   initializeImageOptimizations();

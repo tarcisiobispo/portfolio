@@ -115,13 +115,13 @@ const BacklogCycle: React.FC<BacklogCycleProps> = ({ loading: externalLoading = 
   };
 
   return (
-    <section className="w-full py-16">
+    <section className="w-full pt-12 pb-[clamp(1.5rem,3vw,2.5rem)]">
       {/* Header Section - Alinhado com Cards */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="mb-16"
+        className="mb-8 sm:mb-10"
       >
         <div className="text-left">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] mb-8">
@@ -148,7 +148,7 @@ const BacklogCycle: React.FC<BacklogCycleProps> = ({ loading: externalLoading = 
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
       >
-        <Accordion type="single" collapsible className="w-full space-y-4">
+        <Accordion type="single" collapsible className="w-full space-y-3 md:space-y-4 [&>*:last-child]:mb-0">
           {loading ? (
             // Mostrar skeleton enquanto carrega
             <BacklogSkeleton />
@@ -158,15 +158,15 @@ const BacklogCycle: React.FC<BacklogCycleProps> = ({ loading: externalLoading = 
             </div>
           ) : (
             paginatedItems.map((item, index) => (
-              <AccordionItem value={item.id} key={item.id} className="border-none">
+              <AccordionItem value={item.id} key={item.id} className="border-none [&>div:last-child]:pb-0">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-white dark:bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
+                  className="bg-white dark:bg-[var(--color-surface)] rounded-2xl border border-[var(--color-border)] shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden h-fit"
                 >
-                  <AccordionTrigger className="px-6 py-6 hover:no-underline group [&[data-state=open]]:pb-4">
-                    <div className="flex items-center gap-4 w-full min-h-[60px]">
+                  <AccordionTrigger className="px-5 py-3 sm:px-6 sm:py-4 hover:no-underline group [&[data-state=open]]:pb-0">
+                    <div className="flex items-center gap-4 w-full min-h-[48px]">
                       {/* Icon Container - Middle Aligned */}
                       <div className="flex-shrink-0 w-12 h-12 bg-[var(--color-primary)]/10 rounded-xl flex items-center justify-center self-center">
                         <CheckCircle2 className="w-6 h-6 text-[var(--color-primary)]" />
@@ -185,19 +185,19 @@ const BacklogCycle: React.FC<BacklogCycleProps> = ({ loading: externalLoading = 
                       </div>
                     </div>
                   </AccordionTrigger>
-                  <AccordionContent>
-                    <div className="px-6 pb-6">
+                  <AccordionContent className="pb-0 [&_*]:mb-0 [&>div]:pb-0">
+                    <div className="px-5 pb-0 sm:px-6 sm:pb-0">
                       {/* Grid Responsivo para as seções */}
-                      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                      <div className="grid grid-cols-1 lg:grid-cols-3 items-start content-start gap-4 sm:gap-5 mb-0 pb-0 min-h-0">
 
                         {/* Solução */}
                         <motion.div
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.3, delay: 0.1 }}
-                          className="bg-[var(--color-primary)]/5 rounded-xl p-4 border-l-4 border-[var(--color-primary)]"
+                          className="self-start bg-[var(--color-primary)]/5 rounded-xl p-3 sm:p-4 h-fit"
                         >
-                          <div className="flex items-center gap-3 mb-3">
+                          <div className="flex items-center gap-3 mb-2">
                             <div className="w-8 h-8 bg-[var(--color-primary)]/10 rounded-lg flex items-center justify-center">
                               <Lightbulb className="w-4 h-4 text-[var(--color-primary)]" />
                             </div>
@@ -205,7 +205,7 @@ const BacklogCycle: React.FC<BacklogCycleProps> = ({ loading: externalLoading = 
                               {t('backlog.solution')}
                             </h4>
                           </div>
-                          <p className="text-sm text-[var(--color-muted)] leading-relaxed">
+                          <p className="text-sm text-[var(--color-muted)] leading-relaxed mb-0">
                             {item.solution}
                           </p>
                         </motion.div>
@@ -215,9 +215,9 @@ const BacklogCycle: React.FC<BacklogCycleProps> = ({ loading: externalLoading = 
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.3, delay: 0.2 }}
-                          className="bg-[var(--color-secondary)]/5 rounded-xl p-4 border-l-4 border-[var(--color-secondary)]"
+                          className="self-start bg-[var(--color-secondary)]/5 rounded-xl p-3 sm:p-4 h-fit"
                         >
-                          <div className="flex items-center gap-3 mb-3">
+                          <div className="flex items-center gap-3 mb-2">
                             <div className="w-8 h-8 bg-[var(--color-secondary)]/10 rounded-lg flex items-center justify-center">
                               <TrendingUp className="w-4 h-4 text-[var(--color-secondary)]" />
                             </div>
@@ -225,7 +225,7 @@ const BacklogCycle: React.FC<BacklogCycleProps> = ({ loading: externalLoading = 
                               {t('backlog.result')}
                             </h4>
                           </div>
-                          <p className="text-sm text-[var(--color-muted)] leading-relaxed">
+                          <p className="text-sm text-[var(--color-muted)] leading-relaxed mb-0">
                             {item.result}
                           </p>
                         </motion.div>
@@ -235,21 +235,20 @@ const BacklogCycle: React.FC<BacklogCycleProps> = ({ loading: externalLoading = 
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.3, delay: 0.3 }}
-                          className="bg-purple-50 dark:bg-purple-900/10 rounded-xl p-4 border-l-4 border-purple-500"
+                          className="self-start rounded-xl p-3 sm:p-4 h-fit"
                         >
-                          <div className="flex items-center gap-3 mb-3">
-                            <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900/20 rounded-lg flex items-center justify-center">
-                              <Target className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+                          <div className="flex items-center gap-3 mb-2">
+                            <div className="w-8 h-8 bg-[var(--color-muted)]/10 rounded-lg flex items-center justify-center">
+                              <Target className="w-4 h-4 text-[var(--color-muted)]" />
                             </div>
                             <h4 className="font-semibold text-[var(--color-text)]">
                               {t('backlog.note')}
                             </h4>
                           </div>
-                          <p className="text-sm text-[var(--color-muted)] leading-relaxed">
+                          <p className="text-sm text-[var(--color-muted)] leading-relaxed mb-0">
                             {item.note}
                           </p>
                         </motion.div>
-
                       </div>
                     </div>
                   </AccordionContent>
@@ -265,7 +264,7 @@ const BacklogCycle: React.FC<BacklogCycleProps> = ({ loading: externalLoading = 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex justify-center items-center gap-4 mt-12"
+            className="flex justify-center items-center gap-4 mt-8"
           >
             <CTAButton
               onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}

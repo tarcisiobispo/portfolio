@@ -26,12 +26,13 @@ import { lazyWithRetry, withSuspense } from '@/utils/lazyWithRetry';
 import LoadingSpinner from "@/components/LoadingSpinner";
 
 // Critical components loaded immediately
-import Header from "@/components/Header";
+import NavigationProvider from "@/components/NavigationProvider";
 
 // Use the grouped lazy components
 const Index = lazyWithRetry(() => import('@/pages/Index').then(m => ({ default: m.default })));
 const NotFound = lazyWithRetry(() => import('@/pages/NotFound').then(m => ({ default: m.default })));
 const PrivacyPolicy = lazyWithRetry(() => import('@/pages/PrivacyPolicy').then(m => ({ default: m.default })));
+const ProjectShowcase = lazyWithRetry(() => import('@/components/ProjectExplain'));
 const FluidGradientBackground = lazyWithRetry(() => import('@/components/FluidGradientBackground').then(m => ({ default: m.default })));
 const CookieConsent = lazyWithRetry(() => import('@/components/CookieConsent').then(m => ({ default: m.default })));
 const AnalyticsProvider = lazyWithRetry(() => import('@/components/analytics/AnalyticsProvider').then(m => ({ default: m.default })));
@@ -186,31 +187,32 @@ const App = () => {
                   <CookieConsent />
                 </Suspense>
                 
-                <Header />
-                
                 <HashRouter
                   future={{
                     v7_startTransition: true,
                     v7_relativeSplatPath: true
                   }}
                 >
-                  <Suspense 
-                    fallback={
-                      <div className="min-h-screen flex items-center justify-center">
-                        <LoadingSpinner />
-                      </div>
-                    }
-                  >
-                    <Routes>
-                      <Route path="/" element={<Index />} />
-                      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                      {import.meta.env.DEV && (
-                        <Route path="/debug-projects" element={<ProjectShowcaseDebug />} />
-                      )}
-                      {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                      <Route path="*" element={<NotFound />} />
-                    </Routes>
-                  </Suspense>
+                  <NavigationProvider>
+                    <Suspense
+                      fallback={
+                        <div className="min-h-screen flex items-center justify-center">
+                          <LoadingSpinner />
+                        </div>
+                      }
+                    >
+                      <Routes>
+                        <Route path="/" element={<Index />} />
+                        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                        <Route path="/projetos/:slug" element={<ProjectShowcase />} />
+                        {import.meta.env.DEV && (
+                          <Route path="/debug-projects" element={<ProjectShowcaseDebug />} />
+                        )}
+                        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                        <Route path="*" element={<NotFound />} />
+                      </Routes>
+                    </Suspense>
+                  </NavigationProvider>
                 </HashRouter>
               </AnalyticsProvider>
             </Suspense>

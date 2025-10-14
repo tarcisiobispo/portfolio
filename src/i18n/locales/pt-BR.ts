@@ -43,7 +43,7 @@ export default {
     "seeMoreDetails": "Ver mais detalhes do projeto",
     "projectImage": "Imagem do projeto",
     "fgvLaw": {
-      "title": "FGV LAW",
+      "title": "Direito FGV – Reestruturação de UX",
       "category": "Navegação e Usabilidade",
       "overview": "Reestruturação da área de cursos jurídicos da FGV LAW com foco em usabilidade e organização da informação. O projeto teve como objetivo aumentar a visibilidade das ofertas e facilitar a navegação entre opções.",
       "discovery": "Identifiquei que os usuários enfrentavam dificuldade para localizar e comparar cursos. A estrutura atual gerava confusão e dispersão. Através de entrevistas e análise heurística, percebi que o excesso de conteúdo não estava ajudando na decisão, e sim atrapalhando.",

@@ -70,8 +70,8 @@ export const BackToTop: React.FC<BackToTopProps> = ({
           onKeyDown={handleKeyDown}
           className={`
             fixed z-40
-            ${isMobile 
-              ? 'bottom-4 right-4 p-2 shadow-md' 
+            ${isMobile
+              ? 'bottom-24 right-4 p-2 shadow-md'
               : 'bottom-8 right-8 md:bottom-20 md:right-20 p-3 md:p-5 shadow-lg hover:shadow-xl'
             }
             rounded-full 

@@ -42,7 +42,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   
   return (
     <article 
-      className={`w-full bg-[var(--color-surface)] dark:bg-[var(--color-surface-dark)] rounded-2xl shadow-lg relative overflow-hidden transition-all duration-300 ${
+      className={`w-full bg-[var(--color-surface)] dark:bg-[var(--color-surface-dark)] rounded-2xl shadow-lg relative transition-all duration-300 ${
         isExpanded ? 'shadow-xl ring-1 ring-blue-500/20' : ''
       }`}
       aria-labelledby={`project-title-${title.replace(/\s+/g, '-').toLowerCase()}`}
@@ -63,7 +63,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       
       <div className="flex flex-col w-full p-6 lg:p-8 relative bg-transparent">
         {/* Cabeçalho do card */}
-        <div className="mb-6 mt-4">
+        <div className="mb-6">
           <span className="text-sm font-medium text-[var(--color-primary)] mb-2 block">{category}</span>
           <h2 id={`project-title-${title.replace(/\s+/g, '-').toLowerCase()}`} className="text-2xl font-semibold text-[var(--color-text)] w-full mb-3">
             {title}
@@ -74,7 +74,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         </div>
 
         {/* Botão de expansão */}
-        <div className="w-full flex justify-center sm:justify-start mb-4">
+        <div className="w-full flex justify-start mb-4">
           <button
             type="button"
             onClick={toggleExpansion}

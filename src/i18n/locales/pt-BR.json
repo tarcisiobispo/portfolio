@@ -1,1 +1,106 @@
-{"navigation":{"profile":"Perfil","projects":"Projetos","backlog":"Backlog","contact":"Contato","home":"Início","goToProfile":"Ir para sessão Perfil","goToProjects":"Ir para sessão Projetos","goToBacklog":"Ir para sessão Backlog","goToContact":"Ir para sessão Contato","mainMenu":"Menu Principal","openMenu":"Abrir menu","closeMenu":"Fechar menu","settings":"Configurações","menu":"Menu"},"language":{"select":"Selecionar idioma","selectLanguage":"Idioma","portuguese":"Português","english":"English","spanish":"Español","changed":"Idioma alterado para"},"common":{"close":"Fechar"},"projects":{"hideDetails":"Ocultar detalhes","seeMore":"Ver detalhes","projectImage":"Imagem do projeto","badges":{"usability":"Usabilidade","informationArchitecture":"Arquitetura da Informação","userTesting":"Testes de Usuário"},"noProjects":"Nenhum projeto disponível."}}
+{
+  "navigation": {
+    "profile": "Perfil",
+    "projects": "Projetos",
+    "backlog": "Backlog",
+    "contact": "Contato",
+    "home": "Início",
+    "goToProfile": "Ir para sessão Perfil",
+    "goToProjects": "Ir para sessão Projetos",
+    "goToBacklog": "Ir para sessão Backlog",
+    "goToContact": "Ir para sessão Contato",
+    "mainMenu": "Menu Principal",
+    "openMenu": "Abrir menu",
+    "closeMenu": "Fechar menu",
+    "settings": "Configurações",
+    "menu": "Menu",
+    "bottomMenu": "Menu de navegação inferior"
+  },
+  "language": {
+    "select": "Selecionar idioma",
+    "selectLanguage": "Idioma",
+    "portuguese": "Português",
+    "english": "English",
+    "spanish": "Español",
+    "changed": "Idioma alterado para"
+  },
+  "common": {
+    "close": "Fechar"
+  },
+  "settings": {
+    "title": "Configurações",
+    "open": "Abrir configurações"
+  },
+  "cookies": {
+    "title": "Este site usa cookies",
+    "description": "Usamos cookies para melhorar sua experiência, analisar o tráfego do site e personalizar conteúdo.",
+    "learnMore": "Saiba mais",
+    "acceptAll": "Aceitar todos",
+    "acceptNecessary": "Apenas necessários",
+    "customize": "Personalizar",
+    "savePreferences": "Salvar preferências",
+    "required": "Obrigatório",
+    "preferences": {
+      "title": "Preferências de Cookies"
+    },
+    "types": {
+      "necessary": {
+        "title": "Cookies Necessários",
+        "description": "Essenciais para o funcionamento básico do site. Não podem ser desabilitados."
+      },
+      "analytics": {
+        "title": "Cookies de Análise",
+        "description": "Nos ajudam a entender como você usa o site para melhorar a experiência.",
+        "providers": "Provedores"
+      },
+      "marketing": {
+        "title": "Cookies de Marketing",
+        "description": "Usados para personalizar anúncios e medir a eficácia das campanhas."
+      }
+    }
+  },
+  "projects": {
+    "hideDetails": "Ocultar detalhes",
+    "seeMore": "Ver detalhes",
+    "projectImage": "Imagem do projeto",
+    "badges": {
+      "usability": "Usabilidade",
+      "informationArchitecture": "Arquitetura da Informação",
+      "userTesting": "Testes de Usuário"
+    },
+    "noProjects": "Nenhum projeto disponível."
+  },
+  "accessibility": {
+    "title": "Acessibilidade",
+    "openMenu": "Opções de acessibilidade",
+    "closeMenu": "Fechar menu",
+    "menuTooltip": "Opções de acessibilidade",
+    "fontSize": {
+      "label": "Tamanho da fonte",
+      "increase": "Aumentar fonte",
+      "decrease": "Diminuir fonte",
+      "reset": "Resetar fonte"
+    },
+    "screenReader": {
+      "label": "Leitor de tela"
+    },
+    "dyslexia": {
+      "label": "Modo Dislexia"
+    },
+    "status": {
+      "enabled": "Ativo"
+    }
+  },
+  "feedback": {
+    "openFeedback": "Abrir feedback"
+  },
+  "tooltips": {
+    "theme": {
+      "light": "Mudar para tema claro",
+      "dark": "Mudar para tema escuro"
+    }
+  },
+  "theme": {
+    "toggle": "Alternar tema"
+  }
+}

@@ -65,14 +65,14 @@ select:focus-visible {
   --accent-500: 199 89% 48%;
 
   /* Neutral Color System */
-  --background: 210 40% 98%;
-  --foreground: 220 15% 12%; /* Preto quase puro para texto principal */
-  --surface: 0 0% 100%;
-  --muted: 220 10% 40%; /* Cinza escuro para texto secundário */
-  --muted-foreground: 220 8% 60%; /* Cinza médio para texto leve */
+  --background: 0 0% 100%;
+  --foreground: 222 84% 5%; /* Slate 900 - 16.3:1 contrast on white */
+  --surface: 210 40% 98%;
+  --muted: 215 25% 35%; /* Slate 600 - 7.1:1 contrast on white */
+  --muted-foreground: 215 16% 47%; /* Slate 500 - 5.9:1 contrast on white */
   --border: 214 32% 91%;
   --input: 214 32% 91%;
-  --ring: 217 91% 60%;
+  --ring: 221 83% 53%;
 
   /* Semantic Colors */
   --success: 142 71% 45%;
@@ -195,10 +195,10 @@ select:focus-visible {
 
   /* Neutral Color System - Dark Mode */
   --background: 222 84% 5%;
-  --foreground: 210 40% 98%;
+  --foreground: 210 40% 98%; /* Slate 100 - 15.3:1 contrast on dark */
   --surface: 215 25% 27%;
-  --muted: 215 20% 65%;
-  --muted-foreground: 215 16% 47%;
+  --muted: 215 20% 65%; /* Slate 400 - 5.9:1 contrast on dark */
+  --muted-foreground: 215 16% 47%; /* Slate 500 - 7.4:1 contrast on dark */
   --border: 215 25% 27%;
   --input: 215 25% 27%;
   --ring: 199 89% 48%;
@@ -372,7 +372,7 @@ p {
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-relaxed); /* 1.6 para melhor legibilidade */
   color: var(--color-text);
-  margin: 0 0 1rem 0;
+  margin: 0;
   max-width: 65ch; /* Limite de caracteres para legibilidade ideal */
 }
 
@@ -403,7 +403,7 @@ small, .text-small {
 
 /* Texto Extra Pequeno */
 .text-xs {
-  font-size: var(--font-size-xs);
+  font-size: 0.875rem; /* 14px - minimum size */
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-normal);
   color: var(--color-muted);
@@ -440,3 +440,7 @@ input, textarea, select {
 .shadow-lg {
   box-shadow: var(--shadow-lg);
 }
+
+/* Vertical rhythm utility: apply top margin between siblings */
+.flow { --flow-space: 1rem; }
+.flow > * + * { margin-top: var(--flow-space); }

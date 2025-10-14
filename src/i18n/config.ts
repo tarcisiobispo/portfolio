@@ -45,6 +45,7 @@ const resources = {
         insights: "Insights",
         seeMore: "Ver detalhes",
         seeLess: "Ocultar detalhes",
+        seeResults: "Ver resultados",
         projectImage: "Imagem do projeto",
         badges: {
           usability: "Usabilidade",
@@ -245,6 +246,24 @@ const resources = {
           disable: "Desativar alto contraste",
           enabled: "Alto contraste ativado",
           disabled: "Alto contraste desativado"
+        },
+        dyslexia: {
+          label: "Modo Dislexia",
+          enable: "Ativar modo dislexia",
+          disable: "Desativar modo dislexia",
+          enabled: "Modo dislexia ativado",
+          disabled: "Modo dislexia desativado",
+          options: {
+            off: "Desligado",
+            weak: "Leve",
+            medium: "Médio",
+            strong: "Forte"
+          },
+          status: {
+            active: "Modo Dislexia {{intensity}} Ativo",
+            example: "Texto de exemplo:",
+            exampleText: "Este texto deve mudar quando você ativar o modo dislexia acima."
+          }
         },
         screenReader: {
           label: "Leitor de tela",
@@ -528,6 +547,176 @@ const resources = {
       footer: {
         copyright: "© 2024 Tarcisio Bispo. Todos os direitos reservados.",
         title: "UX/Product Designer"
+      },
+      projectDetails: {
+        fgvLaw: {
+          title: "FGV LAW - Reestruturação UX",
+          shortDescription: "Reestruturação da área de cursos jurídicos da Direito GV com foco em usabilidade e organização da informação para melhorar a experiência dos usuários.",
+          sections: {
+            challenge: {
+              title: "O Desafio: Arquitetura de Informação Desorganizada",
+              content: "A responsável pelo portal da FGV Law entrou em contato relatando queda nas inscrições e alta taxa de desistência no processo de busca por cursos.",
+              quote: "\"Os alunos dizem que o site tem tudo, mas ninguém encontra nada.\" – Responsável pelo portal da FGV Law",
+              result: "Esse cenário resultava em confusão, retrabalho e sobrecarga da equipe administrativa."
+            },
+            discovery: {
+              title: "Descoberta: Diagnóstico e Análise de Fluxo",
+              content: "Meu ponto de partida foi analisar os relatórios de comportamento de navegação e realizar conversas diretas com a responsável e alguns alunos de pós-graduação.",
+              analysis: "A análise revelou gargalos claros:",
+              bottlenecks: [
+                "Falta de agrupamento temático coerente.",
+                "Etapas redundantes no caminho até a inscrição.",
+                "Hierarquia de informação confusa, com excesso de cliques."
+              ],
+              conclusion: "A partir desse diagnóstico, desenhei o fluxo atual (as-is) e identifiquei os pontos de atrito entre expectativa e realidade do usuário."
+            },
+            solution: {
+              title: "Solução: Nova Estrutura e Wireframes Temáticos",
+              content: "Com base nas evidências, propus uma reorganização completa da arquitetura de informação.",
+              actions: "Entre as principais ações:",
+              actionList: [
+                "Criação de um sistema de abas para organizar as seções de forma progressiva.",
+                "Redefinição da hierarquia visual com foco na clareza e escaneabilidade.",
+                "Criação de wireframes apresentando a nova lógica de navegação e os fluxos de inscrição."
+              ],
+              validation: "Essa nova base foi validada com a responsável e ajustada após feedbacks pontuais de alunos."
+            },
+            iteration: {
+              title: "Iteração e Evolução",
+              content: "Após a entrega, a proposta serviu como fundamento para as versões seguintes do portal.",
+              consolidation: "Essas iterações consolidaram uma linguagem mais limpa, consistente e coerente."
+            },
+            results: {
+              title: "Resultados",
+              content: "Embora não tenha sido possível mensurar resultados quantitativos específicos, os retornos internos foram claros:",
+              resultList: [
+                "Redução perceptível de dúvidas recorrentes e de sobrecarga do suporte.",
+                "Melhor compreensão da oferta de cursos e das etapas do processo seletivo.",
+                "Navegação mais fluida e intuitiva, com experiência positiva relatada por alunos e pela equipe responsável."
+              ]
+            },
+            insights: {
+              title: "Insights",
+              content: "A clareza da estrutura é o ponto de partida para a confiança do usuário."
+            }
+          }
+        },
+        tvInstitucional: {
+          title: "TV Institucional - Service Design",
+          shortDescription: "Implementação de um sistema de comunicação visual para TVs no hall da FGV para comunicar eventos e atualizações institucionais de forma atrativa e dinâmica.",
+          sections: {
+            overview: {
+              title: "Visão Geral: A Interface do Ambiente",
+              content: "Desenvolvi um sistema de comunicação visual para as TVs no hall da FGV.",
+              quote: "Ambientes físicos também são interfaces. Quando bem projetados, informam, engajam e conectam — sem precisar de login."
+            },
+            process: {
+              title: "Meu Processo de Service Design",
+              ethnographic: {
+                title: "1. Pesquisa Etnográfica e de Campo",
+                content: "Passei dias no hall da instituição, observando o fluxo de pessoas.",
+                imageAlt: "Mapa de calor mostrando os principais pontos de circulação e parada dos alunos no hall."
+              },
+              journey: {
+                title: "2. Mapeamento da Jornada e Pontos de Contato",
+                content: "Mapeei a jornada do aluno dentro do espaço físico."
+              },
+              prototyping: {
+                title: "3. Prototipagem e Curadoria de Conteúdo",
+                content: "Criei um protótipo do sistema usando um simples slideshow em uma TV.",
+                imageAlt: "Mosaico com diferentes templates para eventos, avisos e notícias."
+              },
+              testing: {
+                title: "4. Testes e Iteração",
+                content: "Para medir o engajamento, usei uma tática simples: adicionei QR Codes nos anúncios de eventos."
+              }
+            },
+            results: {
+              title: "Resultados: Da Ignorância ao Engajamento",
+              metrics: [
+                { value: "+300%", label: "de aumento na visibilidade de eventos (medido por QR Code)" },
+                { value: "+40%", label: "de aumento na participação em eventos do campus" },
+                { value: "9/10", label: "nota de satisfação dos alunos com o novo canal" }
+              ]
+            }
+          }
+        },
+        taliparts: {
+          title: "TALIPARTS - UX & Business Research",
+          shortDescription: "Pesquisa estratégica e validação de produtos para entrada no Mercado Livre, com foco em aprendizado rápido e redução de riscos.",
+          sections: {
+            challenge: {
+              title: "O Desafio: Vender no Digital com Baixo Risco",
+              content: "A Taliparts, uma distribuidora de autopeças tradicional, queria entrar no Mercado Livre."
+            },
+            strategy: {
+              title: "Minha Estratégia de Pesquisa Lean",
+              competitive: {
+                title: "1. Análise Competitiva e de Mercado",
+                content: "Iniciei com uma análise profunda dos 5 maiores vendedores de autopeças no Mercado Livre.",
+                imageAlt: "Diagrama de Análise SWOT dos principais concorrentes no Mercado Livre."
+              },
+              personas: {
+                title: "2. Definição de Personas",
+                content: "Com base em fóruns de automóveis e na análise de perguntas de anúncios concorrentes."
+              },
+              validation: {
+                title: "3. Validação com Anúncios Fantasma",
+                content: "Para validar a demanda sem comprar estoque, criei 10 anúncios \"fantasma\"."
+              },
+              seo: {
+                title: "4. Otimização de SEO para Marketplace",
+                content: "Com os produtos validados, foquei em otimizar cada anúncio para máxima performance de SEO.",
+                beforeAlt: "Exemplo de título de anúncio genérico.",
+                afterAlt: "Exemplo de título otimizado."
+              }
+            },
+            results: {
+              title: "Resultados e Próximos Passos",
+              metrics: [
+                { value: "Top 10", label: "em 60% dos anúncios para palavras-chave alvo" },
+                { value: "+150%", label: "de CTR comparado à média da categoria" },
+                { value: "80%", label: "dos produtos validados atingiram o ponto de equilíbrio em 45 dias" }
+              ]
+            }
+          }
+        },
+        direitoGV: {
+          title: "Direito GV - Pesquisa e Arquitetura",
+          shortDescription: "Análise e melhoria da arquitetura de informação para a área de cursos da Direito GV, com foco na experiência do usuário corporativo.",
+          sections: {
+            overview: {
+              title: "Visão Geral do Projeto de Pesquisa",
+              content: "Atuei na fase de pesquisa e descoberta que fundamentou o projeto de redesenho do portal.",
+              imageAlt: "Diagrama do Duplo Diamante destacando a fase de Descoberta e Definição."
+            },
+            process: {
+              title: "Meu Processo de Diagnóstico",
+              heuristic: {
+                title: "1. Análise Heurística",
+                content: "Iniciei com uma avaliação heurística completa da interface do portal."
+              },
+              stakeholders: {
+                title: "2. Entrevistas com Stakeholders",
+                content: "Conduzi reuniões com 5 stakeholders chave."
+              },
+              journey: {
+                title: "3. Mapeamento da Jornada do Usuário As-Is",
+                content: "Mapeei a jornada completa de um aluno tentando se inscrever em um curso.",
+                imageAlt: "Mapa detalhado da jornada do usuário."
+              }
+            },
+            deliverables: {
+              title: "Entregáveis e Recomendações",
+              content: "O resultado desta fase de pesquisa foi um relatório detalhado de diagnóstico.",
+              deliverablesList: [
+                "Relatório de Diagnóstico de UX: Documento com todos os problemas de usabilidade encontrados.",
+                "Recomendação de Arquitetura de Informação: Proposta de uma nova estrutura de categorias.",
+                "Roadmap de Implementação: Sugestão de um plano de ação faseado."
+              ]
+            }
+          }
+        }
       }
     }
   },
@@ -566,6 +755,7 @@ const resources = {
         insights: "Insights",
         seeMore: "See details",
         seeLess: "Hide details",
+        seeResults: "See results",
         projectImage: "Project image",
         badges: {
           usability: "Usability",
@@ -762,6 +952,24 @@ const resources = {
           disable: "Disable high contrast",
           enabled: "High contrast enabled",
           disabled: "High contrast disabled"
+        },
+        dyslexia: {
+          label: "Dyslexia Mode",
+          enable: "Enable dyslexia mode",
+          disable: "Disable dyslexia mode",
+          enabled: "Dyslexia mode enabled",
+          disabled: "Dyslexia mode disabled",
+          options: {
+            off: "Off",
+            weak: "Light",
+            medium: "Medium",
+            strong: "Strong"
+          },
+          status: {
+            active: "Dyslexia Mode {{intensity}} Active",
+            example: "Example text:",
+            exampleText: "This text should change when you activate dyslexia mode above."
+          }
         },
         screenReader: {
           label: "Screen reader",
@@ -969,6 +1177,176 @@ const resources = {
         copyright: "© 2024 Tarcisio Bispo. All rights reserved.",
         title: "UX/Product Designer"
       },
+      projectDetails: {
+        fgvLaw: {
+          title: "FGV LAW - UX Restructuring",
+          shortDescription: "Restructuring of Direito GV legal courses area with focus on usability and information organization to improve user experience.",
+          sections: {
+            challenge: {
+              title: "The Challenge: Disorganized Information Architecture",
+              content: "The person responsible for FGV Law portal contacted me reporting a drop in enrollments and high abandonment rate in the course search process.",
+              quote: "\"Students say the site has everything, but nobody finds anything.\" – FGV Law portal manager",
+              result: "This scenario resulted in confusion, rework and overload on the administrative team."
+            },
+            discovery: {
+              title: "Discovery: Diagnosis and Flow Analysis",
+              content: "My starting point was to analyze navigation behavior reports and conduct direct conversations with the manager and some postgraduate students.",
+              analysis: "The analysis revealed clear bottlenecks:",
+              bottlenecks: [
+                "Lack of coherent thematic grouping.",
+                "Redundant steps in the path to enrollment.",
+                "Confusing information hierarchy, with excessive clicks."
+              ],
+              conclusion: "From this diagnosis, I drew the current flow (as-is) and identified the friction points between user expectation and reality."
+            },
+            solution: {
+              title: "Solution: New Structure and Thematic Wireframes",
+              content: "Based on the evidence, I proposed a complete reorganization of the information architecture.",
+              actions: "Among the main actions:",
+              actionList: [
+                "Creation of a tab system to organize sections progressively.",
+                "Redefinition of visual hierarchy with focus on clarity and scannability.",
+                "Creation of wireframes presenting the new navigation logic and enrollment flows."
+              ],
+              validation: "This new foundation was validated with the manager and adjusted after specific feedback from students."
+            },
+            iteration: {
+              title: "Iteration and Evolution",
+              content: "After delivery, the proposal served as the foundation for subsequent portal versions.",
+              consolidation: "These iterations consolidated a cleaner, more consistent and coherent language."
+            },
+            results: {
+              title: "Results",
+              content: "Although it was not possible to measure specific quantitative results, the internal feedback was clear:",
+              resultList: [
+                "Perceptible reduction in recurring questions and administrative team overload.",
+                "Better understanding of course offerings and enrollment process steps.",
+                "Smoother and more intuitive navigation, with positive experience reported by students and the responsible team."
+              ]
+            },
+            insights: {
+              title: "Insights",
+              content: "The clarity of the structure is the starting point for user confidence."
+            }
+          }
+        },
+        tvInstitucional: {
+          title: "FGV Institutional TV - Service Design",
+          shortDescription: "Implementation of a visual communication system for TVs in FGV's hall to communicate events and institutional updates in an attractive and dynamic way.",
+          sections: {
+            overview: {
+              title: "Overview: The Interface of the Environment",
+              content: "I developed a visual communication system for the TVs in FGV's hall.",
+              quote: "Physical environments are also interfaces. When well designed, they inform, engage and connect — without needing login."
+            },
+            process: {
+              title: "My Service Design Process",
+              ethnographic: {
+                title: "1. Ethnographic and Field Research",
+                content: "I spent days in the institution's hall, observing people's flow.",
+                imageAlt: "Heat map showing the main circulation and stopping points of students in the hall."
+              },
+              journey: {
+                title: "2. Journey Mapping and Touchpoints",
+                content: "I mapped the student's journey within the physical space."
+              },
+              prototyping: {
+                title: "3. Prototyping and Content Curation",
+                content: "I created a prototype of the system using a simple slideshow on a TV.",
+                imageAlt: "Mosaic with different templates for events, notices and news."
+              },
+              testing: {
+                title: "4. Testing and Iteration",
+                content: "To measure engagement, I used a simple tactic: I added QR Codes to event announcements."
+              }
+            },
+            results: {
+              title: "Results: From Ignorance to Engagement",
+              metrics: [
+                { value: "+300%", label: "increase in event visibility (measured by QR Code)" },
+                { value: "+40%", label: "increase in participation in campus events" },
+                { value: "9/10", label: "student satisfaction score with the new channel" }
+              ]
+            }
+          }
+        },
+        taliparts: {
+          title: "TALIPARTS - UX & Business Research",
+          shortDescription: "Strategic research and product validation for entry into Mercado Livre, with focus on rapid learning and risk reduction.",
+          sections: {
+            challenge: {
+              title: "The Challenge: Selling Digitally with Low Risk",
+              content: "Taliparts, a traditional auto parts distributor, wanted to enter Mercado Livre."
+            },
+            strategy: {
+              title: "My Lean Research Strategy",
+              competitive: {
+                title: "1. Competitive and Market Analysis",
+                content: "I started with a deep analysis of the 5 largest auto parts sellers on Mercado Livre.",
+                imageAlt: "SWOT Analysis diagram of the main competitors on Mercado Livre."
+              },
+              personas: {
+                title: "2. Persona Definition",
+                content: "Based on automotive forums and analysis of competitor ad questions."
+              },
+              validation: {
+                title: "3. Validation with Ghost Ads",
+                content: "To validate demand without buying inventory, I created 10 \"ghost\" ads."
+              },
+              seo: {
+                title: "4. SEO Optimization for Marketplace",
+                content: "With validated products, I focused on optimizing each ad for maximum SEO performance.",
+                beforeAlt: "Example of generic ad title.",
+                afterAlt: "Example of SEO-optimized title."
+              }
+            },
+            results: {
+              title: "Results and Next Steps",
+              metrics: [
+                { value: "Top 10", label: "in 60% of ads for target keywords" },
+                { value: "+150%", label: "CTR compared to category average" },
+                { value: "80%", label: "of validated products reached break-even in 45 days" }
+              ]
+            }
+          }
+        },
+        direitoGV: {
+          title: "Direito GV - Research and Architecture",
+          shortDescription: "Analysis and improvement of information architecture for Direito GV's course area, with focus on corporate user experience.",
+          sections: {
+            overview: {
+              title: "Research Project Overview",
+              content: "I acted in the research and discovery phase that founded the portal redesign project.",
+              imageAlt: "Double Diamond diagram highlighting the Discovery and Definition phase."
+            },
+            process: {
+              title: "My Diagnostic Process",
+              heuristic: {
+                title: "1. Heuristic Analysis",
+                content: "I started with a complete heuristic evaluation of the portal interface."
+              },
+              stakeholders: {
+                title: "2. Stakeholder Interviews",
+                content: "I conducted meetings with 5 key stakeholders."
+              },
+              journey: {
+                title: "3. As-Is User Journey Mapping",
+                content: "I mapped the complete journey of a student trying to enroll in a course.",
+                imageAlt: "Detailed user journey map."
+              }
+            },
+            deliverables: {
+              title: "Deliverables and Recommendations",
+              content: "The result of this research phase was a detailed diagnostic report.",
+              deliverablesList: [
+                "UX Diagnostic Report: Document with all usability problems found.",
+                "Information Architecture Recommendation: Proposal for a new category structure.",
+                "Implementation Roadmap: Suggestion for a phased action plan."
+              ]
+            }
+          }
+        }
+      },
       feedback: {
         title: "Feedback",
         subtitle: "Your opinion matters",
@@ -1084,6 +1462,7 @@ const resources = {
         insights: "Insights",
         seeMore: "Ver detalles",
         seeLess: "Ocultar detalles",
+        seeResults: "Ver resultados",
         projectImage: "Imagen del proyecto",
         badges: {
           usability: "Usabilidad",
@@ -1281,12 +1660,23 @@ const resources = {
           enabled: "Alto contraste activado",
           disabled: "Alto contraste desactivado"
         },
-        screenReader: {
-          label: "Lector de pantalla",
-          enable: "Activar lector de pantalla",
-          disable: "Desactivar lector de pantalla",
-          enabled: "Lector de pantalla activado",
-          disabled: "Lector de pantalla desactivado"
+        dyslexia: {
+          label: "Modo Dislexia",
+          enable: "Activar modo dislexia",
+          disable: "Desactivar modo dislexia",
+          enabled: "Modo dislexia activado",
+          disabled: "Modo dislexia desactivado",
+          options: {
+            off: "Apagado",
+            weak: "Leve",
+            medium: "Medio",
+            strong: "Fuerte"
+          },
+          status: {
+            active: "Modo Dislexia {{intensity}} Activo",
+            example: "Texto de ejemplo:",
+            exampleText: "Este texto debe cambiar cuando actives el modo dislexia arriba."
+          }
         },
         reset: {
           label: "Resetear configuraciones",
@@ -1484,14 +1874,184 @@ const resources = {
         system: "Usando preferencia del sistema"
       },
       footer: {
-        copyright: "© 2024 Tarcisio Bispo. Todos los derechos reservados.",
+        copyright: " 2024 Tarcisio Bispo. Todos los derechos reservados.",
         title: "UX/Product Designer"
+      },
+      projectDetails: {
+        fgvLaw: {
+          title: "FGV LAW - Reestructuración UX",
+          shortDescription: "Reestructuración del área de cursos jurídicos de Direito GV con enfoque en usabilidad y organización de la información para mejorar la experiencia del usuario.",
+          sections: {
+            challenge: {
+              title: "El Desafío: Arquitectura de Información Desorganizada",
+              content: "La responsable del portal de FGV Law se contactó reportando caída en las inscripciones y alta tasa de abandono en el proceso de búsqueda de cursos.",
+              quote: "\"Los alumnos dicen que el sitio tiene todo, pero nadie encuentra nada.\" – Responsable del portal de FGV Law",
+              result: "Este escenario resultaba en confusión, retrabajo y sobrecarga del equipo administrativo."
+            },
+            discovery: {
+              title: "Descubrimiento: Diagnóstico y Análisis de Flujo",
+              content: "Mi punto de partida fue analizar los informes de comportamiento de navegación y realizar conversaciones directas con la responsable y algunos alumnos de posgrado.",
+              analysis: "El análisis reveló cuellos de botella claros:",
+              bottlenecks: [
+                "Falta de agrupamiento temático coherente.",
+                "Etapas redundantes en el camino hacia la inscripción.",
+                "Jerarquía de información confusa, con exceso de clics."
+              ],
+              conclusion: "A partir de este diagnóstico, dibujé el flujo actual (as-is) e identifiqué los puntos de fricción entre expectativa y realidad del usuario."
+            },
+            solution: {
+              title: "Solución: Nueva Estructura y Wireframes Temáticos",
+              content: "Basado en la evidencia, propuse una reorganización completa de la arquitectura de información.",
+              actions: "Entre las principales acciones:",
+              actionList: [
+                "Creación de un sistema de pestañas para organizar las secciones de forma progresiva.",
+                "Redefinición de la jerarquía visual con enfoque en claridad y escaneabilidad.",
+                "Creación de wireframes presentando la nueva lógica de navegación y los flujos de inscripción."
+              ],
+              validation: "Esta nueva base fue validada con la responsable y ajustada después de feedbacks puntuales de alumnos."
+            },
+            iteration: {
+              title: "Iteración y Evolución",
+              content: "Después de la entrega, la propuesta sirvió como fundamento para las versiones siguientes del portal.",
+              consolidation: "Estas iteraciones consolidaron un lenguaje más limpio, consistente y coherente."
+            },
+            results: {
+              title: "Resultados",
+              content: "Aunque no fue posible medir resultados cuantitativos específicos, los retornos internos fueron claros:",
+              resultList: [
+                "Reducción perceptible de dudas recurrentes y de sobrecarga del soporte.",
+                "Mejor comprensión de la oferta de cursos y de las etapas del proceso selectivo.",
+                "Navegación más fluida e intuitiva, con experiencia positiva reportada por alumnos y por el equipo responsable."
+              ]
+            },
+            insights: {
+              title: "Insights",
+              content: "La claridad de la estructura es el punto de partida para la confianza del usuario."
+            }
+          }
+        },
+        tvInstitucional: {
+          title: "TV Institucional - Service Design",
+          shortDescription: "Implementación de un sistema de comunicación visual para TVs en el hall de FGV para comunicar eventos y actualizaciones institucionales de manera atractiva y dinámica.",
+          sections: {
+            overview: {
+              title: "Visión General: La Interfaz del Ambiente",
+              content: "Desarrollé un sistema de comunicación visual para las TVs en el hall de FGV.",
+              quote: "Los ambientes físicos también son interfaces. Cuando están bien diseñados, informan, involucran y conectan — sin necesidad de login."
+            },
+            process: {
+              title: "Mi Proceso de Service Design",
+              ethnographic: {
+                title: "1. Investigación Etnográfica y de Campo",
+                content: "Pasé días en el hall de la institución, observando el flujo de personas.",
+                imageAlt: "Mapa de calor mostrando los principales puntos de circulación y parada de los alumnos en el hall."
+              },
+              journey: {
+                title: "2. Mapeo de Jornada y Puntos de Contacto",
+                content: "Mapeé la jornada del alumno dentro del espacio físico."
+              },
+              prototyping: {
+                title: "3. Prototipado y Curaduría de Contenido",
+                content: "Creé un prototipo del sistema usando un simple slideshow en una TV.",
+                imageAlt: "Mosaico con diferentes templates para eventos, avisos y noticias."
+              },
+              testing: {
+                title: "4. Pruebas e Iteración",
+                content: "Para medir el engagement, usé una táctica simple: agregué códigos QR en los anuncios de eventos."
+              }
+            },
+            results: {
+              title: "Resultados: De la Ignorancia al Engagement",
+              metrics: [
+                { value: "+300%", label: "de aumento en la visibilidad de eventos (medido por QR Code)" },
+                { value: "+40%", label: "de aumento en la participación en eventos del campus" },
+                { value: "9/10", label: "nota de satisfacción de los alumnos con el nuevo canal" }
+              ]
+            }
+          }
+        },
+        taliparts: {
+          title: "TALIPARTS - UX & Business Research",
+          shortDescription: "Investigación estratégica y validación de productos para entrada en Mercado Libre, con enfoque en aprendizaje rápido y reducción de riesgos.",
+          sections: {
+            challenge: {
+              title: "El Desafío: Vender en Digital con Bajo Riesgo",
+              content: "Taliparts, una distribuidora tradicional de autopartes, quería entrar en Mercado Libre."
+            },
+            strategy: {
+              title: "Mi Estrategia de Investigación Lean",
+              competitive: {
+                title: "1. Análisis Competitivo y de Mercado",
+                content: "Inicié con un análisis profundo de los 5 mayores vendedores de autopartes en Mercado Libre.",
+                imageAlt: "Diagrama de Análisis FODA de los principales competidores en Mercado Libre."
+              },
+              personas: {
+                title: "2. Definición de Personas",
+                content: "Basado en foros de automóviles y en el análisis de preguntas de anuncios de competidores."
+              },
+              validation: {
+                title: "3. Validación con Anuncios Fantasma",
+                content: "Para validar la demanda sin comprar inventario, creé 10 anuncios \"fantasma\"."
+              },
+              seo: {
+                title: "4. Optimización de SEO para Marketplace",
+                content: "Con los productos validados, me enfoqué en optimizar cada anuncio para máxima performance de SEO.",
+                beforeAlt: "Ejemplo de título de anuncio genérico.",
+                afterAlt: "Ejemplo de título optimizado para SEO."
+              }
+            },
+            results: {
+              title: "Resultados y Próximos Pasos",
+              metrics: [
+                { value: "Top 10", label: "en 60% de los anuncios para palabras clave objetivo" },
+                { value: "+150%", label: "de CTR comparado con el promedio de la categoría" },
+                { value: "80%", label: "de los productos validados alcanzaron el punto de equilibrio en 45 días" }
+              ]
+            }
+          }
+        },
+        direitoGV: {
+          title: "Direito GV - Investigación y Arquitectura",
+          shortDescription: "Análisis y mejora de la arquitectura de información para el área de cursos de Direito GV, con enfoque en la experiencia del usuario corporativo.",
+          sections: {
+            overview: {
+              title: "Visión General del Proyecto de Investigación",
+              content: "Actué en la fase de investigación y descubrimiento que fundamentó el proyecto de rediseño del portal.",
+              imageAlt: "Diagrama del Doble Diamante destacando la fase de Descubrimiento y Definición."
+            },
+            process: {
+              title: "Mi Proceso de Diagnóstico",
+              heuristic: {
+                title: "1. Análisis Heurístico",
+                content: "Inicié con una evaluación heurística completa de la interfaz del portal."
+              },
+              stakeholders: {
+                title: "2. Entrevistas con Stakeholders",
+                content: "Conduje reuniones con 5 stakeholders clave."
+              },
+              journey: {
+                title: "3. Mapeo de la Jornada del Usuario As-Is",
+                content: "Mapeé la jornada completa de un alumno intentando inscribirse en un curso.",
+                imageAlt: "Mapa detallado de la jornada del usuario."
+              }
+            },
+            deliverables: {
+              title: "Entregables y Recomendaciones",
+              content: "El resultado de esta fase de investigación fue un informe detallado de diagnóstico.",
+              deliverablesList: [
+                "Informe de Diagnóstico de UX: Documento con todos los problemas de usabilidad encontrados.",
+                "Recomendación de Arquitectura de Información: Propuesta de una nueva estructura de categorías.",
+                "Roadmap de Implementación: Sugerencia de un plan de acción por fases."
+              ]
+            }
+          }
+        }
       },
       feedback: {
         title: "Feedback",
         subtitle: "Tu opinión importa",
         description: "Comparte tu experiencia y sugerencias",
-        typeQuestion: "¿Qué tipo de feedback te gustaría compartir?",
+        // ... (rest of the code remains the same)
         thankYou: "¡Gracias por tu feedback!",
         importance: "Tu opinión es muy importante para nosotros.",
         close: "Cerrar",

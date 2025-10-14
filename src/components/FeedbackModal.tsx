@@ -168,7 +168,11 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
                   {t(`feedback.${feedbackType}Instruction`) || t('feedback.defaultInstruction')}
                 </div>
                 <div className="relative">
+                  <label htmlFor="feedback-message" className="sr-only">
+                    {t(`feedback.${feedbackType}Title`) || t('feedback.defaultTitle')}
+                  </label>
                   <textarea
+                    id="feedback-message"
                     className={`w-full rounded-lg border-2 p-3 min-h-[90px] text-base transition-all focus-visible:ring-2 focus-visible:ring-blue-700 outline-none resize-none bg-slate-50 dark:bg-gray-700 dark:text-white pr-10 ${
                       touched && !isMessageValid
                         ? 'border-red-500 focus:ring-red-500'
@@ -219,7 +223,11 @@ export default function FeedbackModal({ open, onClose, section = 'default' }) {
                 </div>
                 {showEmail && (
                   <div className="relative">
+                    <label htmlFor="feedback-email" className="sr-only">
+                      E-mail (opcional)
+                    </label>
                     <input
+                      id="feedback-email"
                       className={`rounded-lg border-2 p-2 text-base transition-all focus-visible:ring-2 focus-visible:ring-blue-700 outline-none bg-slate-50 dark:bg-gray-700 dark:text-white w-full pr-10
                         ${email.length > 0 ? (isEmailValid ? 'border-green-500' : 'border-red-500') : 'border-slate-300 dark:border-gray-600'}
                       `}

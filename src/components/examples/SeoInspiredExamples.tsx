@@ -75,21 +75,33 @@ export const SeoInspiredContactExample: React.FC = () => {
         <div className="max-w-md mx-auto bg-white dark:bg-gray-800 rounded-lg p-8 shadow-lg">
           <form>
             <div className="mb-4">
+              <label htmlFor="example-name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Your Name
+              </label>
               <input
+                id="example-name"
                 type="text"
                 placeholder="Your Name"
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div className="mb-4">
+              <label htmlFor="example-email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Your Email
+              </label>
               <input
+                id="example-email"
                 type="email"
                 placeholder="Your Email"
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div className="mb-6">
+              <label htmlFor="example-message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Your Message
+              </label>
               <textarea
+                id="example-message"
                 placeholder="Your Message"
                 rows={4}
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"

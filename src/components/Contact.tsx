@@ -301,7 +301,7 @@ const Contact: React.FC = () => {
   }, [fieldValidationStates]);
 
   return (
-    <section id="contact" className="py-16">
+    <section id="contact" className="py-12">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -497,16 +497,17 @@ const Contact: React.FC = () => {
               iconPosition="left"
               disabled={isSubmitting}
               loading={isSubmitting}
-              className="w-full"
+              className="w-fit px-4 py-2 sm:px-5 sm:py-2.5"
               ariaLabel={isSubmitting ? t('contact.form.sending') : t('contact.form.send')}
             >
               {isSubmitting ? t('contact.form.sending') : t('contact.form.send')}
             </CTAButton>
 
             {/* Mensagem de Privacidade - Integrada ao formulário */}
-            <div className="mt-2 text-center">
-              <p className="text-sm text-[var(--color-muted)] max-w-prose mx-auto">
-                {t('contact.form.privacy')}
+            <div className="mt-4 text-left">
+              <p className="text-xs sm:text-sm text-[var(--color-muted)] max-w-prose leading-relaxed">
+                Seus dados não serão compartilhados<br className="hidden sm:inline" />
+                <span className="sm:hidden"> </span>e serão usados apenas para responder sua mensagem.
               </p>
             </div>
           </div>

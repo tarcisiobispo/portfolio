@@ -1,1 +1,110 @@
-{"navigation":{"profile":"Profile","projects":"Projects","backlog":"Backlog","contact":"Contact","home":"Home","goToProfile":"Go to Profile section","goToProjects":"Go to Projects section","goToBacklog":"Go to Backlog section","goToContact":"Go to Contact section","mainMenu":"Main Menu","openMenu":"Open menu","closeMenu":"Close menu","settings":"Settings","menu":"Menu"},"language":{"select":"Select language","selectLanguage":"Language","portuguese":"Portuguese","english":"English","spanish":"Spanish"},"projects":{"seeMore":"See details","seeLess":"Hide details","projectImage":"Project image","badges":{"usability":"Usability","informationArchitecture":"Information Architecture","userTesting":"User Testing"},"noProjects":"No projects available.","fgvLaw":{"badges":["Navigation","Usability","Information Architecture","User Testing"]},"direitoGV":{"badges":["Research Mapping","Information Architecture","Advanced Search","Stakeholder Management"]},"taliparts":{"badges":["Digital Validation","Marketplace SEO","Visual Standardization","KPI Management"]},"tvInstitucional":{"badges":["Visual Communication","Engagement","Content Automation","Physical Space Design"]}}}
+{
+  "navigation": {
+    "profile": "Profile",
+    "projects": "Projects",
+    "backlog": "Backlog",
+    "contact": "Contact",
+    "home": "Home",
+    "goToProfile": "Go to Profile section",
+    "goToProjects": "Go to Projects section",
+    "goToBacklog": "Go to Backlog section",
+    "goToContact": "Go to Contact section",
+    "mainMenu": "Main Menu",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "settings": "Settings",
+    "menu": "Menu",
+    "bottomMenu": "Bottom navigation menu"
+  },
+  "language": {
+    "select": "Select language",
+    "selectLanguage": "Language",
+    "portuguese": "Portuguese",
+    "english": "English",
+    "spanish": "Spanish"
+  },
+  "common": {
+    "close": "Close"
+  },
+  "settings": {
+    "title": "Settings",
+    "open": "Open settings"
+  },
+  "cookies": {
+    "title": "This site uses cookies",
+    "description": "We use cookies to improve your experience, analyze site traffic and personalize content.",
+    "learnMore": "Learn more",
+    "acceptAll": "Accept all",
+    "acceptNecessary": "Only necessary",
+    "customize": "Customize",
+    "savePreferences": "Save preferences",
+    "required": "Required",
+    "preferences": {
+      "title": "Cookie Preferences"
+    },
+    "types": {
+      "necessary": {
+        "title": "Necessary Cookies",
+        "description": "Essential for basic site functionality. Cannot be disabled."
+      },
+      "analytics": {
+        "title": "Analytics Cookies",
+        "description": "Help us understand how you use the site to improve the experience.",
+        "providers": "Providers"
+      },
+      "marketing": {
+        "title": "Marketing Cookies",
+        "description": "Used to personalize ads and measure campaign effectiveness."
+      }
+    }
+  },
+  "projects": {
+    "seeMore": "See details",
+    "seeLess": "Hide details",
+    "projectImage": "Project image",
+    "badges": {
+      "usability": "Usability",
+      "informationArchitecture": "Information Architecture",
+      "userTesting": "User Testing"
+    },
+    "noProjects": "No projects available.",
+    "accessibility": {
+      "dyslexia": {
+        "label": "Dyslexia Mode"
+      }
+    }
+  },
+  "accessibility": {
+    "title": "Accessibility",
+    "openMenu": "Accessibility options",
+    "closeMenu": "Close menu",
+    "menuTooltip": "Accessibility options",
+    "fontSize": {
+      "label": "Font size",
+      "increase": "Increase font",
+      "decrease": "Decrease font",
+      "reset": "Reset font"
+    },
+    "screenReader": {
+      "label": "Screen reader"
+    },
+    "dyslexia": {
+      "label": "Dyslexia Mode"
+    },
+    "status": {
+      "enabled": "Active"
+    }
+  },
+  "feedback": {
+    "openFeedback": "Open feedback"
+  },
+  "tooltips": {
+    "theme": {
+      "light": "Change to light theme",
+      "dark": "Change to dark theme"
+    }
+  },
+  "theme": {
+    "toggle": "Toggle theme"
+  }
+}

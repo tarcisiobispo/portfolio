@@ -377,10 +377,12 @@ export const useFluidGradient = () => {
       // Registrar observador nas seções
       SECTIONS.forEach(section => {
         const element = document.getElementById(section.id);
+        console.log(`🎨 FluidGradient: Looking for section ${section.id}, found:`, !!element);
         if (element) {
           // Adicionar atributo de dados para identificação
           element.setAttribute('data-section', section.id);
           observer?.observe(element);
+          console.log(`🎨 FluidGradient: Observing section ${section.id}`);
         }
       });
     }
@@ -396,24 +398,49 @@ export const useFluidGradient = () => {
     
     // Usar requestIdleCallback para atualização inicial
     const init = () => {
+      console.log('🎨 FluidGradient: Starting initialization...');
+
+      // Verificar novamente se os elementos existem
+      const elementsFound = SECTIONS.filter(section => {
+        const element = document.getElementById(section.id);
+        console.log(`🎨 FluidGradient: Section ${section.id} element:`, !!element);
+        return !!element;
+      });
+
+      console.log(`🎨 FluidGradient: Found ${elementsFound.length}/${SECTIONS.length} sections`);
+
+      if (elementsFound.length === 0) {
+        console.log('🎨 FluidGradient: No sections found, trying again...');
+        // Tentar novamente após um tempo maior
+        setTimeout(() => {
+          const initialSection = detectActiveSection();
+          setCurrentSection(initialSection);
+          console.log('🎨 FluidGradient: Second attempt, section:', initialSection);
+        }, 500);
+        return;
+      }
+
       if ('requestIdleCallback' in window) {
         const idleId = (window as any).requestIdleCallback(
           () => {
             const initialSection = detectActiveSection();
             setCurrentSection(initialSection);
+            console.log('🎨 FluidGradient: Initial section detected:', initialSection);
           },
-          { timeout: 500 }
+          { timeout: 1000 }
         );
-        
+
         return () => (window as any).cancelIdleCallback(idleId);
       } else {
         const initialSection = detectActiveSection();
         setCurrentSection(initialSection);
+        console.log('🎨 FluidGradient: Initial section (no idle callback):', initialSection);
       }
     };
     
     // Inicializar com um pequeno atraso para permitir que o layout seja concluído
-    const initTimeout = setTimeout(init, 50);
+    const initTimeout = setTimeout(init, 100); // Aumentado para 100ms
+    console.log('🎨 FluidGradient: Initialization timeout set');
     
     return () => {
       // Limpar recursos
@@ -484,22 +511,44 @@ const getSectionDisplayName = (sectionId: string): string => {
 // Hook para criar o container de gradiente
 export const useGradientContainer = () => {
   useEffect(() => {
+    console.log('🎨 useGradientContainer: Hook executed');
+
     // Verificar se já existe
     if (document.querySelector('.fluid-gradient-container')) {
+      console.log('🎨 useGradientContainer: Container already exists, skipping creation');
       return;
     }
+
+    console.log('🎨 useGradientContainer: Creating new container...');
 
     // Criar container de gradiente
     const gradientContainer = document.createElement('div');
     gradientContainer.className = 'fluid-gradient-container section-profile';
-    
+    gradientContainer.setAttribute('aria-hidden', 'true');
+    gradientContainer.setAttribute('role', 'presentation');
+    gradientContainer.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+      transform: translate3d(0, 0, 0);
+      backface-visibility: hidden;
+      perspective: 1000px;
+      will-change: transform, opacity;
+    `;
+
     // Inserir no início do body
     document.body.insertBefore(gradientContainer, document.body.firstChild);
+    console.log('🎨 useGradientContainer: Container created and inserted');
 
     // Cleanup
     return () => {
       const container = document.querySelector('.fluid-gradient-container');
       if (container) {
+        console.log('🎨 useGradientContainer: Cleaning up container');
         container.remove();
       }
     };

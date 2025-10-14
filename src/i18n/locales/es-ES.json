@@ -1,1 +1,105 @@
-{"navigation":{"profile":"Perfil","projects":"Proyectos","backlog":"Backlog","contact":"Contacto","home":"Inicio","goToProfile":"Ir a la sección Perfil","goToProjects":"Ir a la sección Proyectos","goToBacklog":"Ir a la sección Backlog","goToContact":"Ir a la sección Contacto","mainMenu":"Menú Principal","openMenu":"Abrir menú","closeMenu":"Cerrar menú","settings":"Configuraciones","menu":"Menú"},"language":{"select":"Seleccionar idioma","selectLanguage":"Idioma","portuguese":"Português","english":"English","spanish":"Español"},"projects":{"seeMore":"Ver detalles","seeLess":"Ocultar detalles","projectImage":"Imagen del proyecto","badges":{"usability":"Usabilidad","informationArchitecture":"Arquitectura de la Información","userTesting":"Pruebas de Usuario"},"noProjects":"No hay proyectos disponibles.","fgvLaw":{"badges":["Navegación","Usabilidad","Arquitectura de la Información","Pruebas con Usuarios"]},"direitoGV":{"badges":["Mapeo de Investigación","Arquitectura de la Información","Búsqueda Avanzada","Gestión de Stakeholders"]},"taliparts":{"badges":["Validación Digital","SEO para Marketplace","Estandarización Visual","Gestión de KPIs"]},"tvInstitucional":{"badges":["Comunicación Visual","Engagement","Automatización de Contenido","Diseño para Espacios Físicos"]}}}
+{
+  "navigation": {
+    "profile": "Perfil",
+    "projects": "Proyectos",
+    "backlog": "Backlog",
+    "contact": "Contacto",
+    "home": "Inicio",
+    "goToProfile": "Ir a la sección Perfil",
+    "goToProjects": "Ir a la sección Proyectos",
+    "goToBacklog": "Ir a la sección Backlog",
+    "goToContact": "Ir a la sección Contacto",
+    "mainMenu": "Menú Principal",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "settings": "Configuraciones",
+    "menu": "Menú",
+    "bottomMenu": "Menú de navegación inferior"
+  },
+  "language": {
+    "select": "Seleccionar idioma",
+    "selectLanguage": "Idioma",
+    "portuguese": "Português",
+    "english": "English",
+    "spanish": "Español"
+  },
+  "common": {
+    "close": "Cerrar"
+  },
+  "settings": {
+    "title": "Configuraciones",
+    "open": "Abrir configuraciones"
+  },
+  "cookies": {
+    "title": "Este sitio usa cookies",
+    "description": "Usamos cookies para mejorar su experiencia, analizar el tráfico del sitio y personalizar contenido.",
+    "learnMore": "Saber más",
+    "acceptAll": "Aceptar todos",
+    "acceptNecessary": "Solo necesarios",
+    "customize": "Personalizar",
+    "savePreferences": "Guardar preferencias",
+    "required": "Obligatorio",
+    "preferences": {
+      "title": "Preferencias de Cookies"
+    },
+    "types": {
+      "necessary": {
+        "title": "Cookies Necesarias",
+        "description": "Esenciales para el funcionamiento básico del sitio. No se pueden desactivar."
+      },
+      "analytics": {
+        "title": "Cookies de Análisis",
+        "description": "Nos ayudan a entender cómo usa el sitio para mejorar la experiencia.",
+        "providers": "Proveedores"
+      },
+      "marketing": {
+        "title": "Cookies de Marketing",
+        "description": "Usadas para personalizar anuncios y medir la efectividad de las campañas."
+      }
+    }
+  },
+  "projects": {
+    "seeMore": "Ver detalles",
+    "seeLess": "Ocultar detalles",
+    "projectImage": "Imagen del proyecto",
+    "badges": {
+      "usability": "Usabilidad",
+      "informationArchitecture": "Arquitectura de la Información",
+      "userTesting": "Pruebas de Usuario"
+    },
+    "noProjects": "No hay proyectos disponibles."
+  },
+  "accessibility": {
+    "title": "Accesibilidad",
+    "openMenu": "Opciones de accesibilidad",
+    "closeMenu": "Cerrar menú",
+    "menuTooltip": "Opciones de accesibilidad",
+    "fontSize": {
+      "label": "Tamaño de fuente",
+      "increase": "Aumentar fuente",
+      "decrease": "Disminuir fuente",
+      "reset": "Restablecer fuente"
+    },
+    "screenReader": {
+      "label": "Lector de pantalla"
+    },
+    "dyslexia": {
+      "label": "Modo Dislexia"
+    },
+    "status": {
+      "enabled": "Activo"
+    }
+  },
+  "feedback": {
+    "openFeedback": "Abrir comentarios"
+  },
+  "tooltips": {
+    "theme": {
+      "light": "Cambiar a tema claro",
+      "dark": "Cambiar a tema oscuro"
+    }
+  },
+  "theme": {
+    "toggle": "Cambiar tema"
+  }
+}
