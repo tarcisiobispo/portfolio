@@ -124,10 +124,10 @@ const BacklogCycle: React.FC<BacklogCycleProps> = ({ loading: externalLoading = 
         className="mb-8 sm:mb-10"
       >
         <div className="text-left">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] mb-8">
+          <h1 className="text-h1 text-[var(--color-text)] mb-8">
             {t('backlog.title')}
           </h1>
-          <p className="text-lg md:text-xl text-[var(--color-text-secondary)] leading-relaxed mb-8">
+          <p className="text-base text-[var(--color-text-secondary)] leading-relaxed mb-8">
             {t('backlog.description')}
           </p>
           {/* Linha Azul Animada - Similar ao Hero */}
@@ -201,7 +201,7 @@ const BacklogCycle: React.FC<BacklogCycleProps> = ({ loading: externalLoading = 
                             <div className="w-8 h-8 bg-[var(--color-primary)]/10 rounded-lg flex items-center justify-center">
                               <Lightbulb className="w-4 h-4 text-[var(--color-primary)]" />
                             </div>
-                            <h4 className="font-semibold text-[var(--color-text)]">
+                            <h4 className="text-sm font-semibold text-[var(--color-text)]">
                               {t('backlog.solution')}
                             </h4>
                           </div>
@@ -221,7 +221,7 @@ const BacklogCycle: React.FC<BacklogCycleProps> = ({ loading: externalLoading = 
                             <div className="w-8 h-8 bg-[var(--color-secondary)]/10 rounded-lg flex items-center justify-center">
                               <TrendingUp className="w-4 h-4 text-[var(--color-secondary)]" />
                             </div>
-                            <h4 className="font-semibold text-[var(--color-text)]">
+                            <h4 className="text-sm font-semibold text-[var(--color-text)]">
                               {t('backlog.result')}
                             </h4>
                           </div>
@@ -241,7 +241,7 @@ const BacklogCycle: React.FC<BacklogCycleProps> = ({ loading: externalLoading = 
                             <div className="w-8 h-8 bg-[var(--color-muted)]/10 rounded-lg flex items-center justify-center">
                               <Target className="w-4 h-4 text-[var(--color-muted)]" />
                             </div>
-                            <h4 className="font-semibold text-[var(--color-text)]">
+                            <h4 className="text-sm font-semibold text-[var(--color-text)]">
                               {t('backlog.note')}
                             </h4>
                           </div>

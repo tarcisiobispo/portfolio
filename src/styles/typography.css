@@ -1,0 +1,286 @@
+/* ===== MODULAR TYPOGRAPHY SYSTEM ===== */
+/*
+ * Base: 16px (1rem)
+ * Scale: 1.25 (modular scale between 1.2-1.333)
+ * WCAG AA Compliance: Minimum 14px for desktop body text
+ * Mobile-first responsive approach
+ */
+
+/* CSS Custom Properties for Typography Scale */
+:root {
+  /* Base font size - 16px standard */
+  --font-size-xs: 0.75rem;    /* 12px - for captions only */
+  --font-size-sm: 0.875rem;   /* 14px - minimum for accessibility */
+  --font-size-base: 1rem;     /* 16px - body text standard */
+  --font-size-lg: 1.125rem;   /* 18px - large body text */
+  --font-size-xl: 1.25rem;    /* 20px - small headings */
+  --font-size-2xl: 1.5rem;    /* 24px - medium headings */
+  --font-size-3xl: 1.875rem;  /* 30px - large headings */
+  --font-size-4xl: 2.25rem;   /* 36px - hero headings */
+  --font-size-5xl: 3rem;      /* 48px - display headings */
+  --font-size-6xl: 3.75rem;   /* 60px - hero display */
+
+  /* Line heights */
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-loose: 2;
+
+  /* Font weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Letter spacing */
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
+  --letter-spacing-widest: 0.1em;
+}
+
+/* Headings - Using modular scale with 1.25 ratio */
+h1, .text-h1 {
+  font-size: var(--font-size-4xl); /* 36px mobile */
+  line-height: var(--line-height-tight);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+@media (min-width: 1024px) {
+  h1, .text-h1 {
+    font-size: var(--font-size-6xl); /* 60px desktop */
+  }
+}
+
+h2, .text-h2 {
+  font-size: var(--font-size-3xl); /* 30px mobile */
+  line-height: var(--line-height-tight);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+@media (min-width: 1024px) {
+  h2, .text-h2 {
+    font-size: var(--font-size-4xl); /* 36px desktop */
+  }
+}
+
+h3, .text-h3 {
+  font-size: var(--font-size-2xl); /* 24px mobile */
+  line-height: var(--line-height-snug);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+@media (min-width: 1024px) {
+  h3, .text-h3 {
+    font-size: var(--font-size-3xl); /* 30px desktop */
+  }
+}
+
+h4, .text-h4 {
+  font-size: var(--font-size-xl); /* 20px mobile */
+  line-height: var(--line-height-snug);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+@media (min-width: 1024px) {
+  h4, .text-h4 {
+    font-size: var(--font-size-2xl); /* 24px desktop */
+  }
+}
+
+h5, .text-h5 {
+  font-size: var(--font-size-lg); /* 18px mobile */
+  line-height: var(--line-height-normal);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+@media (min-width: 1024px) {
+  h5, .text-h5 {
+    font-size: var(--font-size-xl); /* 20px desktop */
+  }
+}
+
+h6, .text-h6 {
+  font-size: var(--font-size-base); /* 16px mobile */
+  line-height: var(--line-height-normal);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+@media (min-width: 1024px) {
+  h6, .text-h6 {
+    font-size: var(--font-size-lg); /* 18px desktop */
+  }
+}
+
+/* Body Text - WCAG AA compliant minimums */
+p, .text-body {
+  font-size: var(--font-size-sm); /* 14px mobile - minimum for accessibility */
+  line-height: var(--line-height-relaxed);
+  font-weight: var(--font-weight-normal);
+}
+
+@media (min-width: 1024px) {
+  p, .text-body {
+    font-size: var(--font-size-base); /* 16px desktop - ideal for readability */
+  }
+}
+
+.text-body-large {
+  font-size: var(--font-size-lg); /* 18px mobile */
+  line-height: var(--line-height-relaxed);
+  font-weight: var(--font-weight-normal);
+}
+
+.text-body-small {
+  font-size: var(--font-size-sm); /* 14px - minimum WCAG AA */
+  line-height: var(--line-height-normal);
+  font-weight: var(--font-weight-normal);
+}
+
+/* Special Text Elements */
+.text-caption {
+  font-size: var(--font-size-xs); /* 12px - for captions only */
+  line-height: var(--line-height-normal);
+  font-weight: var(--font-weight-normal);
+  color: rgb(107 114 128); /* gray-500 */
+}
+
+.dark .text-caption {
+  color: rgb(156 163 175); /* gray-400 */
+}
+
+.text-overline {
+  font-size: var(--font-size-sm); /* 14px */
+  line-height: var(--line-height-normal);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wider);
+  color: rgb(107 114 128); /* gray-500 */
+}
+
+.dark .text-overline {
+  color: rgb(156 163 175); /* gray-400 */
+}
+
+/* Text Emphasis */
+strong, b {
+  font-weight: var(--font-weight-semibold);
+  color: inherit;
+}
+
+em, i {
+  font-style: italic;
+  color: inherit;
+}
+
+/* Links */
+a {
+  transition: color 0.2s ease;
+  font-weight: inherit;
+}
+
+/* Code Elements */
+code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Monaco, Inconsolata, "Roboto Mono", "Source Code Pro", monospace;
+  font-size: var(--font-size-sm); /* 14px - WCAG compliant */
+  background-color: rgb(243 244 246);
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.375rem;
+  font-weight: var(--font-weight-normal);
+}
+
+.dark code {
+  background-color: rgb(31 41 55);
+  color: rgb(229 231 235);
+}
+
+pre {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Monaco, Inconsolata, "Roboto Mono", "Source Code Pro", monospace;
+  font-size: var(--font-size-sm); /* 14px - WCAG compliant */
+  background-color: rgb(243 244 246);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  line-height: var(--line-height-normal);
+}
+
+.dark pre {
+  background-color: rgb(31 41 55);
+  color: rgb(229 231 235);
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* Lists */
+ul, ol {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+li {
+  line-height: var(--line-height-relaxed);
+  margin-bottom: 0.5rem;
+}
+
+/* Blockquotes */
+blockquote {
+  border-left: 4px solid rgb(59 130 246);
+  padding-left: 1.5rem;
+  font-style: italic;
+  color: rgb(55 65 81);
+  margin: 1.5rem 0;
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+}
+
+.dark blockquote {
+  color: rgb(156 163 175);
+  border-left-color: rgb(96 165 250);
+}
+
+/* Display Text (for hero sections) */
+.text-display {
+  font-size: var(--font-size-5xl); /* 48px mobile */
+  line-height: var(--line-height-tight);
+  font-weight: var(--font-weight-extrabold);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+@media (min-width: 1024px) {
+  .text-display {
+    font-size: 4.5rem; /* 72px desktop - for maximum impact */
+  }
+}
+
+/* Lead Paragraph (for introductions) */
+.text-lead {
+  font-size: var(--font-size-xl); /* 20px mobile */
+  line-height: var(--line-height-relaxed);
+  font-weight: var(--font-weight-normal);
+  color: rgb(55 65 81);
+}
+
+@media (min-width: 1024px) {
+  .text-lead {
+    font-size: var(--font-size-2xl); /* 24px desktop */
+  }
+}
+
+.dark .text-lead {
+  color: rgb(156 163 175);
+}

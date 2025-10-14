@@ -38,10 +38,10 @@ const ProjectShowcase: React.FC<ProjectShowcaseProps> = ({ projects, loading = f
   return (
     <section className="w-full py-12">
       <div className="mb-16 text-left">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] mb-8">
+        <h1 className="text-h1 text-[var(--color-text)] mb-8">
           {t('projects.title')}
         </h1>
-        <p className="text-lg md:text-xl text-[var(--color-text-secondary)] leading-relaxed mb-8">
+        <p className="text-base text-[var(--color-text-secondary)] leading-relaxed mb-8">
           {t('projects.description')}
         </p>
         <motion.div

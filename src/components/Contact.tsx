@@ -310,10 +310,10 @@ const Contact: React.FC = () => {
         className="mb-16"
       >
         <div className="text-left">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] mb-8">
+          <h1 className="text-h1 text-[var(--color-text)] mb-8">
             {t('contact.title')}
           </h1>
-          <p className="text-lg md:text-xl text-[var(--color-text-secondary)] leading-relaxed mb-8">
+          <p className="text-base text-[var(--color-text-secondary)] leading-relaxed mb-8">
             {t('contact.description')}
           </p>
           {/* Linha Azul Animada - Similar ao Hero */}

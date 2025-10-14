@@ -324,8 +324,8 @@ const ProjectShowcase = () => {
           {t('navigation.projects')}
         </Link>
         
-        <h1 className="text-4xl md:text-5xl font-extrabold mb-3 text-[var(--color-text)]">{project.title}</h1>
-        <p className="text-xl text-gray-500 dark:text-gray-400 mb-12 max-w-none">{project.shortDescription}</p>
+        <h1 className="text-h1 font-extrabold mb-3 text-[var(--color-text)]">{project.title}</h1>
+        <p className="text-lead text-gray-500 dark:text-gray-400 mb-12 max-w-none">{project.shortDescription}</p>
 
         <article className="prose prose-lg max-w-none">
           {project.sections.map((section, index) => (

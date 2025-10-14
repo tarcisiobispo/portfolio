@@ -4,6 +4,8 @@ import * as ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './styles/critical.css' // Critical CSS otimizado para LCP (combinado)
 import './index.css'
+import './styles/design-tokens.css' // Typography and design system tokens
+import './styles/typography.css' // Typography hierarchy
 import './styles/theme-transitions.css'
 import './styles/buttons.css'
 import './styles/cards.css'

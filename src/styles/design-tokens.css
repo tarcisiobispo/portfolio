@@ -1,0 +1,145 @@
+/* ===== TYPOGRAPHY DESIGN TOKENS ===== */
+/*
+ * Centralized typography utilities for consistent design
+ * Base: 16px (1rem) following WCAG AA standards
+ * Modular scale: 1.25 ratio for optimal readability
+ */
+
+/* Typography Utilities - Semantic Classes */
+.text-display {
+  font-size: 3rem; /* 48px mobile */
+  line-height: 1.25;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+@media (min-width: 1024px) {
+  .text-display {
+    font-size: 4.5rem; /* 72px desktop - for maximum impact */
+  }
+}
+
+.text-hero {
+  font-size: 2.25rem; /* 36px mobile */
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+@media (min-width: 1024px) {
+  .text-hero {
+    font-size: 3.75rem; /* 60px desktop */
+  }
+}
+
+.text-section {
+  font-size: 1.875rem; /* 30px mobile */
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+@media (min-width: 1024px) {
+  .text-section {
+    font-size: 2.25rem; /* 36px desktop */
+  }
+}
+
+.text-subsection {
+  font-size: 1.5rem; /* 24px mobile */
+  line-height: 1.375;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+@media (min-width: 1024px) {
+  .text-subsection {
+    font-size: 1.875rem; /* 30px desktop */
+  }
+}
+
+.text-component {
+  font-size: 1.25rem; /* 20px mobile */
+  line-height: 1.375;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+@media (min-width: 1024px) {
+  .text-component {
+    font-size: 1.5rem; /* 24px desktop */
+  }
+}
+
+.text-body-readable {
+  font-size: 0.875rem; /* 14px mobile - minimum WCAG AA */
+  line-height: 1.625;
+  font-weight: 400;
+}
+
+@media (min-width: 1024px) {
+  .text-body-readable {
+    font-size: 1rem; /* 16px desktop - ideal for readability */
+  }
+}
+
+.text-body-large {
+  font-size: 1.125rem; /* 18px mobile */
+  line-height: 1.625;
+  font-weight: 400;
+}
+
+.text-body-small {
+  font-size: 0.875rem; /* 14px - minimum WCAG AA */
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.text-caption {
+  font-size: 0.75rem; /* 12px - for captions only */
+  line-height: 1.5;
+  font-weight: 400;
+  color: rgb(107 114 128); /* gray-500 */
+}
+
+.dark .text-caption {
+  color: rgb(156 163 175); /* gray-400 */
+}
+
+.text-overline {
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.5;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgb(107 114 128); /* gray-500 */
+}
+
+.dark .text-overline {
+  color: rgb(156 163 175); /* gray-400 */
+}
+
+/* Lead Paragraph (for introductions) */
+.text-lead {
+  font-size: 1.25rem; /* 20px mobile */
+  line-height: 1.625;
+  font-weight: 400;
+  color: rgb(55 65 81);
+}
+
+@media (min-width: 1024px) {
+  .text-lead {
+    font-size: 1.5rem; /* 24px desktop */
+  }
+}
+
+.dark .text-lead {
+  color: rgb(156 163 175);
+}
+
+/* Typography Spacing Scale */
+.typography-spacing-xs { margin-bottom: 0.5rem; }
+.typography-spacing-sm { margin-bottom: 1rem; }
+.typography-spacing-md { margin-bottom: 1.5rem; }
+.typography-spacing-lg { margin-bottom: 2rem; }
+.typography-spacing-xl { margin-bottom: 3rem; }

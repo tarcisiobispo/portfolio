@@ -50,7 +50,7 @@ const Profile: React.FC<ProfileProps> = ({ name, loading: externalLoading = fals
 
   if (loading) {
     return (
-      <section className="min-h-[80vh] flex flex-col justify-center py-8 relative" aria-labelledby="profile-title">
+      <section className="min-h-[80vh] flex flex-col justify-center py-6 lg:py-8 relative" aria-labelledby="profile-title">
         <div className="max-w-7xl mx-auto px-6">
           <ProfileSkeleton />
         </div>
@@ -59,23 +59,23 @@ const Profile: React.FC<ProfileProps> = ({ name, loading: externalLoading = fals
   }
   
   return (
-    <section className="min-h-[80vh] flex flex-col justify-center py-8 relative" aria-labelledby="profile-title">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center justify-center max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="min-h-[80vh] flex flex-col justify-center py-6 lg:py-8 relative" aria-labelledby="profile-title">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center justify-center max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* PREMIUM PROFILE CARD */}
         <div
           className="lg:col-span-4 flex justify-center relative z-10"
           style={{ overflow: 'visible' }}
         >
-          <div className="relative group p-6">
+          <div className="relative group p-4">
             {/* Card Container */}
-            <div className="profile-card relative rounded-3xl px-6 py-8 max-w-sm w-full overflow-hidden transition-all duration-500">
+            <div className="profile-card relative rounded-3xl px-5 py-6 max-w-sm w-full overflow-hidden transition-all duration-500">
 
               {/* Subtle Gradient Background */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-purple-50/50 dark:from-blue-900/20 dark:via-transparent dark:to-purple-900/20 rounded-3xl"></div>
 
               {/* COMPLETE STRUCTURE WITH CORRECT SPACING */}
-              <div className="relative z-10 flex flex-col items-center space-y-6">
+              <div className="relative z-10 flex flex-col items-center space-y-4">
 
                 {/* SECTION 1: Profile Photo */}
                 <div className="relative">
@@ -100,30 +100,30 @@ const Profile: React.FC<ProfileProps> = ({ name, loading: externalLoading = fals
                 </div>
 
                 {/* SECTION 2: Personal Information */}
-                <div className="text-center space-y-4 w-full">
+                <div className="text-center space-y-2 w-full">
                   {/* Name */}
-                  <h2 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white leading-tight whitespace-nowrap">
+                  <h2 className="text-lg font-bold text-gray-900 dark:text-white leading-tight whitespace-nowrap">
                     {t('profile.name')}
                   </h2>
 
                   {/* Professional Title - WCAG 2.2 AA Compliant */}
-                  <p className="text-blue-700 dark:text-blue-300 font-medium text-sm leading-relaxed">
+                  <p className="text-sm text-blue-700 dark:text-blue-300 font-medium leading-relaxed">
                     {t('profile.jobTitle')}
                   </p>
 
                   {/* Location - WCAG 2.2 AA Compliant */}
-                  <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                  <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
                     {t('profile.location')}
                   </p>
 
                   {/* Phone - WCAG 2.2 AA Compliant */}
-                  <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                  <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
                     {t('profile.phone')}
                   </p>
                 </div>
 
                 {/* SECTION 3: IxDF Badge - WCAG 2.2 AA Compliant */}
-                <div className="flex items-center justify-center gap-3 text-xs text-gray-800 dark:text-gray-200 px-4 py-2 bg-gray-50/50 dark:bg-gray-800/30 rounded-lg border border-gray-200/50 dark:border-gray-700/50">
+                <div className="flex items-center justify-center gap-3 text-xs text-gray-800 dark:text-gray-200 px-3 py-2 bg-gray-50/50 dark:bg-gray-800/30 rounded-lg border border-gray-200/50 dark:border-gray-700/50">
                   <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center">
                     <IxDFLogo
                       size="sm"
@@ -142,10 +142,10 @@ const Profile: React.FC<ProfileProps> = ({ name, loading: externalLoading = fals
         {/* Bio Section - LCP Optimized */}
         <div className="lg:col-span-8 flex flex-col justify-center">
           {/* Main Title - Immediate Rendering for LCP */}
-          <div className="mb-8">
+          <div className="mb-6">
             <h1
               id="profile-title"
-              className="text-4xl lg:text-6xl font-bold mb-8 leading-tight text-left"
+              className="text-h1 text-left"
               style={{
                 contentVisibility: 'visible',
                 containIntrinsicSize: 'auto 200px',
@@ -183,14 +183,14 @@ const Profile: React.FC<ProfileProps> = ({ name, loading: externalLoading = fals
             </h1>
 
             {/* Decorative Line - Immediate Rendering */}
-            <div className="h-1 w-[120px] bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-8"></div>
+            <div className="h-1 w-[120px] bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mb-6"></div>
           </div>
 
           {/* Bio Text - Critical for LCP */}
           <CriticalBio />
 
           {/* Main CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 mt-8">
+          <div className="flex flex-col sm:flex-row gap-4 mt-6">
             {/* Main CTA - Let's Chat */}
             <CTAButton
               href="https://wa.me/19990137380"

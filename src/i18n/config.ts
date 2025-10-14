@@ -18,7 +18,7 @@ const resources = {
       },
       profile: {
         title: "UX/Product Designer com foco em estratégia, impacto e experiência",
-        bio: "Sou UX/Product Designer com forte atuação no design de produtos digitais focados em experiência do usuário, conversão e impacto de negócio. Com background em Marketing Digital, SEO e IA, integro estratégia, design e usabilidade em processos contínuos de melhoria e inovação.",
+        bio: "UX/Product Designer com foco em estratégia, impacto e resultados mensuráveis para negócios e usuários. Especialista em transformar desafios complexos em experiências digitais intuitivas e centradas no usuário.",
         exploreProjects: "Explore projetos",
         letsChat: "Vamos Conversar",
         downloadCV: "Download CV",
@@ -120,7 +120,7 @@ const resources = {
       },
       backlog: {
         title: "Ciclo de Backlogs Estratégicos",
-        description: "Demonstração prática de como transformo desafios de negócio em soluções de UX mensuráveis. Cada caso apresenta metodologia aplicada, resultados alcançados e insights estratégicos que geram impacto real para stakeholders e usuários.",
+        description: "Casos práticos de transformação de desafios em soluções UX. Metodologia aplicada, resultados e insights estratégicos com impacto real.",
         solution: "Solução",
         result: "Resultado",
         note: "Nota",
@@ -182,7 +182,7 @@ const resources = {
       },
       contact: {
         title: "Vamos conversar?",
-        description: "Estou sempre aberto a novas oportunidades e colaborações. Entre em contato para discutir projetos, parcerias ou apenas trocar ideias sobre UX e design de produtos.",
+        description: "Aberto a oportunidades e colaborações. Entre em contato para discutir projetos ou trocar ideias sobre UX.",
         form: {
           name: "Nome",
           namePlaceholder: "Digite seu nome completo",
@@ -746,7 +746,7 @@ const resources = {
       },
       projects: {
         title: "Projects",
-        description: "Real UX/Product Design cases focused on strategy, impact and measurable results for business and users.",
+        description: "Casos práticos de transformação de desafios em soluções UX. Metodologia aplicada, resultados e insights estratégicos com impacto real.",
         overview: "Overview",
         discovery: "Discovery",
         solution: "Solution",

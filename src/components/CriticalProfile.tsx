@@ -43,7 +43,7 @@ const CriticalProfile: React.FC = () => {
 
         {/* Critical Text Content */}
         <div className="lg:col-span-8 text-center lg:text-left">
-          <h1 className="text-4xl lg:text-5xl font-bold text-[var(--color-text)] mb-4">
+          <h1 className="text-h2 text-[var(--color-text)] mb-4">
             <span className="text-[var(--color-primary)]">{t('profile.jobTitle')}</span>
           </h1>
 

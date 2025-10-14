@@ -151,7 +151,7 @@
 @media (max-width: 768px) {
   .profile-card {
     max-width: 280px;
-    padding: 1.5rem;
+    padding: 1.25rem;
   }
 
   .profile-ring {
