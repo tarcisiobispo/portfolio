@@ -1,0 +1,81 @@
+.case-study-text {
+    font-size: calc(var(--type-body-size) * 1.1);
+    margin-bottom: var(--space-4);
+}
+
+h1 {
+    margin-bottom: var(--space-2);
+}
+
+.go-back-nav:hover {
+    text-decoration: underline;
+}
+
+.image-container {
+    width: 100%;
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-12);
+}
+
+img{
+    width: 100%;
+}
+
+.multiple-images-container{
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-12);
+}
+
+.multiple-images-container .image-container {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.padding-bottom{
+    padding-bottom: var(--space-24);
+}
+
+.underline-text,
+.underline-text-purple {
+    box-shadow: none !important;
+    background: none !important;
+    transition: none !important;
+}
+
+.underline-text:hover,
+.underline-text-purple:hover {
+    box-shadow: none !important;
+    background: none !important;
+} 
+
+@media (min-width: 1024px) {
+    .multiple-images-container {
+        display: flex;
+        flex-direction: row;
+        gap: var(--space-16);
+        margin-bottom: var(--space-12);
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .multiple-images-container .image-container {
+        padding-top: var(--space-12);
+    }
+
+    .image-container{
+        padding-bottom: var(--space-8);
+    }
+}
+/* Estilo para o botão voltar com ícone */
+.go-back-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.go-back-nav i {
+    font-size: 14px;
+}

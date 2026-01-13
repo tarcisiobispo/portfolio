@@ -1,0 +1,461 @@
+.case-studies-container {
+    width: 100%;
+}
+
+.case-study-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: var(--space-8);
+    width: 100%;
+}
+
+.image-container {
+    width: 100%;
+}
+
+img {
+    width: 100%;
+    border-radius: var(--radius-md);
+    min-width:100%;
+}
+
+.case-study-description {
+    font-size: calc(var(--type-body-size) * 1.2);
+}
+
+h1 {
+    font-size: var(--type-h1-size);
+    font-weight: 600;
+    margin: 0;
+}
+
+
+h2 {
+    font-weight: 400;
+    font-size: var(--type-h2-size);
+}
+
+h3 {
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-1);
+    font-weight: 700;
+    font-size: var(--type-h2-size);
+}
+
+.recent-work-label {
+    color: var(--muted-subtle);
+}
+
+.introduction-container {
+    max-width: 80%;
+    margin-bottom: var(--space-16);
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-2);
+    position: relative;
+    z-index: 0;
+}
+
+/* Layout for site header inspired by Sophie M. Chen homepage */
+.site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: calc(var(--space-3)) 0;
+}
+
+.site-title {
+    font-size: .95rem;
+    letter-spacing: .08em;
+    color: var(--muted-text);
+}
+
+.site-nav {
+    display:flex;
+    align-items:center;
+    gap: var(--space-4);
+}
+
+.site-nav .nav-link {
+    color: var(--muted-text);
+    opacity: 0.95;
+}
+
+.site-nav .nav-link:hover { color: var(--emphasis-text); }
+
+.introduction-pre {
+    color: var(--muted-text);
+    margin-bottom: var(--space-4);
+    font-size: 1.125rem; /* 18px for stronger pre-heading presence */
+    opacity: 0.98;
+}
+
+/* Ensure subheading and actions have proportional spacing */
+.introduction-subheading { margin-bottom: var(--space-4); }
+
+/* Ensure no grid background remains; we use the Fibonacci pseudo-element */
+body {
+    background-image: none !important;
+}
+
+/* Slight heading tweaks to match visual hierarchy */
+.introduction-heading .display {
+    font-size: 2.5rem; /* larger main hero */
+    line-height: 1.06;
+    color: var(--emphasis-text);
+    margin: 0 0 var(--space-8) 0;
+}
+
+.introduction-subheading h2 {
+    color: var(--muted-text);
+    font-weight: 400;
+    font-size: 1.125rem;
+    margin-top: 0;
+    max-width: 80%;
+}
+
+/* Responsive scaling for hero */
+@media (min-width: 1200px) {
+  .introduction-heading .display { font-size: 3.6rem; }
+  .introduction-pre { font-size: 1.125rem; }
+  .introduction-subheading h2 { font-size: 1.25rem; }
+}
+
+@media (max-width: 640px) {
+  .introduction-heading .display { font-size: 1.6rem; line-height: 1.08; }
+  .introduction-pre { font-size: 1rem; }
+  .introduction-subheading h2 { font-size: 1rem; max-width: 100%; }
+}
+
+/* Case study titles/descriptions and chips use themed tokens */
+.case-study-heading h3, .case-study-heading a {
+    color: var(--emphasis-text);
+}
+
+.case-study-heading a:hover { color: var(--link-color); }
+
+.case-study-description {
+    color: var(--muted-text);
+}
+
+.case-study-tag {
+    padding: var(--space-2);
+    padding-inline: var(--space-3);
+    border: 1px solid var(--chip-border);
+    border-radius: var(--radius-md);
+    background: var(--chip-bg);
+    color: var(--muted-text);
+}
+
+.case-study-tag:hover {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+}
+
+/* Efeito Fibonacci melhorado - mais visível e dinâmico */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    /* Gradientes radiais posicionados seguindo proporções de Fibonacci */
+    background-image:
+      radial-gradient(circle at 21% 34%, rgba(var(--fib-color-rgb), 0.15) 0 8%, transparent 18%),
+      radial-gradient(circle at 55% 21%, rgba(var(--fib-color-rgb), 0.12) 0 13%, transparent 28%),
+      radial-gradient(circle at 89% 55%, rgba(var(--fib-color-rgb), 0.18) 0 21%, transparent 42%),
+      radial-gradient(circle at 13% 89%, rgba(var(--fib-color-rgb), 0.10) 0 34%, transparent 68%),
+      radial-gradient(circle at 76% 8%, rgba(var(--fib-color-rgb), 0.08) 0 55%, transparent 110%);
+    filter: blur(40px) contrast(1.1) saturate(1.2);
+    mix-blend-mode: soft-light;
+    opacity: 0.8;
+    animation: fibonacciFlow 20s ease-in-out infinite alternate;
+}
+
+/* Animação sutil para o efeito Fibonacci */
+@keyframes fibonacciFlow {
+    0% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.05) rotate(1deg);
+        opacity: 0.6;
+    }
+    100% {
+        transform: scale(1.02) rotate(-0.5deg);
+        opacity: 0.9;
+    }
+}
+
+/* Ajuste para telas menores */
+@media (max-width: 1200px) {
+  body::before { 
+    filter: blur(30px) contrast(1.0) saturate(1.1);
+    opacity: 0.7;
+  }
+}
+
+/* Intro actions (moved from header) */
+.intro-actions {
+    margin: var(--space-8) 0; /* symmetric spacing above and below for proportional layout */
+    display: flex;
+    gap: var(--space-4);
+    align-items: center;
+}
+
+.intro-social {
+    display: flex;
+    gap: var(--space-3);
+    align-items: center;
+}
+
+/* Icon button: seguindo estilo do botão de CV */
+.social-link {
+    display: inline-flex;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    color: #0b0c0f;
+    background: linear-gradient(180deg, #ffffff, #f5f5f6);
+    border: 1px solid rgba(11,12,15,0.12);
+    box-shadow: 0 6px 18px rgba(11,12,15,0.22);
+    transition: background var(--motion-duration-fast) ease, transform var(--motion-duration-fast) ease, box-shadow var(--motion-duration-fast) ease, color var(--motion-duration-fast) ease;
+    z-index: 2;
+    text-decoration: none;
+}
+
+/* Hover, focus and active states: invert colors */
+.social-link:hover,
+.social-link:focus,
+.social-link:focus-visible {
+    background: #0b0c0f;
+    color: #ffffff;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+    outline: none;
+    text-decoration: none;
+}
+
+.social-link:active { transform: translateY(-2px); }
+
+/* The font-awesome icon uses currentColor so it follows the color swap */
+.social-icon, .social-link .fa { font-size: 14px; width: 14px; height: 14px; color: currentColor; display: inline-block; line-height: 1; }
+
+/* Force icon color to ensure visibility if font load is delayed; use inherit so hover can invert it */
+.social-link .fa, .social-link .social-icon { color: inherit !important; }
+
+/* Ensure icons become white when their parent is hovered/focused */
+.social-link:hover .fa, .social-link:hover .social-icon,
+.social-link:focus .fa, .social-link:focus .social-icon,
+.social-link:focus-visible .fa, .social-link:focus-visible .social-icon {
+  color: #ffffff !important;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .social-link { transition: none; }
+  .social-link:hover { transform: none; }
+}
+
+/* Make focus visible for keyboard users */
+.social-link:focus-visible {
+  box-shadow: 0 0 0 4px rgba(255,255,255,0.08), 0 12px 30px rgba(0,0,0,0.45);
+}
+
+
+/* Ensure the resume link doesn't get underlined on hover */
+.btn, .btn--primary { text-decoration: none; }
+.btn--primary:hover, .btn--primary:focus { text-decoration: none; }
+
+/* Stack actions vertically on small screens and tighten spacing a bit */
+@media (max-width: 640px) {
+  .intro-actions { flex-direction: column; gap: var(--space-3); align-items: flex-start; margin: var(--space-3) 0; }
+  .social-link { width: 44px; height: 44px; }
+}
+
+/* Reduce distance between intro actions and case studies */
+.case-studies-container {
+    margin-top: var(--space-4);
+}
+
+.case-studies-row {
+    margin-bottom: var(--space-16);
+}
+
+.underline-text,
+.underline-text-purple {
+    box-shadow: none !important;
+    background: none !important;
+    transition: none !important;
+}
+
+.underline-text:hover,
+.underline-text-purple:hover {
+    box-shadow: none !important;
+    background: none !important;
+} 
+
+.case-studies-container {
+    margin-top: var(--space-4);
+}
+
+a:hover .case-study-description {
+    text-decoration: none;
+}
+
+/* Ensure case links don't show underlines and inherit neutral color */
+.case-study-card a { text-decoration: none; color: inherit; }
+
+/* Defensive override: remove underline/box-shadow styles if present on case titles */
+.case-study-heading .underline-text,
+.case-study-heading .underline-text-purple {
+    box-shadow: none !important;
+    transition: none !important;
+}
+
+/* Remove box-shadow from all heading elements */
+h1, h2, h3, h4, h5, h6 {
+    box-shadow: none !important;
+}
+
+.case-study-tags {
+    margin-top: var(--space-3);
+    display:flex;
+    flex-direction:row;
+    gap: var(--space-3);
+}
+
+.case-study-tag {
+    padding: var(--space-2);
+    padding-inline: var(--space-3);
+    border: 1px solid var(--sys-surface-variant);
+    border-radius: var(--radius-md);
+}
+
+.case-study-tag:hover {
+    box-shadow: var(--elevation-1) !important;
+} 
+
+@media (min-width: 1024px) {
+    .case-studies-row {
+        display:flex;
+        flex-direction:row;
+        gap: var(--space-16);
+        margin-bottom: var(--space-12);
+    }
+
+    .case-study-card-contents {
+        height: 100%;
+    }
+
+    .case-study-description {
+        height:2.6em;
+        margin-top: 0.2em;
+    }
+
+    .image-container {
+        height: 16em;
+    }
+
+    img {
+        height: 100%;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1023px) {
+  .case-studies-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    margin-bottom: var(--space-8);
+  }
+
+  .case-study-card {
+    width: 100%;
+  }
+
+  .image-container {
+    height: auto;
+  }
+
+  img { height: auto; }
+
+  .case-study-description { height: auto; }
+
+  .case-studies-container {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+
+  .introduction-container {
+    max-width: 100%;
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+
+  .intro-actions {
+    justify-content: flex-start;
+    gap: var(--space-3);
+  }
+
+  .intro-actions .btn { min-width: 160px; }
+}
+
+@media (max-width: 640px) {
+  .intro-actions { flex-direction: column; gap: var(--space-3); align-items: flex-start; margin: var(--space-3) 0; }
+  .intro-actions .btn { width: 100%; }
+  .site-nav .nav-link { margin-bottom: var(--space-2); }
+  .introduction-heading .display { font-size: 1.6rem; }
+  .case-studies-row { gap: var(--space-6); }
+  .image-container { height: auto; }
+  img { width: 100%; height: auto; }
+}
+
+/* Small accessibility tweaks: ensure large hit target for CTA */
+@media (max-width: 420px) {
+  .btn { padding: calc(var(--space-2)) calc(var(--space-3)); font-size: 0.95rem; }
+}
+/* Remove sublinhado de todos os links sociais */
+.social-link,
+.social-link:hover,
+.social-link:focus,
+.social-link:visited,
+.social-link:active {
+    text-decoration: none !important;
+}
+
+.case-study-tag {
+    padding: var(--space-2);
+    padding-inline: var(--space-3);
+    border: 1px solid var(--chip-border);
+    border-radius: var(--radius-md);
+    background: var(--chip-bg);
+    color: var(--muted-text);
+}
+/* Remove TODOS os efeitos de box-shadow e background de elementos com underline-text */
+* .underline-text,
+* .underline-text-purple,
+span.underline-text,
+span.underline-text-purple {
+    box-shadow: none !important;
+    background: none !important;
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+* .underline-text:hover,
+* .underline-text-purple:hover,
+span.underline-text:hover,
+span.underline-text-purple:hover {
+    box-shadow: none !important;
+    background: none !important;
+    background-color: transparent !important;
+    background-image: none !important;
+}
