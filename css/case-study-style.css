@@ -1,3 +1,5 @@
+@import "./base-style.css";
+
 body {
     background-color: #FAFAF9;
     color: #1F2933;
@@ -86,16 +88,6 @@ body {
     border-radius: 8px;
     font-size: 14px;
     line-height: 1.4;
-}
-
-@media (max-width: 768px) {
-    .case-meta {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        padding: 16px;
-        margin: 20px -16px 30px -16px;
-        border-radius: 0;
-    }
 }
 
 .case-meta-basic {
@@ -238,12 +230,6 @@ h2 {
 }
 
 @media (max-width: 768px) {
-    .case-header h1 {
-        font-size: 2rem;
-    }
-}
-
-@media (max-width: 768px) {
     body {
         padding: 20px 16px;
     }
@@ -263,6 +249,13 @@ h2 {
 
 .go-back-nav:hover {
     text-decoration: underline;
+}
+
+a:focus-visible,
+.go-back-nav:focus-visible,
+.case-sidebar a:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
 }
 
 .image-container {

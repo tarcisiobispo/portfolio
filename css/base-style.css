@@ -1,7 +1,7 @@
 @import "./design-tokens.css";
 
 body {
-    max-width: var(--content-max-width);
+    max-width: var(--content-max-width, 1200px);
     font-family: var(--font-family-serif, "Source Serif 4");
     background-color: var(--sys-background, #f1f5f9);
     color: var(--sys-on-background, #0b1220);
@@ -14,11 +14,11 @@ body {
 
 a {
     text-decoration:none;
-    color: var(--link-color);
+    color: inherit;
 }
 
 a:visited {
-    color: var(--link-color);
+    color: inherit;
     opacity: 0.92;
 }
 

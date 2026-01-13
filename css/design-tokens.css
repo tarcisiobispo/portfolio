@@ -31,6 +31,14 @@ Consolidated Design Tokens for Portfolio
   --space-xl: 48px;
   --space-2xl: 64px;
   --space-3xl: 96px;
+
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
   
   /* ==========================
      Typography Scale
@@ -93,6 +101,13 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+a:focus-visible,
+.btn:focus-visible,
+.social-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
 }
 
 /* ==========================
