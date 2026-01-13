@@ -1,326 +1,327 @@
 /*
-design-tokens.css
-Guia de Design Tokens (Material You inspirado) - Estética refinada para portfólio UX
-
-- Foco: legibilidade, acessibilidade, espaçamentos generosos, sombras suaves e transições fluidas
-- Uso: importe no seu CSS base com: @import "./design-tokens.css";
+Design System - Atomic Design & Utility-First CSS
+Consolidated Design Tokens for Portfolio
 */
 
 :root {
   /* ==========================
-     Core Semantic Tokens
+     Surface Colors
      ========================== */
-  --sys-primary: #355070;        /* deep indigo-blue (accent) */
-  --sys-on-primary: #ffffff;
-  --sys-primary-container: #e6e9f5;
-  --sys-on-primary-container: #07102a;
-
-  --sys-secondary: #7f6a9f;     /* muted violet */
-  --sys-on-secondary: #ffffff;
-  --sys-secondary-container: #f1eef8;
-  --sys-on-secondary-container: #24122f;
-
-  --sys-background: #faf9fb;
-  --sys-on-background: #1b1b1f;
-  --sys-surface: #ffffff;
-  --sys-on-surface: #1b1b1f;
-  --sys-surface-variant: #f3f2f6;
-  --sys-on-surface-variant: #49454f;
-
-  --sys-error: #b00020;
-  --sys-on-error: #ffffff;
-
-  /* Accent / Neutral Palette (supporting tokens) */
-  --accent-rose: #d46a7e;
-  --accent-rose-subtle: #F9DCE6;
-  --accent-violet: #8b6bdc;
-  --accent-violet-subtle: #d5b6f7;
-  --accent-mint: #6db7a3;
-  --neutral-900: #0f1720;
-  --neutral-800: #1b2530;
-  --neutral-700: #364049;
-  --neutral-500: #778089;
-
-  /* Fibonacci background subtle tokens (light theme defaults)
-     - multiple alpha layers for fine control
-     - low intensity values to keep background ambient */
-  --fib-color-rgb: 16,18,20; /* default (light theme): very subtle dark tones */
-  --fib-alpha-1: 0.03;
-  --fib-alpha-2: 0.02;
-  --fib-alpha-3: 0.018;
-  --fib-alpha-4: 0.012;
-  --fib-blur: 20px;
-
-  /* Glassmorphism token defaults */
-  --glass-bg: rgba(255,255,255,0.06);
-  --glass-border: rgba(255,255,255,0.12);
-  --glass-text: rgba(255,255,255,0.95);
-  --glass-shadow: 0 8px 30px rgba(0,0,0,0.45);
-
+  --color-surface-primary: #121212;
+  --color-surface-secondary: #1e1e1e;
+  --color-surface-tertiary: #2a2a2a;
+  
+  /* Text Colors */
+  --color-text-main: rgba(255, 255, 255, 0.95);
+  --color-text-muted: rgba(255, 255, 255, 0.7);
+  --color-text-subtle: rgba(255, 255, 255, 0.6);
+  --color-text-inverse: #000000;
+  
+  /* Accent Colors */
+  --color-accent-primary: #FFFFFF;
+  --color-accent-secondary: rgba(255, 255, 255, 0.1);
+  
   /* ==========================
-     Accessibility helpers
+     Spacing Scale (Base 8)
      ========================== */
-  --contrast-high: 0.87;  /* visual hint, not used directly in CSS */
-
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+  
   /* ==========================
-     Typography tokens
+     Typography Scale
      ========================== */
-  --font-family-sans: "Nunito Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  --font-family-serif: "Merriweather", Georgia, "Times New Roman", serif;
-
-  /* Tipografia: pesos e espaçamentos */
-  --font-weight-regular: 400;
-  --font-weight-medium: 500;
-  --font-weight-heading: 600;
-  --font-letter-spacing-tight: -0.01em;
-  --font-letter-spacing-normal: 0em;
-  --font-letter-spacing-wide: 0.01em;
-
-  --type-scale-step: 1.2; /* modular scale base */
-
-  --type-display-size: 2.25rem; /* 36px */
-  --type-h1-size: 1.75rem;      /* 28px */
-  --type-h2-size: 1.25rem;      /* 20px */
-  --type-body-size: 1rem;       /* 16px */
-  --type-small-size: 0.875rem;  /* 14px */
-
-  --line-height-tight: 1.1;
-  --line-height-normal: 1.45;
+  --font-family-sans: "Source Sans 3", system-ui, sans-serif;
+  --font-family-serif: "Source Serif 4", Georgia, serif;
+  
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 28px;
+  --font-size-3xl: 36px;
+  --font-size-4xl: 48px;
+  
+  --line-height-tight: 1.2;
+  --line-height-base: 1.6;
   --line-height-loose: 1.8;
-
+  
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
   /* ==========================
-     Spacing scale (more generous than default Material)
-     1 unit = 4px
-     ========================== */
-  --space-1: 4px;   /* 1 */
-  --space-2: 8px;   /* 2 */
-  --space-3: 12px;  /* 3 */
-  --space-4: 16px;  /* 4 */
-  --space-6: 24px;  /* 6 */
-  --space-8: 32px;  /* 8 */
-  --space-12: 48px; /* 12 */
-  --space-16: 64px; /* 16 */
-  --space-24: 96px; /* 24 - para paddings maiores */
-
-  /* Layout tokens */
-  --content-max-width: 1024px;   /* largura máxima do conteúdo */
-  --image-hero-height: 16rem;    /* ~256px ideal para hero / thumbnails */
-  --case-study-description-max-height: 2.6rem; /* fallback para truncagem dos cards */
-
-  /* ==========================
-     Radii
+     Border Radius
      ========================== */
   --radius-sm: 6px;
   --radius-md: 12px;
   --radius-lg: 16px;
-
+  
   /* ==========================
-     Motion / transitions
+     Shadows
      ========================== */
-  --motion-duration-fast: 160ms;
-  --motion-duration-medium: 280ms;
-  --motion-duration-slow: 420ms;
-  --motion-easing-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
-  --motion-easing-decelerate: cubic-bezier(0.0, 0.0, 0.2, 1);
-
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
+  
   /* ==========================
-     Elevation / Soft shadows (layered, low-opacity)
-     Use mix of subtle blur & spread for a "soft" look
+     Transitions
      ========================== */
-  --elevation-0: none;
-  --elevation-1: 0 6px 18px rgba(12, 18, 26, 0.06), 0 2px 6px rgba(12, 18, 26, 0.04);
-  --elevation-2: 0 10px 26px rgba(12, 18, 26, 0.08), 0 4px 10px rgba(12, 18, 26, 0.05);
-  --elevation-3: 0 18px 38px rgba(12, 18, 26, 0.10), 0 6px 16px rgba(12, 18, 26, 0.06);
-
-  /* ==========================
-     Component tokens (Buttons, Cards, Inputs)
-     ========================== */
-  --button-padding-y: calc(var(--space-3));
-  --button-padding-x: calc(var(--space-4) * 1.5);
-  --button-radius: var(--radius-md);
-
-  --card-padding: var(--space-6);
-  --card-radius: var(--radius-lg);
-
-  --input-padding: var(--space-3);
-  --input-radius: var(--radius-sm);
-
-  /* ==========================
-     Utility tokens
-     ========================== */
-  --focus-ring: 0 0 0 4px rgba(53, 80, 112, 0.12);
-}
-
-/* Dark theme overrides (data-theme attribute for easy toggling) */
-[data-theme="dark"] {
-  --sys-primary: #9fb3ff;
-  --sys-on-primary: #07204a;
-  --sys-primary-container: #12243f;
-  --sys-on-primary-container: #e6f0ff;
-
-  /* Fibonacci ambient background color for dark theme */
-  --fib-color-rgb: 235,238,242; /* light subtle tones for dark backgrounds */
-  --fib-alpha-1: 0.025;
-  --fib-alpha-2: 0.018;
-  --fib-alpha-3: 0.014;
-  --fib-alpha-4: 0.01;
-  --fib-blur: 22px;
-
-  /* Dark theme contrast tokens */
-  --link-color: #9fb3ff; /* more visible link tone */
-  --emphasis-text: #f5f7fa; /* headings */
-  --muted-text: rgba(231,233,239,0.85);
-  --muted-subtle: rgba(231,233,239,0.6);
-  --chip-bg: rgba(255,255,255,0.02);
-  --chip-border: rgba(255,255,255,0.06);
-
-  /* Glass tokens for dark theme (tuned for stronger contrast) */
-  --glass-bg: rgba(14,20,28,0.5);
-  --glass-border: rgba(255,255,255,0.08);
-  --glass-text: rgba(255,255,255,0.95);
-  --glass-shadow: 0 10px 36px rgba(0,0,0,0.6);
-
-  --sys-secondary: #bca3e6;
-  --sys-on-secondary: #2b1b3a;
-  --sys-secondary-container: #352845;
-  --sys-on-secondary-container: #efe7ff;
-
-  --sys-background: #0b0c0f;
-  --sys-on-background: #e7e9ef;
-  --sys-surface: #0f1113;
-  --sys-on-surface: #e7e9ef;
-  --sys-surface-variant: #121217;
-  --sys-on-surface-variant: #bdb8c6;
-
-  --elevation-1: 0 6px 18px rgba(0,0,0,0.5), 0 2px 6px rgba(0,0,0,0.35);
-  --elevation-2: 0 10px 26px rgba(0,0,0,0.6), 0 4px 10px rgba(0,0,0,0.45);
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.2s ease;
+  --transition-slow: 0.3s ease;
 }
 
 /* ==========================
-   Example utility classes & component styles demonstrating tokens
+   Base Styles
    ========================== */
-
-/* Base typography */
-body {
-  font-family: var(--font-family-sans);
-  font-size: var(--type-body-size);
-  line-height: var(--line-height-normal);
-  color: var(--muted-text);
-  background: var(--sys-background);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-weight: var(--font-weight-regular);
-  letter-spacing: var(--font-letter-spacing-normal);
-} 
-
-h1, .display {
-  font-size: var(--type-display-size);
-  line-height: var(--line-height-tight);
-  font-weight: var(--font-weight-heading);
-  letter-spacing: var(--font-letter-spacing-tight);
-  color: var(--emphasis-text);
+* {
+  box-sizing: border-box;
 }
 
-h2 { color: var(--emphasis-text); font-size: var(--type-h1-size); font-weight: var(--font-weight-heading); letter-spacing: var(--font-letter-spacing-tight); }
-h3 { color: var(--muted-text); font-size: var(--type-h2-size); font-weight: var(--font-weight-medium); letter-spacing: var(--font-letter-spacing-normal); }
+body {
+  font-family: var(--font-family-serif);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--color-text-muted);
+  background: var(--color-surface-primary);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-/* Buttons */
+/* ==========================
+   Layout Components
+   ========================== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-sm);
+}
+
+/* ==========================
+   Hero Section
+   ========================== */
+.hero {
+  max-width: 800px;
+  margin-bottom: var(--space-2xl);
+  padding-top: var(--space-lg);
+}
+
+.hero__pre {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-md);
+  font-size: var(--font-size-lg);
+}
+
+.hero__title {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-4xl);
+  line-height: var(--line-height-tight);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-main);
+  margin: 0 0 var(--space-lg) 0;
+}
+
+.hero__subtitle {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-base);
+  max-width: 650px;
+  margin: 0 0 var(--space-lg) 0;
+}
+
+.hero__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin: var(--space-lg) 0;
+}
+
+/* ==========================
+   Social Links
+   ========================== */
+.social-links {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.social-link {
+  display: flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  background: var(--color-accent-primary);
+  color: var(--color-text-inverse);
+  text-decoration: none;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-sm);
+}
+
+.social-link:hover {
+  background: var(--color-text-inverse);
+  color: var(--color-accent-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ==========================
+   Buttons
+   ========================== */
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: var(--button-padding-y) var(--button-padding-x);
-  font-size: .95rem;
-  border-radius: var(--button-radius);
-  border: none;
+  justify-content: center;
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+  text-decoration: none;
+  transition: all var(--transition-base);
   cursor: pointer;
-  transition: box-shadow var(--motion-duration-fast) var(--motion-easing-standard),
-              transform var(--motion-duration-fast) var(--motion-easing-standard),
-              background-color var(--motion-duration-fast) var(--motion-easing-standard);
+  border: none;
 }
 
 .btn--primary {
-  /* Glassmorphism 2.0 - dark-friendly, higher contrast */
-  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-  color: var(--glass-text);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,0.02);
-  backdrop-filter: blur(8px) saturate(120%);
-  -webkit-backdrop-filter: blur(8px) saturate(120%);
-  transition: transform var(--motion-duration-fast) var(--motion-easing-standard), box-shadow var(--motion-duration-fast) var(--motion-easing-standard), border-color var(--motion-duration-fast), background var(--motion-duration-fast), color var(--motion-duration-fast);
+  background: var(--color-accent-primary);
+  color: var(--color-text-inverse);
+  box-shadow: var(--shadow-sm);
 }
 
-/* Reverse-contrast hover: white background, black text for strong emphasis */
 .btn--primary:hover {
-  transform: translateY(-3px);
-  background: #ffffff;
-  color: #0b0c0f; /* strong dark text on white */
-  box-shadow: 0 12px 38px rgba(11,12,15,0.45);
-  border-color: rgba(0,0,0,0.12);
+  background: var(--color-text-inverse);
+  color: var(--color-accent-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
-/* Keyboard focus state mirrors hover for accessibility */
-.btn--primary:focus {
-  outline: none;
-  box-shadow: 0 0 0 4px rgba(255,255,255,0.08), 0 12px 38px rgba(11,12,15,0.45);
-  background: #ffffff;
-  color: #0b0c0f;
+.btn--ghost {
+  background: transparent;
+  color: var(--color-accent-primary);
+  border: 1px solid var(--color-accent-primary);
 }
 
-.btn--primary:active { transform: translateY(1px); box-shadow: none; }
-.btn--primary:disabled { opacity: 0.6; cursor: not-allowed; box-shadow: none; transform: none; }
-
-.btn--ghost { background: transparent; color: var(--muted-text); }
-
-.btn:disabled { opacity: 0.6; cursor: not-allowed; box-shadow: none; transform: none; }
-
-/* Card */
-.card {
-  background: var(--sys-surface);
-  color: var(--sys-on-surface);
-  padding: var(--card-padding);
-  border-radius: var(--card-radius);
-  box-shadow: var(--elevation-2);
-  transition: transform var(--motion-duration-medium) var(--motion-easing-decelerate), box-shadow var(--motion-duration-medium) var(--motion-easing-decelerate);
-}
-.card:hover { transform: translateY(-6px); box-shadow: var(--elevation-3); }
-
-/* Input */
-.input {
-  padding: var(--input-padding);
-  border-radius: var(--input-radius);
-  border: 1px solid var(--sys-surface-variant);
-  background: var(--sys-surface);
-  transition: box-shadow var(--motion-duration-fast) var(--motion-easing-standard), border-color var(--motion-duration-fast) var(--motion-easing-standard);
-}
-.input:focus { box-shadow: var(--focus-ring); outline: none; border-color: var(--sys-primary); }
-.input::placeholder { color: var(--muted-subtle); opacity: 0.95; }
-.input:disabled { opacity: 0.6; cursor: not-allowed; }
-
-/* Utility spacing helpers (small subset) */
-.u-mb-4 { margin-bottom: var(--space-4); }
-.u-mb-6 { margin-bottom: var(--space-6); }
-.u-p-6 { padding: var(--space-6); }
-
-/* Accessibility notes (document in your design system README):
- - Aim for contrast >= 4.5:1 for body text; 3:1 for large text (>= 18pt or 14pt bold).
- - Use the "on" tokens (e.g., --sys-on-primary) to ensure correct pairing.
- - Consider dynamic generation of tonal palettes from a seed color for personalized themes.
-*/
-
-/* Runtime accessibility helpers */
-:focus-visible {
-  outline: none;
-  box-shadow: var(--focus-ring);
-  border-radius: var(--radius-sm);
+.btn--ghost:hover {
+  background: var(--color-accent-primary);
+  color: var(--color-text-inverse);
+  transform: translateY(-2px);
 }
 
-/* Respect user preferences to reduce motion */
-@media (prefers-reduced-motion: reduce) {
-  :where(.btn, .card, .input, a, button) {
-    transition-duration: 0ms !important;
-    animation-duration: 0ms !important;
-    transform: none !important;
+/* ==========================
+   Work Section
+   ========================== */
+.work-section {
+  margin-top: var(--space-2xl);
+}
+
+.work-section__title {
+  color: var(--color-text-subtle);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-normal);
+  margin-bottom: var(--space-md);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================
+   Card Grid
+   ========================== */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: var(--space-lg);
+}
+
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
   }
 }
 
+/* ==========================
+   Case Cards
+   ========================== */
+.case-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: var(--space-md);
+  transition: transform var(--transition-base);
+}
+
+.case-card:hover {
+  transform: translateY(-4px);
+}
+
+.case-card__image {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  transition: transform var(--transition-base);
+}
+
+.case-card:hover .case-card__image {
+  transform: scale(1.02);
+}
+
+.case-card__content {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--space-sm);
+}
+
+.case-card__title {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-main);
+  margin: 0;
+  line-height: var(--line-height-tight);
+}
+
+.case-card__description {
+  color: var(--color-text-muted);
+  line-height: var(--line-height-base);
+  margin: 0;
+}
+
+/* ==========================
+   Responsive Design
+   ========================== */
+@media (max-width: 768px) {
+  .hero__title {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .hero__subtitle {
+    font-size: var(--font-size-base);
+  }
+  
+  .hero__actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+  
+  .container {
+    padding: var(--space-md) var(--space-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__title {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .case-card__image {
+    height: 200px;
+  }
+}

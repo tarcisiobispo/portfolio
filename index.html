@@ -6,14 +6,12 @@
     <title>Portfólio UX</title>
 
     <!--Styling-->
-    <link rel="stylesheet" href="css/base-style.css">
-    <link rel="stylesheet" href="css/index-style.css">
-
+    <link rel="stylesheet" href="css/design-tokens.css">
 
     <!--Google Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
 
     <!-- Font Awesome (CDN for brand icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -21,74 +19,51 @@
 </head>
 <body data-theme="dark">
 
+    <main class="container">
+      <header class="hero">
+          <div class="hero__pre">Olá, eu sou <strong>Tarcisio Bispo de Araujo</strong>!</div>
+          <h1 class="hero__title">Designer de ponta a ponta que une narrativa, usabilidade e harmonia visual.</h1>
+          <p class="hero__subtitle">Especializado em campanhas de branding, reestruturação de sites institucionais e soluções digitais que conectam estratégia de negócio com experiência do usuário.</p>
 
-
-    <main>
-      <section class="introduction-container">
-          <div class="introduction-pre">Olá, eu sou <strong>Tarcisio Bispo de Araujo</strong>!</div>
-          <div class="introduction-heading">
-              <h1 class="display">Designer de ponta a ponta que une narrativa, usabilidade e harmonia visual.</h1>
-          </div>
-          <div class="introduction-subheading">
-              <h2>Especializado em campanhas de branding, reestruturação de sites institucionais e soluções digitais que conectam estratégia de negócio com experiência do usuário.</h2>
-          </div>
-
-          <div class="intro-actions">
-              <div class="intro-social" aria-hidden="false">
-                  <a class="social-link" href="https://www.linkedin.com/in/tarcisiobispouxdesigner" target="_blank" rel="noopener" aria-label="Visitar perfil no LinkedIn" title="Visitar perfil no LinkedIn">
-                    <i class="fa-brands fa-linkedin-in social-icon" aria-hidden="true"></i>
+          <div class="hero__actions">
+              <div class="social-links">
+                  <a class="social-link" href="https://www.linkedin.com/in/tarcisiobispouxdesigner" target="_blank" rel="noopener" aria-label="Visitar perfil no LinkedIn">
+                    <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
                   </a>
-
-                  <a class="social-link" href="https://www.coroflot.com/tarcisio_bispo" target="_blank" rel="noopener" aria-label="Ver portfólio no Coroflot" title="Ver portfólio no Coroflot">
-                    <i class="fa-solid fa-briefcase social-icon" aria-hidden="true"></i>
+                  <a class="social-link" href="https://www.coroflot.com/tarcisio_bispo" target="_blank" rel="noopener" aria-label="Ver portfólio no Coroflot">
+                    <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
                   </a>
-
-                  <a class="social-link" href="https://medium.com/@tarcisiobispodearaujo" target="_blank" rel="noopener" aria-label="Ler artigos no Medium" title="Ler artigos no Medium">
-                    <i class="fa-brands fa-medium-m social-icon" aria-hidden="true"></i>
+                  <a class="social-link" href="https://medium.com/@tarcisiobispodearaujo" target="_blank" rel="noopener" aria-label="Ler artigos no Medium">
+                    <i class="fa-brands fa-medium-m" aria-hidden="true"></i>
                   </a>
               </div>
-
-              <a class="btn btn--primary" href="https://drive.google.com/file/d/102gp9Or9rWkxQyZGHKR8bM-khBhp_CNp/view?usp=drive_link" target="_blank" rel="noopener" aria-label="Ver meu currículo" title="Ver meu currículo">Meu Currículo</a>
+              <a class="btn btn--ghost" href="https://drive.google.com/file/d/102gp9Or9rWkxQyZGHKR8bM-khBhp_CNp/view?usp=drive_link" target="_blank" rel="noopener">Meu Currículo</a>
           </div>
-      </section>
+      </header>
 
-    <span class="recent-work-label">Trabalhos recentes</span>
-    <div class="case-studies-container">
-
-        <div class="case-studies-row">
-            <div class="case-study-card" id="Card-One">
-                <div class="case-study-card-contents">
-                    <a href="case-studies/case-study-gecko.html">
-                        <div class="image-container">
-                            <img src="images/sitemap-gecko-cover.jpg" alt="Capa do projeto Sitemap Gecko">
-                        </div>
-                        <div class="case-study-heading">
-                            <h3>Campanha de Recrutamento - Grupo Triunfante</h3>
-                        </div>
-                        <div class="case-study-description">
-                            Campanha integrada de recrutamento e reposicionamento de marca para preencher vagas e comunicar nova fase da empresa.
-                        </div>
-                    </a>
+    <section class="work-section">
+        <h2 class="work-section__title">Trabalhos recentes</h2>
+        <div class="card-grid">
+            <article class="case-card">
+                <img class="case-card__image" src="images/sitemap-gecko-cover.jpg" alt="Capa do projeto Sitemap Gecko">
+                <div class="case-card__content">
+                    <h3 class="case-card__title">Campanha de Recrutamento - Grupo Triunfante</h3>
+                    <p class="case-card__description">Campanha integrada de recrutamento e reposicionamento de marca para preencher vagas e comunicar nova fase da empresa.</p>
+                    <a href="case-studies/case-study-gecko.html" class="btn btn--primary">Ver estudo de caso</a>
                 </div>
-            </div>
+            </article>
 
-            <div class="case-study-card" id="Card-One">
-                <div class="case-study-card-contents">
-                    <a href="case-studies/case-study-jobs-board.html">
-                        <div class="image-container">
-                            <img src="images/designer-jobs-cover.png" alt="Capa do projeto UI UX Designer Jobs">
-                        </div>
-                        <div class="case-study-heading">
-                            <h3>Reestruturação do Site - FGV Direito SP</h3>
-                        </div>
-                        <div class="case-study-description">
-                            Diagnóstico, concepção e reestruturação completa do site institucional da Escola de Direito da FGV-SP.
-                        </div>
-                    </a>
+            <article class="case-card">
+                <img class="case-card__image" src="images/designer-jobs-cover.png" alt="Capa do projeto UI UX Designer Jobs">
+                <div class="case-card__content">
+                    <h3 class="case-card__title">Reestruturação do Site - FGV Direito SP</h3>
+                    <p class="case-card__description">Diagnóstico, concepção e reestruturação completa do site institucional da Escola de Direito da FGV-SP.</p>
+                    <a href="case-studies/case-study-jobs-board.html" class="btn btn--primary">Ver estudo de caso</a>
                 </div>
-            </div>
+            </article>
         </div>
+    </section>
+    </main>
 
-    </div>
 </body>
 </html>

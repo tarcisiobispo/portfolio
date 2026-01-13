@@ -2,7 +2,7 @@
 
 body {
     max-width: var(--content-max-width);
-    font-family: var(--font-family-sans, "Nunito Sans");
+    font-family: var(--font-family-serif, "Source Serif 4");
     background-color: var(--sys-background, #f1f5f9);
     color: var(--sys-on-background, #0b1220);
     padding-top: var(--space-8, 32px);
