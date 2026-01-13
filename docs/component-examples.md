@@ -2,6 +2,8 @@
 
 Exemplos simples para começar a usar os tokens e componentes do design system.
 
+Referência principal: `docs/design-system.md`.
+
 ## Botão primário
 
 HTML:
@@ -10,38 +12,38 @@ HTML:
 ```
 
 Notas:
-- Usa `--sys-primary` e `--sys-primary-container` para gradiente e `--elevation-*` para sombra.
-- Tem estados hover/active/disabled embutidos.
+- Implementado em `css/design-tokens.css`.
+- Tem estado `:hover` e foco por teclado (`:focus-visible`).
 
 ## Card
 
 HTML:
 ```html
-<article class="card">
-  <h3>Case study</h3>
-  <p class="u-mb-4">Breve descrição do projeto e resultados.</p>
-  <button class="btn btn--ghost">Ler mais</button>
+<article class="case-card">
+  <a href="case-studies/case-study.html">
+    <img class="case-card__image" src="images/sitemap-gecko-cover.jpg" alt="Capa do projeto" />
+  </a>
+  <div class="case-card__content">
+    <h3 class="case-card__title">Título do case</h3>
+    <p class="case-card__description">Breve descrição do projeto e resultados.</p>
+    <a class="btn btn--primary" href="case-studies/case-study.html">Ver estudo de caso</a>
+  </div>
 </article>
 ```
 
 Notas:
-- Padding, radius e elevação são controlados via tokens (`--card-padding`, `--card-radius`, `--elevation-*`).
+- Implementado em `css/design-tokens.css`.
+- Use `alt` descritivo na imagem.
 
 ## Input
 
-HTML:
-```html
-<input class="input" placeholder="Pesquisar casos" />
-```
-
-Notas:
-- `:focus` aplica `--focus-ring` e placeholder usa `--sys-on-surface-variant`.
-- `prefers-reduced-motion` reduz transições quando ativo.
+Atualmente não existe um componente `.input` implementado no CSS do projeto.
+Se você quiser, eu posso padronizar um input seguindo o mesmo design system.
 
 ---
 
 ### Cards (index)
-- As descrições dos cards usam truncagem visual a 2 linhas no index para manter layout limpo. Use `case-study-card .case-study-description` e `-webkit-line-clamp: 2`.
+- Se você quiser truncagem a 2 linhas, isso pode ser adicionado em `.case-card__description`.
 - Não esconda conteúdo crítico: certifique-se de que o link do card leva à página completa do case study para leitura total.
 
 ### Imagens e acessibilidade
