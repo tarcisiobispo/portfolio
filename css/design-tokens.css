@@ -407,8 +407,8 @@ a:focus-visible,
    ========================== */
 .case-card {
   display: grid;
-  grid-template-rows: auto 1fr;
-  gap: var(--space-md);
+  grid-template-rows: auto auto;
+  gap: var(--space-sm); /* manter espaçamento máximo de 16px entre blocos do card */
   transition: transform var(--transition-base);
   padding: var(--space-md);
   border-radius: var(--radius-lg);
@@ -424,9 +424,12 @@ a:focus-visible,
 
 .case-card__image {
   width: 100%;
-  height: 240px;
-  object-fit: cover;
+  aspect-ratio: 5 / 2; /* preserve 1200x480 (2.5:1) visual slot while avoiding crop */
+  object-fit: contain; /* show whole image without cropping */
+  object-position: center center; /* center the image inside the slot */
+  background: var(--color-light-surface); /* neutral backdrop for letterboxing */
   border-radius: var(--radius-md);
+  margin-bottom: 0; /* remove any extra gap under the image */
   transition: transform var(--transition-base);
 }
 
@@ -436,8 +439,8 @@ a:focus-visible,
 
 .case-card__content {
   display: grid;
-  grid-template-rows: auto 1fr auto;
-  gap: var(--space-sm);
+  grid-template-rows: auto auto auto;
+  gap: var(--space-sm); /* usar 16px entre título, descrição e botão */
 }
 
 .case-card__title {
@@ -496,9 +499,9 @@ a:focus-visible,
   .hero__title {
     font-size: var(--font-size-2xl);
   }
-  
+  /* smaller screens: keep same aspect ratio but allow the image slot to scale */
   .case-card__image {
-    height: 200px;
+    aspect-ratio: 5 / 2;
   }
   
   .card-grid {
@@ -507,7 +510,9 @@ a:focus-visible,
 }
 
 @media (min-width: 1400px) {
+  /* larger viewports: allow slightly taller visual slot while preserving aspect */
   .case-card__image {
-    height: 280px;
+    aspect-ratio: 5 / 2;
+    max-height: 280px;
   }
 }

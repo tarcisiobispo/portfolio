@@ -5,8 +5,7 @@ body {
     color: rgba(0, 0, 0, 0.8);
     font-size: var(--font-size-base);
     line-height: var(--line-height-base);
-    max-width: 1400px;
-    margin: 0 auto;
+    margin: 0;
     padding: var(--space-xl) var(--space-sm);
     width: 100%;
 }
@@ -24,91 +23,166 @@ body {
     }
 }
 
+/* Layout editorial: central container (main) e toolbar horizontal */
+
+/* Wrapper editorial centralizado */
+.editorial-wrapper {
+    max-width: 42rem; /* ~672px, ajuste fino conforme sua tipografia */
+    margin: 0 auto;
+    padding-left: var(--space-sm);
+    padding-right: var(--space-sm);
+    box-sizing: border-box;
+}
+
+/* case-header e conteúdos alinham-se ao wrapper */
+.editorial-wrapper .case-header,
+.editorial-wrapper .case-meta,
+.editorial-wrapper .case-content {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Sticky action bar / tools (índice) */
+.sticky-tools {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #fff;
+    border-top: 1px solid rgba(0,0,0,0.04);
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+    padding: 0.4rem 0; /* barra mais compacta */
+}
+
+.index-widget summary {
+    list-style: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--color-light-text-main);
+    font-family: var(--font-family-sans);
+    font-weight: var(--font-weight-semibold);
+    background: transparent; /* sem preenchimento retangular */
+    border: none;
+    padding: 0; /* ícone integrado no fluxo */
+}
+
+/* aumentar hit area do summary sem mostrar caixa sólida */
+.index-widget summary {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 6px; /* aumenta área clique/touch */
+    border-radius: 8px;
+}
+
+.index-widget .reading-time {
+    color: var(--color-light-text-muted);
+    font-weight: var(--font-weight-normal);
+    font-size: var(--font-size-sm);
+}
+
+.index-widget .index-list {
+    display: none;
+    margin-top: var(--space-sm);
+    padding-top: var(--space-sm);
+    border-top: 1px solid rgba(0,0,0,0.02);
+    background: #fff;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    padding: var(--space-sm);
+}
+
+/* Quando aberto (mobile/pequenas larguras) mostra lista vertical */
+.index-widget[open] .index-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+/* visually hidden (screen-reader only) */
+.sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* garantir que headings não fiquem cobertos pela sticky toolbar */
+.case-content h2,
+.case-content h3 {
+    scroll-margin-top: 5.5rem; /* ajustável conforme altura da toolbar */
+}
+
+/* leitura badge ao lado do ícone */
+.reading-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--color-light-text-muted);
+    font-size: var(--font-size-sm);
+    margin-left: 0.4rem;
+}
+
+.reading-badge .icon-clock {
+    opacity: 0.9;
+}
+
+/* Em foco/hover, destacar levemente (sem fundo sólido) */
+.index-widget summary:hover,
+.index-widget summary:focus {
+    color: var(--color-light-text-main);
+    outline: none;
+}
+
+/* esconder texto de leitura em telas pequenas para economizar espaço */
+@media (max-width: 600px) {
+    .reading-badge .reading-time {
+        display: none;
+    }
+}
+
+/* estado aberto: rotaciona o ícone e destaca cor */
+.index-widget[open] .icon-list {
+    transform: rotate(90deg);
+    transition: transform .2s ease;
+}
+.index-widget[open] summary {
+    color: var(--color-light-text-main);
+}
+
+/* garantir foco visível no summary */
+.index-widget summary:focus-visible {
+    box-shadow: 0 0 0 3px rgba(0,0,0,0.06);
+    border-radius: 8px;
+}
+
+.index-widget .index-list a {
+    color: var(--color-light-text-main);
+    text-decoration: none;
+    padding: calc(var(--space-xs) / 2) 0;
+}
+
+/* Em telas largas, mostra os links inline e mantém o summary como rótulo */
 @media (min-width: 900px) {
-    body {
-        display: grid;
-        grid-template-columns: 1fr 260px;
-        gap: var(--space-xl);
-        align-items: start;
-    }
-    
-    @media (min-width: 1200px) {
-        body {
-            grid-template-columns: 1fr 280px;
-        }
-    }
-    
-    .case-header {
-        grid-column: 1 / -1;
-        margin-bottom: var(--space-xl);
-    }
-    
-    .case-content {
-        max-width: 100%;
-    }
-    
-    .case-sidebar {
-        position: sticky;
-        top: 2rem;
-        font-family: var(--font-family-sans);
-        font-size: var(--font-size-sm);
-        color: var(--color-light-text-muted);
-        background: var(--color-light-surface);
-        padding: var(--space-md);
-        border-radius: var(--radius-md);
-        border: 1px solid var(--color-light-border);
-        align-self: start;
-        transition: all var(--transition-base);
-    }
-    
-    .case-sidebar h3 {
-        font-family: var(--font-family-sans);
-        font-size: var(--font-size-sm);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin-bottom: var(--space-sm);
+    .index-widget .index-list {
+        display: flex !important;
+        flex-direction: row;
+        gap: var(--space-lg);
+        align-items: center;
         margin-top: 0;
-        color: var(--color-light-text-main);
-    }
-    
-    .case-sidebar ul {
-        list-style: none;
+        padding-top: 0;
+        border-top: none;
+        box-shadow: none;
+        background: transparent;
         padding: 0;
-        margin: 0;
     }
-    
-    .case-sidebar li {
-        margin-bottom: var(--space-xs);
-        padding-left: var(--space-sm);
-        border-left: 2px solid transparent;
-        transition: all 0.2s ease;
-    }
-    
-    .case-sidebar li:hover {
-        border-left-color: var(--color-light-text-main);
-        background: var(--color-light-accent);
-        transform: translateX(4px);
-        transition: all 0.2s ease;
-    }
-    
-    .case-sidebar a {
-        color: inherit;
-        text-decoration: none;
-        font-size: var(--font-size-sm);
-        line-height: 1.4;
-        transition: all 0.2s ease;
-    }
-    
-    .case-sidebar li:hover a {
-        color: var(--color-light-text-main);
-    }
-    
-    @media (max-height: 800px) {
-        .case-sidebar {
-            position: relative;
-            top: auto;
-            margin-top: var(--space-lg);
-        }
+
+    .index-widget summary {
+        margin-right: var(--space-md);
     }
 }
 
@@ -470,4 +544,21 @@ figcaption,
     width: 14px;
     height: 14px;
     flex-shrink: 0;
+}
+
+/* Forçar o botão 'Voltar' a ficar dentro do fluxo do header
+   e alinhado com o conteúdo editorial (não flutuante) */
+.editorial-wrapper .go-back-nav {
+    display: inline-flex;
+    margin-bottom: var(--space-md);
+    color: var(--color-light-text-muted);
+    text-decoration: none;
+    position: relative; /* garante que não se sobreponha absoluto */
+    top: 0;
+    left: 0;
+}
+
+.editorial-wrapper .go-back-nav:hover {
+    color: var(--color-light-text-main);
+    transform: translateX(-2px);
 }

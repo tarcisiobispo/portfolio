@@ -20,13 +20,13 @@ Notas:
 HTML:
 ```html
 <article class="case-card">
-  <a href="case-studies/case-study.html">
+  <a href="case-studies/case-study-triunfante.html">
     <img class="case-card__image" src="images/sitemap-gecko-cover.jpg" alt="Capa do projeto" />
   </a>
   <div class="case-card__content">
     <h3 class="case-card__title">Título do case</h3>
     <p class="case-card__description">Breve descrição do projeto e resultados.</p>
-    <a class="btn btn--primary" href="case-studies/case-study.html">Ver estudo de caso</a>
+    <a class="btn btn--primary" href="case-studies/case-study-triunfante.html">Ver estudo de caso</a>
   </div>
 </article>
 ```

@@ -11,12 +11,12 @@ Todos os arquivos contêm URLs placeholder `https://seudominio.com/` que precisa
    - Linha ~18: `canonical`
    - Linha ~30: Schema.org `url`
 
-2. **case-studies/case-study.html**
+2. **case-studies/case-study-triunfante.html**
    - Linha ~15: `og:url`
    - Linha ~26: `canonical`
    - Linha ~38: Schema.org `url`
 
-3. **case-studies/case-study-jobs-board.html**
+3. **case-studies/case-study-fgv.html**
    - Linha ~15: `og:url`
    - Linha ~26: `canonical`
    - Linha ~38: Schema.org `url`
