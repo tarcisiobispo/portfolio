@@ -27,9 +27,15 @@ body {
 @media (min-width: 900px) {
     body {
         display: grid;
-        grid-template-columns: 1fr 280px;
+        grid-template-columns: 1fr 260px;
         gap: var(--space-xl);
         align-items: start;
+    }
+    
+    @media (min-width: 1200px) {
+        body {
+            grid-template-columns: 1fr 280px;
+        }
     }
     
     .case-header {
@@ -38,7 +44,7 @@ body {
     }
     
     .case-content {
-        max-width: none;
+        max-width: 100%;
     }
     
     .case-sidebar {
@@ -146,7 +152,20 @@ body {
 }
 
 .case-content {
-    max-width: 65ch;
+    max-width: 80ch;
+    width: 100%;
+}
+
+@media (min-width: 1200px) {
+    .case-content {
+        max-width: 85ch;
+    }
+}
+
+@media (min-width: 1400px) {
+    .case-content {
+        max-width: 95ch;
+    }
 }
 
 .case-study-text {
