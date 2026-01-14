@@ -57,19 +57,19 @@ Consolidated Design Tokens for Portfolio
   --font-family-sans: "Source Sans 3", system-ui, sans-serif;
   --font-family-serif: "Source Serif 4", Georgia, serif;
   
-  --font-size-sm: 14px;
-  --font-size-base: 16px;
-  --font-size-lg: 18px;
-  --font-size-xl: 20px;
-  --font-size-2_5xl: 32px;
-  --font-size-2xl: 28px;
-  --font-size-3xl: 36px;
-  --font-size-3_5xl: 40px;
-  --font-size-4xl: 48px;
+  --font-size-sm: 15px;
+  --font-size-base: 21px;
+  --font-size-lg: 22px;
+  --font-size-xl: 24px;
+  --font-size-2_5xl: 34px;
+  --font-size-2xl: 30px;
+  --font-size-3xl: 38px;
+  --font-size-3_5xl: 42px;
+  --font-size-4xl: 50px;
   
-  --line-height-tight: 1.2;
-  --line-height-base: 1.6;
-  --line-height-loose: 1.8;
+  --line-height-tight: 1.25;
+  --line-height-base: 1.58;
+  --line-height-loose: 1.9;
   
   --font-weight-normal: 400;
   --font-weight-medium: 500;
@@ -108,7 +108,11 @@ Consolidated Design Tokens for Portfolio
 body {
   font-family: var(--font-family-serif);
   font-size: var(--font-size-base);
-  line-height: var(--line-height-base);
+  line-height: 1.9;
+  font-weight: var(--font-weight-normal);
+  letter-spacing: 0;
+  font-variation-settings: "wght" 400, "wdth" 100, "SOFT" 0;
+  text-align: left;
   color: var(--color-text-muted);
   background: var(--color-surface-primary);
   margin: 0;
@@ -351,11 +355,11 @@ a:focus-visible,
    Work Section
    ========================== */
 .work-section {
-  margin-top: var(--space-2xl);
+  margin-top: var(--space-xl);
 }
 
 .work-section__header {
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-md);
 }
 
 .work-section__title {
@@ -380,8 +384,8 @@ a:focus-visible,
    ========================== */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: var(--space-lg);
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: var(--space-md);
 }
 
 @media (max-width: 1024px) {
