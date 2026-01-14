@@ -2,13 +2,13 @@
 
 body {
     max-width: var(--content-max-width, 1200px);
-    font-family: var(--font-family-serif, "Source Serif 4");
-    background-color: var(--sys-background, #f1f5f9);
-    color: var(--sys-on-background, #0b1220);
-    padding-top: var(--space-8, 32px);
-    padding-bottom: var(--space-8, 32px);
-    padding-left: var(--space-4, 16px);
-    padding-right: var(--space-4, 16px);
+    font-family: var(--font-family-serif);
+    background-color: var(--color-surface-primary);
+    color: var(--color-text-main);
+    padding-top: var(--space-lg);
+    padding-bottom: var(--space-lg);
+    padding-left: var(--space-sm);
+    padding-right: var(--space-sm);
     cursor: default;
 }
 

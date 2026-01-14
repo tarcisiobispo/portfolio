@@ -5,21 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reestruturação do Site - FGV Direito SP</title>
 
+    <meta name="description" content="Case study: reestruturação do site institucional da FGV Direito SP com foco em arquitetura da informação, descoberta de conteúdo e comunicação editorial escalável." />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Reestruturação do Site — FGV Direito SP" />
+    <meta property="og:description" content="Transformando conteúdo disperso em experiência organizada e escalável, com foco em IA, descoberta de conteúdo e comunicação institucional." />
+    <meta property="og:image" content="/images/designer-jobs-cover.png" />
+    <meta property="og:url" content="https://seudominio.com/case-studies/case-study-jobs-board.html" />
+    <meta property="og:site_name" content="Portfólio UX — Tarcisio Bispo" />
+    <meta property="og:locale" content="pt_BR" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Reestruturação do Site — FGV Direito SP" />
+    <meta name="twitter:description" content="Transformando conteúdo disperso em experiência organizada e escalável, com foco em IA, descoberta de conteúdo e comunicação institucional." />
+    <meta name="twitter:image" content="/images/designer-jobs-cover.png" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://seudominio.com/case-studies/case-study-jobs-board.html" />
+
     <!--Styling-->
     <link rel="stylesheet" href="../css/case-study-style.css">
 
     <!--Google Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:wght@400&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome (CDN for brand icons) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "Reestruturação do Site - FGV Direito SP",
+      "description": "Case study: reestruturação do site institucional da FGV Direito SP com foco em arquitetura da informação, descoberta de conteúdo e comunicação editorial escalável.",
+      "author": {
+        "@type": "Person",
+        "name": "Tarcisio Bispo de Araujo",
+        "jobTitle": "UX Designer"
+      },
+      "datePublished": "2023",
+      "image": "/images/designer-jobs-cover.png",
+      "url": "https://seudominio.com/case-studies/case-study-jobs-board.html",
+      "about": {
+        "@type": "Thing",
+        "name": "UX Design",
+        "description": "Reestruturação de site institucional e arquitetura da informação"
+      }
+    }
+    </script>
 
 </head>
 
 <body>
-    <a href="../index.html" class="go-back-nav"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Voltar</a>
+    <a class="skip-link" href="#conteudo">Pular para conteúdo</a>
+    <a href="../index.html" class="go-back-nav" aria-label="Voltar para a página inicial" data-tooltip="Voltar para a Home" title="Voltar para a Home">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+      Voltar
+    </a>
     
     <div class="case-header">
         <h1>Reestruturação do Site Institucional</h1>
@@ -53,18 +99,18 @@
         </div>
     </div>
     
-    <div class="case-content">
-        <h1 id="visao-geral"><span class="underline-text-purple">Visão Geral</span></h1>
+    <div class="case-content" id="conteudo">
+        <h2 id="visao-geral"><span class="underline-text-purple">Visão Geral</span></h2>
         <span class="case-study-text">
             Transformei um site institucional fragmentado em um produto digital organizado e escalável, com foco em arquitetura da informação, descoberta de conteúdo acadêmico e comunicação institucional coerente.
         </span>
 
-        <h1 id="contexto"><span class="underline-text-purple">Contexto e Desafio</span></h1>
+        <h2 id="contexto"><span class="underline-text-purple">Contexto e Desafio</span></h2>
         <span class="case-study-text">   
             O site da escola cresceu de forma orgânica: conteúdo disperso, áreas faltantes (professores, pesquisadores, publicações), homepage com baixa capacidade editorial e dificuldade na descoberta de informação para públicos internos e externos.
         </span>
 
-        <h1 id="objetivos"><span class="underline-text-purple">Objetivos do Projeto</span></h1>
+        <h2 id="objetivos"><span class="underline-text-purple">Objetivos do Projeto</span></h2>
         <span class="case-study-text">
             ☐ Organizar e tornar descoberta a produção acadêmica<br>
             ☐ Criar estruturas específicas para professores, pesquisadores e eventos<br>
@@ -73,50 +119,50 @@
             ☐ Entregar uma base escalável respeitando limitações técnicas do backlog
         </span>
 
-        <h1 id="pesquisa"><span class="underline-text-purple">Pesquisa & Diagnóstico</span></h1>
+        <h2 id="pesquisa"><span class="underline-text-purple">Pesquisa & Diagnóstico</span></h2>
         <span class="case-study-text">
             • Entrevistas com professores, direção, departamento pedagógico, marketing e alunos<br>
             • Análise de navegação e levantamento de conteúdo (content inventory)<br>
             • UX audit para mapear pontos de fricção e lacunas de informação
         </span>
 
-        <h2><span class="underline-text-purple">Insights Principais</span></h2>
+        <h3><span class="underline-text-purple">Insights Principais</span></h3>
         <span class="case-study-text">
             • Usuários primários (alunos, professores) buscavam rapidez na localização de conteúdo prático<br>
             • Pesquisadores e público externo precisavam de visibilidade da produção acadêmica (revistas, artigos)<br>
             • A homepage precisava funcionar como ponto de entrada editorial e operacional (notícias, vídeos, integração com TV interna)
         </span>
 
-        <h2><span class="underline-text-purple">Personas e Jornadas</span></h2>
+        <h3><span class="underline-text-purple">Personas e Jornadas</span></h3>
         <span class="case-study-text">
             <strong>Professor pesquisador:</strong> precisa divulgar produção e estabelecer contato<br>
             <strong>Aluno:</strong> busca informações de curso, eventos e materiais<br>
             <strong>Público externo:</strong> procura por publicações, eventos e cursos de pós-graduação
         </span>
 
-        <h1 id="arquitetura"><span class="underline-text-purple">Arquitetura da Informação</span></h1>
+        <h2 id="arquitetura"><span class="underline-text-purple">Arquitetura da Informação</span></h2>
         <span class="case-study-text">
             Redesenhei a IA para priorizar descoberta e reduzir camadas de navegação. Estruturei seções principais (Professores, Pesquisadores, Revista Direito GV, Cursos, Eventos, Infraestrutura) e defini caminhos rápidos desde a homepage.
         </span>
 
-        <h2><span class="underline-text-purple">Fluxos e Containers de Conteúdo</span></h2>
+        <h3><span class="underline-text-purple">Fluxos e Containers de Conteúdo</span></h3>
         <span class="case-study-text">
             Projetei containers moduláveis para a homepage (hub editorial), perfis de professores, listagens de pesquisadores e páginas de publicação, priorizando leitura escaneável e caminhos de conversão para eventos e inscrição em cursos.
         </span>
 
-        <h1 id="design-visual"><span class="underline-text-purple">Design Visual e Sistema</span></h1>
+        <h2 id="design-visual"><span class="underline-text-purple">Design Visual e Sistema</span></h2>
         <span class="case-study-text">
             • Adoção progressiva da identidade do Portal FGV (implementação técnica faseada)<br>
             • Componentização para facilitar manutenção (cards, listas, hero padronizado)<br>
             • Banner padronizado na hero para integrar exibições da TV interna e canais externos
         </span>
 
-        <h1 id="prototipos"><span class="underline-text-purple">Protótipos e Validação</span></h1>
+        <h2 id="prototipos"><span class="underline-text-purple">Protótipos e Validação</span></h2>
         <span class="case-study-text">
             Teste de navegação com amostra de alunos e professores (guia de tarefas simples). Ajustes baseados em observações: labels mais explícitas, listagens com filtros e acesso direto a publicações.
         </span>
 
-        <h1 id="entregas"><span class="underline-text-purple">Principais Entregas</span></h1>
+        <h2 id="entregas"><span class="underline-text-purple">Principais Entregas</span></h2>
         <span class="case-study-text">
             ☐ Área de Professores (perfis + produção)<br>
             ☐ Área de Pesquisadores (listagem completa)<br>
@@ -128,19 +174,19 @@
             ☐ Áreas de Mestrado Profissional, Pesquisa e Infraestrutura
         </span>
 
-        <h1 id="resultado"><span class="underline-text-purple">Resultado e Impacto</span></h1>
+        <h2 id="resultado"><span class="underline-text-purple">Resultado e Impacto</span></h2>
         <span class="case-study-text">
             Entreguei uma base estrutural que transformou o site em produto institucional: melhor descoberta de conteúdo, clareza para múltiplos públicos e infraestrutura pronta para futuras integrações de identidade visual. Reduziu-se o ruído organizacional e aumentou-se a previsibilidade das atualizações editoriais.
         </span>
 
-        <h2><span class="underline-text-purple">Métrica de Sucesso e Próximos Passos</span></h2>
+        <h3><span class="underline-text-purple">Métrica de Sucesso e Próximos Passos</span></h3>
         <span class="case-study-text">
             Métricas propostas para validar evolução: taxa de clique em perfis, tempo para encontrar publicações, redução de tickets de suporte sobre "onde encontrar X".<br><br>
             
             Próximo passo: implementação completa do design system do Portal FGV e testes de usabilidade em escala.
         </span>
 
-        <h1 id="reflexao"><span class="underline-text-purple">Reflexão</span></h1>
+        <h2 id="reflexao"><span class="underline-text-purple">Reflexão</span></h2>
         <span class="case-study-text padding-bottom">
             Trabalhar em ambiente institucional me exigiu balancear pesquisa, política interna e prioridades técnicas. Aprendi a projetar soluções que equilibrem rapidez de entrega e sustentabilidade de produto.
         </span>
