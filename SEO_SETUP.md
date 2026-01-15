@@ -2,7 +2,7 @@
 
 ## ⚠️ IMPORTANTE: Atualizar URLs
 
-Todos os arquivos contêm URLs placeholder `https://seudominio.com/` que precisam ser substituídas pelo domínio real do site.
+O domínio configurado para este repositório é `https://tarcisiobispo.github.io/portfolio/`. Substitua o placeholder `https://seudominio.com/` por esse domínio enquanto estiver publicando em GitHub Pages. Antes de publicar em domínio próprio, atualize novamente para o domínio final.
 
 ### Arquivos que precisam ser atualizados:
 
@@ -29,7 +29,7 @@ Todos os arquivos contêm URLs placeholder `https://seudominio.com/` que precisa
 
 ### Como atualizar:
 
-1. Substitua `https://seudominio.com/` pelo seu domínio real em todos os arquivos acima
+1. Substitua `https://seudominio.com/` pelo domínio `https://tarcisiobispo.github.io/portfolio/` (ou pelo seu domínio final, se diferente) em todos os arquivos acima
 2. Atualize as datas `<lastmod>` no sitemap.xml quando fizer alterações significativas
 3. Submeta o sitemap.xml no Google Search Console
 
