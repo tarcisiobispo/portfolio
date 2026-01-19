@@ -138,6 +138,24 @@ img, picture, video, iframe {
     justify-content: space-between;
 }
 
+/* Card title: melhor hierarquia e legibilidade em fundo claro */
+.case-card__title {
+    margin: 0;
+    color: var(--color-light-text-main);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.3;
+}
+
+/* Subtitle under card titles (client / organization) */
+.case-card__subtitle {
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-sm);
+    color: var(--color-light-text-main);
+    margin: 0; /* espaço controlado pelo gap do grid */
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.02em;
+}
+
 /* Limit description to 3 lines with ellipsis */
 .case-card__description {
     display: -webkit-box;
@@ -179,16 +197,16 @@ img, picture, video, iframe {
 }
 
 .case-card.clean .case-card__content {
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    display: grid;
+    grid-template-rows: auto auto 1fr auto; /* título, subtítulo, descrição, botão */
+    gap: var(--space-sm);
 }
 
 /* Hero typography scale (mobile-first) */
 .hero__title {
-    font-size: clamp(1.4rem, 4vw, 2.2rem);
-    line-height: 1.15;
+    /* Aumentado para melhorar presença do título em desktop, mantendo responsividade */
+    font-size: clamp(1.6rem, 4.5vw, 3.2rem);
+    line-height: 1.1;
 }
 .hero__subtitle {
     font-size: clamp(1rem, 2.5vw, 1.125rem);
