@@ -12,9 +12,25 @@
     <priority>1.0</priority>
   </url>
   
+  <!-- Sobre -->
+  <url>
+    <loc>https://tarcisiobispo.github.io/portfolio/sobre/</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Contato -->
+  <url>
+    <loc>https://tarcisiobispo.github.io/portfolio/contato/</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
   <!-- Case Study 1 -->
   <url>
-    <loc>https://tarcisiobispo.github.io/portfolio/case-studies/case-study-triunfante.html</loc>
+    <loc>https://tarcisiobispo.github.io/portfolio/case-studies/case-study-triunfante/</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -22,7 +38,7 @@
   
   <!-- Case Study 2 -->
   <url>
-    <loc>https://tarcisiobispo.github.io/portfolio/case-studies/case-study-fgv.html</loc>
+    <loc>https://tarcisiobispo.github.io/portfolio/case-studies/case-study-fgv/</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
