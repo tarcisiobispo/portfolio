@@ -143,6 +143,17 @@
                 document.getElementById('indexWidget').open = false;
             });
         });
+        // Cálculo automático do tempo de leitura
+        (function(){
+            var article = document.querySelector('.case-content');
+            var badge = document.querySelector('.reading-time');
+            if(!article || !badge) return;
+            var text = article.textContent || '';
+            var words = (text.trim().match(/\S+/g) || []).length;
+            var wpm = 200; // média de leitura em pt-BR
+            var minutes = Math.max(1, Math.round(words / wpm));
+            badge.textContent = minutes + ' min';
+        })();
         </script>
 
         <div class="content-body">
