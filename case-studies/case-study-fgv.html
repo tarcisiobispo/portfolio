@@ -207,9 +207,9 @@
                     <div class="index-list" id="index-list" role="list">
                         <a role="listitem" href="#visao-geral">Visão Geral</a>
                         <a role="listitem" href="#gestao">Gestão de Complexidade e Governança</a>
-                        <a role="listitem" href="#ciclo-design">Arquitetura da Informação</a>
+                        <a role="listitem" href="#ciclo-design">Três Pilares (Omnicanal, Visibilidade, IA)</a>
                         <a role="listitem" href="#producao-agil">Produção Ágil e Viabilidade Técnica</a>
-                        <a role="listitem" href="#stakeholders">Omnicanalidade e Convergência</a>
+                        <a role="listitem" href="#execucao">Execução Visual</a>
                         <a role="listitem" href="#entregas">Principais Entregas</a>
                         <a role="listitem" href="#resultado">Resultado e Impacto</a>
                         <a role="listitem" href="#reflexao">Aprendizados</a>
@@ -222,6 +222,17 @@
                     document.getElementById('indexWidget').open = false;
                 });
             });
+            // Cálculo automático do tempo de leitura
+            (function(){
+                var article = document.querySelector('.case-content');
+                var badge = document.querySelector('.reading-time');
+                if(!article || !badge) return;
+                var text = article.textContent || '';
+                var words = (text.trim().match(/\S+/g) || []).length;
+                var wpm = 200; // média de leitura em pt-BR
+                var minutes = Math.max(1, Math.round(words / wpm));
+                badge.textContent = minutes + ' min';
+            })();
             </script>
 
             <div class="content-body">
@@ -236,12 +247,15 @@
                         <li>Estruturar a arquitetura de informação.</li>
                         <li>Viabilizar a descoberta de Professores, Pesquisadores e Publicações.</li>
                         <li>Conferir autonomia editorial ao Marketing em Drupal.</li>
-                        <li>Sincronizar portal com a TV corporativa.</li>
+                        <li>Garantir consistência omnicanal entre portal, TV corporativa e demais pontos de contato.</li>
                     </ol>
 
                     <h3><span class="underline-text-purple">Planejamento Estratégico</span></h3>
                     <p class="case-study-text">
                         A atuação concentrou se na orquestração de demandas provenientes da Diretoria, Coordenação Pedagógica e Engenharia, com o propósito de converter necessidades institucionais em uma lógica de navegação sistêmica.
+                    </p>
+                    <p class="case-study-text">
+                        Para sustentar esse escopo, institucionalizei uma governança de design com fluxo de priorização entre Marketing, Pedagógico e Engenharia, orientada pela redução da carga cognitiva, harmonização taxonômica entre Ensino e Pesquisa e pela garantia de consistência omnicanal entre o portal, a TV corporativa e demais pontos de contato.
                     </p>
                     
                     <figure class="case-figure">
@@ -562,9 +576,9 @@
                                     <rect x="18" y="7" width="3" height="8" rx="1" stroke="currentColor" stroke-width="1.4" />
                                     <path d="M5 18h12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
                                 </svg>
-                                <div class="result-card-title">Omnicanalidade</div>
+                                <div class="result-card-title">Consistência Omnicanal</div>
                             </div>
-                            <p class="result-card-desc">Padrão visual unificado entre digital e físico; jornada sem atritos.</p>
+                                    <p class="result-card-desc">Consistência omnicanal entre portal, TV corporativa e demais pontos de contato; jornada sem atritos.</p>
                         </article>
 
                         
