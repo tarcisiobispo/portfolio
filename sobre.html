@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre — Tarcisio Bispo de Araujo</title>
+
+    <meta name="description" content="Tarcisio Bispo de Araujo é um designer de experiências humanas com atuação sólida em UX Design, pesquisa de usuários e desenvolvimento front-end." />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sobre — Tarcisio Bispo de Araujo" />
+    <meta property="og:description" content="Designer de experiências humanas com foco em UX Design, pesquisa de usuários e desenvolvimento front-end." />
+    <meta property:og:url" content="https://tarcisiobispo.github.io/portfolio/sobre.html" />
+    <meta property="og:site_name" content="Portfólio UX — Tarcisio Bispo" />
+    <meta property="og:locale" content="pt_BR" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://tarcisiobispo.github.io/portfolio/sobre.html" />
+
+    <!--Styling-->
+    <link rel="stylesheet" href="css/design-tokens.css">
+    <link rel="stylesheet" href="css/nav.css">
+
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===========================================
+           PAGE FOUNDATION
+           Light theme matching case study pages
+           =========================================== */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #FAFAF9;
+            color: #1F2933;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ===========================================
+           LAYOUT CONTAINER
+           Optimal reading width with generous margins
+           =========================================== */
+        
+        .about {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 80px 32px 120px;
+        }
+
+        @media (min-width: 1200px) {
+            .about {
+                max-width: 720px;
+                padding: 100px 40px 140px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .about {
+                padding: 48px 20px 80px;
+            }
+        }
+
+        /* ===========================================
+           HEADER / HEADLINE
+           Clear hierarchy with proper spacing
+           =========================================== */
+        
+        .about__header {
+            margin-bottom: 64px;
+        }
+
+        .about__name {
+            font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 1.25;
+            letter-spacing: -0.02em;
+            color: #1F2933;
+            margin: 0;
+        }
+
+        .about__title {
+            font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+            font-size: 32px;
+            font-weight: 400;
+            line-height: 1.25;
+            letter-spacing: -0.02em;
+            color: #52606D;
+            margin: 0;
+        }
+
+        @media (min-width: 768px) {
+            .about__name,
+            .about__title {
+                font-size: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about__name,
+            .about__title {
+                font-size: 26px;
+            }
+
+            .about__header {
+                margin-bottom: 48px;
+            }
+        }
+
+        /* ===========================================
+           BODY TEXT
+           Professional typography with optimal measure
+           =========================================== */
+        
+        .about__body {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .about__text {
+            font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+            line-height: 1.7;
+            letter-spacing: 0.01em;
+            color: #3E4C59;
+            margin: 0;
+        }
+
+        @media (min-width: 768px) {
+            .about__text {
+                font-size: 18px;
+                line-height: 1.75;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about__text {
+                font-size: 16px;
+            }
+
+            .about__body {
+                gap: 24px;
+            }
+        }
+
+        /* ===========================================
+           CALL TO ACTION
+           Distinct section with visual separation
+           =========================================== */
+        
+        .about__cta {
+            margin-top: 64px;
+            padding-top: 48px;
+            border-top: 1px solid rgba(31, 41, 51, 0.1);
+        }
+
+        .about__cta-text {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 20px;
+            font-weight: 400;
+            font-style: italic;
+            line-height: 1.6;
+            letter-spacing: -0.01em;
+            color: #1F2933;
+            margin: 0 0 32px 0;
+        }
+
+        @media (min-width: 768px) {
+            .about__cta-text {
+                font-size: 22px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about__cta {
+                margin-top: 48px;
+                padding-top: 32px;
+            }
+
+            .about__cta-text {
+                font-size: 18px;
+                margin-bottom: 24px;
+            }
+        }
+
+        /* ===========================================
+           CONTACT BUTTON
+           Clean, professional interaction
+           =========================================== */
+        
+        .about__contact {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #1F2933;
+            text-decoration: none;
+            padding: 14px 28px;
+            border: 1px solid #1F2933;
+            border-radius: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .about__contact:hover {
+            background-color: #1F2933;
+            color: #FAFAF9;
+            text-decoration: none;
+        }
+
+        .about__contact:hover svg {
+            stroke: #FAFAF9;
+        }
+
+        .about__contact svg {
+            width: 16px;
+            height: 16px;
+            stroke: #1F2933;
+            transition: stroke 0.2s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <a class="skip-link" href="#conteudo">Pular para conteúdo</a>
+
+    <!-- Navigation -->
+    <nav class="site-nav site-nav--light" role="navigation" aria-label="Navegação principal">
+        <div class="site-nav__inner">
+            <a href="index.html" class="site-nav__brand">Tarcisio Bispo de Araujo</a>
+            
+            <button class="site-nav__toggle" aria-label="Menu" aria-expanded="false">
+                <span class="site-nav__toggle-icon"></span>
+            </button>
+            
+            <ul class="site-nav__menu">
+                <li><a href="sobre.html" class="site-nav__link">Sobre</a></li>
+                <li><a href="mailto:tarcisiobispodearaujo@gmail.com" class="site-nav__link">Entre em Contato</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="about" id="conteudo">
+        
+        <header class="about__header">
+            <h1 class="about__name">Tarcisio Bispo de Araujo é</h1>
+            <h2 class="about__title">um designer de experiências humanas</h2>
+        </header>
+
+        <div class="about__body">
+            <p class="about__text">
+                Com atuação sólida em UX Design, meu foco é construir soluções que unem pesquisa profunda, design centrado no usuário e desenvolvimento front-end. Meu trabalho se desenvolve em ecossistemas colaborativos, integrando stakeholders e equipes técnicas para garantir que a visão do produto seja traduzida em interfaces funcionais e responsivas. Já conduzi projetos que envolvem desde campanhas de recrutamento com tecnologias acessíveis até a otimização técnica de plataformas digitais.
+            </p>
+
+            <p class="about__text">
+                Desde o início da minha trajetória, busco a intersecção entre a análise de dados e a empatia. Utilizo a pesquisa de usuários para moldar o comportamento de sistemas complexos, garantindo que cada decisão de design seja fundamentada em necessidades reais e feedbacks constantes. Acredito que a inovação real surge quando traduzimos modelos abstratos em experiências que facilitam o dia a dia das pessoas.
+            </p>
+        </div>
+
+        <section class="about__cta">
+            <p class="about__cta-text">
+                Ajudo equipes a transformar dados em decisões de design sustentáveis. Agilidade para prototipar, cuidado para escalar e foco absoluto no usuário final. Vamos conversar!
+            </p>
+            
+            <a href="mailto:tarcisiobispodearaujo@gmail.com" class="about__contact">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                Entre em Contato
+            </a>
+        </section>
+
+    </main>
+
+    <script src="scripts/nav.js"></script>
+</body>
+</html>

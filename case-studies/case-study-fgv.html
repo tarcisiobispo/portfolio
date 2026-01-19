@@ -27,6 +27,7 @@
 
     <!--Styling-->
     <link rel="stylesheet" href="../css/case-study-style.css">
+    <link rel="stylesheet" href="../css/nav.css">
 
     <!--Google Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -128,6 +129,22 @@
 </head>
 
     <body>
+        <!-- Navigation -->
+        <nav class="site-nav site-nav--light" role="navigation" aria-label="Navegação principal">
+            <div class="site-nav__inner">
+                <a href="../index.html" class="site-nav__brand">Tarcisio Bispo de Araujo</a>
+                
+                <button class="site-nav__toggle" aria-label="Menu" aria-expanded="false">
+                    <span class="site-nav__toggle-icon"></span>
+                </button>
+                
+                <ul class="site-nav__menu">
+                    <li><a href="../sobre.html" class="site-nav__link">Sobre</a></li>
+                    <li><a href="mailto:tarcisiobispodearaujo@gmail.com" class="site-nav__link">Entre em Contato</a></li>
+                </ul>
+            </div>
+        </nav>
+
         <!-- Lightbox Container -->
         <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualização ampliada da imagem">
             <div class="lightbox-content">
@@ -139,14 +156,7 @@
 
         <a class="skip-link" href="#conteudo">Pular para conteúdo</a>
 
-        <main class="container">
-            <a href="../index.html" class="go-back-nav" aria-label="Voltar para a página inicial" data-tooltip="Voltar para a Home" title="Voltar para a Home">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M19 12H5M12 19l-7-7 7-7"/>
-              </svg>
-              Voltar
-            </a>
-
+        <main class="container" id="conteudo">
             <header class="case-header">
                 <h1>Otimização de Arquitetura e Expansão de Ecossistema</h1>
                 <p class="case-subtitle">Refinando a experiência cognitiva e implementando áreas críticas em sistemas legados</p>
@@ -505,5 +515,6 @@
 
         </main>
 
+        <script src="../scripts/nav.js"></script>
     </body>
-    </html>
+</html>

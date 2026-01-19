@@ -32,6 +32,14 @@ Consolidated Design Tokens for Portfolio
   --color-light-accent: rgba(31, 41, 51, 0.04);
   
   /* ==========================
+     Navigation & Header
+     ========================== */
+  --nav-height: 72px;
+  --nav-background: rgba(18, 18, 18, 0.95);
+  --nav-backdrop: blur(10px);
+  --nav-border: rgba(255, 255, 255, 0.08);
+  
+  /* ==========================
      Spacing Scale (Base 8)
      ========================== */
   --space-xs: 8px;
@@ -48,6 +56,21 @@ Consolidated Design Tokens for Portfolio
   --space-4: 16px;  /* = --space-sm */
   --space-8: 32px;  /* = --space-lg */
   --space-12: 48px; /* = --space-xl */
+
+  /* ==========================
+     Transitions & Animation
+     ========================== */
+  --transition-fast: 0.2s ease;
+  --transition-medium: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  --transition-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* ==========================
+     Z-Index Scale
+     ========================== */
+  --z-navigation: 100;
+  --z-modal: 200;
+  --z-overlay: 300;
   --space-16: 64px; /* = --space-2xl */
   --space-24: 96px; /* = --space-3xl */
   

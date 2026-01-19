@@ -1,0 +1,225 @@
+/* ==========================
+   Professional Navigation Component
+   Clean, minimal design inspired by sofiapolette.com
+   ========================== */
+
+/* Navigation Bar - Fixed Header */
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: rgba(18, 18, 18, 0.98);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  z-index: 1000;
+}
+
+/* Light theme navigation (for case studies) */
+.site-nav--light {
+  background: rgba(248, 248, 248, 0.98);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.site-nav--light .site-nav__brand,
+.site-nav--light .site-nav__link {
+  color: #1a1a1a;
+}
+
+.site-nav--light .site-nav__link:hover {
+  color: #666;
+}
+
+/* Navigation Container */
+.site-nav__inner {
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Brand / Logo */
+.site-nav__brand {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 17px;
+  font-weight: 400;
+  color: #ffffff;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: opacity 0.2s ease;
+}
+
+.site-nav__brand:hover {
+  opacity: 0.7;
+  text-decoration: none;
+}
+
+/* Navigation Menu */
+.site-nav__menu {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.site-nav__menu li {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navigation Links */
+.site-nav__link {
+  font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.2s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.site-nav__link:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.site-nav__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.2s ease;
+}
+
+.site-nav__link:hover::after {
+  width: 100%;
+}
+
+/* Body spacing for fixed nav */
+body {
+  padding-top: calc(64px + 32px);
+}
+
+/* Mobile Menu Button */
+.site-nav__toggle {
+  display: none;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  color: inherit;
+}
+
+.site-nav__toggle-icon {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+  position: relative;
+}
+
+.site-nav__toggle-icon::before,
+.site-nav__toggle-icon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+  transition: transform 0.2s ease;
+}
+
+.site-nav__toggle-icon::before {
+  top: -6px;
+}
+
+.site-nav__toggle-icon::after {
+  top: 6px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 640px) {
+  .site-nav__inner {
+    padding: 0 16px;
+  }
+
+  .site-nav__brand {
+    font-size: 15px;
+  }
+
+  .site-nav__toggle {
+    display: block;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .site-nav--light .site-nav__toggle {
+    color: #1a1a1a;
+  }
+
+  .site-nav__menu {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: rgba(18, 18, 18, 0.98);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    flex-direction: column;
+    padding: 24px;
+    gap: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .site-nav--light .site-nav__menu {
+    background: rgba(248, 248, 248, 0.98);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .site-nav__menu.is-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .site-nav__link {
+    font-size: 16px;
+    padding: 8px 0;
+  }
+}
+
+/* Active state for toggle */
+.site-nav__toggle.is-active .site-nav__toggle-icon {
+  background: transparent;
+}
+
+.site-nav__toggle.is-active .site-nav__toggle-icon::before {
+  transform: rotate(45deg) translate(4px, 4px);
+}
+
+.site-nav__toggle.is-active .site-nav__toggle-icon::after {
+  transform: rotate(-45deg) translate(4px, -4px);
+}
