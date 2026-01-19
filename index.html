@@ -61,8 +61,12 @@
     <script>
     (function(){
       try {
-        if (location.pathname && location.pathname.match(/index\.html$/)) {
+        if (location.pathname && location.pathname.match(/\.html$/)) {
           var newPath = location.pathname.replace(/index\.html$/, '');
+          // if it wasn't index.html, remove the .html suffix and keep trailing slash
+          if (newPath === location.pathname) {
+            newPath = location.pathname.replace(/\.html$/, '') + '/';
+          }
           var newUrl = location.origin + newPath + location.search + location.hash;
           history.replaceState(null, '', newUrl);
         }
