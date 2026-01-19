@@ -58,10 +58,22 @@
 
     <a class="skip-link" href="#conteudo">Pular para conteúdo</a>
 
+    <script>
+    (function(){
+      try {
+        if (location.pathname && location.pathname.match(/index\.html$/)) {
+          var newPath = location.pathname.replace(/index\.html$/, '');
+          var newUrl = location.origin + newPath + location.search + location.hash;
+          history.replaceState(null, '', newUrl);
+        }
+      } catch (e) { /* fail silently */ }
+    })();
+    </script>
+
     <!-- Navigation -->
     <nav class="site-nav" role="navigation" aria-label="Navegação principal">
         <div class="site-nav__inner">
-            <a href="index.html" class="site-nav__brand">Tarcisio Bispo de Araujo</a>
+            <a href="/portfolio/" class="site-nav__brand">Tarcisio Bispo de Araujo</a>
             
             <button class="site-nav__toggle" aria-label="Menu" aria-expanded="false">
                 <span class="site-nav__toggle-icon"></span>
