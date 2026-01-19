@@ -65,7 +65,7 @@ body {
 /* Barra sticky com fundo sutil */
 .sticky-tools {
     position: sticky;
-    top: 0;
+    top: 72px; /* acompanha o header fixo (nav) */
     z-index: 100;
     padding: 0.6rem 0;
     background: rgba(248, 248, 248, 0.85);
