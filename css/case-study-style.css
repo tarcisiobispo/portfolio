@@ -278,15 +278,22 @@ body {
 }
 
 .result-card-title {
-    font-size: 16px;
+    font-size: 21px;
     font-weight: var(--font-weight-bold, 700);
     color: var(--color-primary, #111827);
+    line-height: 1.3;
+    max-width: 100%;
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .result-card-desc {
     margin: 0;
     color: var(--color-text, #111);
-    font-size: 16px;
+    font-size: 21px;
     line-height: 1.4;
 }
 
@@ -318,6 +325,39 @@ body {
         font-size: 15px;
     }
 }
+
+/* Accordion / Entregas expansíveis */
+.accordion {
+    margin: 0.5rem 0 1.25rem 0;
+}
+.accordion details {
+    background: var(--color-surface, #fff);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: var(--radius-sm, 6px);
+    padding: 0.5rem 0.75rem;
+    margin-bottom: var(--space-sm);
+}
+.accordion summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.25rem 0.25rem;
+    font-weight: var(--font-weight-semibold, 600);
+    color: var(--color-primary, #111827);
+    font-size: 21px;
+    line-height: 1.5;
+}
+.accordion .accordion-content {
+    padding-top: 0.5rem;
+    color: var(--color-text, #111);
+    font-size: 21px;
+    line-height: 1.5;
+}
+.accordion details[open] summary::after { content: '\2212'; }
+
 
 .case-content p {
     margin-bottom: 2rem;
@@ -675,5 +715,100 @@ figcaption,
         position: sticky;
         top: 0;
         z-index: 100;
+    }
+}
+
+/* ====================================
+   RESPONSIVIDADE COMPLETA - Imagens, Figuras e Componentes
+   ==================================== */
+
+/* Imagens responsivas por padrão */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Figuras responsivas */
+figure {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+figure img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Containers fluidos */
+.case-figure {
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--radius-md, 8px);
+}
+
+.case-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Grid groups responsivo */
+.case-figure-group {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+    gap: 1.5rem !important;
+    align-items: start !important;
+    width: 100% !important;
+}
+
+@media (max-width: 768px) {
+    .case-figure-group {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+}
+
+/* Tipografia responsiva */
+@media (max-width: 768px) {
+    h1 { font-size: max(1.5rem, 5vw); }
+    h2 { font-size: max(1.25rem, 4.5vw); }
+    h3 { font-size: max(1.1rem, 4vw); }
+    .case-study-text { font-size: clamp(16px, 4.5vw, 21px); }
+    .accordion summary { font-size: clamp(18px, 5vw, 21px); }
+    .accordion .accordion-content { font-size: clamp(16px, 4.5vw, 21px); }
+}
+
+@media (max-width: 480px) {
+    .case-content {
+        padding: var(--space-sm);
+    }
+    h1 { font-size: 1.25rem; }
+    h2 { font-size: 1.1rem; }
+    h3 { font-size: 1rem; }
+    .case-study-text { font-size: 15px; }
+    .accordion summary { font-size: 16px; }
+    .accordion .accordion-content { font-size: 15px; }
+    .result-card-title { font-size: 16px; }
+    .result-card-desc { font-size: 15px; }
+}
+
+/* Video / iframe responsivo */
+iframe,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Lightbox responsivo */
+@media (max-width: 768px) {
+    .lightbox-content {
+        max-width: 95%;
+        max-height: 80vh;
+    }
+    .lightbox-content img {
+        max-height: 70vh;
     }
 }
