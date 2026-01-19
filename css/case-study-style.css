@@ -1,102 +1,163 @@
 @import "./base-style.css";
 
+/* ========================================
+   FIX: Forçar scrollbar e prevenir overflow horizontal
+   ======================================== */
+html {
+    overflow-y: scroll;
+    overflow-x: clip; /* previne scroll horizontal de elementos full-bleed */
+}
+
+/* Variável para compensar scrollbar em elementos full-bleed */
+:root {
+    --scrollbar-width: 0px;
+}
+
+@supports (scrollbar-gutter: stable) {
+    :root {
+        --scrollbar-width: 0px; /* scrollbar-gutter já compensa */
+    }
+}
+
 body {
-    background-color: #f8f8f8;
+    /* usar background em vez de background-color para sobrescrever
+       qualquer background-image definido em base-style.css */
+    background: #f8f8f8;
     color: rgba(0, 0, 0, 0.8);
     font-size: var(--font-size-base);
     line-height: var(--line-height-base);
-    margin: 0;
+    /* FIX: Alinhar com homepage - mesma max-width e centralização */
+    max-width: var(--content-max-width, 1200px);
+    margin: 0 auto;
     padding: var(--space-xl) var(--space-sm);
     width: 100%;
+    box-sizing: border-box;
+    overflow-x: clip; /* previne scroll horizontal */
 }
 
 @media (min-width: 1600px) {
     body {
-        max-width: 1600px;
-        padding: var(--space-2xl) var(--space-lg);
+        max-width: calc(var(--content-max-width) + 200px);
+        padding: var(--space-2xl) var(--space-md);
     }
 }
 
 @media (min-width: 1920px) {
     body {
-        max-width: 1800px;
+        max-width: calc(var(--content-max-width) + 400px);
     }
 }
 
-/* Layout editorial: central container (main) e toolbar horizontal */
+/* Layout editorial: usa .container da base-style.css para alinhamento consistente */
 
-/* Wrapper editorial centralizado */
-.editorial-wrapper {
-    max-width: 42rem; /* ~672px, ajuste fino conforme sua tipografia */
-    margin: 0 auto;
-    padding-left: var(--space-sm);
-    padding-right: var(--space-sm);
-    box-sizing: border-box;
-}
-
-/* case-header e conteúdos alinham-se ao wrapper */
-.editorial-wrapper .case-header,
-.editorial-wrapper .case-meta,
-.editorial-wrapper .case-content {
+/* case-header e conteúdos alinham-se ao container */
+.case-header,
+.case-meta,
+.case-content {
     width: 100%;
     box-sizing: border-box;
 }
 
-/* Sticky action bar / tools (índice) */
+/* ========================================
+   INDEX WIDGET - Componente de navegação
+   ======================================== */
+
+/* Barra sticky com fundo sutil */
 .sticky-tools {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: #fff;
-    border-top: 1px solid rgba(0,0,0,0.04);
+    padding: 0.6rem 0;
+    background: rgba(248, 248, 248, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(0,0,0,0.04);
-    padding: 0.4rem 0; /* barra mais compacta */
 }
 
+/* Container do widget */
+.index-widget {
+    position: relative;
+    display: inline-block;
+}
+
+/* Summary: ícone + tempo de leitura em linha */
 .index-widget summary {
     list-style: none;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
-    gap: var(--space-sm);
-    color: var(--color-light-text-main);
-    font-family: var(--font-family-sans);
-    font-weight: var(--font-weight-semibold);
-    background: transparent; /* sem preenchimento retangular */
-    border: none;
-    padding: 0; /* ícone integrado no fluxo */
-}
-
-/* aumentar hit area do summary sem mostrar caixa sólida */
-.index-widget summary {
-    min-width: 44px;
-    min-height: 44px;
-    padding: 6px; /* aumenta área clique/touch */
-    border-radius: 8px;
-}
-
-.index-widget .reading-time {
+    gap: 0.4rem;
     color: var(--color-light-text-muted);
-    font-weight: var(--font-weight-normal);
-    font-size: var(--font-size-sm);
+    font-family: var(--font-family-sans);
+    font-size: 14px;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
 }
 
+.index-widget summary::-webkit-details-marker {
+    display: none;
+}
+
+.index-widget summary:hover {
+    color: var(--color-light-text-main);
+}
+
+/* Badge de tempo de leitura */
+.reading-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: inherit;
+    font-size: 14px;
+}
+
+/* Dropdown menu */
 .index-widget .index-list {
     display: none;
-    margin-top: var(--space-sm);
-    padding-top: var(--space-sm);
-    border-top: 1px solid rgba(0,0,0,0.02);
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    min-width: 180px;
+    padding: 8px 0;
     background: #fff;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-    padding: var(--space-sm);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    z-index: 200;
 }
 
-/* Quando aberto (mobile/pequenas larguras) mostra lista vertical */
 .index-widget[open] .index-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
+    display: block;
 }
+
+.index-widget .index-list a {
+    display: block;
+    padding: 8px 16px;
+    color: var(--color-light-text-main);
+    font-family: var(--font-family-sans);
+    font-size: 14px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.index-widget .index-list a:hover {
+    background: rgba(0,0,0,0.04);
+}
+
+/* Ícone roda quando aberto */
+.index-widget[open] .icon-list {
+    transform: rotate(90deg);
+}
+
+.icon-list {
+    transition: transform 0.2s ease;
+}
+
+/* ========================================
+   FIM INDEX WIDGET
+   ======================================== */
 
 /* visually hidden (screen-reader only) */
 .sr-only {
@@ -114,76 +175,7 @@ body {
 /* garantir que headings não fiquem cobertos pela sticky toolbar */
 .case-content h2,
 .case-content h3 {
-    scroll-margin-top: 5.5rem; /* ajustável conforme altura da toolbar */
-}
-
-/* leitura badge ao lado do ícone */
-.reading-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    color: var(--color-light-text-muted);
-    font-size: var(--font-size-sm);
-    margin-left: 0.4rem;
-}
-
-.reading-badge .icon-clock {
-    opacity: 0.9;
-}
-
-/* Em foco/hover, destacar levemente (sem fundo sólido) */
-.index-widget summary:hover,
-.index-widget summary:focus {
-    color: var(--color-light-text-main);
-    outline: none;
-}
-
-/* esconder texto de leitura em telas pequenas para economizar espaço */
-@media (max-width: 600px) {
-    .reading-badge .reading-time {
-        display: none;
-    }
-}
-
-/* estado aberto: rotaciona o ícone e destaca cor */
-.index-widget[open] .icon-list {
-    transform: rotate(90deg);
-    transition: transform .2s ease;
-}
-.index-widget[open] summary {
-    color: var(--color-light-text-main);
-}
-
-/* garantir foco visível no summary */
-.index-widget summary:focus-visible {
-    box-shadow: 0 0 0 3px rgba(0,0,0,0.06);
-    border-radius: 8px;
-}
-
-.index-widget .index-list a {
-    color: var(--color-light-text-main);
-    text-decoration: none;
-    padding: calc(var(--space-xs) / 2) 0;
-}
-
-/* Em telas largas, mostra os links inline e mantém o summary como rótulo */
-@media (min-width: 900px) {
-    .index-widget .index-list {
-        display: flex !important;
-        flex-direction: row;
-        gap: var(--space-lg);
-        align-items: center;
-        margin-top: 0;
-        padding-top: 0;
-        border-top: none;
-        box-shadow: none;
-        background: transparent;
-        padding: 0;
-    }
-
-    .index-widget summary {
-        margin-right: var(--space-md);
-    }
+    scroll-margin-top: 4rem;
 }
 
 .case-header {
@@ -236,10 +228,15 @@ body {
 }
 
 .case-content {
-    max-width: 75ch;
+    /* Expandir para ficar proporcional com a parte de cima
+       e alinhar à margem do wrapper. Mantém medida legível. */
+    max-width: min(80ch, var(--content-max-width));
     width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 0; /* alinha com a borda esquerda do wrapper */
+    margin-right: 0;
+    box-sizing: border-box;
+    padding-left: var(--space-sm);
+    padding-right: var(--space-sm);
 }
 
 .case-content p {
@@ -468,10 +465,13 @@ figcaption,
 .full-bleed,
 .image-full,
 .image-container.full-bleed {
-    width: 100vw;
-    max-width: 100vw;
+    /* Usar calc para compensar scrollbar (~17px no Windows) */
+    width: calc(100vw - var(--scrollbar-width, 0px));
+    max-width: calc(100vw - var(--scrollbar-width, 0px));
     margin-left: 50%;
     transform: translateX(-50%);
+    position: relative;
+    left: 0;
 }
 
 .multiple-images-container{
@@ -561,4 +561,39 @@ figcaption,
 .editorial-wrapper .go-back-nav:hover {
     color: var(--color-light-text-main);
     transform: translateX(-2px);
+}
+
+/* Ajustes responsivos adicionais para conteúdo editorial */
+@media (max-width: 900px) {
+    .case-content {
+        max-width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .editorial-wrapper {
+        padding-left: var(--space-sm);
+        padding-right: var(--space-sm);
+        box-sizing: border-box;
+    }
+
+    /* Ajuste para imagens full-bleed em telas pequenas */
+    .full-bleed,
+    .image-full,
+    .image-container.full-bleed {
+        width: 100vw;
+        max-width: 100vw;
+        margin-left: 0;
+        transform: none;
+        left: 0;
+    }
+
+    /* Garantir que a toolbar fixa não esconda títulos */
+    .sticky-tools {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
 }

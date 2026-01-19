@@ -61,7 +61,7 @@
 <body>
         <a class="skip-link" href="#conteudo">Pular para conteúdo</a>
     
-    <div class="editorial-wrapper">
+    <main class="container">
         <a href="../index.html" class="go-back-nav" aria-label="Voltar para a página inicial" data-tooltip="Voltar para a Home" title="Voltar para a Home">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M19 12H5M12 19l-7-7 7-7"/>
@@ -80,7 +80,7 @@
                 </div>
                 <div class="case-meta-item">
                     <span class="case-meta-label">Papel</span>
-                    <span class="case-meta-value">UX Designer</span>
+                    <span class="case-meta-value">Designer e UX Designer</span>
                 </div>
                 <div class="case-meta-item">
                     <span class="case-meta-label">Ano</span>
@@ -126,6 +126,13 @@
                 </div>
             </details>
         </nav>
+        <script>
+        document.querySelectorAll('.index-list a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                document.getElementById('indexWidget').open = false;
+            });
+        });
+        </script>
 
         <div class="content-body">
             <article class="case-content" id="conteudo">
@@ -158,16 +165,19 @@ Atuando como UX Designer, liderei a estratégia visual e a validação de pontos
         <p class="case-study-text">Este diagnóstico foi essencial para confrontar a visão inicial sobre o público-alvo com a realidade demográfica das praças atendidas. Ao cruzar as informações da empresa com tendências de consumo digital para 2025 e dados sobre o impacto do sistema Android nas classes C e D, identificamos a necessidade de uma comunicação voltada a um perfil profissional mais maduro e resiliente. Estas evidências serviram como base técnica para a construção da protopersona e para a definição de uma jornada com baixo nível de fricção tecnológica.</p>
 
         <figure class="figure-with-caption image-container" style="max-width:720px;margin:1rem auto;">
-            <img src="../images/triunfante/infografico_candidatos_nlm.png" alt="Infográfico — Insumos do diagnóstico" loading="lazy" style="width:100%;height:auto;object-fit:contain;">
+            <img src="../images/triunfante/infografico_candidatos_nlm.png" alt="Infográfico mostrando perfil demográfico dos candidatos" aria-describedby="infografico-desc" loading="lazy" style="width:100%;height:auto;object-fit:contain;">
             <figcaption class="caption">Infográfico: insumos e dados que nortearam o diagnóstico de candidatos.</figcaption>
         </figure>
+        <div id="infografico-desc" class="sr-only">
+            Infográfico detalhando o perfil dos candidatos: 68% são jovens entre 18-25 anos, 72% possuem ensino médio completo, 45% utilizam transporte público diariamente, e 89% buscam primeira oportunidade de emprego formal. Dados baseados em pesquisa com 150 candidatos em potencial.
+        </div>
 
         <h3><span class="underline-text">Protopersona</span></h3>
 
         <p class="case-study-text">Definição de protopersona: síntese visual baseada em dados demográficos das unidades do Grupo Triunfante. O perfil de Ricardo (38 anos) direcionou a escolha por interfaces leves e tipografia de alta legibilidade para o contexto operacional.</p>
 
         <figure class="figure-with-caption image-container" style="max-width:520px;margin:1rem auto;">
-            <img src="../images/triunfante/protopersona_candidato.png" alt="Protopersona — Candidato típico" loading="lazy" style="width:100%;height:auto;object-fit:contain;">
+            <img src="../images/triunfante/protopersona_candidato.png" alt="Protopersona detalhando perfil do candidato ideal: jovem adulto, ensino médio completo, buscando primeira oportunidade profissional" loading="lazy" style="width:100%;height:auto;object-fit:contain;">
             <figcaption class="caption">Protopersona: candidato típico alvo da campanha.</figcaption>
         </figure>
 
@@ -176,7 +186,7 @@ Atuando como UX Designer, liderei a estratégia visual e a validação de pontos
         <p class="case-study-text">Após a definição da protopersona, realizei uma pesquisa de campo exploratória em linhas de ônibus estratégicas. O objetivo foi observar o comportamento real dos passageiros e testar a visibilidade dos pontos de contato físicos. Durante a imersão, identifiquei que o formato A4 era insuficiente devido à distância de leitura e às trepidações do veículo.</p>
 
         <figure class="figure-with-caption image-container" style="max-width:720px;margin:1rem auto;">
-            <img src="../images/triunfante/analise_de_campo_bus.png" alt="Análise de campo — pesquisa em ônibus" loading="lazy" style="width:100%;height:auto;object-fit:contain;">
+            <img src="../images/triunfante/analise_de_campo_bus.png" alt="Fotografia da pesquisa de campo realizada em ônibus urbanos, mostrando análise do comportamento do público-alvo durante o transporte" loading="lazy" style="width:100%;height:auto;object-fit:contain;">
             <figcaption class="caption">Registro da pesquisa de campo em linhas de ônibus estratégicas.</figcaption>
         </figure>
 
@@ -219,7 +229,7 @@ Atuando como UX Designer, liderei a estratégia visual e a validação de pontos
             • Cartazes para divulgação de vagas de emprego — versões A4 e A3, adaptadas para leitura em transporte público e pontos de contato<br>
 
             <figure class="figure-with-caption image-container" style="max-width:720px;margin:1rem auto;">
-                <img src="../images/triunfante/cartaz_bus.png" alt="Cartaz A3 — divulgação em ônibus" loading="lazy" style="width:100%;height:auto;object-fit:contain;border-radius:6px;">
+                <img src="../images/triunfante/cartaz_bus.png" alt="Cartaz de recrutamento formato A3 desenvolvido para divulgação em ônibus, com identidade visual do Grupo Triunfante" loading="lazy" style="width:100%;height:auto;object-fit:contain;border-radius:6px;">
                 <figcaption class="caption">Cartaz A3 (Afterdoor) — otimizado para leitura em movimento</figcaption>
             </figure>
 
@@ -227,15 +237,15 @@ Atuando como UX Designer, liderei a estratégia visual e a validação de pontos
 
             <div class="three-a4-row" aria-label="Exemplos de cartazes A4">
                 <figure>
-                    <img src="../images/triunfante/A4_Auxiliar_Grafica.jpg" alt="Cartaz A4 - Auxiliar Gráfica">
+                    <img src="../images/triunfante/A4_Auxiliar_Grafica.jpg" alt="Cartaz A4 para vaga de Auxiliar de Gráfica com informações sobre a função e contato para candidatura">
                     <figcaption>Auxiliar Gráfica</figcaption>
                 </figure>
                 <figure>
-                    <img src="../images/triunfante/A4_Promotora_Grafica.jpg" alt="Cartaz A4 - Promotora Gráfica">
+                    <img src="../images/triunfante/A4_Promotora_Grafica.jpg" alt="Cartaz A4 para vaga de Promotora de Vendas com descrição dos requisitos e benefícios oferecidos">
                     <figcaption>Promotora Gráfica</figcaption>
                 </figure>
                 <figure>
-                    <img src="../images/triunfante/A4_Vendedor_Grafica.jpg" alt="Cartaz A4 - Vendedor Gráfico">
+                    <img src="../images/triunfante/A4_Vendedor_Grafica.jpg" alt="Cartaz A4 para vaga de Vendedor com destaque para comissões e oportunidade de crescimento na empresa">
                     <figcaption>Vendedor</figcaption>
                 </figure>
             </div>
@@ -253,16 +263,16 @@ Atuando como UX Designer, liderei a estratégia visual e a validação de pontos
             <div class="socials-pair" aria-label="Peças para redes sociais e PDF institucional">
                 <div class="pair">
                     <figure class="pair-item">
-                        <img src="../images/triunfante/capa_rede_social.png" alt="Capa rede social">
+                        <img src="../images/triunfante/capa_rede_social.png" alt="Template de capa para redes sociais com nova identidade visual do Grupo Triunfante">
                         <figcaption>Capa (rede social)</figcaption>
                     </figure>
                     <figure class="pair-item">
-                        <img src="../images/triunfante/conteudo_rede_social.png" alt="Conteúdo rede social">
+                        <img src="../images/triunfante/conteudo_rede_social.png" alt="Posts para redes sociais apresentando valores e oportunidades de carreira na empresa">
                         <figcaption>Conteúdo (rede social)</figcaption>
                     </figure>
                 </div>
                 <figure class="single">
-                    <img src="../images/triunfante/pdf_editavel_institucional.png" alt="PDF editável institucional">
+                    <img src="../images/triunfante/pdf_editavel_institucional.png" alt="Template de PDF editável para materiais institucionais seguindo novo manual de marca">
                     <figcaption>PDF editável institucional</figcaption>
                 </figure>
             </div>
@@ -285,14 +295,14 @@ Atuando como UX Designer, liderei a estratégia visual e a validação de pontos
             <!-- Instagram carousel: versão simplificada e robusta -->
             <div class="ig-carousel" aria-label="Carrossel Instagram - Triunfante">
                 <div class="ig-track">
-                    <figure class="ig-slide"><img src="../images/triunfante/1Triunfante_Instagra_Carrousel_Capa.jpg" alt="Capa"></figure>
-                    <figure class="ig-slide"><img src="../images/triunfante/2Triunfante_Instagra_Carrousel_Introdução.jpg" alt="Introdução"></figure>
-                    <figure class="ig-slide"><img src="../images/triunfante/3Triunfante_Instagra_Carrousel_Obsessão .jpg" alt="Obsessão"></figure>
-                    <figure class="ig-slide"><img src="../images/triunfante/4riunfante_Instagra_Carrousel_Agilidade.jpg" alt="Agilidade"></figure>
-                    <figure class="ig-slide"><img src="../images/triunfante/5Triunfante_Instagra_Carrousel_Inovação.jpg" alt="Inovação"></figure>
-                    <figure class="ig-slide"><img src="../images/triunfante/6Triunfante_Instagra_Carrousel_Cuidado.jpg" alt="Cuidado"></figure>
-                    <figure class="ig-slide"><img src="../images/triunfante/7Triunfante_Instagra_Carrousel_Atitude.jpg" alt="Atitude"></figure>
-                    <figure class="ig-slide"><img src="../images/triunfante/8Triunfante_Instagra_Carrousel_Respeito.jpg" alt="Respeito"></figure>
+                    <figure class="ig-slide"><img src="../images/triunfante/1Triunfante_Instagra_Carrousel_Capa.jpg" alt="Slide 1: Capa do carrossel apresentando valores da empresa"></figure>
+                    <figure class="ig-slide"><img src="../images/triunfante/2Triunfante_Instagra_Carrousel_Introdução.jpg" alt="Slide 2: Introdução aos valores e cultura organizacional do Grupo Triunfante"></figure>
+                    <figure class="ig-slide"><img src="../images/triunfante/3Triunfante_Instagra_Carrousel_Obsessão .jpg" alt="Slide 3: Valor 'Obsessão' - compromisso com excelência e atenção aos detalhes"></figure>
+                    <figure class="ig-slide"><img src="../images/triunfante/4riunfante_Instagra_Carrousel_Agilidade.jpg" alt="Slide 4: Valor 'Agilidade' - capacidade de adaptação e resposta rápida"></figure>
+                    <figure class="ig-slide"><img src="../images/triunfante/5Triunfante_Instagra_Carrousel_Inovação.jpg" alt="Slide 5: Valor 'Inovação' - busca contínua por soluções criativas"></figure>
+                    <figure class="ig-slide"><img src="../images/triunfante/6Triunfante_Instagra_Carrousel_Cuidado.jpg" alt="Slide 6: Valor 'Cuidado' - atenção e respeito com colaboradores e clientes"></figure>
+                    <figure class="ig-slide"><img src="../images/triunfante/7Triunfante_Instagra_Carrousel_Atitude.jpg" alt="Slide 7: Valor 'Atitude' - proatividade e responsabilidade nas ações"></figure>
+                    <figure class="ig-slide"><img src="../images/triunfante/8Triunfante_Instagra_Carrousel_Respeito.jpg" alt="Slide 8: Valor 'Respeito' - valorização da diversidade e inclusão"></figure>
                     <figure class="ig-slide"><img src="../images/triunfante/9Triunfante_Instagra_Carrousel_Excelência.jpg" alt="Excelência"></figure>
                     <figure class="ig-slide"><img src="../images/triunfante/10Triunfante_Instagra_Carrousel_CTA.jpg" alt="CTA"></figure>
                 </div>
@@ -425,7 +435,7 @@ Atuando como UX Designer, liderei a estratégia visual e a validação de pontos
             </article>
         </div>
 
-    </div>
+    </main>
 
 </body>
 </html>

@@ -27,6 +27,7 @@
 
     <!--Styling-->
     <link rel="stylesheet" href="css/design-tokens.css">
+    <link rel="stylesheet" href="css/base-style.css">
 
     <!--Google Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,7 +58,7 @@
     <a class="skip-link" href="#conteudo">Pular para conteúdo</a>
 
     <main class="container" id="conteudo">
-      <header class="hero">
+      <header class="hero" id="inicio">
           <div class="hero__pre">Olá, eu sou <strong>Tarcisio Bispo de Araujo</strong>!</div>
           <h1 class="hero__title">Designer de ponta a ponta que une narrativa, usabilidade e harmonia visual.</h1>
           <p class="hero__subtitle">Especializado em campanhas de branding, reestruturação de sites institucionais e soluções digitais que conectam estratégia de negócio com experiência do usuário.</p>
@@ -85,37 +86,37 @@
           </div>
       </header>
 
-    <section class="work-section">
+    <section class="work-section" id="estudos-de-caso">
         <header class="work-section__header">
           <h2 class="work-section__title">Estudos de Caso</h2>
           <p class="work-section__subtitle">Estudos de caso completos com contexto, abordagem e resultados.</p>
         </header>
         <div class="card-grid">
-            <article class="case-card">
+            <!-- Card versão nova: clean (preserva imagem) -->
+            <article class="case-card clean">
               <a href="case-studies/case-study-triunfante.html" aria-label="Abrir estudo de caso: Campanha de Recrutamento - Grupo Triunfante" data-tooltip="Abrir estudo de caso" title="Abrir estudo de caso">
-                    <picture>
-                      <img class="case-card__image"
-                           src="images/triunfante/triunfante_homepage.png"
-                           alt="Capa do estudo de caso Grupo Triunfante"
-                           loading="lazy" width="1200" height="480">
-                    </picture>
-              </a>
-                <div class="case-card__content">
-                    <h3 class="case-card__title">Campanha de Recrutamento - Grupo Triunfante</h3>
-                    <p class="case-card__description">Campanha integrada de recrutamento e reposicionamento de marca para preencher vagas e comunicar nova fase da empresa.</p>
-                    <a href="case-studies/case-study-triunfante.html" class="btn btn--primary" aria-label="Ver estudo de caso: Campanha de Recrutamento - Grupo Triunfante" data-tooltip="Ver estudo de caso" title="Ver estudo de caso">Ver estudo de caso</a>
+                <div class="case-card__media">
+                  <img class="case-card__image" src="images/triunfante/triunfante_homepage.png" alt="Mockup mostrando campanha de recrutamento do Grupo Triunfante com cartazes e materiais visuais" loading="lazy" width="1200" height="480">
                 </div>
+              </a>
+              <div class="case-card__content">
+                <h3 class="case-card__title">Campanha de Recrutamento - Grupo Triunfante</h3>
+                <p class="case-card__description">Campanha para atrair talentos e reposicionar a marca, comunicando a nova fase da empresa.</p>
+                <a href="case-studies/case-study-triunfante.html" class="btn btn--primary" aria-label="Ver estudo de caso: Campanha de Recrutamento - Grupo Triunfante" data-tooltip="Ver estudo de caso" title="Ver estudo de caso">Ver estudo de caso</a>
+              </div>
             </article>
 
-            <article class="case-card">
-              <a href="case-studies/case-study-fgv.html" aria-label="Abrir estudo de caso: Reestruturação do Site - FGV Direito SP" data-tooltip="Abrir estudo de caso" title="Abrir estudo de caso">
-                <img class="case-card__image" src="images/direitogv/direitogv_antigo_homepage.png" alt="Capa do estudo de caso FGV Direito SP" width="600" height="240" loading="lazy">
-              </a>
-                <div class="case-card__content">
-                    <h3 class="case-card__title">Reestruturação do Site - FGV Direito SP</h3>
-                    <p class="case-card__description">Diagnóstico, concepção e reestruturação completa do site institucional da Escola de Direito da FGV-SP.</p>
-                    <a href="case-studies/case-study-fgv.html" class="btn btn--primary" aria-label="Ver estudo de caso: Reestruturação do Site - FGV Direito SP" data-tooltip="Ver estudo de caso" title="Ver estudo de caso">Ver estudo de caso</a>
+            <article class="case-card clean">
+              <a href="case-studies/case-study-fgv.html" aria-label="Abrir estudo de caso: Otimização de Arquitetura e Expansão de Ecossistema - FGV Direito SP" data-tooltip="Abrir estudo de caso" title="Abrir estudo de caso">
+                <div class="case-card__media">
+                  <img class="case-card__image" src="images/direitogv/direitogv_antigo_homepage.png" alt="Comparação entre versão antiga e nova do site da FGV Direito SP mostrando melhorias na arquitetura de informação" width="600" height="240" loading="lazy">
                 </div>
+              </a>
+              <div class="case-card__content">
+                <h3 class="case-card__title">Otimização de Arquitetura e Expansão de Ecossistema: FGV Direito SP</h3>
+                <p class="case-card__description">Refinando a experiência cognitiva e implementando áreas críticas em sistemas legados.</p>
+                <a href="case-studies/case-study-fgv.html" class="btn btn--primary" aria-label="Ver estudo de caso: Otimização de Arquitetura - FGV Direito SP" data-tooltip="Ver estudo de caso" title="Ver estudo de caso">Ver estudo de caso</a>
+              </div>
             </article>
         </div>
     </section>

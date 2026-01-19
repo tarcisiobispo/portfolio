@@ -1,5 +1,25 @@
 @import "./design-tokens.css";
 
+/* ========================================
+   FIX: Forçar scrollbar e prevenir overflow horizontal
+   ======================================== */
+html {
+    overflow-y: scroll;
+    overflow-x: clip; /* previne scroll horizontal */
+}
+
+/* Subtle grid background (adjust via variables below) */
+:root {
+    --grid-line-color: rgba(0,0,0,0.03);
+    --grid-size: 48px; /* espaçamento da grade */
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --grid-line-color: rgba(255,255,255,0.03);
+    }
+}
+
 body {
     max-width: var(--content-max-width, 1200px);
     font-family: var(--font-family-serif);
@@ -10,6 +30,14 @@ body {
     padding-left: var(--space-sm);
     padding-right: var(--space-sm);
     cursor: default;
+
+    /* grid sutil no background: duas linhas (horizontal + vertical) */
+    background-image:
+        linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line-color) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
+    background-repeat: repeat;
+    background-attachment: fixed;
 }
 
 a {
@@ -22,6 +50,34 @@ a:visited {
     opacity: 0.92;
 }
 
+/* ========================================
+   Regras para Listas (ol e ul)
+   ======================================== */
+ol, ul {
+    margin: var(--space-sm) 0;
+    padding-left: var(--space-lg);
+}
+
+ol li, ul li {
+    margin-bottom: var(--space-xs);
+    line-height: 1.6;
+}
+
+ol li:last-child, ul li:last-child {
+    margin-bottom: 0;
+}
+
+/* Espaçamento específico para listas em case studies */
+.case-study-text ol,
+.case-study-text ul {
+    margin: var(--space-md) 0;
+}
+
+.case-study-text ol li,
+.case-study-text ul li {
+    margin-bottom: var(--space-sm);
+}
+
 a:hover {
     text-decoration: underline;
     opacity: 1;
@@ -31,4 +87,128 @@ a:hover {
     body{
         margin: 0 auto;
     }
+}
+
+/* Responsive helpers */
+/* Make images and media fluid by default */
+img, picture, video, iframe {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Central container used across pages */
+.container {
+    width: 100%;
+    max-width: var(--content-max-width, 1200px);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--space-sm);
+    padding-right: var(--space-sm);
+    box-sizing: border-box;
+}
+
+/* Card grid: responsive columns */
+.card-grid {
+    display: grid;
+    gap: var(--space-lg);
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    align-items: stretch;
+}
+
+.case-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    height: 100%;
+}
+
+.case-card__image {
+    width: 100%;
+    aspect-ratio: 5 / 2;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    display: block;
+}
+
+/* Make content fill remaining space so cards keep equal height and actions align */
+.case-card__content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Limit description to 3 lines with ellipsis */
+.case-card__description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Clean variant for cards: preserve full image, equal heights */
+.case-card.clean {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    border-radius: var(--radius-lg);
+    background: var(--color-accent-primary);
+    border: 1px solid rgba(0,0,0,0.12);
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.case-card.clean .case-card__media {
+    background: var(--color-light-surface);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 5 / 2;
+}
+
+.case-card.clean .case-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
+    display: block;
+}
+
+.case-card.clean .case-card__content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Hero typography scale (mobile-first) */
+.hero__title {
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    line-height: 1.15;
+}
+.hero__subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
+}
+
+/* Buttons full width on small screens for easier tapping */
+.hero__actions .btn,
+.case-card .btn {
+    width: 100%;
+}
+
+@media (min-width: 700px) {
+    .hero__actions .btn,
+    .case-card .btn {
+        width: auto;
+    }
+}
+
+/* Utility: hide long text on very small viewports if needed */
+@media (max-width: 420px) {
+    .hero__pre { display: none; }
 }
