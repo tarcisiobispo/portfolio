@@ -250,8 +250,9 @@ class PortfolioNavigation {
           
           <div style="display: grid; gap: var(--space-lg);">
             <a href="https://www.linkedin.com/in/tarcisiobispouxdesigner" 
-               target="_blank" 
-               rel="noopener noreferrer"
+              target="_blank" 
+              rel="noopener noreferrer"
+              aria-label="LinkedIn" data-tooltip="LinkedIn (nova aba)"
                style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-md); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; transition: all 0.2s ease; text-decoration: none !important;"
                onmouseover="this.style.borderColor='rgba(255,255,255,0.3)'; this.style.transform='translateY(-2px)'"
                onmouseout="this.style.borderColor='rgba(255,255,255,0.15)'; this.style.transform='translateY(0)'">
@@ -266,8 +267,9 @@ class PortfolioNavigation {
             </a>
             
             <a href="https://medium.com/@tarcisiobispodearaujo" 
-               target="_blank" 
-               rel="noopener noreferrer"
+              target="_blank" 
+              rel="noopener noreferrer"
+              aria-label="Medium" data-tooltip="Medium (nova aba)"
                style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-md); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; transition: all 0.2s ease; text-decoration: none !important;"
                onmouseover="this.style.borderColor='rgba(255,255,255,0.3)'; this.style.transform='translateY(-2px)'"
                onmouseout="this.style.borderColor='rgba(255,255,255,0.15)'; this.style.transform='translateY(0)'">
@@ -282,8 +284,9 @@ class PortfolioNavigation {
             </a>
             
             <a href="https://drive.google.com/file/d/102gp9Or9rWkxQyZGHKR8bM-khBhp_CNp/view?usp=drive_link" 
-               target="_blank" 
-               rel="noopener noreferrer"
+              target="_blank" 
+              rel="noopener noreferrer"
+              aria-label="Currículo" data-tooltip="Currículo (nova aba)"
                style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-md); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; transition: all 0.2s ease; text-decoration: none !important;"
                onmouseover="this.style.borderColor='rgba(255,255,255,0.3)'; this.style.transform='translateY(-2px)'"
                onmouseout="this.style.borderColor='rgba(255,255,255,0.15)'; this.style.transform='translateY(0)'">
