@@ -4,7 +4,8 @@
   "description": "Utility scripts for the portfolio project (image optimization)",
   "scripts": {
     "optimize-images": "node scripts/optimize-images.js",
-    "convert-html-images": "node scripts/convert-html-to-picture.js"
+    "convert-html-images": "node scripts/convert-html-to-picture.js",
+    "generate-avif-srcset": "node scripts/generate-and-update-srcset.js"
   },
   "dependencies": {
     "sharp": "^0.32.0"
