@@ -54,8 +54,17 @@
         })(window, document, "clarity", "script", "rp64ayubme");
     </script>
 
-    <script src="https://cdn.logr-in.com/LogRocket.min.js" crossorigin="anonymous" defer></script>
-    <script>window.LogRocket && window.LogRocket.init('fatqpp/portfolio-kbfin');</script>
+    <script>
+      window.addEventListener('load', function() {
+        var script = document.createElement('script');
+        script.src = 'https://cdn.logr-in.com/LogRocket.min.js';
+        script.crossOrigin = 'anonymous';
+        script.onload = function() {
+          window.LogRocket && window.LogRocket.init('fatqpp/portfolio-kbfin');
+        };
+        document.head.appendChild(script);
+      });
+    </script>
 
     <!-- Schema.org structured data -->
     <script type="application/ld+json">
