@@ -493,11 +493,12 @@
                     </div>
                     
 
-                    <h2 id="execucao"><span class="underline-text-purple">Execução Visual</span></h2>
-                    <p class="case-study-text">
-                        As áreas estratégicas estruturadas foram implementadas com rigor visual e usabilidade. Abaixo, uma amostra das principais seções redesenhadas:
-                    </p>
-                    <div class="visual-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+                    <div class="dev-only" data-dev-only>
+                        <h2 id="execucao"><span class="underline-text-purple">Execução Visual</span></h2>
+                        <p class="case-study-text">
+                            As áreas estratégicas estruturadas foram implementadas com rigor visual e usabilidade. Abaixo, uma amostra das principais seções redesenhadas:
+                        </p>
+                        <div class="visual-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
                         <figure class="case-figure">
                             <img src="../../images/direitogv/placeholder-professores.png" alt="Seção Professores" class="zoomable-image" data-caption="Seção Professores - Visibilidade e Perfil Acadêmico" style="width: 100%; height: auto; object-fit: cover; border-radius: 8px;" loading="lazy">
                             <figcaption class="case-figure-caption">Seção Professores</figcaption>
@@ -522,6 +523,7 @@
                             <img src="../../images/direitogv/placeholder-governanca.png" alt="Sobre a Direito GV" class="zoomable-image" data-caption="Governança Institucional - Informações Centralizadas" style="width: 100%; height: auto; object-fit: cover; border-radius: 8px;" loading="lazy">
                             <figcaption class="case-figure-caption">Governança Institucional</figcaption>
                         </figure>
+                    </div>
                     </div>
 
                     <h2 id="resultado"><span class="underline-text-purple">Resultado e Impacto</span></h2>
@@ -684,6 +686,17 @@
             </div>
           </div>
         </div>
-    
+        <script>
+        (function(){
+            try {
+                var isDev = location.protocol === 'file:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.search.indexOf('dev=1') !== -1;
+                if (isDev) {
+                    document.querySelectorAll('[data-dev-only], .dev-only').forEach(function(el){
+                        el.style.display = '';
+                    });
+                }
+            } catch(e) { /* fail silently */ }
+        })();
+        </script>
 
 </body></html>

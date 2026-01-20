@@ -789,6 +789,9 @@ figure img {
     h2 { font-size: 1.1rem; }
     h3 { font-size: 1rem; }
     .case-study-text { font-size: 15px; }
+
+/* Development-only sections: hidden by default in production */
+.dev-only { display: none !important; }
     .accordion summary { font-size: 16px; }
     .accordion .accordion-content { font-size: 15px; }
     .result-card-title { font-size: 16px; }
