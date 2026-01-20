@@ -165,7 +165,7 @@ Consolidated Design Tokens for Portfolio
 }
 
 body {
-  font-family: var(--font-family-serif);
+  font-family: var(--font-family-sans);
   font-size: var(--font-size-base);
   line-height: 1.9;
   font-weight: var(--font-weight-normal);
@@ -177,6 +177,10 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-serif);
 }
 
 .skip-link {
@@ -289,7 +293,7 @@ a:focus-visible,
 }
 
 .hero__title {
-  font-family: var(--font-family-sans);
+  font-family: var(--font-family-serif);
   font-size: var(--font-size-4xl);
   line-height: 1.3;
   font-weight: var(--font-weight-bold);
