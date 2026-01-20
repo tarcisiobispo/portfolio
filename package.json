@@ -8,6 +8,7 @@
     "generate-avif-srcset": "node scripts/generate-and-update-srcset.js"
   },
   "dependencies": {
+    "png-to-ico": "^3.0.1",
     "sharp": "^0.32.0"
   },
   "devDependencies": {
