@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "description": "Utility scripts for the portfolio project (image optimization)",
   "scripts": {
-    "optimize-images": "node scripts/optimize-images.js"
+    "optimize-images": "node scripts/optimize-images.js",
+    "convert-html-images": "node scripts/convert-html-to-picture.js"
   },
   "dependencies": {
     "sharp": "^0.32.0"
+  },
+  "devDependencies": {
+    "cheerio": "^1.0.0-rc.12"
   },
   "engines": {
     "node": ">=14"
