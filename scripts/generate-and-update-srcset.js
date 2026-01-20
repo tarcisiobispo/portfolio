@@ -94,6 +94,35 @@ function buildSrcsetVariants(srcAbs) {
   return { avif: entriesAvif.join(', '), webp: entriesWebp.join(', ') };
 }
 
+function chooseBestSrc(srcAbs, htmlFile) {
+  const ext = path.extname(srcAbs);
+  const name = path.basename(srcAbs, ext);
+  const dir = path.dirname(srcAbs);
+
+  // Prefer a base .webp or .avif if present
+  const baseWebp = path.join(dir, `${name}.webp`);
+  const baseAvif = path.join(dir, `${name}.avif`);
+  if (fs.existsSync(baseWebp)) {
+    const rel = path.relative(path.dirname(htmlFile), baseWebp).split(path.sep).join('/');
+    return rel;
+  }
+  if (fs.existsSync(baseAvif)) {
+    const rel = path.relative(path.dirname(htmlFile), baseAvif).split(path.sep).join('/');
+    return rel;
+  }
+
+  // Otherwise pick the largest generated variant available
+  for (let i = WIDTHS.length - 1; i >= 0; i--) {
+    const w = WIDTHS[i];
+    const webp = path.join(dir, `${name}-${w}.webp`);
+    const avif = path.join(dir, `${name}-${w}.avif`);
+    if (fs.existsSync(webp)) return path.relative(path.dirname(htmlFile), webp).split(path.sep).join('/');
+    if (fs.existsSync(avif)) return path.relative(path.dirname(htmlFile), avif).split(path.sep).join('/');
+  }
+
+  return null;
+}
+
 function updateHtmlFiles() {
   const htmls = findHtmlFiles(ROOT);
   for (const file of htmls) {
@@ -106,7 +135,7 @@ function updateHtmlFiles() {
       const $img = $pic.find('img').first();
       if (!$img || !$img.attr('src')) return;
       const src = $img.attr('src');
-      const srcAbs = path.join(ROOT, src);
+      const srcAbs = path.resolve(path.dirname(file), src);
       if (!fs.existsSync(srcAbs)) return;
 
       const sets = buildSrcsetVariants(srcAbs);
@@ -123,6 +152,16 @@ function updateHtmlFiles() {
         $pic.prepend(`<source data-generated="true" type="image/webp" srcset="${srcAttr}">`);
         changed = true;
       }
+
+      // ensure the <img> src points to an existing image (webp/avif/variant)
+      const best = chooseBestSrc(srcAbs, file);
+      if (best) {
+        const cur = $img.attr('src') || '';
+        if (cur !== best) {
+          $img.attr('src', best);
+          changed = true;
+        }
+      }
     });
 
     // also handle plain <img> not wrapped by <picture>
@@ -131,11 +170,17 @@ function updateHtmlFiles() {
       if ($img.parent().is('picture')) return;
       const src = $img.attr('src');
       if (!src) return;
-      const srcAbs = path.join(ROOT, src);
+      const srcAbs = path.resolve(path.dirname(file), src);
       if (!fs.existsSync(srcAbs)) return;
 
       const sets = buildSrcsetVariants(srcAbs);
       if (!sets.avif && !sets.webp) return;
+
+      // adjust the img src to a valid replacement before wrapping
+      const best = chooseBestSrc(srcAbs, file);
+      if (best) {
+        $img.attr('src', best);
+      }
 
       const picHtml = [];
       if (sets.avif) picHtml.push(`<source data-generated="true" type="image/avif" srcset="${sets.avif}">`);

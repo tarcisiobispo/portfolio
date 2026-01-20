@@ -424,10 +424,10 @@
                         <li><strong>Refinamento de Navegação:</strong> Implementei URLs semânticas e removi níveis intermediários que geravam atrito, garantindo acesso direto a serviços críticos como Feira de Estágios.</li>
                     </ul>
                     <figure class="case-figure">
-                        <picture>
-                            <source data-generated="true" type="image/avif" srcset="../../images/direitogv/menu_direito_final-320.avif 320w, ../../images/direitogv/menu_direito_final-640.avif 640w, ../../images/direitogv/menu_direito_final-960.avif 960w, ../../images/direitogv/menu_direito_final-1280.avif 1280w, ../../images/direitogv/menu_direito_final-1920.avif 1920w">
-                            <source data-generated="true" type="image/webp" srcset="../../images/direitogv/menu_direito_final-320.webp 320w, ../../images/direitogv/menu_direito_final-640.webp 640w, ../../images/direitogv/menu_direito_final-960.webp 960w, ../../images/direitogv/menu_direito_final-1280.webp 1280w, ../../images/direitogv/menu_direito_final-1920.webp 1920w">
-                            <img src="../../images/direitogv/menu_direito_final.png" alt="Menu Direito" class="zoomable-image" data-caption="Menu Direito" style="width: 100%; height: auto; object-fit: contain;" loading="lazy">
+                        <picture><source data-generated="true" type="image/webp" srcset="images/direitogv/menu_direito_final-320.webp 320w, images/direitogv/menu_direito_final-640.webp 640w, images/direitogv/menu_direito_final-960.webp 960w, images/direitogv/menu_direito_final-1280.webp 1280w, images/direitogv/menu_direito_final-1920.webp 1920w"><source data-generated="true" type="image/avif" srcset="images/direitogv/menu_direito_final-320.avif 320w, images/direitogv/menu_direito_final-640.avif 640w, images/direitogv/menu_direito_final-960.avif 960w, images/direitogv/menu_direito_final-1280.avif 1280w, images/direitogv/menu_direito_final-1920.avif 1920w">
+                            
+                            
+                            <img src="images/direitogv/menu_direito_final-1920.webp" alt="Menu Direito" class="zoomable-image" data-caption="Menu Direito" style="width: 100%; height: auto; object-fit: contain;" loading="lazy">
                         </picture>
                         <figcaption class="case-figure-caption">Menu Direito</figcaption>
                     </figure>
@@ -624,9 +624,38 @@
                 const closeBtn = document.querySelector('.lightbox-close');
 
                 // Abrir lightbox ao clicar em imagens com classe zoomable-image
+                function pickSrcFromPicture(img) {
+                    try {
+                        var pic = img.closest('picture');
+                        if (!pic) return null;
+                        var selectors = ['source[data-generated="true"]','source[type="image/avif"]','source[type="image/webp"]','source[srcset]'];
+                        for (var s = 0; s < selectors.length; s++) {
+                            var nodes = pic.querySelectorAll(selectors[s]);
+                            if (!nodes || !nodes.length) continue;
+                            for (var n = 0; n < nodes.length; n++) {
+                                var ss = nodes[n].getAttribute('srcset');
+                                if (!ss) continue;
+                                var parts = ss.split(',').map(function(p){ return p.trim(); }).filter(Boolean);
+                                var bestUrl = null; var bestW = 0;
+                                parts.forEach(function(p){
+                                    var m = p.match(/^(\S+)(?:\s+(\d+)w)?$/);
+                                    if (m) {
+                                        var url = m[1];
+                                        var w = parseInt(m[2]||'0',10);
+                                        if (w >= bestW) { bestW = w; bestUrl = url; }
+                                    }
+                                });
+                                if (bestUrl) return bestUrl;
+                            }
+                        }
+                    } catch(e) { /* fail silently */ }
+                    return null;
+                }
+
                 document.querySelectorAll('.zoomable-image').forEach(function(img) {
                     img.addEventListener('click', function() {
-                        lightboxImg.src = this.src;
+                        var candidate = this.dataset.full || this.dataset.src || pickSrcFromPicture(this) || this.src;
+                        lightboxImg.src = candidate;
                         lightboxImg.alt = this.alt;
                         lightboxCaption.textContent = this.dataset.caption || this.alt;
                         lightbox.classList.add('active');
