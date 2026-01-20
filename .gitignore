@@ -1,0 +1,8 @@
+# Node modules
+node_modules/
+
+# Backup folder for originals
+backups-images/
+
+# Ignore generated node artifacts
+package-lock.json
