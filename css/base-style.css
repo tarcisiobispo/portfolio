@@ -22,7 +22,7 @@ html {
 
 body {
     max-width: var(--content-max-width, 1200px);
-    font-family: var(--font-family-serif);
+    font-family: var(--font-family-sans);
     background-color: var(--color-surface-primary);
     color: var(--color-text-main);
     padding-bottom: var(--space-lg);
