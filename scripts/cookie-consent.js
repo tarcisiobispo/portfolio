@@ -44,8 +44,8 @@
 
   // Expose handlers for UI
   window.CookieConsent = {
-    accept: function(){ setConsent('accepted'); loadAnalytics(); hideBanner(); },
-    decline: function(){ setConsent('declined'); hideBanner(); },
+    accept: function(){ setConsent('accepted'); loadAnalytics(); hideBanner(); try{ window.dispatchEvent(new CustomEvent('cookieconsent:accepted')); }catch(e){} },
+    decline: function(){ setConsent('declined'); hideBanner(); try{ window.dispatchEvent(new CustomEvent('cookieconsent:declined')); }catch(e){} },
     status: getConsent
   };
 
@@ -65,5 +65,21 @@
     if(c === 'accepted'){ loadAnalytics(); hideBanner(); }
     if(c === 'declined'){ hideBanner(); }
   });
+  
+  // Simple toast implementation: listens for consent events and shows confirmation
+  function showToast(message){
+    try{
+      var root = document.getElementById('site-toast-root');
+      if(!root){ root = document.createElement('div'); root.id = 'site-toast-root'; root.setAttribute('aria-live','polite'); document.body.appendChild(root); }
+      var t = document.createElement('div'); t.className = 'site-toast'; t.textContent = message;
+      root.appendChild(t);
+      // force reflow for animation
+      void t.offsetWidth;
+      t.classList.add('site-toast--visible');
+      setTimeout(function(){ t.classList.remove('site-toast--visible'); setTimeout(function(){ try{ root.removeChild(t); }catch(e){} }, 350); }, 3500);
+    }catch(e){}
+  }
 
+  window.addEventListener('cookieconsent:accepted', function(){ showToast('Consentimento salvo — cookies de análise ativados.'); });
+  window.addEventListener('cookieconsent:declined', function(){ showToast('Preferência salva — cookies de análise desativados.'); });
 })();

@@ -313,3 +313,61 @@ img, picture, video, iframe {
   background-color: var(--color-accent-secondary);
   color: var(--color-text-main);
 }
+
+/* Privacy modal styles */
+.privacy-modal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.6);
+    z-index: 9999;
+    padding: 1rem;
+}
+.privacy-modal__panel {
+    background: #ffffff;
+    color: #111111 !important;
+    max-width: 900px;
+    width: 100%;
+    max-height: 85vh;
+    overflow: auto;
+    border-radius: 8px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    padding: 1.25rem;
+}
+.privacy-modal__body { color: #111111 !important; font-family: var(--font-family-sans, Arial, sans-serif); }
+.privacy-modal__header { display:flex;align-items:center;justify-content:space-between;gap:1rem }
+.privacy-modal__title { margin:0;font-size:1.25rem;font-weight:700 }
+.privacy-modal__close { background:transparent;border:none;font-size:1.1rem;cursor:pointer }
+.privacy-modal__footer { display:flex;gap:0.5rem;align-items:center;justify-content:flex-end;margin-top:1rem }
+.privacy-modal__agree { display:flex;gap:0.5rem;align-items:center;flex:1 }
+.privacy-modal__agree input { transform:scale(1.1) }
+.privacy-modal__btn { padding:0.5rem 0.75rem;border-radius:6px;border:1px solid rgba(0,0,0,0.08);cursor:pointer }
+.privacy-modal__btn--primary { background:var(--color-accent-primary, #5b4ef6);color:#fff;border-color:transparent }
+.privacy-modal__btn[disabled] { opacity:0.5;cursor:not-allowed }
+
+/* Toast notifications for consent feedback */
+#site-toast-root {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 10020;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-end;
+}
+.site-toast {
+    background: rgba(17,17,17,0.95);
+    color: #fff;
+    padding: 0.6rem 0.9rem;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    transform: translateY(12px) scale(0.98);
+    opacity: 0;
+    transition: transform 240ms cubic-bezier(.2,.9,.2,1), opacity 240ms ease;
+    font-size: 0.95rem;
+    max-width: 320px;
+}
+.site-toast--visible { transform: translateY(0) scale(1); opacity: 1; }
