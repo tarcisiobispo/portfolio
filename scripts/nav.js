@@ -38,34 +38,6 @@
       });
     }
 
-    // Cookie Banner
-    const cookieBanner = document.getElementById('cookie-banner');
-    const acceptBtn = document.getElementById('accept-cookies');
-    const declineBtn = document.getElementById('decline-cookies');
-
-    if (cookieBanner && acceptBtn && declineBtn) {
-      // Check if user has already made a choice
-      const cookieChoice = localStorage.getItem('cookie-consent');
-      if (cookieChoice === 'accepted' || cookieChoice === 'declined') {
-        cookieBanner.style.display = 'none';
-        cookieBanner.setAttribute('aria-hidden', 'true');
-      } else {
-        // Show banner
-        cookieBanner.setAttribute('aria-hidden', 'false');
-      }
-
-      acceptBtn.addEventListener('click', function() {
-        localStorage.setItem('cookie-consent', 'accepted');
-        cookieBanner.style.display = 'none';
-        cookieBanner.setAttribute('aria-hidden', 'true');
-      });
-
-      declineBtn.addEventListener('click', function() {
-        localStorage.setItem('cookie-consent', 'declined');
-        cookieBanner.style.display = 'none';
-        cookieBanner.setAttribute('aria-hidden', 'true');
-        // Optionally disable tracking scripts here, but since they are already loaded, just hide banner
-      });
-    }
+    // Cookie banner handling moved to cookie-consent.js (consent-based analytics)
   });
 })();
