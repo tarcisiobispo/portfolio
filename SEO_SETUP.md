@@ -11,12 +11,12 @@ O domínio configurado para este repositório é `https://tarcisiobispo.github.i
    - Linha ~18: `canonical`
    - Linha ~30: Schema.org `url`
 
-2. **case-studies/case-study-triunfante.html**
+2. **case-studies/case-study-triunfante/**
    - Linha ~15: `og:url`
    - Linha ~26: `canonical`
    - Linha ~38: Schema.org `url`
 
-3. **case-studies/case-study-fgv.html**
+3. **case-studies/case-study-fgv/**
    - Linha ~15: `og:url`
    - Linha ~26: `canonical`
    - Linha ~38: Schema.org `url`
