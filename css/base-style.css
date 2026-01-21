@@ -286,6 +286,11 @@ img, picture, video, iframe {
   max-width: 600px;
 }
 
+.cookie-banner__text a {
+    color: var(--color-text-main);
+    text-decoration: underline;
+}
+
 .cookie-banner__buttons {
   display: flex;
   gap: var(--space-sm);
