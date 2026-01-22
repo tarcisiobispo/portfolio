@@ -16,7 +16,7 @@ function walkDir(dir) {
     const full = path.join(dir, d.name);
     if (d.isDirectory()) {
       results.push(...walkDir(full));
-    } else {
+    } else if (/\.(jpe?g|png)$/i.test(d.name)) {
       results.push(full);
     }
   });
@@ -39,19 +39,19 @@ async function generateVariants(file) {
       const avifOut = path.join(dir, `${name}-${w}.avif`);
       const webpOut = path.join(dir, `${name}-${w}.webp`);
 
-      // Check if files exist and are newer than source
-      const [avifExists, webpExists, sourceStat] = await Promise.all([
-        fs.access(avifOut).then(() => fs.stat(avifOut)).catch(() => null),
-        fs.access(webpOut).then(() => fs.stat(webpOut)).catch(() => null),
+      // Check if files exist and are newer than source - simplified stat calls
+      const [avifStat, webpStat, sourceStat] = await Promise.all([
+        fs.stat(avifOut).catch(() => null),
+        fs.stat(webpOut).catch(() => null),
         fs.stat(file)
       ]);
 
       const tasks = [];
       
-      if (!avifExists || avifExists.mtimeMs < sourceStat.mtimeMs) {
+      if (!avifStat || avifStat.mtimeMs < sourceStat.mtimeMs) {
         tasks.push(sharp(file).resize(w).avif({ quality: 60 }).toFile(avifOut));
       }
-      if (!webpExists || webpExists.mtimeMs < sourceStat.mtimeMs) {
+      if (!webpStat || webpStat.mtimeMs < sourceStat.mtimeMs) {
         tasks.push(sharp(file).resize(w).webp({ quality: 70 }).toFile(webpOut));
       }
 
@@ -74,7 +74,7 @@ function toWebPath(abs) {
 
 async function generateAllImages() {
   if (!fsSync.existsSync(IMAGES_DIR)) return;
-  const files = walkDir(IMAGES_DIR).filter(f => /\.(jpe?g|png)$/i.test(f));
+  const files = walkDir(IMAGES_DIR);
   
   // Process images in parallel with concurrency limit
   for (let i = 0; i < files.length; i += MAX_PARALLEL) {
