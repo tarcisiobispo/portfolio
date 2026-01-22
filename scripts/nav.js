@@ -19,13 +19,13 @@
         toggle.setAttribute('aria-expanded', isOpen);
       });
 
-      // Close menu when clicking a link
-      menu.querySelectorAll('a').forEach(function(link) {
-        link.addEventListener('click', function() {
+      // Close menu when clicking a link - using event delegation for better performance
+      menu.addEventListener('click', function(e) {
+        if (e.target.tagName === 'A') {
           toggle.classList.remove('is-active');
           menu.classList.remove('is-open');
           toggle.setAttribute('aria-expanded', 'false');
-        });
+        }
       });
 
       // Close menu on escape key

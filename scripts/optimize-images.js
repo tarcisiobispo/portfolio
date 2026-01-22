@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-const fs = require('fs');
+const fs = require('fs').promises;
+const fsSync = require('fs');
 const path = require('path');
 const sharp = require('sharp');
 
@@ -9,25 +10,30 @@ const sharp = require('sharp');
 const args = process.argv.slice(2);
 const sourceDir = args[0] || path.join(__dirname, '..', 'images');
 const quality = parseInt(args[1], 10) || 80;
+const MAX_PARALLEL = 4; // Process 4 images at a time
 
 function walk(dir) {
-  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  const entries = fsSync.readdirSync(dir, { withFileTypes: true });
+  const files = [];
   for (const entry of entries) {
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) {
-      walk(full);
+      files.push(...walk(full));
     } else if (/\.(jpe?g|png)$/i.test(entry.name)) {
-      convert(full).catch(err => console.error('Error converting', full, err));
+      files.push(full);
     }
   }
+  return files;
 }
 
 async function convert(file) {
   const out = file.replace(/\.(jpe?g|png)$/i, '.webp');
   try {
-    const inStat = fs.statSync(file);
-    let outStat;
-    try { outStat = fs.statSync(out); } catch (e) { outStat = null; }
+    const [inStat, outStat] = await Promise.all([
+      fs.stat(file),
+      fs.stat(out).catch(() => null)
+    ]);
+    
     if (outStat && outStat.mtimeMs >= inStat.mtimeMs) {
       console.log('Skipping (up-to-date):', out);
       return;
@@ -41,10 +47,20 @@ async function convert(file) {
   }
 }
 
-if (!fs.existsSync(sourceDir)) {
-  console.error('Source directory not found:', sourceDir);
-  process.exit(1);
+async function processImages() {
+  if (!fsSync.existsSync(sourceDir)) {
+    console.error('Source directory not found:', sourceDir);
+    process.exit(1);
+  }
+
+  console.log('Optimizing images in', sourceDir, 'quality=', quality);
+  const files = walk(sourceDir);
+  
+  // Process images in parallel batches
+  for (let i = 0; i < files.length; i += MAX_PARALLEL) {
+    const batch = files.slice(i, i + MAX_PARALLEL);
+    await Promise.all(batch.map(f => convert(f)));
+  }
 }
 
-console.log('Optimizing images in', sourceDir, 'quality=', quality);
-walk(sourceDir);
+processImages();

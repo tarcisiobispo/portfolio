@@ -31,12 +31,13 @@ body {
     cursor: default;
 
     /* grid sutil no background: duas linhas (horizontal + vertical) */
+    /* Changed from 'fixed' to 'scroll' for better performance */
     background-image:
         linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px),
         linear-gradient(to bottom, var(--grid-line-color) 1px, transparent 1px);
     background-size: var(--grid-size) var(--grid-size);
     background-repeat: repeat;
-    background-attachment: fixed;
+    background-attachment: scroll;
 }
 
 a {

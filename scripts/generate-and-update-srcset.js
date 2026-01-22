@@ -1,4 +1,5 @@
-const fs = require('fs');
+const fs = require('fs').promises;
+const fsSync = require('fs');
 const path = require('path');
 const sharp = require('sharp');
 const cheerio = require('cheerio');
@@ -6,10 +7,11 @@ const cheerio = require('cheerio');
 const ROOT = process.cwd();
 const IMAGES_DIR = path.join(ROOT, 'images');
 const WIDTHS = [320, 640, 960, 1280, 1920];
+const MAX_PARALLEL = 4; // Limit concurrent image processing
 
 function walkDir(dir) {
   const results = [];
-  const list = fs.readdirSync(dir, { withFileTypes: true });
+  const list = fsSync.readdirSync(dir, { withFileTypes: true });
   list.forEach((d) => {
     const full = path.join(dir, d.name);
     if (d.isDirectory()) {
@@ -37,11 +39,24 @@ async function generateVariants(file) {
       const avifOut = path.join(dir, `${name}-${w}.avif`);
       const webpOut = path.join(dir, `${name}-${w}.webp`);
 
-      if (!fs.existsSync(avifOut)) {
-        await sharp(file).resize(w).avif({ quality: 60 }).toFile(avifOut);
+      // Check if files exist and are newer than source
+      const [avifExists, webpExists, sourceStat] = await Promise.all([
+        fs.access(avifOut).then(() => fs.stat(avifOut)).catch(() => null),
+        fs.access(webpOut).then(() => fs.stat(webpOut)).catch(() => null),
+        fs.stat(file)
+      ]);
+
+      const tasks = [];
+      
+      if (!avifExists || avifExists.mtimeMs < sourceStat.mtimeMs) {
+        tasks.push(sharp(file).resize(w).avif({ quality: 60 }).toFile(avifOut));
       }
-      if (!fs.existsSync(webpOut)) {
-        await sharp(file).resize(w).webp({ quality: 70 }).toFile(webpOut);
+      if (!webpExists || webpExists.mtimeMs < sourceStat.mtimeMs) {
+        tasks.push(sharp(file).resize(w).webp({ quality: 70 }).toFile(webpOut));
+      }
+
+      if (tasks.length > 0) {
+        await Promise.all(tasks);
       }
 
       variants.push({ width: w, avif: avifOut, webp: webpOut });
@@ -58,16 +73,19 @@ function toWebPath(abs) {
 }
 
 async function generateAllImages() {
-  if (!fs.existsSync(IMAGES_DIR)) return;
-  const files = walkDir(IMAGES_DIR);
-  for (const f of files) {
-    await generateVariants(f);
+  if (!fsSync.existsSync(IMAGES_DIR)) return;
+  const files = walkDir(IMAGES_DIR).filter(f => /\.(jpe?g|png)$/i.test(f));
+  
+  // Process images in parallel with concurrency limit
+  for (let i = 0; i < files.length; i += MAX_PARALLEL) {
+    const batch = files.slice(i, i + MAX_PARALLEL);
+    await Promise.all(batch.map(f => generateVariants(f)));
   }
 }
 
 function findHtmlFiles(dir) {
   const results = [];
-  const list = fs.readdirSync(dir, { withFileTypes: true });
+  const list = fsSync.readdirSync(dir, { withFileTypes: true });
   list.forEach((d) => {
     const full = path.join(dir, d.name);
     if (d.isDirectory()) {
@@ -88,8 +106,8 @@ function buildSrcsetVariants(srcAbs) {
   for (const w of WIDTHS) {
     const avif = path.join(dir, `${name}-${w}.avif`);
     const webp = path.join(dir, `${name}-${w}.webp`);
-    if (fs.existsSync(avif)) entriesAvif.push(`${toWebPath(avif)} ${w}w`);
-    if (fs.existsSync(webp)) entriesWebp.push(`${toWebPath(webp)} ${w}w`);
+    if (fsSync.existsSync(avif)) entriesAvif.push(`${toWebPath(avif)} ${w}w`);
+    if (fsSync.existsSync(webp)) entriesWebp.push(`${toWebPath(webp)} ${w}w`);
   }
   return { avif: entriesAvif.join(', '), webp: entriesWebp.join(', ') };
 }
@@ -102,11 +120,11 @@ function chooseBestSrc(srcAbs, htmlFile) {
   // Prefer a base .webp or .avif if present
   const baseWebp = path.join(dir, `${name}.webp`);
   const baseAvif = path.join(dir, `${name}.avif`);
-  if (fs.existsSync(baseWebp)) {
+  if (fsSync.existsSync(baseWebp)) {
     const rel = path.relative(path.dirname(htmlFile), baseWebp).split(path.sep).join('/');
     return rel;
   }
-  if (fs.existsSync(baseAvif)) {
+  if (fsSync.existsSync(baseAvif)) {
     const rel = path.relative(path.dirname(htmlFile), baseAvif).split(path.sep).join('/');
     return rel;
   }
@@ -116,18 +134,20 @@ function chooseBestSrc(srcAbs, htmlFile) {
     const w = WIDTHS[i];
     const webp = path.join(dir, `${name}-${w}.webp`);
     const avif = path.join(dir, `${name}-${w}.avif`);
-    if (fs.existsSync(webp)) return path.relative(path.dirname(htmlFile), webp).split(path.sep).join('/');
-    if (fs.existsSync(avif)) return path.relative(path.dirname(htmlFile), avif).split(path.sep).join('/');
+    if (fsSync.existsSync(webp)) return path.relative(path.dirname(htmlFile), webp).split(path.sep).join('/');
+    if (fsSync.existsSync(avif)) return path.relative(path.dirname(htmlFile), avif).split(path.sep).join('/');
   }
 
   return null;
 }
 
-function updateHtmlFiles() {
+async function updateHtmlFiles() {
   const htmls = findHtmlFiles(ROOT);
-  for (const file of htmls) {
+  
+  // Process HTML files in parallel
+  await Promise.all(htmls.map(async (file) => {
     let changed = false;
-    const raw = fs.readFileSync(file, 'utf8');
+    const raw = await fs.readFile(file, 'utf8');
     const $ = cheerio.load(raw, { decodeEntities: false });
 
     $('picture').each((i, pic) => {
@@ -136,7 +156,7 @@ function updateHtmlFiles() {
       if (!$img || !$img.attr('src')) return;
       const src = $img.attr('src');
       const srcAbs = path.resolve(path.dirname(file), src);
-      if (!fs.existsSync(srcAbs)) return;
+      if (!fsSync.existsSync(srcAbs)) return;
 
       const sets = buildSrcsetVariants(srcAbs);
       // remove existing generated AVIF/webp sources to avoid duplicates
@@ -171,7 +191,7 @@ function updateHtmlFiles() {
       const src = $img.attr('src');
       if (!src) return;
       const srcAbs = path.resolve(path.dirname(file), src);
-      if (!fs.existsSync(srcAbs)) return;
+      if (!fsSync.existsSync(srcAbs)) return;
 
       const sets = buildSrcsetVariants(srcAbs);
       if (!sets.avif && !sets.webp) return;
@@ -192,16 +212,16 @@ function updateHtmlFiles() {
     });
 
     if (changed) {
-      fs.writeFileSync(file, $.html(), 'utf8');
+      await fs.writeFile(file, $.html(), 'utf8');
       console.log('Updated:', file);
     }
-  }
+  }));
 }
 
 (async function main(){
   console.log('Gerando variantes AVIF/WebP...');
   await generateAllImages();
   console.log('Atualizando HTMLs com srcset...');
-  updateHtmlFiles();
+  await updateHtmlFiles();
   console.log('Pronto.');
 })();
