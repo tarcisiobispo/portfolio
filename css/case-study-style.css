@@ -544,8 +544,10 @@ a:focus-visible,
     padding-bottom: var(--space-12);
 }
 
+/* Basic image styling - max-width for responsive, transitions for interactions */
 img {
-    width: 100%;
+    max-width: 100%;
+    height: auto;
     display: block;
     transition: opacity var(--transition-base), box-shadow var(--transition-base);
 }
@@ -721,13 +723,6 @@ figcaption,
 /* ====================================
    RESPONSIVIDADE COMPLETA - Imagens, Figuras e Componentes
    ==================================== */
-
-/* Imagens responsivas por padrão */
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
 
 /* Figuras responsivas */
 figure {
