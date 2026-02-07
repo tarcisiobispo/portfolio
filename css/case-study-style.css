@@ -441,13 +441,16 @@ body {
 .accordion-helper {
     font-size: 13px;
     font-weight: 400;
-    color: var(--color-light-text-muted);
+    /* Usar cor de texto principal do tema claro para maior contraste */
+    color: var(--color-light-text-main);
     margin-left: auto;
-    opacity: 0.7;
-    transition: opacity 0.2s ease;
+    opacity: 1;
+    transition: color 0.15s ease, opacity 0.2s ease;
 }
 
 .accordion summary:hover .accordion-helper {
+    /* enfatiza ao passar o mouse */
+    color: var(--color-primary, #111827);
     opacity: 1;
 }
 
