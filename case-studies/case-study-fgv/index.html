@@ -282,7 +282,7 @@
                 if (!article || !badge) return;
                 var text = article.textContent || '';
                 var words = (text.trim().match(/\S+/g) || []).length;
-                var wpm = 180; // média de leitura ajustada (pt-BR)
+                var wpm = 200; // média de leitura ajustada (pt-BR)
                 var minutes = Math.max(1, Math.round(words / wpm));
                 badge.textContent = minutes + ' min';
             });

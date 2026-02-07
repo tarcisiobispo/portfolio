@@ -159,7 +159,7 @@
                                 stroke-linejoin="round"></path>
                             <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"></circle>
                         </svg>
-                        <span class="reading-time">9 min</span>
+                        <span class="reading-time">8 min</span>
                     </span>
                 </summary>
                 <div class="index-list" id="index-list" role="list">
@@ -186,7 +186,7 @@
                 if (!article || !badge) return;
                 var text = article.textContent || '';
                 var words = (text.trim().match(/\S+/g) || []).length;
-                var wpm = 180; // média de leitura ajustada (pt-BR)
+                var wpm = 200; // média de leitura ajustada (pt-BR)
                 var minutes = Math.max(1, Math.round(words / wpm));
                 badge.textContent = minutes + ' min';
             });
