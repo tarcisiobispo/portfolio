@@ -6,3 +6,11 @@ backups-images/
 
 # Ignore generated node artifacts
 package-lock.json
+
+# Ignore Taliparts full content (raw files, extracted text, sanitized outputs, scripts)
+/Taliparts/
+
+# If you prefer to keep the folder but ignore only generated subfolders, use instead:
+# /Taliparts/raw_text/
+# /Taliparts/sanitized/
+# /Taliparts/scripts/
