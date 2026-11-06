@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EA Filmes: Identidade Digital e Direção Visual para Produtora Audiovisual | Tarcisio Bispo</title>
+    <meta name="description" content="Case study: Como estruturei a identidade digital, a estratégia visual e o handoff técnico para o portal da EA Filmes.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="EA Filmes: Identidade Digital e Direção Visual para Produtora Audiovisual (2012)">
+    <meta property="og:description" content="Projeto completo de UI/UX concebido em 2012: direção de arte em Photoshop (EA.psd), arquitetura B2B/B2C e Design System interativo.">
+    <meta property="og:image" content="../../images/eafilmes/EA_HOME.jpg">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://tarcisiobispo.github.io/portfolio/case-studies/case-study-ea-filmes/">
+
+    <!--Styling-->
+    <link rel="stylesheet" href="../../css/design-tokens.css">
+    <link rel="stylesheet" href="../../css/case-study-style.css">
+    <link rel="stylesheet" href="../../css/nav.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="/portfolio/favicon_uxproduct.webp">
+    <link rel="icon" type="image/png" href="/portfolio/favicon_uxproduct.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/portfolio/favicon_uxproduct.png">
+
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&amp;family=Source+Serif+4:wght@400&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:wght@400&display=swap">
+    </noscript>
+
+    <style>
+        /* Lightbox Styles */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .lightbox-overlay.active { display: flex; opacity: 1; }
+        .lightbox-content { position: relative; max-width: 90%; max-height: 90%; animation: lightboxZoomIn 0.3s ease; }
+        @keyframes lightboxZoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .lightbox-content img { max-width: 100%; max-height: 85vh; object-fit: contain; border-radius: 4px; box-shadow: 0 4px 30px rgba(0,0,0,0.5); }
+        .lightbox-close { position: absolute; top: -40px; right: 0; background: transparent; border: none; color: white; font-size: 32px; cursor: pointer; padding: 8px; line-height: 1; transition: transform 0.2s ease; }
+        .lightbox-close:hover { transform: scale(1.2); }
+        .lightbox-caption { color: white; text-align: center; margin-top: 16px; font-size: 14px; opacity: 0.9; }
+        .zoomable-image { cursor: zoom-in; transition: transform 0.2s ease; }
+        .zoomable-image:hover { transform: scale(1.02); }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="site-nav site-nav--light" role="navigation" aria-label="Navegação principal">
+        <div class="site-nav__inner">
+            <a href="../../" class="site-nav__brand">Tarcisio Bispo de Araujo</a>
+            <button class="site-nav__toggle" aria-label="Menu" aria-expanded="false">
+                <span class="site-nav__toggle-icon"></span>
+            </button>
+            <ul class="site-nav__menu">
+                <li><a href="../../sobre/" class="site-nav__link">Sobre</a></li>
+                <li><a href="../../contato/" class="site-nav__link">Entre em Contato</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Lightbox Container -->
+    <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualização ampliada da imagem">
+        <div class="lightbox-content">
+            <button class="lightbox-close" aria-label="Fechar">×</button>
+            <img src="" alt="Visualização da imagem" id="lightbox-img">
+            <p class="lightbox-caption" id="lightbox-caption"></p>
+        </div>
+    </div>
+
+    <a class="skip-link" href="#conteudo">Pular para conteúdo</a>
+
+    <main class="container" id="conteudo">
+        <header class="case-header">
+            <h1>EA Filmes: Identidade Digital e Direção Visual para Produtora Audiovisual</h1>
+            <p class="case-subtitle">Projeto completo, da concepção da identidade à implementação de um portal imersivo, escalável e orientado à conversão.</p>
+
+            <div class="case-meta">
+                <div class="case-meta-basic">
+                    <div class="case-meta-item">
+                        <span class="case-meta-label">Meu papel</span>
+                        <span class="case-meta-value">Direção de Arte, UI/UX Design, Arquitetura B2B/B2C, Design System &amp; Engenharia Front-End</span>
+                    </div>
+                    <div class="case-meta-item">
+                        <span class="case-meta-label">Cliente</span>
+                        <span class="case-meta-value">EA Filmes / Estação Alternativa Filmes</span>
+                    </div>
+                    <div class="case-meta-item">
+                        <span class="case-meta-label">Ano</span>
+                        <span class="case-meta-value">2012 (Key Visual Original &amp; Evolução de Sistema)</span>
+                    </div>
+                </div>
+                <div class="case-meta-extended">
+                    <div class="case-meta-item">
+                        <span class="case-meta-label">Objetivo</span>
+                        <span class="case-meta-value">Construir uma vitrine cinematográfica imersiva e um hub de negócios B2B/B2C que una a atmosfera histórica da Estação da Luz à alta performance web.</span>
+                    </div>
+                    <div class="case-meta-item">
+                        <span class="case-meta-label">Desafio</span>
+                        <span class="case-meta-value">Dialogar simultaneamente com patrocinadores/coprodutores (ANCINE, FSA, Lei Rouanet) e cinéfilos, mantendo fidelidade ao PSD original com acessibilidade WCAG AAA e payload &lt; 400 kB.</span>
+                    </div>
+                    <div class="case-meta-item">
+                        <span class="case-meta-label">Métodos &amp; Ferramentas (2012)</span>
+                        <span class="case-meta-value">Adobe Photoshop CS5/CS6 (EA.psd), Slicing de Camadas, Smart Objects, Guia de Estilos &amp; HTML5/CSS3</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Live Demo & Design System Callout Bar (Internal Relative Paths for GitHub Pages) -->
+            <div style="margin-top: 1.75rem; padding: 1.25rem 1.5rem; background: linear-gradient(90deg, #111113 0%, #1a1a1e 100%); border: 1px solid #2e2e36; border-left: 4px solid #B81118; border-radius: 6px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; box-shadow: 0 8px 24px rgba(0,0,0,0.12);">
+                <div style="flex: 1 1 300px;">
+                    <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #FFCC00; margin-bottom: 0.25rem;">
+                        Experiência Ao Vivo Integrada ao Portfólio
+                    </div>
+                    <div style="font-size: 0.95rem; color: #f4f4f5; line-height: 1.45;">
+                        Navegue pela versão interativa funcional do portal de 2012 (com trailers reais e camadas originais do PSD) ou inspecione a documentação do <strong>Design System (KV 2012)</strong>:
+                    </div>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center;">
+                    <a href="./app/index.html" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(90deg, #B81118 0%, #730206 100%); color: #ffffff !important; font-weight: 700; font-size: 0.875rem; padding: 0.7rem 1.2rem; border-radius: 4px; text-decoration: none; border: 1px solid #FFCC00; box-shadow: 0 4px 12px rgba(184,17,24,0.35);">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                        <span>Ver Site em Funcionamento (2012)</span>
+                    </a>
+                    <a href="./app/index.html?view=design-system" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(90deg, #FFCC00 0%, #FF9900 100%); color: #000000 !important; font-weight: 700; font-size: 0.875rem; padding: 0.7rem 1.2rem; border-radius: 4px; text-decoration: none; box-shadow: 0 4px 12px rgba(255,204,0,0.25);">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                        <span>Explorar Design System (KV 2012)</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <nav class="sticky-tools" aria-label="Ferramentas do artigo">
+            <details class="index-widget" id="indexWidget">
+                <summary aria-haspopup="listbox" aria-controls="index-list">
+                    <svg class="icon-list" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                    <span class="sr-only">Navegar neste estudo</span>
+                    <span class="reading-badge" aria-hidden="true">
+                        <svg class="icon-clock" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M12 7v5l3 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"></circle>
+                        </svg>
+                        <span class="reading-time">7 min</span>
+                    </span>
+                </summary>
+                <div class="index-list" id="index-list" role="list">
+                    <a role="listitem" href="#visao-geral">Visão Geral</a>
+                    <a role="listitem" href="#desafio">1. Desafio &amp; Contexto</a>
+                    <a role="listitem" href="#estrategia">2. Estratégia Visual</a>
+                    <a role="listitem" href="#arquitetura">3. Arquitetura da Interface</a>
+                    <a role="listitem" href="#design-system">4. Design System &amp; Laboratório KV</a>
+                    <a role="listitem" href="#handoff">5. Engenharia &amp; Performance WebP</a>
+                    <a role="listitem" href="#impacto">Impacto &amp; Aprendizados</a>
+                </div>
+            </details>
+        </nav>
+        <script>
+            document.querySelectorAll('.index-list a').forEach(function (link) {
+                link.addEventListener('click', function () {
+                    document.getElementById('indexWidget').open = false;
+                });
+            });
+            document.addEventListener('DOMContentLoaded', function () {
+                var article = document.querySelector('.case-content');
+                var badge = document.querySelector('.reading-time');
+                if (!article || !badge) return;
+                var text = article.textContent || '';
+                var words = (text.trim().match(/\S+/g) || []).length;
+                var wpm = 200;
+                var minutes = Math.max(1, Math.round(words / wpm));
+                badge.textContent = minutes + ' min';
+            });
+        </script>
+
+        <div class="content-body">
+            <article class="case-content" id="conteudo" style="max-width: var(--content-max-width, 1200px);">
+
+                <!-- VISÃO GERAL -->
+                <h2 id="visao-geral"><span class="underline-text-purple">Visão Geral</span></h2>
+                <div class="result-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+                    <div class="result-card result-card--meta">
+                        <div class="result-card-head">
+                            <div class="result-card-title">O que foi feito</div>
+                        </div>
+                        <p class="result-card-desc">Portal institucional concebido em 2012: direção de arte no Photoshop (<code>EA.psd</code>), fatiamento de camadas, guia de estilos para handoff e reconstrução interativa com Design System.</p>
+                    </div>
+                    <div class="result-card result-card--meta">
+                        <div class="result-card-head">
+                            <div class="result-card-title">Para quem</div>
+                        </div>
+                        <p class="result-card-desc">Clientes B2B, diretores de marketing, coprodutores, comissões de editais e público interessado em cinema.</p>
+                    </div>
+                    <div class="result-card result-card--meta">
+                        <div class="result-card-head">
+                            <div class="result-card-title">Problema (usuário + negócio)</div>
+                        </div>
+                        <p class="result-card-desc">Falta de uma presença digital autoral que unisse o repertório criativo do estúdio à captação de oportunidades comerciais.</p>
+                    </div>
+                    <div class="result-card result-card--meta">
+                        <div class="result-card-head">
+                            <div class="result-card-title">Impacto</div>
+                        </div>
+                        <p class="result-card-desc">Plataforma imersiva com identidade cinematográfica coesa, pronta para apresentação de portfólio e geração de contatos.</p>
+                    </div>
+                </div>
+                <p class="case-study-text">
+                    A <strong>EA Filmes (Estação Alternativa Filmes)</strong> precisava de um site que funcionasse como uma extensão da sala de cinema: imersivo, autoral e focado em gerar negócios. Meu desafio foi equilibrar a atmosfera visual do universo cinematográfico com uma navegação direta, onde tanto patrocinadores quanto o público geral encontrassem o que buscavam sem esforço.
+                </p>
+
+                <!-- 1. DESAFIO & CONTEXTO -->
+                <h2 id="desafio"><span class="underline-text-purple">1. Desafio &amp; Contexto</span></h2>
+                <p class="case-study-text">
+                    Produtoras audiovisuais costumam ter um acervo visual forte, mas muitos sites do setor acabam caindo em dois extremos: ou viram galerias de vídeo sem contexto comercial, ou adotam templates corporativos frios que apagam a personalidade do estúdio. Para a EA Filmes, o objetivo era construir um meio-termo sólido.
+                </p>
+                <h3 class="case-study-subheading">Metas do Projeto</h3>
+                <ul class="process-list">
+                    <li><strong>Presença Digital Autoral:</strong> Comunicar desde o primeiro olhar que a EA Filmes é uma produtora com identidade própria e visão artística.</li>
+                    <li><strong>Imersão com Leitura Clara:</strong> Criar uma interface escura inspirada na sala de projeção, mas garantindo conforto visual e contraste alto nos textos institucionais e serviços.</li>
+                    <li><strong>Conversão de Negócios:</strong> Conduzir o visitante de forma natural até o formulário de contato e aos canais de orçamento.</li>
+                    <li><strong>Consistência Visual e Técnica:</strong> Estruturar um sistema de camadas e estilos bem definido para facilitar o desenvolvimento front-end e futuras atualizações do catálogo.</li>
+                </ul>
+
+                <!-- 2. ESTRATÉGIA VISUAL -->
+                <h2 id="estrategia"><span class="underline-text-purple">2. Estratégia Visual: Decisões de Negócio, Acessibilidade e Storytelling</span></h2>
+                <p class="case-study-text">
+                    Cada escolha visual partiu de uma necessidade prática: fortalecer a marca da produtora, destacar os filmes e manter a leitura acessível (seguindo os parâmetros de contraste da WCAG). A direção de arte combina referências físicas do cinema e da arquitetura paulistana com componentes de navegação objetivos.
+                </p>
+
+                <div class="accordion">
+                    <details>
+                        <summary>
+                            <span><strong>Conceito e Imersão Arquitetônica (Gestalt e Branding)</strong></span>
+                            <span class="accordion-helper">Clique para ver detalhes</span>
+                            <span class="accordion-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                        </summary>
+                        <div class="accordion-content">
+                            <p class="case-study-text">
+                                <strong>O Enquadramento Temático (Estação da Luz e Película 35mm):</strong> Em vez de usar um fundo preto chapado, trabalhei no Photoshop a fotografia das treliças de ferro da Estação da Luz (São Paulo) escurecida com modo de mesclagem <code>Lighter Color</code> e uma textura sutil de película 35mm (a 3% de opacidade). Essa escolha conecta a atmosfera do site ao próprio nome da produtora ("Estação Alternativa") e ao bilhete serrilhado de estação que carrega o logotipo no topo.
+                            </p>
+                            <p class="case-study-text">
+                                <strong>Navegação Cromática e Estabilidade Espacial:</strong> Para evitar o cansaço visual de um vermelho muito aberto, as tarjas de título e o menu ativo usam um tom de <strong>Carmesim de Cinema (<code>#B81118</code> a <code>#730206</code>)</strong> acompanhado de um filete em <strong>Ouro Projetor (<code>#FFCC00</code>)</strong>. Nas abas de serviço ("CRIAR", "PRODUZIR", "EDITAR", "FINALIZAR"), a etapa selecionada ganha destaque em <strong>Âmbar Quente (<code>#FF9900</code>)</strong> com texto preto. Além disso, todas as seções internas partem exatamente da mesma posição no grid (<code>X=456, Y=189</code>) com <code>32px</code> de respiro entre o título e o bloco de conteúdo, evitando saltos visuais durante a navegação.
+                            </p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="accordion">
+                    <details>
+                        <summary>
+                            <span><strong>Contraste Dinâmico e Respirabilidade Visual (WCAG 2.1 AA / AAA)</strong></span>
+                            <span class="accordion-helper">Clique para ver detalhes</span>
+                            <span class="accordion-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                        </summary>
+                        <div class="accordion-content">
+                            <p class="case-study-text">
+                                A interface alterna o clima de sala escura com áreas de leitura de alto contraste. Na seção <strong>"EA EM RESUMO"</strong>, o texto institucional aparece sobre um fundo branco puro (<code>#FFFFFF</code>) com tipografia preta (<code>#000000</code>, alcançando razão de contraste <strong>21:1 WCAG AAA</strong>), finalizado no topo e na base pelas perfurações de uma tira de filme 35mm.
+                            </p>
+                            <p class="case-study-text">
+                                <strong>Separação Clara entre Títulos e Ações:</strong> Para que os botões clicáveis não se confundissem com as tarjas vermelhas de título, reservei o <strong>Ouro e Âmbar de Projeção (<code>#FFCC00</code> a <code>#FF9900</code>)</strong> para as ações principais (como o botão <em>"Enviar Mensagem"</em> e os controles ativos do carrossel), atingindo contraste de <strong>13.6:1 (AAA)</strong> sobre o fundo escuro.
+                            </p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="accordion">
+                    <details>
+                        <summary>
+                            <span><strong>Tipografia Cinematográfica e Ergonomia de Formulário em Dark Mode</strong></span>
+                            <span class="accordion-helper">Clique para ver detalhes</span>
+                            <span class="accordion-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                        </summary>
+                        <div class="accordion-content">
+                            <p class="case-study-text">
+                                <strong>Campos de Formulário Confortáveis no Escuro:</strong> Em interfaces escuras, caixas de texto totalmente brancas costumam causar desconforto visual. Por isso, na seção <strong>"COMUNIQUE-SE"</strong>, desenhei os campos em tom <strong>Carvão Matte (<code>#1C1C1C</code>)</strong> com bordas discretas e destaque de foco em Ouro Projetor (<code>#FFCC00</code>), mantendo a leitura agradável durante o preenchimento.
+                            </p>
+                            <p class="case-study-text">
+                                <strong>Hierarquia Tipográfica:</strong> Combinei a presença condensada da <strong>News Gothic Condensed / Franklin Gothic</strong> nos menus e cabeçalhos (remetendo aos cartazes e créditos de cinema), a legibilidade da <strong>Myriad Pro (400/600/700)</strong> nos textos corridos e a precisão de fonte monoespaçada para dados técnicos, editais e telefone.
+                            </p>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- 3. ARQUITETURA DA INTERFACE -->
+                <h2 id="arquitetura"><span class="underline-text-purple">3. Arquitetura da Interface &amp; Diálogo B2B / B2C (Seção a Seção)</span></h2>
+                <p class="case-study-text">
+                    Organizei a arquitetura de informação do portal para conversar com dois perfis ao mesmo tempo: o <strong>público B2B</strong> (agências, marcas patrocinadoras, coprodutores e avaliadores de projetos em leis de incentivo como ANCINE, FSA e Lei Rouanet) e o <strong>público B2C</strong> (espectadores, curadores de mostras e profissionais do audiovisual).
+                </p>
+
+                <div class="accordion">
+                    <details open>
+                        <summary>
+                            <span><strong>Seção 1: Home (Palco Central, Folha de Briefing e Trailers em HD)</strong></span>
+                            <span class="accordion-helper">Ver análise</span>
+                            <span class="accordion-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                        </summary>
+                        <div class="accordion-content">
+                            <p class="case-study-text">
+                                <strong>Objetivo de negócio:</strong> Capturar o interesse do visitante nos primeiros segundos, apresentando o repertório de filmes com acesso rápido ao canal de atendimento para orçamentos.
+                            </p>
+                            <p class="case-study-text">
+                                <strong>Decisão de UX e Adaptação Mobile:</strong> O palco principal une a camada original da <strong>Folha de Briefing escrita à mão com croquis de câmera</strong> (posicionada à esquerda no desktop e adaptada como uma <strong>gaveta retrátil em telas menores que 768px</strong>, liberando toda a largura para o vídeo no celular) ao carrossel de obras de 2011 e 2012 (<em>Hugo Cabret</em>, <em>O Palhaço</em>, <em>Tropa de Elite 2</em>, <em>Heleno</em> e <em>Xingu</em>). O visitante pode navegar pelas setas ou pelos indicadores circulares, assistir aos <strong>trailers oficiais em modal de sala escura</strong> e visualizar o telefone comercial logo abaixo do player.
+                            </p>
+                            <figure class="case-figure">
+                                <img src="../../images/eafilmes/EA_HOME.webp" alt="Seção Home da EA Filmes: carrossel cinematográfico, folha de briefing com croquis e claquete de atendimento" class="zoomable-image" loading="lazy">
+                                <figcaption class="case-figure-caption">Home da EA Filmes: bilhete da estação, folha de briefing original, vitrine com trailers em HD e atalho de contato.</figcaption>
+                            </figure>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="accordion">
+                    <details>
+                        <summary>
+                            <span><strong>Seção 2: EA Em Resumo (Manifesto em Película 35mm Perfurada)</strong></span>
+                            <span class="accordion-helper">Ver análise</span>
+                            <span class="accordion-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                        </summary>
+                        <div class="accordion-content">
+                            <p class="case-study-text">
+                                <strong>Objetivo de negócio:</strong> Apresentar o posicionamento criativo da produtora (<em>"Pequeno porte não significa empresa pequena, se a unidade de medida for feita em ideias, vontade de trabalhar e energia"</em>).
+                            </p>
+                            <p class="case-study-text">
+                                <strong>Decisão de UX:</strong> Para dar peso editorial ao manifesto, coloquei o texto sobre um quadro branco emoldurado por tiras de <strong>película cinematográfica 35mm perfurada</strong>. Isso garante leitura confortável com contraste máximo (21:1) sem sair do universo visual do cinema.
+                            </p>
+                            <figure class="case-figure">
+                                <img src="../../images/eafilmes/EA_EM_RESUMO.webp" alt="Seção EA Em Resumo: Manifesto institucional emoldurado por película 35mm perfurada" class="zoomable-image" loading="lazy">
+                                <figcaption class="case-figure-caption">EA Em Resumo: manifesto institucional com alto contraste de leitura emoldurado por película 35mm.</figcaption>
+                            </figure>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="accordion">
+                    <details>
+                        <summary>
+                            <span><strong>Seção 3: O Que Fazemos (Pipeline de Produção e Entregáveis B2B)</strong></span>
+                            <span class="accordion-helper">Ver análise</span>
+                            <span class="accordion-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                        </summary>
+                        <div class="accordion-content">
+                            <p class="case-study-text">
+                                <strong>Objetivo de negócio:</strong> Explicar com clareza as 4 etapas de trabalho da produtora para clientes corporativos, agências de publicidade e parceiros de incentivo fiscal.
+                            </p>
+                            <p class="case-study-text">
+                                <strong>Decisão de UX:</strong> Estruturei a seção em 4 abas diretas (<strong>CRIAR, PRODUZIR, EDITAR, FINALIZAR</strong>) sobre um painel âmbar (<code>#FF9900</code>) de leitura rápida. Abaixo do texto principal de cada aba, incluí um quadro escuro de <strong>Entregáveis Técnicos da Etapa</strong>, listando itens práticos como roteiro no padrão Courier 12pt, Planilha Orçamentária ANCINE, enquadramento na Lei Rouanet (Artigo 1º-A) e FSA/BRDE, captação em RED ONE / ARRI Alexa e masterização em DCP.
+                            </p>
+                            <figure class="case-figure">
+                                <img src="../../images/eafilmes/EA_O_QUE_FAZEMOS.webp" alt="Seção O Que Fazemos da EA Filmes: abas Criar, Produzir, Editar e Finalizar com painel de entregáveis B2B" class="zoomable-image" loading="lazy">
+                                <figcaption class="case-figure-caption">O Que Fazemos: navegação em abas pelo ciclo produtivo e lista de entregáveis técnicos B2B (ANCINE, Rouanet e FSA).</figcaption>
+                            </figure>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="accordion">
+                    <details>
+                        <summary>
+                            <span><strong>Seção 4: Brothers (Rede de Coprodução e Infraestrutura em São Paulo)</strong></span>
+                            <span class="accordion-helper">Ver análise</span>
+                            <span class="accordion-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                        </summary>
+                        <div class="accordion-content">
+                            <p class="case-study-text">
+                                <strong>Objetivo de negócio:</strong> Mostrar que a produtora conta com uma rede sólida de parceiros técnicos e de coprodução em São Paulo para assumir projetos de diferentes portes.
+                            </p>
+                            <p class="case-study-text">
+                                <strong>Decisão de design:</strong> Organizei uma grade 4x2 aberta pelo card branco original da <strong>Tumura Produções</strong> (extraído do objeto inteligente do PSD original), acompanhado por 7 cartões de parceiros de infraestrutura e cinema paulistano: <strong>Quanta Brasil</strong> (Câmeras e Iluminação), <strong>Locall</strong> (Maquinária e Lentes), <strong>O2 Pós</strong> (Finalização e Cor), <strong>Cinecolor Digital</strong> (Laboratório e DCP), <strong>Studio Vision</strong> (Estúdios), <strong>Cinemateca Brasileira</strong> (Preservação) e <strong>Gullane</strong> (Coprodução).
+                            </p>
+                            <figure class="case-figure">
+                                <img src="../../images/eafilmes/EA_BROTHERS.webp" alt="Seção Brothers: Grade 4x2 com Tumura Produções e parceiros de infraestrutura cinematográfica" class="zoomable-image" loading="lazy">
+                                <figcaption class="case-figure-caption">Brothers: rede de parceiros de coprodução e infraestrutura audiovisual em São Paulo.</figcaption>
+                            </figure>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="accordion">
+                    <details>
+                        <summary>
+                            <span><strong>Seção 5: Comunique-se (Conversão Segmentada B2B e B2C)</strong></span>
+                            <span class="accordion-helper">Ver análise</span>
+                            <span class="accordion-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                        </summary>
+                        <div class="accordion-content">
+                            <p class="case-study-text">
+                                <strong>Objetivo de negócio:</strong> Facilitar o envio de briefings comerciais, propostas de coprodução ou submissão de roteiros sem burocracia.
+                            </p>
+                            <p class="case-study-text">
+                                <strong>Decisão de UX:</strong> Dividi a área em duas colunas equilibradas: à esquerda, o formulário com seletor de <strong>Finalidade do Contato</strong> (Produção B2B, Coprodução, Editais/Incentivo Fiscal ou Imprensa/Festivais), campo opcional para link de projeto (Vimeo ou Drive) e botão de envio em <strong>Ouro Projetor (<code>#FFCC00</code>)</strong>; à direita, os canais diretos de atendimento (<code>contato@eafilmes.com.br</code>, telefone comercial e aviso de confidencialidade autoral conforme a Lei 9.610/98).
+                            </p>
+                            <figure class="case-figure">
+                                <img src="../../images/eafilmes/EA_COMUNIQUESE.webp" alt="Seção Comunique-se: Formulário matte dark com segmentação B2B/B2C e botão âmbar" class="zoomable-image" loading="lazy">
+                                <figcaption class="case-figure-caption">Comunique-se: formulário com triagem de finalidade B2B/B2C e canais diretos da produtora.</figcaption>
+                            </figure>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- 4. DESIGN SYSTEM & LABORATÓRIO CONCEITUAL -->
+                <h2 id="design-system"><span class="underline-text-purple">4. Design System Interativo &amp; Laboratório de Alternativas (KV 2012)</span></h2>
+                <p class="case-study-text">
+                    Tomando como referência a organização visual de guias como <strong>Microsoft Fluent 2</strong>, <strong>Google Material Design 3</strong> e <strong>Apple Human Interface Guidelines</strong>, criei dentro do próprio projeto uma área interativa de <strong>Design System e Identidade Visual</strong> (acessível pelo botão no rodapé do site ou pelos links deste estudo).
+                </p>
+                <ul class="process-list">
+                    <li><strong>Tokens Semânticos e Contraste WCAG:</strong> Mapeamento das cores usadas no site com seus respectivos valores HEX/RGB, função na interface e validação de contraste.</li>
+                    <li><strong>Simulador Ao Vivo de Temas Alternativos Não Usados:</strong> Ferramenta interativa para testar a paleta oficial ao lado de 3 estudos cromáticos conceituais derivados do mesmo universo (<em>Sépia Nitrato 1930: Homenagem Georges Méliès</em>, <em>Noir Prata Coloidal 35mm: Ref. Heleno</em> e <em>Sala Noturna Anamórfica</em>).</li>
+                    <li><strong>Laboratório de Componentes Conceituais:</strong> Galeria de componentes extras desenhados a partir da linguagem visual do projeto, como o <em>Botão Bilhete de Ingresso Picotado (Ticket Stub CTA)</em>, o <em>Card Claquete de Cena</em>, a <em>Láurea Vetorial de Festivais em SVG</em> e a <em>Barra de Timecode Kodak 35mm</em>.</li>
+                </ul>
+                <figure class="case-figure">
+                    <img src="../../images/eafilmes/EA_DESIGN_SYSTEM.webp" alt="Portal de Design System da EA Filmes: Fundamentos, Tokens, Tipografia e Laboratório Conceitual" class="zoomable-image" loading="lazy">
+                    <figcaption class="case-figure-caption">Central interativa do Design System (v2.4 • KV 2012): documentação viva de fundamentos, tokens, tipografia e componentes conceituais.</figcaption>
+                </figure>
+                <div style="margin: 1.5rem 0 2.25rem 0; padding: 1.15rem 1.4rem; background: linear-gradient(90deg, #111113 0%, #1a1a1e 100%); border: 1px solid #2e2e36; border-left: 4px solid #FFCC00; border-radius: 6px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; box-shadow: 0 6px 20px rgba(0,0,0,0.14);">
+                    <div style="flex: 1 1 260px;">
+                        <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #FFCC00; margin-bottom: 0.2rem;">
+                            Laboratório &amp; Documentação Ao Vivo
+                        </div>
+                        <div style="font-size: 0.92rem; color: #f4f4f5; line-height: 1.4;">
+                            Teste os temas conceituais e componentes em tempo real ou navegue pelo portal completo:
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center;">
+                        <a href="./app/index.html?view=design-system" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(90deg, #FFCC00 0%, #FF9900 100%); color: #000000 !important; font-weight: 700; font-size: 0.875rem; padding: 0.7rem 1.2rem; border-radius: 4px; text-decoration: none; box-shadow: 0 4px 12px rgba(255,204,0,0.25);">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                            <span>Abrir Design System Interativo (KV 2012)</span>
+                        </a>
+                        <a href="./app/index.html" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(90deg, #B81118 0%, #730206 100%); color: #ffffff !important; font-weight: 700; font-size: 0.875rem; padding: 0.7rem 1.2rem; border-radius: 4px; text-decoration: none; border: 1px solid #FFCC00; box-shadow: 0 4px 12px rgba(184,17,24,0.35);">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                            <span>Abrir Portal EA Filmes em Funcionamento</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 5. HANDOFF DE 2012 & PRESERVAÇÃO INTERATIVA -->
+                <h2 id="handoff"><span class="underline-text-purple">5. Handoff na Época (2012) &amp; Reconstrução Interativa de Acervo</span></h2>
+                <p class="case-study-text">
+                    Em <strong>2012</strong>, ferramentas de handoff em nuvem (como Figma ou Zeplin, que surgiriam apenas anos depois) ainda não existiam. A passagem de bastão entre Design e Desenvolvimento era 100% artesanal e exigia disciplina na organização do arquivo mestre no <strong>Adobe Photoshop CS5/CS6 (<code>EA.psd</code>)</strong>. Trabalhamos em uma dupla enxuta: eu responsável pela concepção de produto, arquitetura de informação e direção de arte, ao lado de um desenvolvedor front-end.
+                </p>
+                <h3 class="case-study-subheading">Como o Projeto Foi Entregue em 2012 vs. Preservação Atual no Portfólio</h3>
+                <ul class="process-list">
+                    <li><strong>Organização de Camadas e Smart Objects (2012):</strong> Estruturei cada tela do arquivo <code>EA.psd</code> em pastas nomeadas por seção (<code>header</code>, <code>resumo</code>, <code>o que fazemos</code>, <code>brothers</code>, <code>comunique-se</code>), preservando modos de mesclagem como <code>Lighter Color</code> no fundo da Estação da Luz e objetos inteligentes editáveis (como a marca da <em>Tumura Produções</em>).</li>
+                    <li><strong>Slicing Manual e Guia de Estilos (2012):</strong> Documentei todas as famílias tipográficas (<em>News Gothic BT Roman Condensed</em> e <em>Myriad Pro</em>), códigos de cor e estados de interação, além de exportar manualmente os recortes em PNG transparente (como o bilhete serrilhado da locomotiva e a folha de briefing com croquis).</li>
+                    <li><strong>Contexto Cultural e Técnico Fiel a 2011/2012:</strong> Todo o conteúdo preserva o momento real do cinema brasileiro e mundial em 2012, incluindo os filmes em vitrine (<em>Hugo Cabret 3D</em>, <em>O Palhaço</em>, <em>Tropa de Elite 2</em>, <em>Heleno</em> e <em>Xingu</em>), as câmeras digitais usadas nos sets da época (<em>RED ONE Mysterium-X</em>, <em>ARRI Alexa Classic</em>, <em>Canon 5D Mark II</em> e película <em>35mm</em>) e as linhas de fomento vigentes (<em>ANCINE</em>, <em>Artigo 1º-A</em>, <em>Lei Rouanet</em> e <em>FSA/BRDE</em>).</li>
+                    <li><strong>Reconstrução Interativa e Otimização WebP (-78,2%) para o Portfólio:</strong> Para que qualquer visitante possa navegar pelo projeto hoje com fluidez em telas desktop ou mobile, extraí as matrizes originais do <code>EA.psd</code> convertidas para WebP (reduzindo o peso total das imagens de <code>2,14 MB</code> para <code>324 kB</code>) e embarquei a aplicação funcional diretamente neste estudo de caso (em <code>./app/</code>), junto ao seu Design System.</li>
+                </ul>
+
+                <!-- RESULTADO E IMPACTO -->
+                <h2 id="impacto"><span class="underline-text-purple">Resultado e Impacto</span></h2>
+                <p class="case-study-text" style="margin-top:0.5rem;">O projeto consolidou a presença digital da Estação Alternativa Filmes com uma linguagem visual própria, capaz de dialogar tanto com patrocinadores e coprodutores B2B quanto com o público apaixonado por cinema.</p>
+                <div class="result-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top:1rem;">
+                    <div class="result-card result-card--meta">
+                        <div class="result-card-head">
+                            <svg class="result-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.4"></circle>
+                                <path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path>
+                            </svg>
+                            <div class="result-card-title">-78,2% de Payload</div>
+                        </div>
+                        <p class="result-card-desc">Redução de 2,14 MB para 324 kB totais em WebP na versão de acervo, preservando a nitidez das camadas originais do PSD.</p>
+                    </div>
+                    <div class="result-card result-card--meta">
+                        <div class="result-card-head">
+                            <svg class="result-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <rect x="3" y="5" width="18" height="4" rx="1" stroke="currentColor" stroke-width="1.4"></rect>
+                                <rect x="3" y="10" width="18" height="4" rx="1" stroke="currentColor" stroke-width="1.4"></rect>
+                                <rect x="3" y="15" width="18" height="4" rx="1" stroke="currentColor" stroke-width="1.4"></rect>
+                            </svg>
+                            <div class="result-card-title">Design System Vivo</div>
+                        </div>
+                        <p class="result-card-desc">Documentação interativa integrada ao projeto com tokens WCAG AAA, simulador de temas e laboratório de componentes.</p>
+                    </div>
+                    <div class="result-card result-card--meta">
+                        <div class="result-card-head">
+                            <svg class="result-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M4 6h16v12l-8-3-8 3V6z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" fill="none"></path>
+                                <path d="M8 8h8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path>
+                            </svg>
+                            <div class="result-card-title">Diálogo B2B &amp; B2C</div>
+                        </div>
+                        <p class="result-card-desc">Combinação de trailers em HD, matriz de entregáveis ANCINE/FSA/Rouanet, rede Brothers e contato segmentado.</p>
+                    </div>
+                </div>
+
+                <!-- APRENDIZADOS -->
+                <h2 id="reflexao"><span class="underline-text-purple">Aprendizados</span></h2>
+                <ul class="process-list">
+                    <li><strong>A interface como extensão da sala de cinema:</strong> O equilíbrio entre o fundo arquitetônico da Estação da Luz, o tom carmesim das tarjas e o amarelo de projeção nos botões guia o olhar do visitante sem cansar a vista.</li>
+                    <li><strong>Direção de arte autoral aliada à engenharia:</strong> Preservar os elementos gráficos originais de 2012 (bilhete serrilhado, folha de briefing com croquis e película 35mm) adaptando a experiência para dispositivos móveis e documentando seu Design System mostra como design visual e viabilidade técnica se fortalecem mutuamente.</li>
+                </ul>
+
+            </article>
+        </div>
+    </main>
+
+    <script src="../../scripts/nav.js"></script>
+    <script>
+        // Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const closeBtn = document.querySelector('.lightbox-close');
+
+        document.querySelectorAll('.zoomable-image').forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                const figcaption = img.closest('figure')?.querySelector('figcaption');
+                if (figcaption && lightboxCaption) {
+                    lightboxCaption.textContent = figcaption.textContent;
+                }
+                lightbox.classList.add('active');
+            });
+        });
+
+        const closeLightbox = () => lightbox.classList.remove('active');
+        closeBtn.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+    </script>
+</body>
+
+</html>
