@@ -7,15 +7,15 @@
   <!-- Homepage -->
   <url>
     <loc>https://tarcisiobispo.github.io/portfolio/</loc>
-    <lastmod>2024-01-01</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-11-06</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <!-- Sobre -->
   <url>
     <loc>https://tarcisiobispo.github.io/portfolio/sobre/</loc>
-    <lastmod>2024-01-01</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -23,32 +23,32 @@
   <!-- Contato -->
   <url>
     <loc>https://tarcisiobispo.github.io/portfolio/contato/</loc>
-    <lastmod>2024-01-01</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
-  <!-- Case Study 1 -->
+  <!-- Case Study 1: Grupo Triunfante -->
   <url>
     <loc>https://tarcisiobispo.github.io/portfolio/case-studies/case-study-triunfante/</loc>
-    <lastmod>2024-01-01</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   
-  <!-- Case Study 2: FGV -->
+  <!-- Case Study 2: FGV Direito SP -->
   <url>
     <loc>https://tarcisiobispo.github.io/portfolio/case-studies/case-study-fgv/</loc>
-    <lastmod>2025-01-01</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   
   <!-- Case Study 3: EA Filmes -->
   <url>
     <loc>https://tarcisiobispo.github.io/portfolio/case-studies/case-study-ea-filmes/</loc>
-    <lastmod>2025-01-01</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
 </urlset>

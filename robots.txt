@@ -1,6 +1,18 @@
+# ==============================================================================
+# robots.txt - Portfólio Tarcisio Bispo de Araujo
+# URL Canônica: https://tarcisiobispo.github.io/portfolio/
+# ==============================================================================
+
 User-agent: *
 Allow: /
+
+# Diretórios Internos, Backups e Projetos em Rascunho
 Disallow: /Taliparts/
 Disallow: /case-studies/case-study-taliparts/
+Disallow: /case-studies/case-study-delore/
+Disallow: /backups-images/
+Disallow: /backups-html/
+Disallow: /docs/
 
+# Mapa do Site Oficial
 Sitemap: https://tarcisiobispo.github.io/portfolio/sitemap.xml
