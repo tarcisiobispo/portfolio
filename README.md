@@ -1,12 +1,11 @@
 # Tarcisio Bispo de Araujo
 
-**Lead Product Designer | Arquiteto de Informação & Design Systems**
+**Product Designer | Arquiteto de Informação & Design Systems**
 
 Portfólio profissional de design de produtos digitais, arquitetura de informação, sistemas de design atômico e engenharia de interface. Projetado e construído com foco em acessibilidade (WCAG AA/AAA), performance, clareza cognitiva e impacto mensurável de negócios.
 
 - **Portfólio Online:** [https://tarcisiobispo.github.io/portfolio/](https://tarcisiobispo.github.io/portfolio/)
 - **LinkedIn Oficial:** [https://www.linkedin.com/in/tarcisiobispouxdesigner/](https://www.linkedin.com/in/tarcisiobispouxdesigner/)
-- **Contato Profissional:** [luzarcanastudio@gmail.com](mailto:luzarcanastudio@gmail.com)
 
 ---
 
@@ -81,10 +80,9 @@ portfolio/
 
 ## Contato e Presença Profissional
 
-Para oportunidades de liderança de produto, consultorias em arquitetura de UX ou projetos estratégicos de Design Systems:
+Para oportunidades em design de produto, consultorias em arquitetura de UX ou projetos estratégicos de Design Systems:
 
 - **LinkedIn:** [https://www.linkedin.com/in/tarcisiobispouxdesigner/](https://www.linkedin.com/in/tarcisiobispouxdesigner/)
-- **E-mail Oficial:** [luzarcanastudio@gmail.com](mailto:luzarcanastudio@gmail.com)
 - **Localização:** São Paulo, SP - Brasil
 
 ---
