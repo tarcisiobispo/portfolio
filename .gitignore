@@ -1,13 +1,55 @@
-# Node modules
+# ==============================================================================
+# Portfólio Tarcisio Bispo de Araujo - .gitignore
+# ==============================================================================
+
+# Sistema Operacional / Arquivos Temporários
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+*.tmp
+*.temp
+
+# Editores e Ambientes de Desenvolvimento
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# Dependências e Pacotes Node
 node_modules/
-
-# Backup folder for originals
-backups-images/
-
-# Ignore generated node artifacts
 package-lock.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
 
-# Ignore Taliparts full content & draft case study until official launch
+# Variáveis de Ambiente e Chaves Locais
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Backups e Documentações Internas
+backups-images/
+docs/
+
+# Arquivos Fonte de Design (Binários Locais)
+*.penpot
+*.psd
+*.kra
+
+# Projetos e Estudos de Caso em Rascunho (Não Publicados)
 /Taliparts/
 /case-studies/case-study-taliparts/
 /images/taliparts/
+/case-studies/case-study-delore/
+/images/delore/
