@@ -37,3 +37,39 @@ Embora o case esteja excelente, para atingir o nível máximo de portfólio de p
 
 ---
 **Score Design Circuit:** 92/100 (Pronto para aplicação em vagas Sênior/Lead).
+
+---
+
+## Future release — Governança e visibilidade do capital acadêmico
+
+Observação rápida: durante o trabalho ficou claro que a "invisibilidade" do capital acadêmico não era apenas um problema de apresentação visual. Em muitos casos os blocos de conteúdo existem, mas estão fragmentados, sem metadados padronizados, sem donos editoriais e sem fluxos de ingestão — ou seja, é um problema de governança, não apenas de layout.
+
+Por que documentar como "future release": esta intervenção exige decisões institucionais (pessoas, políticas, integrações técnicas) e impacta mais do que o front-end; entregue como iniciativa de produto/editorial para a próxima fase.
+
+Principais evidências observadas
+- Conteúdo disperso em múltiplos subdomínios/departamentos sem metadados comuns.
+- Publicações e resultados em PDFs/imagens, não indexáveis por search.
+- Falta de perfis de autor e identificadores unificados (autor → projeto → saída).
+- Processos editoriais indefinidos: ninguém com responsabilidade clara para publicar/atualizar.
+
+Checklist recomendada para a release (prioridade):
+1. Padronizar modelo de conteúdo (metadados mínimos: autor, afiliação, data, tipo, projeto, DOI/identificador).
+2. Criar perfis de autor vinculáveis e mapear afiliacões (permitir landing pages por autor/projeto).
+3. Definir dono(s) editorial(is) e um fluxo de submissão/revisão para conteúdos acadêmicos.
+4. Implementar ingestão/API para importar resultados de repositórios internos e externos (evitar dependência exclusiva de uploads manuais).
+5. Transformar artefatos não estruturados (PDFs) em registros com metadados ou extrair metadados via OCR/ETL quando necessário.
+6. Ajustar indexação/search para priorizar perfis e saídas académicas (faceting por projeto/autor/tipo).
+7. Depois das etapas anteriores: revisar layout e componentes de exibição (cards, coleções, taxonomias visuais) com base em dados reais de conteúdo.
+
+Papéis sugeridos
+- Product Owner (institucional): responsável por aprovar políticas e prioridades.
+- Editor/Curador acadêmico: validação de metadados e qualidade editorial.
+- Engenheiro de dados/API: implementa ingestão, normalização e indexação.
+- Designer de informação: mapeia apresentação e navegação após a normalização dos dados.
+
+Resultados esperados (KPIs)
+- Aumento da findability (% de conteúdo com metadados mínimos).
+- Crescimento de perfis completos de autores publicados.
+- Redução do tempo médio entre produção e publicação.
+
+Comentários finais: esta intervenção entra na categoria "governança de conteúdo" e desbloqueia valor perene — só então o trabalho de IA/UX e layout será plenamente eficaz.

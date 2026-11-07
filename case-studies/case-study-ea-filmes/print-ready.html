@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>EA Filmes — Print-ready</title>
+  <link rel="stylesheet" href="../../css/design-tokens.css">
+  <link rel="stylesheet" href="../../css/case-study-style.css">
+  <style>
+    /* Ajustes para impressão */
+    @media print {
+      body { -webkit-print-color-adjust: exact; }
+      nav, .sticky-tools, .site-nav { display: none !important; }
+      .container { width: 100%; padding: 0; }
+      img { page-break-inside: avoid; }
+    }
+    .print-hero { max-width:900px; margin:0 auto 1rem auto; }
+    .print-section { max-width:900px; margin:0 auto 1rem auto; }
+    .side-by-side { display:flex; gap:1rem; }
+    .side-by-side img { width:100%; height:auto; border-radius:6px; }
+    .print-foot { font-size:0.9rem; color:var(--color-text-muted); margin-top:1.5rem; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header style="text-align:center;margin:1.5rem 0;">
+      <h1>EA Filmes — Website institucional</h1>
+      <p class="case-study-text">Versão para impressão: resumo executivo, comparativo visual e notas de processo.</p>
+    </header>
+
+    <section class="print-hero">
+      <figure class="case-figure">
+        <img src="../../images/eafilmes/EA_HOME.jpg" alt="EA Home - hero" />
+        <figcaption class="caption case-study-text">Hero principal — Versão EA (adotada).</figcaption>
+      </figure>
+    </section>
+
+    <section class="print-section">
+      <h2>Resumo</h2>
+      <p class="case-study-text">Site institucional para EA Filmes — entrega de identidade aplicada, kit de estilos e documentação para manutenção. Direção escolhida prioriza presença editorial e narrativa visual.</p>
+    </section>
+
+    <section class="print-section">
+      <h2>Comparativo visual</h2>
+      <div class="side-by-side">
+        <figure style="flex:1">
+          <img src="../../images/eafilmes/EA_HOME.jpg" alt="Versão EA" />
+          <figcaption>EA — identidade autoral.</figcaption>
+        </figure>
+        <figure style="flex:1">
+          <img src="../../images/eafilmes/estacao_alternativav2.png" alt="Versão Estação Alternativa" />
+          <figcaption>Estação Alternativa — versão alternativa arquivada.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="print-section">
+      <h2>Decisão</h2>
+      <p class="case-study-text">Optou-se pela Versão EA por melhor alinhamento com posicionamento editorial e potencial de conversão qualitativa em projetos audiovisuais. A Versão Alternativa fica arquivada para usos táticos.</p>
+    </section>
+
+    <section class="print-section">
+      <h2>Notas técnicas</h2>
+      <ul class="case-study-text">
+        <li>Tipografia: tokens aplicados (`--font-family-serif` para títulos, `--font-family-sans` para corpo).</li>
+        <li>Imagens: assets otimizados, múltiplos formatos disponíveis na pasta `images/eafilmes/`.</li>
+        <li>Componentes: uso exclusivo do design system do repositório para consistência.</li>
+      </ul>
+    </section>
+
+    <footer class="print-foot">Gere PDF via navegador: Arquivo → Imprimir → Salvar como PDF. Recomendo imprimir em A4, margens mínimas e ativar cores de fundo.</footer>
+  </main>
+</body>
+</html>

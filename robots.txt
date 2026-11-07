@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /Taliparts/
+Disallow: /case-studies/case-study-taliparts/
 
 Sitemap: https://tarcisiobispo.github.io/portfolio/sitemap.xml

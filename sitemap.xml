@@ -36,12 +36,19 @@
     <priority>0.8</priority>
   </url>
   
-  <!-- Case Study 2 -->
+  <!-- Case Study 2: FGV -->
   <url>
     <loc>https://tarcisiobispo.github.io/portfolio/case-studies/case-study-fgv/</loc>
-    <lastmod>2024-01-01</lastmod>
+    <lastmod>2025-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
+  <!-- Case Study 3: EA Filmes -->
+  <url>
+    <loc>https://tarcisiobispo.github.io/portfolio/case-studies/case-study-ea-filmes/</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

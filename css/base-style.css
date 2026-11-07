@@ -111,7 +111,7 @@ img, picture, video, iframe {
 .card-grid {
     display: grid;
     gap: var(--space-lg);
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
     align-items: stretch;
 }
 
@@ -160,6 +160,7 @@ img, picture, video, iframe {
 .case-card__description {
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -191,8 +192,8 @@ img, picture, video, iframe {
 .case-card.clean .case-card__image {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    object-position: center center;
+    object-fit: cover;
+    object-position: center top;
     display: block;
 }
 

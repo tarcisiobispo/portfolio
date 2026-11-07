@@ -6,3 +6,8 @@ backups-images/
 
 # Ignore generated node artifacts
 package-lock.json
+
+# Ignore Taliparts full content & draft case study until official launch
+/Taliparts/
+/case-studies/case-study-taliparts/
+/images/taliparts/

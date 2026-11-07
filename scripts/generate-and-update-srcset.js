@@ -53,7 +53,10 @@ async function generateVariants(file) {
   return variants;
 }
 
-function toWebPath(abs) {
+function toWebPath(abs, htmlFile) {
+  if (htmlFile) {
+    return path.relative(path.dirname(htmlFile), abs).split(path.sep).join('/');
+  }
   return path.relative(ROOT, abs).split(path.sep).join('/');
 }
 
@@ -79,7 +82,7 @@ function findHtmlFiles(dir) {
   return results;
 }
 
-function buildSrcsetVariants(srcAbs) {
+function buildSrcsetVariants(srcAbs, htmlFile) {
   const ext = path.extname(srcAbs);
   const name = path.basename(srcAbs, ext);
   const dir = path.dirname(srcAbs);
@@ -88,8 +91,8 @@ function buildSrcsetVariants(srcAbs) {
   for (const w of WIDTHS) {
     const avif = path.join(dir, `${name}-${w}.avif`);
     const webp = path.join(dir, `${name}-${w}.webp`);
-    if (fs.existsSync(avif)) entriesAvif.push(`${toWebPath(avif)} ${w}w`);
-    if (fs.existsSync(webp)) entriesWebp.push(`${toWebPath(webp)} ${w}w`);
+    if (fs.existsSync(avif)) entriesAvif.push(`${toWebPath(avif, htmlFile)} ${w}w`);
+    if (fs.existsSync(webp)) entriesWebp.push(`${toWebPath(webp, htmlFile)} ${w}w`);
   }
   return { avif: entriesAvif.join(', '), webp: entriesWebp.join(', ') };
 }
@@ -138,7 +141,7 @@ function updateHtmlFiles() {
       const srcAbs = path.resolve(path.dirname(file), src);
       if (!fs.existsSync(srcAbs)) return;
 
-      const sets = buildSrcsetVariants(srcAbs);
+      const sets = buildSrcsetVariants(srcAbs, file);
       // remove existing generated AVIF/webp sources to avoid duplicates
       $pic.find('source[data-generated="true"]').remove();
 
@@ -173,7 +176,7 @@ function updateHtmlFiles() {
       const srcAbs = path.resolve(path.dirname(file), src);
       if (!fs.existsSync(srcAbs)) return;
 
-      const sets = buildSrcsetVariants(srcAbs);
+      const sets = buildSrcsetVariants(srcAbs, file);
       if (!sets.avif && !sets.webp) return;
 
       // adjust the img src to a valid replacement before wrapping
