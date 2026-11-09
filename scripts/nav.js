@@ -38,6 +38,21 @@
       });
     }
 
-    // Cookie banner handling moved to cookie-consent.js (consent-based analytics)
+    // Theme Toggle Controller (Global Light/Dark Theme)
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', function() {
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 
+          (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', nextTheme);
+        if (document.body) {
+          document.body.classList.toggle('dark-mode', nextTheme === 'dark');
+        }
+        try {
+          localStorage.setItem('theme', nextTheme);
+        } catch (e) { /* fail silently */ }
+      });
+    }
   });
 })();

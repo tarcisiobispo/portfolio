@@ -104,7 +104,7 @@
             font-weight: 500;
             line-height: 1.25;
             letter-spacing: -0.02em;
-            color: var(--color-light-text-main);
+            color: var(--text-primary);
             margin: 0;
         }
 
@@ -114,7 +114,7 @@
             font-weight: 400;
             line-height: 1.25;
             letter-spacing: -0.02em;
-            color: var(--color-light-text-muted);
+            color: var(--text-muted);
             margin: 0;
         }
 
@@ -140,7 +140,7 @@
             font-size: var(--font-size-base);
             font-weight: 400;
             line-height: var(--line-height-base);
-            color: var(--color-light-text-muted);
+            color: var(--text-secondary);
             margin: 0;
         }
 
@@ -152,7 +152,7 @@
         .about__cta {
             margin-top: var(--space-xl);
             padding-top: var(--space-lg);
-            border-top: 1px solid rgba(31, 41, 51, 0.1);
+            border-top: 1px solid var(--border-color);
         }
 
         /* ===========================================
@@ -169,33 +169,44 @@
             font-weight: 600;
             letter-spacing: 0.04em;
             text-transform: uppercase;
-            color: var(--color-light-text-main);
+            color: var(--text-primary);
             text-decoration: none;
             padding: 14px 28px;
-            border: 1px solid var(--color-light-text-main);
+            border: 1px solid var(--text-primary);
             border-radius: var(--radius-sm);
             transition: all 0.2s ease;
         }
 
         .about__contact:hover {
-            background-color: var(--color-light-text-main);
-            color: var(--color-light-surface);
+            background-color: var(--text-primary);
+            color: var(--bg-body);
             text-decoration: none;
         }
 
         .about__contact:hover svg {
-            stroke: var(--color-light-surface);
+            stroke: var(--bg-body);
         }
 
         .about__contact svg {
             width: 16px;
             height: 16px;
-            stroke: var(--color-light-text-main);
+            stroke: var(--text-primary);
             transition: stroke 0.2s ease;
         }
     </style>
+    <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('theme');
+        if (!t && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          t = 'dark';
+        }
+        document.documentElement.setAttribute('data-theme', t || 'light');
+      } catch (e) {}
+    })();
+    </script>
 </head>
-<body>
+<body class="has-grid-bg">
 
     <a class="skip-link" href="#conteudo">Pular para conteúdo</a>
 
@@ -211,6 +222,24 @@
             <ul class="site-nav__menu">
                 <li><a href="./" class="site-nav__link">Sobre</a></li>
                 <li><a href="../contato/" class="site-nav__link">Entre em Contato</a></li>
+                            <li>
+                    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Alternar tema de cor" title="Alternar tema claro/escuro">
+                        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                </li>
             </ul>
         </div>
     </nav>

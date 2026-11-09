@@ -1,17 +1,17 @@
 <!DOCTYPE html><html lang="pt-BR"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio UX</title>
+    <title>Tarcisio Bispo de Araujo | Product &amp; UX Designer Sênior</title>
 
-    <meta name="description" content="Portfólio de UX de Tarcisio Bispo: estudos de caso, reestruturação de sites institucionais, branding e soluções digitais com foco em narrativa, usabilidade e resultados.">
+    <meta name="description" content="Portfólio de Product &amp; UX Design de Tarcisio Bispo de Araujo: estudos de caso, arquitetura de informação, sistemas complexos, branding e soluções digitais com foco em estratégia e resultados mensuráveis.">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Portfólio UX - Tarcisio Bispo">
+    <meta property="og:title" content="Tarcisio Bispo de Araujo | Product &amp; UX Designer Sênior">
     <meta property="og:description" content="Estudos de caso completos com contexto, abordagem e resultados. Especializado em branding, reestruturação de sites institucionais e soluções digitais.">
     <meta property="og:image" content="/images/sitemap-gecko-cover.jpg">
     <meta property="og:url" content="https://tarcisiobispo.github.io/portfolio/">
-    <meta property="og:site_name" content="Portfólio UX - Tarcisio Bispo">
+    <meta property="og:site_name" content="Portfólio - Tarcisio Bispo de Araujo">
     <meta property="og:locale" content="pt_BR">
     
       <!-- Favicon -->
@@ -20,7 +20,7 @@
       <link rel="apple-touch-icon" sizes="180x180" href="/portfolio/favicon_uxproduct.png">
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Portfólio UX - Tarcisio Bispo">
+    <meta name="twitter:title" content="Tarcisio Bispo de Araujo | Product &amp; UX Designer Sênior">
     <meta name="twitter:description" content="Estudos de caso completos com contexto, abordagem e resultados. Especializado em branding, reestruturação de sites institucionais e soluções digitais.">
     <meta name="twitter:image" content="/images/sitemap-gecko-cover.jpg">
     
@@ -48,7 +48,7 @@
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Tarcisio Bispo de Araujo",
-      "jobTitle": "UX Designer",
+      "jobTitle": "Product & UX Designer Sênior",
       "description": "Design Estratégico que conecta objetivos de negócio, viabilidade técnica e necessidades reais do usuário Especializado em campanhas de branding, reestruturação de sites institucionais e soluções digitais.",
       "url": "https://tarcisiobispo.github.io/portfolio/",
       "sameAs": [
@@ -60,8 +60,20 @@
     }
     </script>
 
+    <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('theme');
+        if (!t && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          t = 'dark';
+        }
+        document.documentElement.setAttribute('data-theme', t || 'light');
+      } catch (e) {}
+    })();
+    </script>
+
 </head>
-<body data-theme="dark">
+<body>
 
     <a class="skip-link" href="#conteudo">Pular para conteúdo</a>
 
@@ -93,14 +105,32 @@
             <ul class="site-nav__menu">
                 <li><a href="sobre/" class="site-nav__link">Sobre</a></li>
                 <li><a href="contato/" class="site-nav__link">Entre em Contato</a></li>
+                <li>
+                    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Alternar tema de cor" title="Alternar tema claro/escuro">
+                        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                </li>
             </ul>
         </div>
     </nav>
 
     <main class="container" id="conteudo">
       <header class="hero" id="inicio">
+          <p class="hero__eyebrow">Product &amp; UX Designer Sênior</p>
           <h1 class="hero__title">Design Estratégico que conecta objetivos de negócio, viabilidade técnica e necessidades reais do usuário</h1>
-          
 
           <div class="hero__actions">
               <div class="social-links">
@@ -142,6 +172,11 @@
                 </picture>
               </div>
               <div class="case-card__content">
+                <div class="case-card__tags">
+                  <span class="case-tag">Jornada Phygital</span>
+                  <span class="case-tag">Mobile-First</span>
+                  <span class="case-tag">Recrutamento</span>
+                </div>
                 <h3 class="case-card__title">Campanha omnichannel de recrutamento (Afterdoor + social → Landing)</h3>
                 <p class="case-card__subtitle">Grupo Triunfante</p>
                 <p class="case-card__description">Estratégia phygital e jornada mobile-first para preencher vagas operacionais em múltiplos estados.</p>
@@ -158,6 +193,11 @@
                 </picture>
               </div>
                 <div class="case-card__content">
+                <div class="case-card__tags">
+                  <span class="case-tag">Arquitetura de Informação</span>
+                  <span class="case-tag">Governança</span>
+                  <span class="case-tag">Portal Redesign</span>
+                </div>
                 <h3 class="case-card__title">Content Discovery Architecture: Portal Redesign com Foco em Escalabilidade</h3>
                 <p class="case-card__subtitle">FGV Direito SP</p>
                 <p class="case-card__description">Arquitetura, governança e execução visual para transformar um repositório passivo em ecossistema escalável.</p>
@@ -172,6 +212,11 @@
                 </picture>
               </div>
                 <div class="case-card__content">
+                <div class="case-card__tags">
+                  <span class="case-tag">Design System</span>
+                  <span class="case-tag">Direção de Arte</span>
+                  <span class="case-tag">Web Performance</span>
+                </div>
                 <h3 class="case-card__title">Identidade Digital, Portal Audiovisual B2B/B2C &amp; Design System</h3>
                 <p class="case-card__subtitle">EA Filmes (Estação Alternativa)</p>
                 <p class="case-card__description">Direção de arte, arquitetura de informação, otimização WebP (-78% de payload) e Design System interativo para produtora cinematográfica.</p>

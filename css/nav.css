@@ -276,3 +276,119 @@
 body {
     padding-top: 72px;
 }
+
+/* ===========================================
+   THEME TOGGLE BUTTON (ACCESSIBLE SVG)
+   =========================================== */
+
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: transparent;
+    border: 1px solid transparent;
+    color: inherit;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.theme-toggle:hover {
+    background: rgba(125, 125, 125, 0.15);
+}
+
+.theme-toggle:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--brand-accent, #238f9c);
+}
+
+.theme-toggle__icon {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    fill: none;
+    flex-shrink: 0;
+    display: block;
+}
+
+/* No modo claro: mostra a lua (para ir ao modo escuro) e esconde o sol */
+html[data-theme="light"] .theme-toggle__icon--sun {
+    display: none;
+}
+html[data-theme="light"] .theme-toggle__icon--moon {
+    display: block;
+}
+
+/* No modo escuro: mostra o sol (para ir ao modo claro) e esconde a lua */
+html[data-theme="dark"] .theme-toggle__icon--sun {
+    display: block;
+}
+html[data-theme="dark"] .theme-toggle__icon--moon {
+    display: none;
+}
+
+/* Fallback para prefers-color-scheme */
+@media (prefers-color-scheme: dark) {
+    html:not([data-theme="light"]):not([data-theme="dark"]) .theme-toggle__icon--sun {
+        display: block;
+    }
+    html:not([data-theme="light"]):not([data-theme="dark"]) .theme-toggle__icon--moon {
+        display: none;
+    }
+}
+@media (prefers-color-scheme: light) {
+    html:not([data-theme="light"]):not([data-theme="dark"]) .theme-toggle__icon--sun {
+        display: none;
+    }
+    html:not([data-theme="light"]):not([data-theme="dark"]) .theme-toggle__icon--moon {
+        display: block;
+    }
+}
+
+/* Navigation theme adaptativo */
+html[data-theme="light"] .site-nav {
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid #e2e8f0;
+}
+
+html[data-theme="light"] .site-nav__brand {
+    color: #0f172a;
+}
+html[data-theme="light"] .site-nav__brand:hover {
+    color: #1b6f7a;
+}
+
+html[data-theme="light"] .site-nav__link {
+    color: #475569;
+}
+html[data-theme="light"] .site-nav__link:hover {
+    color: #0f172a;
+}
+
+html[data-theme="light"] .theme-toggle {
+    color: #0f172a;
+}
+
+html[data-theme="dark"] .site-nav {
+    background: rgba(18, 18, 18, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="dark"] .site-nav__brand {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+html[data-theme="dark"] .site-nav__link {
+    color: rgba(255, 255, 255, 0.75);
+}
+html[data-theme="dark"] .site-nav__link:hover {
+    color: #ffffff;
+}
+
+html[data-theme="dark"] .theme-toggle {
+    color: rgba(255, 255, 255, 0.95);
+}

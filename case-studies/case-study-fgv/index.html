@@ -33,14 +33,10 @@
     <link rel="icon" type="image/png" href="/portfolio/favicon_uxproduct.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/portfolio/favicon_uxproduct.png">
 
-    <!--Google Fonts-->
+        <!-- Google Fonts: Source Sans 3 & Source Serif 4 (Padrão Oficial do Portfólio) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&amp;family=Source+Serif+4:wght@400&amp;display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:wght@400&display=optional">
-    </noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
 
     <!-- cookies/analytics removed -->
 
@@ -70,6 +66,10 @@
     </script>
 
     <style>
+        :root {
+            --brand-accent: #0284c7;
+        }
+
         /* Lightbox Styles */
         .lightbox-overlay {
             display: none;
@@ -154,6 +154,17 @@
         }
     </style>
 
+    <script>
+    (function(){
+      try {
+        var t = localStorage.getItem('theme');
+        if (!t && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          t = 'dark';
+        }
+        document.documentElement.setAttribute('data-theme', t || 'light');
+      } catch (e) {}
+    })();
+    </script>
 </head>
 
 <body>
@@ -168,6 +179,24 @@
             <ul class="site-nav__menu">
                 <li><a href="../../sobre/" class="site-nav__link">Sobre</a></li>
                 <li><a href="../../contato/" class="site-nav__link">Entre em Contato</a></li>
+                            <li>
+                    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Alternar tema de cor" title="Alternar tema claro/escuro">
+                        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                </li>
             </ul>
         </div>
     </nav>
@@ -234,7 +263,7 @@
                     <svg class="icon-list" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                     </svg>
-                    <span class="sr-only">Navegar neste estudo</span>
+                    <span>Navegar no Case</span>
                     <span class="reading-badge" aria-hidden="true">
                         <svg class="icon-clock" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path d="M12 7v5l3 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -274,9 +303,9 @@
         </script>
 
         <div class="content-body">
-            <article class="case-content" id="conteudo" style="max-width: var(--content-max-width, 1200px);">
+            <article class="case-content" id="conteudo">
                 <h2 id="visao-geral"><span class="underline-text-purple">Visão Geral</span></h2>
-                <div class="result-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+                <div class="result-grid result-grid-overview">
                     <div class="result-card result-card--meta">
                         <div class="result-card-head">
                             <div class="result-card-title">O que foi feito</div>
@@ -345,7 +374,7 @@
                     <details>
                         <summary>
                             <span><strong>Auditoria Técnica: Heuristic Evaluation</strong></span>
-                            <span class="accordion-helper">Clique para ver detalhes</span>
+                            <span class="accordion-helper">Clique para recolher ou expandir</span>
                             <span class="accordion-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg></span>
@@ -373,7 +402,7 @@
                     <details>
                         <summary>
                             <span><strong>Matriz CSD: Validando Suposições &amp; Lacunas</strong></span>
-                            <span class="accordion-helper">Clique para ver detalhes</span>
+                            <span class="accordion-helper">Clique para recolher ou expandir</span>
                             <span class="accordion-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg></span>
@@ -403,7 +432,7 @@
                     <details>
                         <summary>
                             <span><strong>Pesquisa: Ciclos de Escuta &amp; Personas</strong></span>
-                            <span class="accordion-helper">Clique para ver detalhes</span>
+                            <span class="accordion-helper">Clique para recolher ou expandir</span>
                             <span class="accordion-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg></span>
@@ -452,7 +481,7 @@
                     <details>
                         <summary>
                             <span><strong>Síntese do Diagnóstico: Perfis &amp; Dores Comuns</strong></span>
-                            <span class="accordion-helper">Clique para ver detalhes</span>
+                            <span class="accordion-helper">Clique para recolher ou expandir</span>
                             <span class="accordion-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg></span>
@@ -490,7 +519,7 @@
                     <details>
                         <summary>
                             <span><strong>Mediação de Conflitos: O Designer como Facilitador</strong></span>
-                            <span class="accordion-helper">Clique para ver detalhes</span>
+                            <span class="accordion-helper">Clique para recolher ou expandir</span>
                             <span class="accordion-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg></span>
@@ -518,7 +547,7 @@
                     <details>
                         <summary>
                             <span><strong>Matriz de Priorização: Impacto vs. Viabilidade Técnica</strong></span>
-                            <span class="accordion-helper">Clique para ver detalhes</span>
+                            <span class="accordion-helper">Clique para recolher ou expandir</span>
                             <span class="accordion-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg></span>
@@ -577,7 +606,7 @@
                     <details>
                         <summary>
                             <span>Pilar 1: Orquestração Omnicanal (Iceberg Sistêmico)</span>
-                            <span class="accordion-helper">Ver detalhes</span>
+                            <span class="accordion-helper">Clique para recolher ou expandir</span>
                             <span class="accordion-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg></span>
@@ -598,7 +627,7 @@
                     <details>
                         <summary>
                             <span>Pilar 2: Visibilidade do Capital Acadêmico</span>
-                            <span class="accordion-helper">Ver detalhes</span>
+                            <span class="accordion-helper">Clique para recolher ou expandir</span>
                             <span class="accordion-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg></span>
@@ -619,7 +648,7 @@
                     <details>
                         <summary>
                             <span>Pilar 3: Arquitetura de Informação &amp; Taxonomia</span>
-                            <span class="accordion-helper">Ver detalhes</span>
+                            <span class="accordion-helper">Clique para recolher ou expandir</span>
                             <span class="accordion-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg></span>
@@ -678,7 +707,7 @@
                     <details>
                         <summary>
                             <span>Estruturação de Áreas Estratégicas</span>
-                            <span class="accordion-helper">Ver detalhes</span>
+                            <span class="accordion-helper">Clique para recolher ou expandir</span>
                             <span class="accordion-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg></span>
@@ -691,7 +720,7 @@
                     <details>
                         <summary>
                             <span>Fluxo de Trabalho Integrado</span>
-                            <span class="accordion-helper">Ver detalhes</span>
+                            <span class="accordion-helper">Clique para recolher ou expandir</span>
                             <span class="accordion-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg></span>
@@ -702,7 +731,7 @@
                     <details>
                         <summary>
                             <span>Otimização de Usabilidade</span>
-                            <span class="accordion-helper">Ver detalhes</span>
+                            <span class="accordion-helper">Clique para recolher ou expandir</span>
                             <span class="accordion-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg></span>
@@ -713,7 +742,7 @@
                     <details>
                         <summary>
                             <span>Autonomia Editorial</span>
-                            <span class="accordion-helper">Ver detalhes</span>
+                            <span class="accordion-helper">Clique para recolher ou expandir</span>
                             <span class="accordion-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg></span>
@@ -724,7 +753,7 @@
                     <details>
                         <summary>
                             <span>Comunicação em Canais Integrados</span>
-                            <span class="accordion-helper">Ver detalhes</span>
+                            <span class="accordion-helper">Clique para recolher ou expandir</span>
                             <span class="accordion-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg></span>
