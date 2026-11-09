@@ -272,17 +272,41 @@ html[data-theme="light"] .case-card__description {
     color: #334155;
 }
 
-html[data-theme="light"] .case-card .btn--primary {
+/* Botões Globais: Modo Claro */
+html[data-theme="light"] .btn--primary,
+:root .btn--primary {
+    background-color: #0f172a;
+    color: #ffffff;
     border: 1px solid #0f172a;
-    color: #0f172a;
-    background: transparent;
     border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12);
 }
 
-html[data-theme="light"] .case-card .btn--primary:hover {
-    background: #0f172a;
+html[data-theme="light"] .btn--primary:hover,
+:root .btn--primary:hover {
+    background-color: #1e293b;
+    border-color: #1e293b;
     color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.2);
+}
+
+html[data-theme="light"] .btn--ghost,
+:root .btn--ghost {
+    background-color: #ffffff;
+    color: #0f172a;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+html[data-theme="light"] .btn--ghost:hover,
+:root .btn--ghost:hover {
+    background-color: #f8fafc;
     border-color: #0f172a;
+    color: #0f172a;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.08);
 }
 
 /* Modo Escuro para Cards */
@@ -314,17 +338,37 @@ html[data-theme="dark"] .case-tag {
     border-color: rgba(255, 255, 255, 0.12);
 }
 
-html[data-theme="dark"] .case-card .btn--primary {
-    border: 1px solid rgba(255, 255, 255, 0.85);
-    color: #ffffff;
-    background: transparent;
+/* Botões Globais: Modo Escuro */
+html[data-theme="dark"] .btn--primary {
+    background-color: #ffffff;
+    color: #0f172a;
+    border: 1px solid #ffffff;
     border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
-html[data-theme="dark"] .case-card .btn--primary:hover {
-    background: #ffffff;
-    color: #121212;
-    border-color: #ffffff;
+html[data-theme="dark"] .btn--primary:hover {
+    background-color: #f1f5f9;
+    border-color: #f1f5f9;
+    color: #0f172a;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 18px rgba(255, 255, 255, 0.25);
+}
+
+html[data-theme="dark"] .btn--ghost {
+    background-color: #1e1e1e;
+    color: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+html[data-theme="dark"] .btn--ghost:hover {
+    background-color: #282828;
+    border-color: rgba(255, 255, 255, 0.45);
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .case-card.clean .case-card__media {
