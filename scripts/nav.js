@@ -55,4 +55,27 @@
       });
     }
   });
+
+  // Sincroniza tema quando a página é restaurada do BFCache (botão Voltar/Avançar do navegador)
+  window.addEventListener('pageshow', function() {
+    try {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        if (document.body) {
+          document.body.classList.toggle('dark-mode', savedTheme === 'dark');
+        }
+      }
+    } catch (e) { /* fail silently */ }
+  });
+
+  // Sincroniza tema em tempo real caso alterado em outra aba
+  window.addEventListener('storage', function(e) {
+    if (e.key === 'theme' && e.newValue) {
+      document.documentElement.setAttribute('data-theme', e.newValue);
+      if (document.body) {
+        document.body.classList.toggle('dark-mode', e.newValue === 'dark');
+      }
+    }
+  });
 })();
