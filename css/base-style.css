@@ -200,11 +200,13 @@ img, picture, video, iframe {
 }
 
 /* Card title: melhor hierarquia e legibilidade em fundo claro */
-.case-card__title {
+.case-card__title,
+.case-card.clean .case-card__title {
     margin: 0;
+    font-family: var(--font-family-sans, 'Source Sans 3', sans-serif);
     font-size: 1.25rem;
     color: var(--color-light-text-main, #0F172A);
-    font-weight: 700;
+    font-weight: 700 !important;
     line-height: 1.35;
 }
 
