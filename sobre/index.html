@@ -163,62 +163,35 @@
         .about__contact {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
             gap: 10px;
             font-family: var(--font-family-sans);
             font-size: var(--font-size-sm);
             font-weight: 600;
-            letter-spacing: 0.01em;
-            color: #ffffff;
-            background-color: #0f172a;
-            border: 1px solid #0f172a;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--text-primary);
             text-decoration: none;
-            padding: 12px 28px;
-            border-radius: 6px;
-            box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12);
+            padding: 14px 28px;
+            border: 1px solid var(--text-primary);
+            border-radius: var(--radius-sm);
             transition: all 0.2s ease;
         }
 
         .about__contact:hover {
-            background-color: #1e293b;
-            border-color: #1e293b;
-            color: #ffffff;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.2);
+            background-color: var(--text-primary);
+            color: var(--bg-body);
             text-decoration: none;
         }
 
         .about__contact:hover svg {
-            stroke: #ffffff;
+            stroke: var(--bg-body);
         }
 
         .about__contact svg {
             width: 16px;
             height: 16px;
-            stroke: #ffffff;
+            stroke: var(--text-primary);
             transition: stroke 0.2s ease;
-        }
-
-        html[data-theme="dark"] .about__contact {
-            background-color: #ffffff;
-            color: #0f172a;
-            border-color: #ffffff;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
-        }
-
-        html[data-theme="dark"] .about__contact svg {
-            stroke: #0f172a;
-        }
-
-        html[data-theme="dark"] .about__contact:hover {
-            background-color: #f1f5f9;
-            border-color: #f1f5f9;
-            color: #0f172a;
-            box-shadow: 0 4px 18px rgba(255, 255, 255, 0.25);
-        }
-
-        html[data-theme="dark"] .about__contact:hover svg {
-            stroke: #0f172a;
         }
     </style>
     <script>
