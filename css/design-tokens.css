@@ -513,7 +513,7 @@ a:focus-visible,
 .case-card__title {
   font-family: var(--font-family-sans);
   font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-semibold);
+  font-weight: 700;
   color: var(--color-text-inverse);
   margin: 0;
   line-height: 1.3;

@@ -204,7 +204,7 @@ img, picture, video, iframe {
     margin: 0;
     font-size: 1.25rem;
     color: var(--color-light-text-main, #0F172A);
-    font-weight: var(--font-weight-semibold);
+    font-weight: 700;
     line-height: 1.35;
 }
 
@@ -345,7 +345,7 @@ html[data-theme="dark"] .case-card .btn--primary:hover {
 
 .case-card.clean .case-card__content {
     display: grid;
-    grid-template-rows: auto auto auto 1fr auto; /* tags, título, subtítulo, descrição, botão */
+    grid-template-rows: auto auto 1fr auto; /* título, subtítulo, descrição, botão */
     gap: var(--space-sm);
     flex: 1 1 auto;
     padding-bottom: 2px;

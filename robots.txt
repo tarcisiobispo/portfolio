@@ -13,6 +13,8 @@ Disallow: /case-studies/case-study-delore/
 Disallow: /backups-images/
 Disallow: /backups-html/
 Disallow: /docs/
+Disallow: /FGV DIREITO GV/
+Disallow: /FGV%20DIREITO%20GV/
 
 # Mapa do Site Oficial
 Sitemap: https://tarcisiobispo.github.io/portfolio/sitemap.xml
